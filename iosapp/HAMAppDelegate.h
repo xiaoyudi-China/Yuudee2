@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class HAMStructureEditViewController;
 @class HAMViewController;
+@class HAMSettingsViewController;
 
 @interface HAMAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UINavigationController *navController;
 
 @property (strong, nonatomic) HAMViewController *viewController;
+@property (strong, nonatomic) HAMStructureEditViewController *structureEditViewController;
+@property Boolean urlFlag;
 
 @end

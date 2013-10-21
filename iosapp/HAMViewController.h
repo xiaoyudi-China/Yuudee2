@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "HAMGridViewTool.h"
+#import "HAMConfig.h"
+#import "HAMUserManager.h"
 
-@interface HAMViewController : UIViewController
-
+@interface HAMViewController : UIViewController <AVAudioPlayerDelegate>
+{
+    NSString* activeUsername;
+    
+    AVAudioPlayer *audioPlayer;
+    
+    HAMGridViewTool* gridViewTool;
+    HAMConfig* config;
+    HAMUserManager* userManager;
+    
+    NSString* currentUUID;
+}
 @end
