@@ -68,6 +68,15 @@
 
 }
 
+-(CGPoint)positionAtPosIndex:(int)index;
+{
+    int i = index / xnum;
+    int j = index % xnum;
+    double x = j*a + (j+1) * xSpace;
+    double y = i*(a+h) + (i+1) * ySpace;
+    return CGPointMake(x, y);
+}
+
 +(double)maxx
 {
     CGRect rect=[[UIScreen mainScreen]bounds];

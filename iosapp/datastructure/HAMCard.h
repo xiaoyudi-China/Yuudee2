@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "HAMResource.h"
 
+#define CARD_TYPE_CATEGORY 0
+#define CARD_TYPE_CARD 1
+
 @interface HAMCard : NSObject
 {
 }

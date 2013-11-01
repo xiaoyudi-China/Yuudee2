@@ -179,15 +179,27 @@
     NSMutableArray* children=[self childrenOf:parentID];
     if (!childID)
     {
-        [HAMTools addObject:[NSNull null] toMutableArray:children atIndex:index];
+        [HAMTools setObject:[NSNull null] toMutableArray:children atIndex:index];
         [dbManager deleteChildOfCat:parentID atIndex:index];
     }
     else
     {
-        [HAMTools addObject:childID toMutableArray:children atIndex:index];
+        [HAMTools setObject:childID toMutableArray:children atIndex:index];
         [dbManager updateChildOfCat:parentID with:childID atIndex:index];
     }
 }
+
+/*-(void)moveChildOfCat:(NSString*)parentID fromIndex:(int)oldIndex toIndex:(int)newIndex
+{
+    NSMutableArray* children = [self childrenOf:parentID];
+    if (oldIndex >= [children count])
+        return;
+
+    NSString* childID = [children objectAtIndex:oldIndex];
+    [dbManager updateChild:childID ofCat:parentID toIndex:newIndex];
+    [HAMTools setObject:[NSNull null] toMutableArray:children atIndex:oldIndex];
+    [HAMTools setObject:childID toMutableArray:children atIndex:newIndex];
+}*/
 
 -(void)insertChild:(NSString*)childID toNode:(NSString*)parentID
 {
@@ -197,7 +209,7 @@
     //for (pos=0;[dbManager ifCat:parentID hasChildAt:pos];pos++);
     for (pos=0;pos<[children count]&&[children objectAtIndex:pos]!=[NSNull null];pos++);
     [dbManager updateChildOfCat:parentID with:childID atIndex:pos];
-    [HAMTools addObject:childID toMutableArray:children atIndex:pos];
+    [HAMTools setObject:childID toMutableArray:children atIndex:pos];
 }
 
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image

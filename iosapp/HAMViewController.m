@@ -91,15 +91,15 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     [superLayer addSublayer:highlightLayer];
     
     CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    [pulseAnimation setDuration:0.5];
+    [pulseAnimation setDuration:1];
     [pulseAnimation setRepeatCount:1];
     
     // The built-in ease in/ ease out timing function is used to make the animation look smooth as the layer
     // animates between the two scaling transformations.
-    [pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    //[pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
     // Scale the layer to half the size
-    CATransform3D transform = CATransform3DMakeScale(1.5, 1.5, 1.0);
+    CATransform3D transform = CATransform3DMakeScale(3.5, 3.5, 1.0);
     
     // Tell CA to interpolate to this transformation matrix
     [pulseAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
@@ -108,8 +108,16 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     // Tells CA to reverse the animation (e.g. animate back to the layer's transform)
     [pulseAnimation setAutoreverses:YES];
     
+    CABasicAnimation *translation = [CABasicAnimation animationWithKeyPath:@"position"];
+    translation.toValue = [NSValue valueWithCGPoint:CGPointMake(384, 512)];
+    [translation setDuration:1];
+    [translation setRepeatCount:1];
+    [translation setAutoreverses:YES];
+    //[translation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
     // Finally... add the explicit animation to the layer... the animation automatically starts.
     [highlightLayer addAnimation:pulseAnimation forKey:kHAMPulseAnimation];
+    [highlightLayer addAnimation:translation forKey:@"translation"];
 }
 
 - (void)endAnimatingLayer

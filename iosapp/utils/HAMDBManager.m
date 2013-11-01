@@ -361,7 +361,7 @@
     {
         NSString* child=[self stringAt:0];
         int pos=sqlite3_column_int(statement, 1);
-        [HAMTools addObject:child toMutableArray:children atIndex:pos];
+        [HAMTools setObject:child toMutableArray:children atIndex:pos];
     }
     
     [self closeDatabase];
@@ -456,6 +456,11 @@
     }*/
     
     [self closeDatabase];
+}
+
+-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex
+{
+    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET POSITION = %d WHERE CHILD = '%@' AND PARENT = '%@'",newIndex, childID, parentID]];
 }
 
 #pragma mark -
@@ -571,7 +576,8 @@
 
 -(void)insertUser:(HAMUser*)user
 {
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\");",user.UUID,user.name,user.rootID]];
+    //TODO: default layoutx,layouty
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",3,4);",user.UUID,user.name,user.rootID]];
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\");",user.rootID,user.name]];
 }
 

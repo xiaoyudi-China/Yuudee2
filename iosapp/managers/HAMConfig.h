@@ -44,12 +44,14 @@
 
 -(HAMCard*)card:(NSString*)UUID;
 -(NSString*)childOf:(NSString*)parentID at:(int)pos;
+-(NSMutableArray*)childrenOf:(NSString*)parentID;
 
 -(NSMutableArray*) allList;
 -(NSMutableArray*) cardList;
 -(NSMutableArray*) catList;
 
 -(void)updateChildOfNode:(NSString*)nodeID with:(NSString*)childID atIndex:(int)index;
+//-(void)moveChildOfCat:(NSString*)parentID fromIndex:(int)oldIndex toIndex:(int)newIndex;
 -(void)insertChild:(NSString*)childID toNode:(NSString*)parentID;
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image;

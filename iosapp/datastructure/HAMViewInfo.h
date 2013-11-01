@@ -30,11 +30,11 @@
 @property double picHeight;
 
 -(id)initWithframe:(CGRect)frame xnum:(int)_xnum ynum:(int)_ynum h:(double)_h minspace:(double)_minspace;
-
 -(void)updateInfoWithxnum:(int)_xnum ynum:(int)_ynum;
 
-+(double)maxx;
+-(CGPoint)positionAtPosIndex:(int)index;
 
++(double)maxx;
 +(double)maxy;
 
 @end

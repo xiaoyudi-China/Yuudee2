@@ -9,7 +9,10 @@
 #import "HAMStructureEditViewController.h"
 
 @interface HAMStructureEditViewController ()
-
+{
+    NSMutableArray* layerArray;
+    int selectedTag_;
+}
 @end
 
 @implementation HAMStructureEditViewController
@@ -18,6 +21,8 @@
 @synthesize editNodeController;
 @synthesize syncViewController;
 @synthesize userViewController;
+
+@synthesize currentUUID;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,7 +43,7 @@
         refreshFlag=NO;
     }
     if (currentUUID)
-        [gridViewTool refreshView:currentUUID];
+        [self refreshGridView];
 }
 
 - (void)viewDidLoad
@@ -71,7 +76,7 @@
     UIView* gridView=[UIView new];
     gridView.frame = frame;
     [self.view addSubview:gridView];
-    gridViewTool=[[HAMGridViewTool alloc] initWithView:gridView viewInfo:viewInfo config:config viewController:self edit:YES];
+    dragableView=[[HAMEditableGridViewTool alloc] initWithView:gridView viewInfo:viewInfo config:config viewController:self edit:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +88,6 @@
 #pragma mark -
 #pragma mark Actions
 
-
 -(IBAction) groupClicked:(id)sender{
     int index=[sender tag];
     if (index==-1)
@@ -91,7 +95,7 @@
     else
         currentUUID=[config childOf:currentUUID at:index];
     
-    [gridViewTool refreshView:currentUUID];
+    [self refreshGridView];
 }
 
 -(IBAction) leafClicked:(id)sender{
@@ -103,18 +107,21 @@
     [self gotoSelectorAt:[sender tag]];
 }
 
-- (void)longpressStateChanged:(UIGestureRecognizer *)gestureRecognizer
+-(IBAction) editClicked:(id)sender
 {
-    switch (gestureRecognizer.state)
-    {
-        case UIGestureRecognizerStateBegan:
-        {
-            [self gotoSelectorAt:[[gestureRecognizer view] tag]];
-            break;
-        }
-        default:
-        break;
+    UIAlertView* editAlert;
+    selectedTag_ = [sender tag];
+    
+    HAMCard* selectedCard = [config card:[config childOf:currentUUID at:selectedTag_]];
+    if (selectedCard.type == CARD_TYPE_CATEGORY) {
+        editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该分类",@"清除该分类",nil];
     }
+    else{
+        editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"当前动画效果为：" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该卡片",@"清除该卡片",@"更改动画效果",nil];
+    }
+    
+    editAlert.tag=2;
+    [editAlert show];
 }
 
 - (IBAction)newNodeAction:(UIBarButtonItem *)sender {
@@ -126,6 +133,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     int xnum=-1,ynum=-1;
+    UIAlertView* changeAnimationAlert;
     switch (alertView.tag) {
         case 0:
             //newNodeAlert
@@ -172,8 +180,55 @@
             if (xnum!=-1 && ynum!=-1)
             {
                 [userManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
-                [gridViewTool setLayoutWithxnum:xnum ynum:ynum];
-                [gridViewTool refreshView:currentUUID];
+                [dragableView setLayoutWithxnum:xnum ynum:ynum];
+                [self refreshGridView];
+            }
+            break;
+            
+        case 2:
+            //editAlert
+            
+            switch (buttonIndex) {
+                case 1:
+                    //edit card here
+                    
+                    break;
+                    
+                case 2:
+                    //delete card here
+                    [config updateChildOfNode:currentUUID with:nil atIndex:selectedTag_];
+                    [dragableView refreshView:currentUUID];
+                    break;
+                    
+                case 3:
+                    //change animation here
+                    changeAnimationAlert = [[UIAlertView alloc] initWithTitle:@"更改动画效果" message:@"更改为:" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"放大",@"放大后摇晃",@"无动画",nil];
+                    changeAnimationAlert.tag = 3;
+                    [changeAnimationAlert show];
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case 3:
+            //changeAnimationAlert
+            switch (buttonIndex) {
+                case 0:
+                    //scale
+                    break;
+                    
+                case 1:
+                    //scale and shake
+                    break;
+                    
+                case 2:
+                    //none
+                    break;
+                    
+                default:
+                    break;
             }
             
         default:
@@ -219,8 +274,15 @@
     [self.navigationController pushViewController:userViewController animated:YES];
 }
 
+
 #pragma mark -
 #pragma mark Goto View
+
+-(void)refreshGridView
+{
+    [dragableView refreshView:currentUUID];
+    layerArray = dragableView.layerArray;
+}
 
 -(void)gotoSelectorAt:(int)index
 {

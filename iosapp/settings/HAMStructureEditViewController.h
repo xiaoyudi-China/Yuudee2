@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HAMViewTool.h"
-#import "HAMGridViewTool.h"
+#import "HAMEditableGridViewTool.h"
 #import "HAMFileTools.h"
 #import "HAMNodeSelectorViewController.h"
 #import "HAMEditNodeViewController.h"
@@ -18,14 +18,15 @@
 #import "HAMUserManager.h"
 #import "Reachability.h"
 
+@class HAMEditableGridViewTool;
+
 @interface HAMStructureEditViewController : UIViewController
 {
     HAMConfig* config;
     HAMUserManager* userManager;
     
-    HAMGridViewTool* gridViewTool;
+    HAMEditableGridViewTool* dragableView;
     
-    NSString* currentUUID;
     Boolean refreshFlag;
 }
 
@@ -33,6 +34,8 @@
 @property (strong,nonatomic) HAMEditNodeViewController* editNodeController;
 @property (strong,nonatomic) HAMSyncViewController* syncViewController;
 @property (strong,nonatomic) HAMUserViewController* userViewController;
+
+@property NSString* currentUUID;
 
 - (IBAction)newNodeAction:(UIBarButtonItem *)sender;
 - (IBAction)editNodeAction:(UIBarButtonItem *)sender;

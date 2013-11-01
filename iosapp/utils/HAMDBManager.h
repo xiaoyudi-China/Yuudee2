@@ -41,6 +41,7 @@
 -(void)deleteChildOfCat:(NSString*)parentID atIndex:(int)index;
 -(void)deleteCardFromTree:(NSString*)UUID;
 -(void)updateChildOfCat:(NSString*)parentID with:(NSString*)childID atIndex:(int)index;
+-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex;
 //-(Boolean)ifCat:(NSString*)parentID hasChildAt:(int)pos;
 
 //table RESOURCE
