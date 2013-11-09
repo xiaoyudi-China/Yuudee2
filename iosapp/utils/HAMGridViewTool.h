@@ -12,10 +12,13 @@
 #import "HAMTools.h"
 #import "HAMConfig.h"
 
-@interface HAMGridViewTool : NSObject{
+@interface HAMGridViewTool : NSObject <UIScrollViewDelegate> {
     HAMViewInfo* viewInfo;
     HAMConfig* config;
-    UIView* view;
+    
+    UIScrollView* scrollView_;
+    int totalPageNum;
+    NSMutableArray* pageViews;
     
     UIViewController* viewController_;
     NSMutableArray* layerArray;
@@ -24,15 +27,14 @@
 
 @property NSMutableArray* layerArray;
 
--(id)initWithView:(UIView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config viewController:(id)_viewController edit:(Boolean)_edit;
+-(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit;
 -(void)prepareRefreshView:(NSString*)nodeUUID;
 -(void)refreshView:(NSString*)nodeUUID;
 -(void)setLayoutWithxnum:(int)_xnum ynum:(int)_ynum;
 
 //for sub class
--(UIButton*)addButtonWithi:(int)i j:(int)j picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType;
--(void)addLabelWithi:(int)i j:(int)j text:(NSString*)text color:(UIColor*)color tag:(int)index;
--(void)addCardAtPos:(int)pos cardID:(NSString*)cardID index:(int)index;
--(void)addAddNodeAtPos:(int)pos index:(int)index;
+- (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType;
+- (void)addLabelWithi:(int)i j:(int)j onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color tag:(int)index;
+- (void)addCardAtPos:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index;
 
 @end

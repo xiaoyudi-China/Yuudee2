@@ -29,6 +29,7 @@
     
     Boolean refreshFlag;
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
 
 @property (strong,nonatomic) HAMNodeSelectorViewController *selectorViewController;
 @property (strong,nonatomic) HAMEditNodeViewController* editNodeController;

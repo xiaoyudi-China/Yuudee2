@@ -9,13 +9,13 @@
 #import "HAMGridViewTool.h"
 #import "HAMStructureEditViewController.h"
 
-#define MAX_CARD_NUM 20
+#define MAX_CARD_NUM 1000
 
 @class HAMStructureEditViewController;
 
 @interface HAMEditableGridViewTool : HAMGridViewTool
 {
-    //TODO: max cards in single screen - 20 here
+    //TODO: max cards in single screen - 1000 here
     struct CGPoint positionArray_[MAX_CARD_NUM];
     int tagOfIndex_[MAX_CARD_NUM];
     NSMutableArray* cardViewArray_;

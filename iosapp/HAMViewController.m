@@ -14,9 +14,11 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
 
 @interface HAMViewController ()
 						
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
 @end
 
 @implementation HAMViewController
+@synthesize scrollView_;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -36,15 +38,13 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     
     HAMUser* currentUser=userManager.currentUser;
     
-    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:[self.view frame] xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
-    gridViewTool=[[HAMGridViewTool alloc] initWithView:self.view viewInfo:viewInfo config:config viewController:self edit:NO];
+    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:[self.view frame] xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];    
+    gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID];
-    
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(NSString*)childAtIndex:(int)index
@@ -94,14 +94,10 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     [pulseAnimation setDuration:1];
     [pulseAnimation setRepeatCount:1];
     
-    // The built-in ease in/ ease out timing function is used to make the animation look smooth as the layer
-    // animates between the two scaling transformations.
-    //[pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
-    // Scale the layer to half the size
     CATransform3D transform = CATransform3DMakeScale(3.5, 3.5, 1.0);
     
-    // Tell CA to interpolate to this transformation matrix
     [pulseAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
     [pulseAnimation setToValue:[NSValue valueWithCATransform3D:transform]];
     
@@ -113,7 +109,6 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     [translation setDuration:1];
     [translation setRepeatCount:1];
     [translation setAutoreverses:YES];
-    //[translation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
     // Finally... add the explicit animation to the layer... the animation automatically starts.
     [highlightLayer addAnimation:pulseAnimation forKey:kHAMPulseAnimation];

@@ -16,48 +16,49 @@
 -(void)refreshView:(NSString*)nodeUUID{
     [super prepareRefreshView:nodeUUID];
     
-    int i,j=0;
-    
-    HAMCard* card = [config card:nodeUUID];
-    
-    layerArray = [NSMutableArray array];
     cardViewArray_ = [NSMutableArray array];
     editButtonArray_ = [NSMutableArray array];
     
-    //add home btn
-    if (![card.UUID isEqualToString:config.rootID])
-    {
-        [self addButtonWithi:0 j:0 picName:@"back.png" action:@selector(groupClicked:) tag:-1 bgType:-1];
-        [self addLabelWithi:0 j:0 text:@"返回" color:[UIColor blackColor] tag:-1];
-        j=1;
-    }
+    int childIndex=0,posIndex,pageIndex;
+    HAMCard* card = [config card:nodeUUID];
+    Boolean isRoot = [card.UUID isEqualToString:config.rootID];
+    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
-    //add else btn. fill blanks with add btn if edit
-    int totalBtns = viewInfo.xnum * viewInfo.ynum;
-    for(i=0; j<totalBtns; i++,j++)
-    {
-        NSString* childID = [config childOf:card.UUID at:i];
-        
-        if(!childID || (NSNull*)childID == [NSNull null])
+    for (pageIndex = 0; pageIndex < totalPageNum; pageIndex++) {
+        posIndex = 0;
+        //add home btn
+        if (!isRoot)
         {
-            [self addAddNodeAtPos:j index:i];
-            isBlankAtTag_[j] = YES;
-            continue;
+            [self addButtonWithi:0 j:0 onPage:pageIndex picName:@"back.png" action:@selector(groupClicked:) tag:-1 bgType:-1];
+            [self addLabelWithi:0 j:0 onPage:pageIndex text:@"返回" color:[UIColor blackColor] tag:-1];
+            posIndex=1;
         }
+        //add else btn
         
-        isBlankAtTag_[j] = NO;
-        [self addCardAtPos:j cardID:childID index:i];
-        [self addEditButtonAtPos:j tag:i];
+        for(; posIndex < btnsPerPage; childIndex++,posIndex++)
+        {
+            NSString* childID=[config childOf:card.UUID at:childIndex];
+            
+            if(!childID || (NSNull*)childID==[NSNull null])
+            {
+                isBlankAtTag_[childIndex] = YES;
+                [self addAddNodeAtPos:posIndex onPage:pageIndex index:childIndex];
+                continue;
+            }
+            
+            isBlankAtTag_[childIndex] = NO;
+            [self addCardAtPos:posIndex onPage:pageIndex cardID:childID index:childIndex];
+            [self addEditButtonAtPos:posIndex onPage:pageIndex tag:childIndex];
+        }
     }
 }
 
-- (UIButton*)addButtonWithi:(int)i j:(int)j picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
+- (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
 {
-    UIButton* button = [super addButtonWithi:i j:j picName:picName action:action tag:tag bgType:bgType];
+    UIButton* button = [super addButtonWithi:i j:j onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
     //don't add return button
-    if (tag == -1) {
+    if (tag == -1)
         return button;
-    }
     
     [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
     
@@ -65,15 +66,30 @@
     positionArray_[tag] = buttonLayer.position;
     tagOfIndex_[tag] = tag;
     
+    if (isBlankAtTag_[tag]) {
+        return button;
+    }
+    
     UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc]
                                                     initWithTarget:self
                                                     action:@selector(handlePan:)];
     [button addGestureRecognizer:panGestureRecognizer];
-    return button;
+    return nil;
 }
 
-- (void)addEditButtonAtPos:(int)pos tag:(int)tag
+- (void)addAddNodeAtPos:(int)pos onPage:(int)pageIndex index:(int)index
 {
+    int xid=pos/viewInfo.xnum;
+    int yid=pos%viewInfo.xnum;
+    
+    [self addButtonWithi:xid j:yid onPage:pageIndex picName:@"add.png" action:@selector(addClicked:) tag:index bgType:-1];
+    [self addLabelWithi:xid j:yid onPage:pageIndex text:@"新增词条/分组" color:[UIColor blackColor] tag:index];
+}
+
+- (void)addEditButtonAtPos:(int)pos onPage:(int)pageIndex tag:(int)tag
+{
+    UIView* pageView = [pageViews objectAtIndex:pageIndex];
+    
     UIButton* editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     CGPoint position = [viewInfo positionAtPosIndex:pos];
     double length = viewInfo.a * 0.25;
@@ -89,7 +105,7 @@
     [downButtonLayer setBorderWidth:1.0];
     [downButtonLayer setBorderColor:[[UIColor grayColor] CGColor]];
     
-    [view addSubview:editButton];
+    [pageView addSubview:editButton];
     [editButtonArray_ addObject:editButton];
 }
 
@@ -206,7 +222,6 @@
         NSMutableArray* children = [[config childrenOf:currentUUID_] copy];
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];
-            //newIsBlankAtTag[i] = isBlankAtTag_[targetTag];
             if (tagOfIndex_[i] == i)
                 continue;
             NSObject* child;

@@ -17,6 +17,8 @@
 
 @implementation HAMStructureEditViewController
 
+@synthesize scrollView_;
+
 @synthesize selectorViewController;
 @synthesize editNodeController;
 @synthesize syncViewController;
@@ -42,6 +44,7 @@
         currentUUID=config.rootID;
         refreshFlag=NO;
     }
+    
     if (currentUUID)
         [self refreshGridView];
 }
@@ -49,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
     UIBarButtonItem* userBtn = [[UIBarButtonItem alloc] initWithTitle:@"更换用户" style:UIBarButtonItemStyleBordered target:self action:@selector(userBtnClicked:)];
     self.navigationItem.rightBarButtonItem = userBtn;
@@ -70,13 +74,9 @@
     userManager=config.userManager;
     HAMUser* currentUser=[userManager currentUser];
     
-    //grid view    
-    CGRect frame = CGRectMake(0, 0, [HAMViewInfo maxx], [HAMViewInfo maxy]-100);
-    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:frame xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
-    UIView* gridView=[UIView new];
-    gridView.frame = frame;
-    [self.view addSubview:gridView];
-    dragableView=[[HAMEditableGridViewTool alloc] initWithView:gridView viewInfo:viewInfo config:config viewController:self edit:YES];
+    //grid view
+    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:scrollView_.frame xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
+    dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -113,6 +113,7 @@
     selectedTag_ = [sender tag];
     
     HAMCard* selectedCard = [config card:[config childOf:currentUUID at:selectedTag_]];
+    
     if (selectedCard.type == CARD_TYPE_CATEGORY) {
         editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该分类",@"清除该分类",nil];
     }
