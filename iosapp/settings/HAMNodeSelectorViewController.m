@@ -77,15 +77,15 @@
     
     switch (mode) {
         case 0:
-            return [config allList];
+            //return [config allList];
             break;
             
         case 1:
-            return [config cardList];
+            //return [config cardList];
             break;
             
         case 2:
-            return [config catList];
+            //return [config catList];
             break;
             
         default:
@@ -160,7 +160,7 @@
     
     if (index!=-1)
     {
-        [config updateChildOfNode:parentID with:childID atIndex:index];
+        [config updateRoomOfCat:parentID with:[[HAMRoom alloc] initWithCardID:childID animation:ROOM_ANIMATION_SCALE] atIndex:index];
         [self.navigationController popViewControllerAnimated:YES];
     }
     else

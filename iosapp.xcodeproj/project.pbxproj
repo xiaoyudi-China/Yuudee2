@@ -54,6 +54,7 @@
 		66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66CC961B17B4BFB900DB3A57 /* HAMSyncViewController.xib */; };
 		66CC962017B4C30400DB3A57 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC961F17B4C30300DB3A57 /* Reachability.m */; };
 		66CC962317B4E7AD00DB3A57 /* HAMWebTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */; };
+		66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */; };
 		66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D7E6BE17A0D19A00CB122D /* HAMConfig.m */; };
 		66E66BD117A8FD4200F6177B /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD017A8FD4100F6177B /* bg.png */; };
 		66E66BD317A90A9F00F6177B /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD217A90A9F00F6177B /* card.png */; };
@@ -135,6 +136,8 @@
 		66CC961F17B4C30300DB3A57 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
 		66CC962117B4E7AD00DB3A57 /* HAMWebTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMWebTool.h; path = utils/HAMWebTool.h; sourceTree = "<group>"; };
 		66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMWebTool.m; path = utils/HAMWebTool.m; sourceTree = "<group>"; };
+		66D1EDE8182DFDD6008F65E5 /* HAMRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMRoom.h; path = datastructure/HAMRoom.h; sourceTree = "<group>"; };
+		66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMRoom.m; path = datastructure/HAMRoom.m; sourceTree = "<group>"; };
 		66D7E6BD17A0D19A00CB122D /* HAMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMConfig.h; path = managers/HAMConfig.h; sourceTree = "<group>"; };
 		66D7E6BE17A0D19A00CB122D /* HAMConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMConfig.m; path = managers/HAMConfig.m; sourceTree = "<group>"; };
 		66E66BD017A8FD4100F6177B /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
@@ -182,6 +185,7 @@
 				667E53BE17A65BA600BBDE35 /* HAMCard.m */,
 				667E53C117A65C3100BBDE35 /* HAMResource.m */,
 				66CC303717B8DA3A008078A9 /* HAMUser.m */,
+				66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */,
 			);
 			name = datastructure;
 			sourceTree = "<group>";
@@ -333,6 +337,7 @@
 				667E53BD17A65BA600BBDE35 /* HAMCard.h */,
 				667E53C017A65C3100BBDE35 /* HAMResource.h */,
 				66CC303617B8DA3A008078A9 /* HAMUser.h */,
+				66D1EDE8182DFDD6008F65E5 /* HAMRoom.h */,
 			);
 			name = h;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				667E53BA17A6319A00BBDE35 /* HAMDBManager.m in Sources */,
 				667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */,
 				667E53C217A65C3100BBDE35 /* HAMResource.m in Sources */,
+				66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */,
 				66AF428117A7979E0053D560 /* HAMTools.m in Sources */,
 				66CC961C17B4BFB900DB3A57 /* HAMSyncViewController.m in Sources */,
 				66CC962017B4C30400DB3A57 /* Reachability.m in Sources */,

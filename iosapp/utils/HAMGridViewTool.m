@@ -47,7 +47,7 @@
     
     layerArray=[NSMutableArray array];
     
-    NSArray* children = [config childrenOf:nodeUUID];
+    NSArray* children = [config childrenCardIDOfCat:nodeUUID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
     totalPageNum = ceil( (children.count + 0.0f) / btnsPerPage);
@@ -90,7 +90,7 @@
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
         {
-            NSString* childID=[config childOf:card.UUID at:childIndex];
+            NSString* childID=[config childCardIDOfCat:card.UUID atIndex:childIndex];
         
             if(!childID || (NSNull*)childID==[NSNull null])
                 continue;

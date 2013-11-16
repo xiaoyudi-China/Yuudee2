@@ -298,7 +298,7 @@ static UIImage* shrinkImage(UIImage* original,CGSize size)
     else
     {
         [config newCardWithID:card.UUID name:nameTextField.text type:newFlag audio:audioPath image:imageFile];
-        [config insertChild:card.UUID toNode:parentID];
+        //[config insertChild:card.UUID toNode:parentID];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

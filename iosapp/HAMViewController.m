@@ -47,17 +47,12 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     [super didReceiveMemoryWarning];
 }
 
--(NSString*)childAtIndex:(int)index
-{
-    return [config childOf:currentUUID at:index];
-}
-
 -(IBAction) groupClicked:(id)sender{
     int index=[sender tag];
     if (index==-1)
         currentUUID=config.rootID;
     else
-        currentUUID=[self childAtIndex:index];
+        currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
     
     [gridViewTool refreshView:currentUUID];
 }
@@ -70,10 +65,14 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
             return;
         }
     
-    [self beginAnimatingLayer:[gridViewTool.layerArray objectAtIndex:[sender tag]]];
-
-    HAMCard* card=[config card:[self childAtIndex:[sender tag]]];
+    int index = [sender tag];
+    HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
+    
+    CALayer* cardLayer = [[gridViewTool layerArray] objectAtIndex:index];
+    [self beginAnimation:room.animation_ onLayer:cardLayer];
+    
     //NSString *musicPath= [[NSBundle mainBundle] pathForResource:[[card audio] localPath] ofType:@""];
+    HAMCard* card = [config card:room.cardID_];
     NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
     
     if (musicPath){
@@ -84,8 +83,17 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     }
 }
 
-- (void)beginAnimatingLayer:(CALayer*)highlightLayer
+- (void)beginAnimation:(int)animationType onLayer:(CALayer*)highlightLayer
 {
+    switch (animationType) {
+        case ROOM_ANIMATION_NONE:
+            return;
+        
+        case ROOM_ANIMATION_SCALE:
+            
+        default:
+            break;
+    }
     CALayer* superLayer=[highlightLayer superlayer];
     [highlightLayer removeFromSuperlayer];
     [superLayer addSublayer:highlightLayer];

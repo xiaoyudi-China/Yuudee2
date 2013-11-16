@@ -37,7 +37,7 @@
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
         {
-            NSString* childID=[config childOf:card.UUID at:childIndex];
+            NSString* childID=[config childCardIDOfCat:card.UUID atIndex:childIndex];
             
             if(!childID || (NSNull*)childID==[NSNull null])
             {
@@ -219,7 +219,7 @@
     //TODO: may need to move this part to the begining of this function. depend on the circumstances of last calling of handlePan
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
         [self moveView:cardView andLayer:cardLayer toPosition:positionArray_[nearestIndex] animated:YES];
-        NSMutableArray* children = [[config childrenOf:currentUUID_] copy];
+        NSMutableArray* children = [[config childrenCardIDOfCat:currentUUID_] copy];
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];
             if (tagOfIndex_[i] == i)
@@ -235,7 +235,7 @@
             else{
                 child = nil;
             }
-            [config updateChildOfNode:currentUUID_ with:(NSString*)child atIndex:i];
+            [config updateRoomOfCat:currentUUID_ with:(HAMRoom*)child atIndex:i];
         }
         
         //swap is quicker, but refresh is safer

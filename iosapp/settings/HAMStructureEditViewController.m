@@ -93,7 +93,7 @@
     if (index==-1)
         currentUUID=config.rootID;
     else
-        currentUUID=[config childOf:currentUUID at:index];
+        currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
     
     [self refreshGridView];
 }
@@ -112,13 +112,32 @@
     UIAlertView* editAlert;
     selectedTag_ = [sender tag];
     
-    HAMCard* selectedCard = [config card:[config childOf:currentUUID at:selectedTag_]];
+    HAMCard* selectedCard = [config card:[config childCardIDOfCat:currentUUID atIndex:selectedTag_]];
     
     if (selectedCard.type == CARD_TYPE_CATEGORY) {
         editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该分类",@"清除该分类",nil];
     }
     else{
-        editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"当前动画效果为：" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该卡片",@"清除该卡片",@"更改动画效果",nil];
+        NSString* animation;
+        switch ([config animationOfCat:currentUUID atIndex:selectedTag_]) {
+            case ROOM_ANIMATION_SCALE:
+                animation = @"放大效果";
+                break;
+            
+            case ROOM_ANIMATION_SHAKE:
+                animation = @"摇晃效果";
+                break;
+                
+            case ROOM_ANIMATION_NONE:
+                animation = @"无效果";
+                break;
+                
+            default:
+                animation = @"?";
+                break;
+        }
+        
+        editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:[[NSString alloc] initWithFormat:@"当前动画效果为：%@",animation] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该卡片",@"清除该卡片",@"更改动画效果",nil];
     }
     
     editAlert.tag=2;
@@ -135,6 +154,7 @@
 {
     int xnum=-1,ynum=-1;
     UIAlertView* changeAnimationAlert;
+    int animation;
     switch (alertView.tag) {
         case 0:
             //newNodeAlert
@@ -197,13 +217,13 @@
                     
                 case 2:
                     //delete card here
-                    [config updateChildOfNode:currentUUID with:nil atIndex:selectedTag_];
+                    [config updateRoomOfCat:currentUUID with:nil atIndex:selectedTag_];
                     [dragableView refreshView:currentUUID];
                     break;
                     
                 case 3:
                     //change animation here
-                    changeAnimationAlert = [[UIAlertView alloc] initWithTitle:@"更改动画效果" message:@"更改为:" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"放大",@"放大后摇晃",@"无动画",nil];
+                    changeAnimationAlert = [[UIAlertView alloc] initWithTitle:@"更改动画效果" message:@"更改为:" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"放大效果",@"摇晃效果",@"无效果",nil];
                     changeAnimationAlert.tag = 3;
                     [changeAnimationAlert show];
                     break;
@@ -216,21 +236,30 @@
         case 3:
             //changeAnimationAlert
             switch (buttonIndex) {
-                case 0:
-                    //scale
-                    break;
-                    
                 case 1:
-                    //scale and shake
+                    //scale
+                    animation = ROOM_ANIMATION_SCALE;
                     break;
                     
                 case 2:
+                    //scale and shake
+                    animation = ROOM_ANIMATION_SHAKE;
+                    break;
+                    
+                case 3:
                     //none
+                    animation = ROOM_ANIMATION_NONE;
                     break;
                     
                 default:
+                    //cancel
+                    animation = -1;
                     break;
             }
+            if (animation != -1)
+                [config updateAnimationOfCat:currentUUID with:animation atIndex:selectedTag_];
+            
+            break;
             
         default:
             break;
