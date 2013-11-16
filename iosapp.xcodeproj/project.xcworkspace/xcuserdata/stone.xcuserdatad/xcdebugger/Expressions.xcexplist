@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[HAMCardSelectorViewController collectionView:numberOfItemsInSection:]:HAMCardSelectorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.cards.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCardSelectorViewController collectionView:cellForItemAtIndexPath:]:HAMCardSelectorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.cards.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

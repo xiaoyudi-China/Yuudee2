@@ -44,6 +44,7 @@
 
 -(HAMCard*)card:(NSString*)UUID;
 -(NSString*)childOf:(NSString*)parentID at:(int)pos;
+- (NSMutableArray*) childrenOf:(NSString*)parentID; // added by Lei
 
 -(NSMutableArray*) allList;
 -(NSMutableArray*) cardList;
