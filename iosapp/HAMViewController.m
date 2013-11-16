@@ -14,9 +14,11 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
 
 @interface HAMViewController ()
 						
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
 @end
 
 @implementation HAMViewController
+@synthesize scrollView_;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -36,20 +38,13 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     
     HAMUser* currentUser=userManager.currentUser;
     
-    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:[self.view frame] xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
-    gridViewTool=[[HAMGridViewTool alloc] initWithView:self.view viewInfo:viewInfo config:config viewController:self edit:NO];
+    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:[self.view frame] xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];    
+    gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID];
-    
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(NSString*)childAtIndex:(int)index
-{
-    return [config childOf:currentUUID at:index];
 }
 
 -(IBAction) groupClicked:(id)sender{
@@ -57,7 +52,7 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     if (index==-1)
         currentUUID=config.rootID;
     else
-        currentUUID=[self childAtIndex:index];
+        currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
     
     [gridViewTool refreshView:currentUUID];
 }
@@ -70,10 +65,14 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
             return;
         }
     
-    [self beginAnimatingLayer:[gridViewTool.layerArray objectAtIndex:[sender tag]]];
-
-    HAMCard* card=[config card:[self childAtIndex:[sender tag]]];
+    int index = [sender tag];
+    HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
+    
+    CALayer* cardLayer = [[gridViewTool layerArray] objectAtIndex:index];
+    [self beginAnimation:room.animation_ onLayer:cardLayer];
+    
     //NSString *musicPath= [[NSBundle mainBundle] pathForResource:[[card audio] localPath] ofType:@""];
+    HAMCard* card = [config card:room.cardID_];
     NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
     
     if (musicPath){
@@ -84,32 +83,44 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     }
 }
 
-- (void)beginAnimatingLayer:(CALayer*)highlightLayer
+- (void)beginAnimation:(int)animationType onLayer:(CALayer*)highlightLayer
 {
+    switch (animationType) {
+        case ROOM_ANIMATION_NONE:
+            return;
+        
+        case ROOM_ANIMATION_SCALE:
+            
+        default:
+            break;
+    }
     CALayer* superLayer=[highlightLayer superlayer];
     [highlightLayer removeFromSuperlayer];
     [superLayer addSublayer:highlightLayer];
     
     CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    [pulseAnimation setDuration:0.5];
+    [pulseAnimation setDuration:1];
     [pulseAnimation setRepeatCount:1];
     
-    // The built-in ease in/ ease out timing function is used to make the animation look smooth as the layer
-    // animates between the two scaling transformations.
     [pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
-    // Scale the layer to half the size
-    CATransform3D transform = CATransform3DMakeScale(1.5, 1.5, 1.0);
+    CATransform3D transform = CATransform3DMakeScale(3.5, 3.5, 1.0);
     
-    // Tell CA to interpolate to this transformation matrix
     [pulseAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
     [pulseAnimation setToValue:[NSValue valueWithCATransform3D:transform]];
     
     // Tells CA to reverse the animation (e.g. animate back to the layer's transform)
     [pulseAnimation setAutoreverses:YES];
     
+    CABasicAnimation *translation = [CABasicAnimation animationWithKeyPath:@"position"];
+    translation.toValue = [NSValue valueWithCGPoint:CGPointMake(384, 512)];
+    [translation setDuration:1];
+    [translation setRepeatCount:1];
+    [translation setAutoreverses:YES];
+    
     // Finally... add the explicit animation to the layer... the animation automatically starts.
     [highlightLayer addAnimation:pulseAnimation forKey:kHAMPulseAnimation];
+    [highlightLayer addAnimation:translation forKey:@"translation"];
 }
 
 - (void)endAnimatingLayer

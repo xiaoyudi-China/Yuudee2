@@ -12,6 +12,7 @@
 #import "HAMCard.h"
 #import "HAMTools.h"
 #import "HAMUser.h"
+#import "HAMRoom.h"
 
 #define DBNAME @"droplings.db"
 
@@ -40,7 +41,9 @@
 -(NSMutableArray*)childrenOf:(NSString*)parentID;
 -(void)deleteChildOfCat:(NSString*)parentID atIndex:(int)index;
 -(void)deleteCardFromTree:(NSString*)UUID;
--(void)updateChildOfCat:(NSString*)parentID with:(NSString*)childID atIndex:(int)index;
+-(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index;
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(int)index;
+//-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex;
 //-(Boolean)ifCat:(NSString*)parentID hasChildAt:(int)pos;
 
 //table RESOURCE

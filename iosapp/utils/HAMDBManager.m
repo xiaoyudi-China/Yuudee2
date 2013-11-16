@@ -347,7 +347,7 @@
 {
     [self openDatabase];
     
-    NSString* query=[[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION FROM CARD_TREE WHERE PARENT='%@';",parentID];
+    NSString* query=[[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CARD_TREE WHERE PARENT='%@';",parentID];
     int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
     if (result!=SQLITE_OK)
     {
@@ -356,12 +356,26 @@
         return nil;
     }
     
-    NSMutableArray* children=[NSMutableArray arrayWithCapacity:100];
-    while (sqlite3_step(statement)==SQLITE_ROW)
+    NSMutableArray* children = [NSMutableArray arrayWithCapacity:100];
+    while (sqlite3_step(statement) == SQLITE_ROW)
     {
-        NSString* child=[self stringAt:0];
+        NSString* childID = [self stringAt:0];
         int pos=sqlite3_column_int(statement, 1);
-        [HAMTools addObject:child toMutableArray:children atIndex:pos];
+        NSString* animation = [self stringAt:2];
+        
+        int animationType;
+        if ([animation isEqualToString:@"SHAKE"] || [animation isEqualToString:@"shake"]) {
+            animationType = ROOM_ANIMATION_SHAKE;
+        }
+        else if ([animation isEqualToString:@"SCALE"] || [animation isEqualToString:@"scale"]){
+            animationType = ROOM_ANIMATION_SCALE;
+        }
+        else{
+            animationType = ROOM_ANIMATION_NONE;
+        }
+        
+        HAMRoom* room = [[HAMRoom alloc] initWithCardID:childID animation:animationType];
+        [HAMTools setObject:room toMutableArray:children atIndex:pos];
     }
     
     [self closeDatabase];
@@ -410,7 +424,7 @@
     [self closeDatabase];
 }
 
--(void)updateChildOfCat:(NSString*)parentID with:(NSString*)childID atIndex:(int)index
+-(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index
 {
     [self openDatabase];
     
@@ -423,13 +437,34 @@
         return;
     }*/
     
-    char* update="INSERT OR REPLACE INTO CARD_TREE (CHILD, PARENT, POSITION) VALUES (?, ?, ?);";
+    //TODO: I don't know if this insert or replace works!! Must add index creating to SQL on server!
+    
+    char* update="INSERT OR REPLACE INTO CARD_TREE (CHILD, PARENT, POSITION, ANIMATION) VALUES (?, ?, ?, ?);";
     
     if (sqlite3_prepare_v2(database, update, -1, &statement, nil)==SQLITE_OK)
     {
-        sqlite3_bind_text(statement, 1, [childID UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 1, [newRoom.cardID_ UTF8String], -1, NULL);
         sqlite3_bind_text(statement, 2, [parentID UTF8String], -1, NULL);
         sqlite3_bind_int(statement, 3, index);
+        
+        NSString* animation;
+        switch (newRoom.animation_) {
+            case ROOM_ANIMATION_NONE:
+                animation = @"NONE";
+                break;
+                
+            case ROOM_ANIMATION_SCALE:
+                animation = @"SCALE";
+                break;
+                
+            case ROOM_ANIMATION_SHAKE:
+                animation = @"SHAKE";
+                break;
+                
+            default:
+                break;
+        }
+        sqlite3_bind_text(statement, 4, [animation UTF8String], -1, NULL);
     }
     if (sqlite3_step(statement)!=SQLITE_DONE)
     {
@@ -456,6 +491,34 @@
     }*/
     
     [self closeDatabase];
+}
+
+/*-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex
+{
+    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET POSITION = %d WHERE CHILD = '%@' AND PARENT = '%@'",newIndex, childID, parentID]];
+}*/
+
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(int)index
+{
+    NSString* animationString;
+    switch (animation) {
+        case ROOM_ANIMATION_NONE:
+            animationString = @"NONE";
+            break;
+        
+        case ROOM_ANIMATION_SCALE:
+            animationString = @"SCALE";
+            break;
+            
+        case ROOM_ANIMATION_SHAKE:
+            animationString = @"SHAKE";
+            break;
+            
+        default:
+            animationString = @"?";
+            break;
+    }
+    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %d", animationString, parentID, index]];
 }
 
 #pragma mark -
@@ -571,7 +634,8 @@
 
 -(void)insertUser:(HAMUser*)user
 {
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\");",user.UUID,user.name,user.rootID]];
+    //TODO: default layoutx,layouty
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",3,4);",user.UUID,user.name,user.rootID]];
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\");",user.rootID,user.name]];
 }
 

@@ -93,7 +93,32 @@
 }
 
 
+<<<<<<< HEAD
 -(NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
+=======
+-(NSMutableArray*)currentList{
+    
+    switch (mode) {
+        case 0:
+            //return [config allList];
+            break;
+            
+        case 1:
+            //return [config cardList];
+            break;
+            
+        case 2:
+            //return [config catList];
+            break;
+            
+        default:
+            break;
+    }
+    return 0;
+}
+
+-(HAMCard*)currentListAt:(int)pos
+>>>>>>> upstream/master
 {
 	return self.categories.count;
 }
@@ -126,7 +151,39 @@
 #pragma mark -
 #pragma mark Table View Delegate Methods
 
+<<<<<<< HEAD
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+=======
+-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int row=[indexPath row];
+    NSString* childID;
+    if (index!=-1 && row==0)
+        childID=nil;
+    else
+    {
+        childID=[[self currentListAt:row] UUID];
+    }
+    
+    if ([childID isEqualToString:config.rootID])
+    {
+         [cardListTableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    
+    if (index!=-1)
+    {
+        [config updateRoomOfCat:parentID with:[[HAMRoom alloc] initWithCardID:childID animation:ROOM_ANIMATION_SCALE] atIndex:index];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else
+    {
+        [self gotoEditNode:childID];
+    }
+}
+
+-(void)updateTableNewRow:(int)newRowNum oldRow:(int)oldRowNum
+>>>>>>> upstream/master
 {
 	HAMCard *category = self.categories[indexPath.row];
 	
