@@ -18,7 +18,7 @@
     //TODO: max cards in single screen - 1000 here
     struct CGPoint positionArray_[MAX_CARD_NUM];
     int tagOfIndex_[MAX_CARD_NUM];
-    NSMutableArray* cardViewArray_;
+    //NSMutableArray* cardViewArray_;
     NSMutableArray* editButtonArray_;
     Boolean isBlankAtTag_[MAX_CARD_NUM];
 }

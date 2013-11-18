@@ -11,6 +11,7 @@
 #import "HAMGridViewTool.h"
 #import "HAMConfig.h"
 #import "HAMUserManager.h"
+#import "HAMAnimation.h"
 
 @interface HAMViewController : UIViewController <AVAudioPlayerDelegate>
 {

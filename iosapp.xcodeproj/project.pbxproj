@@ -54,6 +54,12 @@
 		66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66CC961B17B4BFB900DB3A57 /* HAMSyncViewController.xib */; };
 		66CC962017B4C30400DB3A57 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC961F17B4C30300DB3A57 /* Reachability.m */; };
 		66CC962317B4E7AD00DB3A57 /* HAMWebTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */; };
+		66CCAF8818376B3C00AB5DA9 /* HAMAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CCAF8718376B3C00AB5DA9 /* HAMAnimation.m */; };
+		66CCAF961837B11200AB5DA9 /* QBAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CCAF8D1837B11200AB5DA9 /* QBAnimationGroup.m */; };
+		66CCAF971837B11200AB5DA9 /* QBAnimationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CCAF8F1837B11200AB5DA9 /* QBAnimationItem.m */; };
+		66CCAF981837B11200AB5DA9 /* QBAnimationSequence-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66CCAF901837B11200AB5DA9 /* QBAnimationSequence-Info.plist */; };
+		66CCAF991837B11200AB5DA9 /* QBAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CCAF931837B11200AB5DA9 /* QBAnimationSequence.m */; };
+		66CCAF9A1837B11200AB5DA9 /* RotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CCAF951837B11200AB5DA9 /* RotateAnimation.m */; };
 		66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */; };
 		66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D7E6BE17A0D19A00CB122D /* HAMConfig.m */; };
 		66E66BD117A8FD4200F6177B /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD017A8FD4100F6177B /* bg.png */; };
@@ -136,6 +142,18 @@
 		66CC961F17B4C30300DB3A57 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Reachability.m; sourceTree = "<group>"; };
 		66CC962117B4E7AD00DB3A57 /* HAMWebTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMWebTool.h; path = utils/HAMWebTool.h; sourceTree = "<group>"; };
 		66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMWebTool.m; path = utils/HAMWebTool.m; sourceTree = "<group>"; };
+		66CCAF8618376B3C00AB5DA9 /* HAMAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMAnimation.h; path = utils/HAMAnimation.h; sourceTree = "<group>"; };
+		66CCAF8718376B3C00AB5DA9 /* HAMAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMAnimation.m; path = utils/HAMAnimation.m; sourceTree = "<group>"; };
+		66CCAF8C1837B11200AB5DA9 /* QBAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationGroup.h; sourceTree = "<group>"; };
+		66CCAF8D1837B11200AB5DA9 /* QBAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationGroup.m; sourceTree = "<group>"; };
+		66CCAF8E1837B11200AB5DA9 /* QBAnimationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationItem.h; sourceTree = "<group>"; };
+		66CCAF8F1837B11200AB5DA9 /* QBAnimationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationItem.m; sourceTree = "<group>"; };
+		66CCAF901837B11200AB5DA9 /* QBAnimationSequence-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QBAnimationSequence-Info.plist"; sourceTree = "<group>"; };
+		66CCAF911837B11200AB5DA9 /* QBAnimationSequence-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QBAnimationSequence-Prefix.pch"; sourceTree = "<group>"; };
+		66CCAF921837B11200AB5DA9 /* QBAnimationSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAnimationSequence.h; sourceTree = "<group>"; };
+		66CCAF931837B11200AB5DA9 /* QBAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationSequence.m; sourceTree = "<group>"; };
+		66CCAF941837B11200AB5DA9 /* RotateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateAnimation.h; sourceTree = "<group>"; };
+		66CCAF951837B11200AB5DA9 /* RotateAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateAnimation.m; sourceTree = "<group>"; };
 		66D1EDE8182DFDD6008F65E5 /* HAMRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMRoom.h; path = datastructure/HAMRoom.h; sourceTree = "<group>"; };
 		66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMRoom.m; path = datastructure/HAMRoom.m; sourceTree = "<group>"; };
 		66D7E6BD17A0D19A00CB122D /* HAMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMConfig.h; path = managers/HAMConfig.h; sourceTree = "<group>"; };
@@ -203,6 +221,7 @@
 				66CC961F17B4C30300DB3A57 /* Reachability.m */,
 				66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */,
 				6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */,
+				66CCAF8718376B3C00AB5DA9 /* HAMAnimation.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -243,6 +262,7 @@
 		66610498178BB04A003AEE3D /* iosapp */ = {
 			isa = PBXGroup;
 			children = (
+				66CCAF8A1837B11200AB5DA9 /* lib */,
 				6613011917C1FA6800903CA8 /* supports */,
 				6697BD98179F6FC7002E37E8 /* settings */,
 				6653A5A1179E890E00A405B0 /* utils */,
@@ -327,6 +347,7 @@
 				6697BDA4179FB65E002E37E8 /* HAMViewTool.h */,
 				667E53B817A6319A00BBDE35 /* HAMDBManager.h */,
 				66CC962117B4E7AD00DB3A57 /* HAMWebTool.h */,
+				66CCAF8618376B3C00AB5DA9 /* HAMAnimation.h */,
 			);
 			name = h;
 			sourceTree = "<group>";
@@ -359,6 +380,31 @@
 				66CC303B17B8FD23008078A9 /* HAMUserManager.h */,
 			);
 			name = h;
+			sourceTree = "<group>";
+		};
+		66CCAF8A1837B11200AB5DA9 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				66CCAF8B1837B11200AB5DA9 /* animationLib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		66CCAF8B1837B11200AB5DA9 /* animationLib */ = {
+			isa = PBXGroup;
+			children = (
+				66CCAF8C1837B11200AB5DA9 /* QBAnimationGroup.h */,
+				66CCAF8D1837B11200AB5DA9 /* QBAnimationGroup.m */,
+				66CCAF8E1837B11200AB5DA9 /* QBAnimationItem.h */,
+				66CCAF8F1837B11200AB5DA9 /* QBAnimationItem.m */,
+				66CCAF901837B11200AB5DA9 /* QBAnimationSequence-Info.plist */,
+				66CCAF911837B11200AB5DA9 /* QBAnimationSequence-Prefix.pch */,
+				66CCAF921837B11200AB5DA9 /* QBAnimationSequence.h */,
+				66CCAF931837B11200AB5DA9 /* QBAnimationSequence.m */,
+				66CCAF941837B11200AB5DA9 /* RotateAnimation.h */,
+				66CCAF951837B11200AB5DA9 /* RotateAnimation.m */,
+			);
+			path = animationLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +466,7 @@
 			files = (
 				6661049D178BB04A003AEE3D /* InfoPlist.strings in Resources */,
 				666104A5178BB04A003AEE3D /* Default.png in Resources */,
+				66CCAF981837B11200AB5DA9 /* QBAnimationSequence-Info.plist in Resources */,
 				666104A7178BB04A003AEE3D /* Default@2x.png in Resources */,
 				666104A9178BB04A003AEE3D /* Default-568h@2x.png in Resources */,
 				666104AF178BB04A003AEE3D /* HAMViewController_iPhone.xib in Resources */,
@@ -460,10 +507,14 @@
 				6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */,
 				6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */,
 				6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */,
+				66CCAF971837B11200AB5DA9 /* QBAnimationItem.m in Sources */,
 				6697BDB2179FD7C0002E37E8 /* HAMNodeSelectorViewController.m in Sources */,
+				66CCAF8818376B3C00AB5DA9 /* HAMAnimation.m in Sources */,
 				66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */,
 				667E53B617A6132D00BBDE35 /* HAMEditNodeViewController.m in Sources */,
 				667E53BA17A6319A00BBDE35 /* HAMDBManager.m in Sources */,
+				66CCAF991837B11200AB5DA9 /* QBAnimationSequence.m in Sources */,
+				66CCAF9A1837B11200AB5DA9 /* RotateAnimation.m in Sources */,
 				667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */,
 				667E53C217A65C3100BBDE35 /* HAMResource.m in Sources */,
 				66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */,
@@ -474,6 +525,7 @@
 				66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */,
 				66CC303817B8DA3A008078A9 /* HAMUser.m in Sources */,
 				66CC303D17B8FD23008078A9 /* HAMUserManager.m in Sources */,
+				66CCAF961837B11200AB5DA9 /* QBAnimationGroup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

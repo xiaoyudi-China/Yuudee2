@@ -21,11 +21,11 @@
     NSMutableArray* pageViews;
     
     UIViewController* viewController_;
-    NSMutableArray* layerArray;
+    NSMutableArray* viewArray;
     NSString* currentUUID_;
 }
 
-@property NSMutableArray* layerArray;
+@property NSMutableArray* viewArray;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit;
 -(void)prepareRefreshView:(NSString*)nodeUUID;

@@ -10,7 +10,7 @@
 
 @implementation HAMGridViewTool
 
-@synthesize layerArray;
+@synthesize viewArray;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit{
     if (self=[super init])
@@ -45,7 +45,7 @@
             [sublayer removeFromSuperlayer];
     }
     
-    layerArray=[NSMutableArray array];
+    viewArray=[NSMutableArray array];
     
     NSArray* children = [config childrenCardIDOfCat:nodeUUID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
@@ -118,12 +118,15 @@
     double y=i*(a+viewInfo.h)+(i+1)*viewInfo.ySpace;
     
     CGRect frame = CGRectMake(x, y, a, a);
+    UIView* cardView = [[UIView alloc] initWithFrame:frame];
+    [pageView addSubview:cardView];
     
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     //a tested value. to hide the button.
     double offset=7;
-    button.frame = CGRectMake(x+offset,y+offset,a-2*offset,a-2*offset);
-    //button.backgroundColor = [UIColor redColor];
+//    button.frame = CGRectMake(x+offset,y+offset,a-2*offset,a-2*offset);
+    button.frame = CGRectMake(offset, offset, a - 2 * offset, a - 2 * offset);
+//    button.backgroundColor = [UIColor redColor];
     button.tag = tag;
     [button addTarget:viewController_ action:action forControlEvents:UIControlEventTouchUpInside];
     
@@ -133,21 +136,23 @@
     [buttonLayer setBorderWidth:0.0];
     //[downButtonLayer setBorderColor:[[UIColor grayColor] CGColor]];*/
     
-    [pageView addSubview:button];
+    [cardView addSubview:button];
     
-    CALayer* cardLayer=[[CALayer alloc] init];
-    [cardLayer setFrame:frame];
-    [cardLayer setPosition:CGPointMake(x+frame.size.width/2, y+frame.size.height/2)];
-    [[pageView layer]addSublayer:cardLayer];
+    //CALayer* cardLayer=[[CALayer alloc] init];
+    //[cardLayer setFrame:frame];
+    
+    //[cardView setPosition:CGPointMake(x+frame.size.width/2, y+frame.size.height/2)];
+    //[[pageView layer]addSublayer:cardLayer];
+    
     if (tag!=-1)
-        [HAMTools setObject:cardLayer toMutableArray:layerArray atIndex:tag];
+        [HAMTools setObject:cardView toMutableArray:viewArray atIndex:tag];
     
     //draw foreground
     UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:picName]];
     UIImageView* fgView=[[UIImageView alloc] initWithImage:fgImage];
     CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
     [fgView setFrame:picFrame];
-    [cardLayer addSublayer:fgView.layer];
+    [cardView addSubview:fgView];
     
     //draw background
     UIImage* bgImage=nil;
@@ -168,7 +173,7 @@
     //TODO:1.153 is a tested value
     [bgView setFrame:CGRectMake(0, -a*0.14/2, a, a*1.153)];
     [pageView addSubview:bgView];
-    [cardLayer addSublayer:bgView.layer];
+    [cardView addSubview:bgView];
     
     return button;
 }
@@ -197,24 +202,35 @@
     UIView* pageView = [pageViews objectAtIndex:pageIndex];
     
     double y=viewInfo.a-viewInfo.wordh;
-    double xoff=j*viewInfo.a+(j+1)*viewInfo.xSpace;
-    double yoff=i*(viewInfo.a+viewInfo.h)+(i+1)*viewInfo.ySpace;
+//    double xoff=j*viewInfo.a+(j+1)*viewInfo.xSpace;
+//    double yoff=i*(viewInfo.a+viewInfo.h)+(i+1)*viewInfo.ySpace;
 
-    CATextLayer *textLayer = [CATextLayer layer];
-    [textLayer setContentsScale:[[UIScreen mainScreen] scale]];
-    [textLayer setString:text];
-    [textLayer setFontSize:viewInfo.a*0.13];
-    [textLayer setAlignmentMode:kCAAlignmentCenter];
-    textLayer.foregroundColor=[color CGColor];
-    [textLayer setFrame:CGRectMake(0,y,viewInfo.a,viewInfo.wordh)];
-    [textLayer setPosition:CGPointMake(viewInfo.a/2.0, y+viewInfo.wordh/1.5)];
+    //CATextLayer *textLayer = [CATextLayer layer];
+    //[textLayer setContentsScale:[[UIScreen mainScreen] scale]];
+    UITextView* labelView = [[UITextView alloc] initWithFrame:CGRectMake(0, y, viewInfo.a, viewInfo.wordh)];
+    //[textLayer setString:text];
+    labelView.text = text;
+    labelView.textColor = color;
+    labelView.font = [UIFont boldSystemFontOfSize:viewInfo.a * 0.13];
+    labelView.textAlignment = UITextAlignmentCenter;
+    labelView.backgroundColor = [UIColor clearColor];
+    labelView.editable = NO;
+    labelView.selectable = NO;
+    labelView.userInteractionEnabled = NO;
+//    [textLayer setFontSize:viewInfo.a*0.13];
+//    [textLayer setAlignmentMode:kCAAlignmentCenter];
+//    textLayer.foregroundColor=[color CGColor];
+//    [textLayer setFrame:CGRectMake(0,y,viewInfo.a,viewInfo.wordh)];
+//    [textLayer setPosition:CGPointMake(viewInfo.a/2.0, y+viewInfo.wordh/1.5)];
     
-    if (index>=0 && [layerArray count]>index)
-        [[layerArray objectAtIndex:index] addSublayer:textLayer];
+    if (index>=0 && [viewArray count]>index)
+        [[viewArray objectAtIndex:index] addSubview:labelView];
     else
     {
-        [textLayer setPosition:CGPointMake(xoff+viewInfo.a/2.0, yoff+y+viewInfo.wordh/1.5)];
-        [pageView.layer addSublayer:textLayer];
+        //CGRect frame = labelView.frame;
+        //frame.origin = CGPointMake(, <#CGFloat y#>)
+        //[textLayer setPosition:CGPointMake(xoff+viewInfo.a/2.0, yoff+y+viewInfo.wordh/1.5)];
+        [pageView addSubview:labelView];
     }
     //[view addSubview:label];*/
 }

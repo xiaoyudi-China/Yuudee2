@@ -10,7 +10,7 @@
 
 @interface HAMStructureEditViewController ()
 {
-    NSMutableArray* layerArray;
+    NSMutableArray* viewArray;
     int selectedTag_;
 }
 @end
@@ -311,7 +311,7 @@
 -(void)refreshGridView
 {
     [dragableView refreshView:currentUUID];
-    layerArray = dragableView.layerArray;
+    viewArray = dragableView.viewArray;
 }
 
 -(void)gotoSelectorAt:(int)index
