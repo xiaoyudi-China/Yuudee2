@@ -170,7 +170,7 @@
         
         [nodes addObject:node];
     }
-}*/
+}
 
 #pragma mark -
 #pragma mark Lists
@@ -180,7 +180,7 @@
     return [dbManager allCards:0 user:[userManager currentUser].UUID];
 }
 
-/*
+
 -(NSMutableArray*)cardList
 {
     if (dirtyFlag[1]==0)

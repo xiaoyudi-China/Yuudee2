@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMAnimation.m"
-            timestampString = "406311771.546468"
+            timestampString = "406471550.298277"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "+beginAnimation:onCardView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -206,22 +206,6 @@
             startingLineNumber = "224"
             endingLineNumber = "224"
             landmarkName = "-handlePan:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iosapp/utils/HAMAnimation.m"
-            timestampString = "406311647.085327"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "+beginAnimation:onCardView:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
