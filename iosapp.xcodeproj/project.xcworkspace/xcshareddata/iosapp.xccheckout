@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B4A1C8D2-8938-466A-8E4D-70BFDF48DB48</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iosapp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C4E602A6-9006-405E-BE96-C41E7024F295</key>
+		<string>https://github.com/lei-april/xiaoyudi_iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iosapp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C4E602A6-9006-405E-BE96-C41E7024F295</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lei-april/xiaoyudi_iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C4E602A6-9006-405E-BE96-C41E7024F295</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C4E602A6-9006-405E-BE96-C41E7024F295</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xiaoyudi_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

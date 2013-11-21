@@ -8,56 +8,87 @@
 
 #import "HAMNodeSelectorViewController.h"
 
+
 @interface HAMNodeSelectorViewController ()
 
 @end
 
 @implementation HAMNodeSelectorViewController
 
-@synthesize config;
-@synthesize parentID;
-@synthesize index;
-@synthesize cardListTableView;
-@synthesize deleteBtn;
-
-@synthesize editNodeController;
+// FIXME: how to refactor?
+CGRect CENTRAL_POINT_RECT;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];	
     if (self) {
         // Custom initialization
+		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
     }
     return self;
+}
+
+- (NSArray*) categoryIDs {
+	
+	// the uncategorized category is not created yet
+	// FIXME: this should be done in DaiYue's part
+	NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	if ([catIDs indexOfObject:UNCATEGORIZED_ID] == NSNotFound) {
+		HAMCard *category = [[HAMCard alloc] initWithID:UNCATEGORIZED_ID];
+		NSString *categoryName = @"未分类";
+		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil]; // type 0 indicates a category
+		
+		// insert the new category in to library
+		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
+		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
+		
+		return [self.config childrenCardIDOfCat:LIB_ROOT];
+	}
+	else
+		return catIDs;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mode=0;
-    self.title=@"选择词条/分类";
-}
-
-- (void)viewDidUnload {
-    [self setCardListTableView:nil];
-    [super viewDidUnload];
+    
+    //Lei: use this before dequeueReusableCell
+    [self.collectionView registerClass:[HAMGridCell class] forCellWithReuseIdentifier:@"GridCell"];
+	
+    // set the layout of collection view
+	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+	
+	flowLayout.itemSize = CGSizeMake(CELL_WIDTH, CELL_HEIGHT);
+	flowLayout.minimumInteritemSpacing = INTER_ITEM_SPACING;
+	flowLayout.minimumLineSpacing = LINE_SPACE;
+	flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+	flowLayout.sectionInset = UIEdgeInsetsMake(0, INTER_ITEM_SPACING, 0, INTER_ITEM_SPACING);
+    
+    [self.collectionView setCollectionViewLayout:flowLayout];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [cardListTableView reloadData];
-    
-    if (index==-1)
-    {
-        if (!deleteBtn)
-            deleteBtn = [[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleBordered target:self action:@selector(deleteBtnPressed:)];
-        self.navigationItem.rightBarButtonItem = deleteBtn;
-    }
-    else
-    {
-        cardListTableView.editing=NO;
-        self.navigationItem.rightBarButtonItem=nil;
-    }
+	if (self.index == -1)	// edit mode
+		self.cellMode = HAMGridCellModeEdit;
+	else	// select mode
+		self.cellMode = HAMGridCellModeAdd;
+	
+	if (self.cellMode == HAMGridCellModeEdit) {
+		self.title = @"编辑卡片/分类";
+		// press this button to create a new card or new category
+		UIBarButtonItem *createItemButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createItemButtonPressed)];
+		self.navigationItem.rightBarButtonItem = createItemButton;
+	}
+	else {
+		self.title = @"选择分类";
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+	
+	// !!!
+	[self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,214 +97,111 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -
-#pragma mark Table View Data Source Methods
--(NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self currentListCount]; 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return [self categoryIDs].count;
 }
 
--(NSMutableArray*)currentList{
-    
-    switch (mode) {
-        case 0:
-            //return [config allList];
-            break;
-            
-        case 1:
-            //return [config cardList];
-            break;
-            
-        case 2:
-            //return [config catList];
-            break;
-            
-        default:
-            break;
-    }
-    return 0;
-}
-
--(HAMCard*)currentListAt:(int)pos
+-(UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (index!=-1)
-        pos--;
-    return [self currentList][pos];
-}
+    static NSString* cellID=@"GridCell";
+    HAMGridCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
 
--(int)currentListCount
-{
-    int count=[[self currentList] count];
-    if (index!=-1)
-        count++;
-    return count;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString* cardListIdentifier=@"nodeListIdentifier";
-    
-    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cardListIdentifier];
-    
-    if(cell==nil)
-    {
-        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cardListIdentifier];
-    }
-    
-    NSUInteger row =[indexPath row];
-    
-    if (index==-1)
-        //cell.editingStyle=UITableViewCellEditingStyleDelete;
-        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    else
-        cell.accessoryType=UITableViewCellAccessoryNone;
-    
-    if (index!=-1 && row==0)
-    {
-        cell.textLabel.text=@"清除";
-        return cell;
-    }
-    cell.textLabel.text=[self currentListAt:row].name;
-    
+	NSString *categoryID = [self categoryIDs][indexPath.row];
+  	HAMCard *category = [self.config card:categoryID]; // only display categories
+    cell.textLabel.text = category.name;
+	cell.frameImageView.image = [UIImage imageNamed:@"category.png"];
+	if (self.cellMode == HAMGridCellModeAdd)
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+	else
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+	
+	// don't allow to edit the unclassified category
+	if (category.UUID == nil && self.cellMode == HAMGridCellModeEdit)
+		cell.rightTopButton.hidden = TRUE;
+	
+	cell.indexPath = indexPath;
+	cell.delegate = self;
+	cell.selected = NO; // redundant?
+	
     return cell;
 }
 
-#pragma mark -
-#pragma mark Table View Delegate Methods
-
--(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    int row=[indexPath row];
-    NSString* childID;
-    if (index!=-1 && row==0)
-        childID=nil;
-    else
-    {
-        childID=[[self currentListAt:row] UUID];
-    }
-    
-    if ([childID isEqualToString:config.rootID])
-    {
-         [cardListTableView deselectRowAtIndexPath:indexPath animated:YES];
-        return;
-    }
-    
-    if (index!=-1)
-    {
-        [config updateRoomOfCat:parentID with:[[HAMRoom alloc] initWithCardID:childID animation:ROOM_ANIMATION_SCALE] atIndex:index];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    else
-    {
-        [self gotoEditNode:childID];
-    }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	NSString *categoryID = [self categoryIDs][indexPath.row];
+	
+	HAMCardSelectorViewController *cardSelector = [[HAMCardSelectorViewController alloc] initWithNibName:@"HAMCardSelectorViewController" bundle:nil];
+	cardSelector.categoryID = categoryID;
+	cardSelector.config = self.config;
+	cardSelector.userID = self.parentID;
+	cardSelector.index = self.index;
+	cardSelector.cellMode = self.cellMode;
+	
+	[self.navigationController pushViewController:cardSelector animated:YES];
 }
 
--(void)updateTableNewRow:(int)newRowNum oldRow:(int)oldRowNum
-{
-    //update row num
-    [cardListTableView beginUpdates];
-    NSMutableArray* affectNodes=[NSMutableArray arrayWithCapacity:abs(newRowNum-oldRowNum)];
-    
-    int i;
-    if(newRowNum<oldRowNum)
-    {
-        for(i=newRowNum;i<oldRowNum;i++)
-            [affectNodes addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-        [cardListTableView deleteRowsAtIndexPaths:affectNodes withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (newRowNum>oldRowNum)
-    {
-        for(i=oldRowNum;i<newRowNum;i++)
-            [affectNodes addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-        [cardListTableView insertRowsAtIndexPaths:affectNodes withRowAnimation:UITableViewRowAnimationFade];
-    }
-    
-    NSMutableArray* allNodes=[NSMutableArray arrayWithCapacity:newRowNum];
-    
-    [cardListTableView endUpdates];
-    
-    //update row content
-    [cardListTableView beginUpdates];
-    
-    i=0;
-    if (index!=-1)
-        i++;
-    for (;i<newRowNum;i++)
-    {
-        [allNodes addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-    }
-    [cardListTableView reloadRowsAtIndexPaths: allNodes withRowAnimation: UITableViewRowAnimationAutomatic];
-    
-    [cardListTableView endUpdates];
+
+- (void)createItemButtonPressed {
+	
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"创建分类", @"创建卡片", nil];
+	[actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-    
-    int oldRowNum=[self currentListCount];
-    mode=[item tag];
-    int newRowNum=[self currentListCount];
-    
-    [self updateTableNewRow:newRowNum oldRow:oldRowNum];
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) { // create card
+		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
+		categoryEditor.categoryID = nil;
+		categoryEditor.config = self.config;
+		categoryEditor.delegate = self;
+		
+		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
+		categoryEditor.popover = self.popover;
+
+		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+		
+	}
+	else if (buttonIndex == 1) { // create category
+		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+		cardEditor.cardID = nil;
+		cardEditor.categoryID = nil;
+		cardEditor.config = self.config;
+		
+		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
+		navigator.navigationBarHidden = YES; // don't show navigation bar
+		
+		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
+		cardEditor.popover = self.popover;
+		
+		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+	}
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0 && mode!=1)
-        return NO;
-    
-    return YES;
+- (void)rightTopButtonPressedForCell:(id)cell {
+	HAMGridCell *gridCell = (HAMGridCell*) cell;
+	
+	if (self.cellMode == HAMGridCellModeAdd) { // Mode Add
+		NSString *categoryID = [self categoryIDs][gridCell.indexPath.row];
+		
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:categoryID animation:[self.config animationOfCat:self.parentID atIndex:self.index]]; // keep the animation unchanged
+		[self.config updateRoomOfCat:self.parentID with:room atIndex:self.index];
+		[self.navigationController popViewControllerAnimated:TRUE];
+	}
+	else { // Mode Edit
+		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
+		categoryEditor.categoryID = [self categoryIDs][gridCell.indexPath.row];
+		categoryEditor.config = self.config;
+		categoryEditor.delegate = self;
+		
+		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
+		categoryEditor.popover = self.popover;
+
+		// FIXME: the arrow direction
+		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+	}
 }
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-        if (index==-1)
-            return UITableViewCellEditingStyleDelete;     //return UITableViewCellEditingStyleInsert;
-        else
-            return UITableViewCellEditingStyleNone;
-    }
-
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除词条";
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-
-{
-    NSUInteger row = [indexPath row];
-    [config deleteCard:[self currentListAt:row].UUID];
-    [cardListTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]withRowAnimation:UITableViewRowAnimationLeft];
-}
-
-#pragma mark -
-#pragma mark Delete Methods
-
--(void)deleteBtnPressed:(id)sender
-{
-    if (self.cardListTableView.editing)
-    {
-        self.cardListTableView.editing=NO;
-        [sender setTitle:@"删除"];
-    }
-    else
-    {
-        self.cardListTableView.editing=YES;
-        [sender setTitle:@"返回"];
-    }
-}
-
-#pragma mark -
-#pragma mark Goto View
-
--(void)gotoEditNode:(NSString*)cardID
-{
-    if (editNodeController==nil)
-    {
-        editNodeController=[[HAMEditNodeViewController alloc]
-                            initWithNibName:@"HAMEditNodeViewController" bundle:nil];
-        editNodeController.config=config;
-    }
-    editNodeController.newFlag=-1;
-    editNodeController.card=[[HAMCard alloc] initWithID:cardID];
-    [self.navigationController pushViewController:editNodeController animated:YES];
+- (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self.collectionView reloadData];
 }
 
 @end

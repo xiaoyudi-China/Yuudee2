@@ -18,7 +18,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 @implementation HAMEditNodeViewController
 
-@synthesize newFlag;
 @synthesize card;
 @synthesize config;
 @synthesize parentID;
@@ -293,12 +292,14 @@ static UIImage* shrinkImage(UIImage* original,CGSize size)
         return;
     }
     
-    if (newFlag==-1)
+    if (self.editMode == HAMCardEditModeEdit)
         [config updateCard:card name:nameTextField.text audio:audioPath image:imageFile];
     else
     {
-        [config newCardWithID:card.UUID name:nameTextField.text type:newFlag audio:audioPath image:imageFile];
-        //[config insertChild:card.UUID toNode:parentID];
+        [config newCardWithID:card.UUID name:nameTextField.text type:1 audio:audioPath image:imageFile]; // type 1 indicates card
+		NSInteger numChildren = [config childrenCardIDOfCat:parentID].count;
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:card.UUID animation:ROOM_ANIMATION_NONE];
+        [config updateRoomOfCat:parentID with:room atIndex:numChildren];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -335,48 +336,28 @@ static UIImage* shrinkImage(UIImage* original,CGSize size)
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if (newFlag>=0)
-    {
-        if (newFlag==0)
-        {
-            self.title=@"新建分类";
-            audioSwitch.on=NO;
-        }
-        else
-        {
-            self.title=@"新建词条";
-            audioSwitch.on=YES;
-        }
-
-        self.card=[[HAMCard alloc] initNewCard];
-        self.nameTextField.text=@"";
-        audioPath=nil;
-        
-        image=[UIImage imageNamed:@"nopic.png"];
-    }
-    else
-    {
-        self.title=@"编辑词条";
-        self.card=[config card:card.UUID];
-        if (card.type==0)
-        {
-            self.title=@"编辑分类";
-        }
-        else
-        {
-            self.title=@"编辑词条";
-        }
-        
-        self.nameTextField.text=card.name;
-        audioPath=card.audio.localPath;
-        if (audioPath==nil)
-            audioSwitch.on=NO;
-        else
-            audioSwitch.on=YES;
-        
-        image=[UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
-    }
-    
+	if (self.editMode == HAMCardEditModeCreate) {
+		self.title = @"新建卡片";
+		audioSwitch.on = NO;
+		
+		self.card = [[HAMCard alloc] initNewCard];
+		self.nameTextField.text = nil;
+		audioPath = nil;
+		image = [UIImage imageNamed:@"nopic.png"];
+	}
+	else if (self.editMode == HAMCardEditModeEdit) {
+		self.title = @"编辑卡片";
+		self.card = [config card:card.UUID];
+		
+		audioPath = card.audio.localPath;
+		audioSwitch.on = audioPath ? YES : NO;
+		
+		image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
+	}
+	else {
+		// something wrong
+	}
+	   
     imageFile=nil;
     [self.imageView setImage:image];
     self.progressView.progress=0;
@@ -391,23 +372,6 @@ static UIImage* shrinkImage(UIImage* original,CGSize size)
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setNameTextField:nil];
-    [self setImageView:nil];
-    [self setShootButton:nil];
-    [self setRecordingIndicator:nil];
-    [self setRecordButton:nil];
-    [self setPlayButton:nil];
-    [self setFinishButton:nil];
-    [self setImageLabel:nil];
-    [self setProgressView:nil];
-    [self setTimeLabel:nil];
-    [self setCameraButton:nil];
-    [self setAudioSwitch:nil];
-    [self setSwitchLabel:nil];
-    [super viewDidUnload];
 }
 
 @end

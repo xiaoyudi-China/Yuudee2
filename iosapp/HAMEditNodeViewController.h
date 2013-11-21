@@ -29,9 +29,15 @@
     double progressInc;
 }
 
-@property HAMConfig* config;
-//-1 - edit 1 - new card 0 - new category
-@property int newFlag;
+typedef enum {
+	HAMCardEditModeCreate,
+	HAMCardEditModeEdit,
+} HAMCardEditMode;
+
+@property HAMCardEditMode editMode;
+@property int newFlag; // FIXME: this should be deprecated
+
+@property (nonatomic, weak) HAMConfig* config;
 @property HAMCard* card;
 @property NSString* parentID;
 
