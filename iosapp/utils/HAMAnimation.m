@@ -33,9 +33,9 @@
         cardView.transform = CGAffineTransformMakeScale(1, 1);
         cardView.frame = originFrame;
     }]];
-    /*QBAnimationGroup *groupRotateLeftHalf = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    QBAnimationGroup *groupRotateLeftHalf = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         cardView.transform = CGAffineTransformRotate(cardView.transform, M_PI/8);
-    }]];*/
+    }]];
     QBAnimationGroup *groupRotateRightHalf = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         cardView.transform = CGAffineTransformRotate(cardView.transform, -M_PI/8);
     }]];
@@ -58,7 +58,7 @@
             break;
             
         case ROOM_ANIMATION_SHAKE:
-            sequence = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeft, groupRotateRightHalf, groupScaleNom] repeat:NO];
+            sequence = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
             [sequence start];
             break;
             

@@ -66,7 +66,7 @@
     int index = [sender tag];
     HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
     
-    UIView* cardView = [[gridViewTool viewArray] objectAtIndex:index];
+    UIView* cardView = [[gridViewTool cardViewArray_] objectAtIndex:index];
     [HAMAnimation beginAnimation:room.animation_ onCardView:cardView];
     
     //NSString *musicPath= [[NSBundle mainBundle] pathForResource:[[card audio] localPath] ofType:@""];

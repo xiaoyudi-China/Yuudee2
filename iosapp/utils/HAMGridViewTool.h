@@ -17,15 +17,16 @@
     HAMConfig* config;
     
     UIScrollView* scrollView_;
-    int totalPageNum;
-    NSMutableArray* pageViews;
+    int totalPageNum_;
+    int currentPage_;
+    NSMutableArray* pageViews_;
     
     UIViewController* viewController_;
-    NSMutableArray* viewArray;
+    NSMutableArray* cardViewArray_;
     NSString* currentUUID_;
 }
 
-@property NSMutableArray* viewArray;
+@property NSMutableArray* cardViewArray_;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit;
 -(void)prepareRefreshView:(NSString*)nodeUUID;

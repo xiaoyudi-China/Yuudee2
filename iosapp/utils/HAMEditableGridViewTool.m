@@ -9,6 +9,12 @@
 #import "HAMEditableGridViewTool.h"
 
 @implementation HAMEditableGridViewTool
+{
+    int onEdgeCounter_;
+    int onEdgeSide_;
+    NSTimer* onEdgeTimer_;
+    UIView* onEdgeView_;
+}
 
 #pragma mark -
 #pragma mark View
@@ -24,7 +30,7 @@
     Boolean isRoot = [card.UUID isEqualToString:config.rootID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
-    for (pageIndex = 0; pageIndex < totalPageNum; pageIndex++) {
+    for (pageIndex = 0; pageIndex < totalPageNum_; pageIndex++) {
         posIndex = 0;
         //add home btn
         if (!isRoot)
@@ -51,6 +57,8 @@
             [self addEditButtonAtPos:posIndex onPage:pageIndex tag:childIndex];
         }
     }
+    
+    onEdgeCounter_ = 0;
 }
 
 - (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
@@ -62,7 +70,7 @@
     
 //    [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
     
-    UIView* cardView = [viewArray objectAtIndex:tag];
+    UIView* cardView = [cardViewArray_ objectAtIndex:tag];
     positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
     
@@ -88,7 +96,7 @@
 
 - (void)addEditButtonAtPos:(int)pos onPage:(int)pageIndex tag:(int)tag
 {
-    UIView* pageView = [pageViews objectAtIndex:pageIndex];
+    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     
     UIButton* editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     CGPoint position = [viewInfo positionAtPosIndex:pos];
@@ -110,9 +118,16 @@
 }
 
 #pragma mark -
-#pragma mark Actions
+#pragma mark Page Actions
 
--(void)moveView:(UIView*)targetView toPosition:(CGPoint)position animated:(Boolean)animated{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = CGRectGetWidth(scrollView_.frame);
+    currentPage_ = floor((scrollView_.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+}
+
+
+-(void)moveCardView:(UIView*)targetView toPosition:(CGPoint)position animated:(Boolean)animated{
     if (!animated) {
         [CATransaction begin];
         [CATransaction setValue: (id) kCFBooleanTrue forKey: kCATransactionDisableActions];
@@ -122,6 +137,58 @@
     
     if (!animated) {
         [CATransaction commit];
+    }
+}
+
+- (void)moveCardView:(UIView*)cardView toPage:(int)pagenum
+{
+    CGRect cardFrame = cardView.frame;
+    //[cardView removeFromSuperview];
+    UIView* pageView = [pageViews_ objectAtIndex:pagenum];
+    [pageView addSubview:cardView];
+    cardView.frame = cardFrame;
+}
+
+- (void)gotoPage:(int)pagenum{
+    if (pagenum < 0 || pagenum >= totalPageNum_) {
+        return;
+    }
+    
+    currentPage_ = pagenum;
+    
+    CGRect bounds = scrollView_.bounds;
+    bounds.origin.x = CGRectGetWidth(bounds) * currentPage_;
+    bounds.origin.y = 0;
+    [scrollView_ scrollRectToVisible:bounds animated:YES];
+}
+
+-(int)judgeOutsidePageAtView:(UIView*)cardView{
+    CGRect cardFrame = cardView.frame;
+    UIView* pageView = [pageViews_ objectAtIndex:currentPage_];
+    CGRect pageFrame = pageView.frame;
+    
+    if(cardFrame.origin.x < 0)
+        return -1;
+    if (cardFrame.origin.x > pageFrame.size.width - cardFrame.size.width)
+        return 1;
+    return 0;
+}
+
+-(void)onEdge
+{
+    onEdgeCounter_++;
+    NSLog(@"%d",onEdgeCounter_);
+    int side = [self judgeOutsidePageAtView:onEdgeView_];
+    if (side == 0 || onEdgeSide_ != side) {
+        onEdgeCounter_ = 0;
+        onEdgeSide_ = 0;
+        [onEdgeTimer_ invalidate];
+    }
+    
+    if (onEdgeCounter_ > 10) {
+        [self gotoPage:currentPage_ + onEdgeSide_];
+        [self moveCardView:onEdgeView_ toPage:currentPage_];
+        onEdgeCounter_ = 0;
     }
 }
 
@@ -137,10 +204,21 @@
     UIView* buttonView = recognizer.view;
     int tag = buttonView.tag;
     
-    //move card
-    UIView* cardView = [viewArray objectAtIndex:tag];
+    UIView* cardView = [cardViewArray_ objectAtIndex:tag];
     [cardView.superview bringSubviewToFront:cardView];
     
+    //judge if outside
+    if (onEdgeSide_ == 0) {
+        int side;
+        if ((side = [self judgeOutsidePageAtView:cardView]) != 0) {
+            onEdgeSide_ = side;
+            onEdgeView_ = cardView;
+            onEdgeTimer_ = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(onEdge) userInfo:nil repeats:YES];
+            [onEdgeTimer_ fire];
+        }
+    }
+    
+    //move card
     CGPoint newPosition = cardView.center;
     CGPoint translation = [recognizer translationInView:viewController_.view];
     [recognizer setTranslation:CGPointZero inView:viewController_.view];
@@ -151,12 +229,12 @@
     [cardLayer removeFromSuperlayer];
     [superLayer addSublayer:cardLayer];*/
     
-    [self moveView:cardView toPosition:newPosition animated:NO];
+    [self moveCardView:cardView toPosition:newPosition animated:NO];
         
     //get current index
     int currentIndex;
     int i;
-    int cardnum = [viewArray count];
+    int cardnum = [cardViewArray_ count];
     for (i=0; i<cardnum; i++) {
         if (tagOfIndex_[i] == tag){
             currentIndex = i;
@@ -187,18 +265,14 @@
     int inc = currentIndex > nearestIndex ? 1 : -1;
     for (i=nearestIndex; i!=currentIndex; i+=inc) {
         int targetTag = tagOfIndex_[i];
-//        UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
-//        CALayer* targetLayer = [layerArray objectAtIndex:targetTag];
-        UIView* targetView = [viewArray objectAtIndex:targetTag];
+        UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
         if (isBlankAtTag_[targetTag]){
-//            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[currentIndex] animated:NO];
-            [self moveView:targetView toPosition:positionArray_[currentIndex] animated:NO];
+            [self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
             newTagOfIndex[currentIndex] = targetTag;
             break;
         }
         else{
-//            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[i+inc] animated:YES];
-            [self moveView:targetView toPosition:positionArray_[i+inc] animated:YES];
+            [self moveCardView:targetView toPosition:positionArray_[i+inc] animated:YES];
             newTagOfIndex[i+inc] = targetTag;
         }
     }
@@ -220,8 +294,7 @@
     //finger up
     //TODO: may need to move this part to the begining of this function. depend on the circumstances of last calling of handlePan
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
-//        [self moveView:cardView andLayer:cardLayer toPosition:positionArray_[nearestIndex] animated:YES];
-        [self moveView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
+        [self moveCardView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
         NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];

@@ -10,7 +10,7 @@
 
 @implementation HAMGridViewTool
 
-@synthesize viewArray;
+@synthesize cardViewArray_;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit{
     if (self=[super init])
@@ -45,27 +45,28 @@
             [sublayer removeFromSuperlayer];
     }
     
-    viewArray=[NSMutableArray array];
+    cardViewArray_=[NSMutableArray array];
     
     NSArray* children = [config childrenCardIDOfCat:nodeUUID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
-    totalPageNum = ceil( (children.count + 0.0f) / btnsPerPage);
-    if (totalPageNum == 0)
-        totalPageNum = 1;
+    totalPageNum_ = ceil( (children.count + 0.0f) / btnsPerPage);
+    if (totalPageNum_ == 0)
+        totalPageNum_ = 1;
+    currentPage_ = 0;
     
-    pageViews = [NSMutableArray arrayWithCapacity:totalPageNum];
+    pageViews_ = [NSMutableArray arrayWithCapacity:totalPageNum_];
     CGRect scrollFrame = scrollView_.frame;
-    CGSize contentSize = CGSizeMake(CGRectGetWidth(scrollFrame) * totalPageNum, CGRectGetHeight(scrollFrame));
+    CGSize contentSize = CGSizeMake(CGRectGetWidth(scrollFrame) * totalPageNum_, CGRectGetHeight(scrollFrame));
     scrollView_.contentSize = contentSize;
     scrollView_.contentOffset = CGPointMake(0.0f, 0.0f);
     
     CGSize frameSize = scrollFrame.size;
-    for (int i = 0; i < totalPageNum; i++) {
+    for (int i = 0; i < totalPageNum_; i++) {
         CGRect frame = CGRectMake(i*frameSize.width, 0, frameSize.width, frameSize.height);
         UIView* pageView = [[UIView alloc] initWithFrame:frame];
         [scrollView_ addSubview:pageView];
-        [pageViews addObject:pageView];
+        [pageViews_ addObject:pageView];
     }
 }
 
@@ -77,7 +78,7 @@
     Boolean isRoot = [card.UUID isEqualToString:config.rootID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
-    for (pageIndex = 0; pageIndex < totalPageNum; pageIndex++) {
+    for (pageIndex = 0; pageIndex < totalPageNum_; pageIndex++) {
         posIndex = 0;
         //add home btn
         if (!isRoot)
@@ -107,11 +108,11 @@
 
 - (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
 {
-    if (pageIndex > pageViews.count) {
+    if (pageIndex > pageViews_.count) {
         return nil;
     }
     
-    UIView* pageView = [pageViews objectAtIndex:pageIndex];
+    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     
     double a=viewInfo.a;
     double x=j*a+(j+1)*viewInfo.xSpace;
@@ -145,7 +146,7 @@
     //[[pageView layer]addSublayer:cardLayer];
     
     if (tag!=-1)
-        [HAMTools setObject:cardView toMutableArray:viewArray atIndex:tag];
+        [HAMTools setObject:cardView toMutableArray:cardViewArray_ atIndex:tag];
     
     //draw foreground
     UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:picName]];
@@ -196,10 +197,10 @@
 
 -(void)addLabelWithi:(int)i j:(int)j onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color tag:(int)index
 {
-    if (pageIndex > pageViews.count) {
+    if (pageIndex > pageViews_.count) {
         return;
     }
-    UIView* pageView = [pageViews objectAtIndex:pageIndex];
+    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     
     double y=viewInfo.a-viewInfo.wordh;
 //    double xoff=j*viewInfo.a+(j+1)*viewInfo.xSpace;
@@ -223,8 +224,8 @@
 //    [textLayer setFrame:CGRectMake(0,y,viewInfo.a,viewInfo.wordh)];
 //    [textLayer setPosition:CGPointMake(viewInfo.a/2.0, y+viewInfo.wordh/1.5)];
     
-    if (index>=0 && [viewArray count]>index)
-        [[viewArray objectAtIndex:index] addSubview:labelView];
+    if (index>=0 && [cardViewArray_ count]>index)
+        [[cardViewArray_ objectAtIndex:index] addSubview:labelView];
     else
     {
         //CGRect frame = labelView.frame;
