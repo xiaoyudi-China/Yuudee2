@@ -7,6 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMCardEditorViewController">
             <connections>
+                <outlet property="cardNameField" destination="nXK-oz-J15" id="3li-T0-5jm"/>
+                <outlet property="deleteCardButton" destination="DLa-zf-tZ3" id="IWT-es-Uub"/>
+                <outlet property="finishButton" destination="b3s-04-I2z" id="CEk-7o-P2w"/>
+                <outlet property="imageView" destination="spa-Fx-Q2D" id="SRF-I6-e3l"/>
+                <outlet property="recordButton" destination="8FH-lh-VwA" id="5LY-LM-N7o"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -51,7 +56,10 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="TDT-OM-NxC"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-zf-tZ3">
                     <rect key="frame" x="135" y="369" width="180" height="30"/>
@@ -59,11 +67,34 @@
                     <state key="normal" title="删除卡片">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="deleteCardButtonTapped:" destination="-1" eventType="touchUpInside" id="nhk-oB-YhR"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spa-Fx-Q2D">
                     <rect key="frame" x="145" y="150" width="160" height="132"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axW-XG-eeR">
+                    <rect key="frame" x="20" y="450" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="eu8-m5-4HK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3s-04-I2z">
+                    <rect key="frame" x="400" y="450" width="30" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="完成">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="finishButtonTapped:" destination="-1" eventType="touchUpInside" id="wAn-PN-NXs"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>

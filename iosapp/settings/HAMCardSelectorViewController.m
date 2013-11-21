@@ -12,6 +12,8 @@
 
 @end
 
+CGRect CENTRAL_POINT_RECT;
+
 @implementation HAMCardSelectorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -19,51 +21,16 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		self.selectedCards = [[NSMutableSet alloc] init];
+		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
+		self.selectedCardIDs = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
-// FIXME: need optimization
-// NOTE: the cards returned contain image and label info
-- (NSArray*)getUnclassifiedCards {
-	NSArray *categories = self.config.catList;
-	NSArray *allCards = self.config.cardList;
-	NSMutableSet *classifiedCardIDs = [[NSMutableSet alloc] init];
-	
-	for (HAMCard *category in categories) {
-		NSString *categoryID = category.UUID;
-		NSArray *childrenIDs = [self.config childrenOf:categoryID];
-		
-		for (NSString *childID in childrenIDs)
-			[classifiedCardIDs addObject:childID];
-	}
-	
-	NSMutableArray *unclassifiedCards = [[NSMutableArray alloc] init];
-	NSMutableArray *allCardIDs = [[NSMutableArray alloc] init];
-	for (HAMCard *card in allCards)
-		[allCardIDs addObject:card.UUID];
-	
-	for (NSString *cardID in allCardIDs)
-		if (![classifiedCardIDs member:cardID])
-			[unclassifiedCards addObject:[self.config card:cardID]];
-	
-	return (NSArray*) unclassifiedCards;
-}
-
 // It's essential to define this accessor method
 // ??? Is it?
-- (NSArray*) cards {
-	if (self.categoryID == nil)
-		return [self getUnclassifiedCards];
-	else {
-		NSArray *childrenIDs = [self.config childrenOf:self.categoryID];
-		NSMutableArray *children = [[NSMutableArray alloc] init];
-		for (NSString *childID in childrenIDs)
-			[children addObject:[self.config card: childID]];
-		
-		return children;
-	}
+- (NSArray*) cardIDs {
+	return [self.config childrenCardIDOfCat:self.categoryID];
 }
 
 - (void)viewDidLoad
@@ -79,11 +46,11 @@
 	// set the layout of collection view
 	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 	
-	flowLayout.itemSize = CGSizeMake(cellWidth, cellHeight);
-	flowLayout.minimumInteritemSpacing = (gridViewWidth - 3*cellWidth) / 4;
-	flowLayout.minimumLineSpacing = (gridViewHeight - 4*cellHeight) / 5;
+	flowLayout.itemSize = CGSizeMake(CELL_WIDTH, CELL_HEIGHT);
+	flowLayout.minimumInteritemSpacing = (GRID_VIEW_WIDTH - 3*CELL_WIDTH) / 4;
+	flowLayout.minimumLineSpacing = (GRID_VIEW_HEIGHT - 4*CELL_HEIGHT) / 5;
 	flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-	flowLayout.sectionInset = UIEdgeInsetsMake(0, interItemSpace, 0, interItemSpace);
+	flowLayout.sectionInset = UIEdgeInsetsMake(0, INTER_ITEM_SPACING, 0, INTER_ITEM_SPACING);
     
     [self.collectionView setCollectionViewLayout:flowLayout];
 
@@ -97,7 +64,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	
 	// determine which mode we're in
-	if (self.slotToReplace == -1)
+	if (self.index == -1)
 		self.cellMode = HAMGridCellModeEdit;
 	else
 		self.cellMode = HAMGridCellModeAdd;
@@ -109,7 +76,6 @@
 		self.navigationItem.rightBarButtonItem = createCardButton;
 	}
 	else {
-		// FIXME: put this into viewDidLoad?
 		self.navigationItem.rightBarButtonItem = nil;
 	}
 	
@@ -124,7 +90,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	
-	return self.cards.count;
+	return self.cardIDs.count;
 }
 
 
@@ -133,7 +99,7 @@
 	HAMGridCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
 	
 	// load the text
-	HAMCard *card = self.cards[indexPath.row];
+	HAMCard *card = [self.config card:[self cardIDs][indexPath.row]];
 	cell.textLabel.text = card.name;
 	
 	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
@@ -155,21 +121,28 @@
 }
 
 - (void)createCardButtonPressed {
-	HAMEditNodeViewController *nodeEditor = [[HAMEditNodeViewController alloc] initWithNibName:@"HAMEditNodeViewController" bundle:nil];
 	
-	nodeEditor.config = self.config;
-	// unclassifed cards are directly inserted to the user node
-	nodeEditor.parentID = (self.categoryID == nil) ? self.userID : self.categoryID;
-	nodeEditor.editMode = HAMCardEditModeCreate;
-	nodeEditor.card = nil; //FIXME: this necessary?
+	HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+	cardEditor.cardID = nil;
+	cardEditor.categoryID = self.categoryID;
+	cardEditor.config = self.config;
+	cardEditor.delegate = self;
 	
-	[self.navigationController pushViewController:nodeEditor animated:YES];
+	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
+	navigator.navigationBarHidden = YES;
+	
+	self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
+	cardEditor.popover = self.popover;
+
+	[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
 }
 
 - (void)addCardsButtonPressed {
 	// FIXME: this is just testing, should add all the selected cards later
-	HAMCard *card = [self.selectedCards anyObject];
-	[self.config updateChildOfNode:self.userID with:card.UUID atIndex:self.slotToReplace];
+	NSString *cardID = [self.selectedCardIDs anyObject];
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:cardID animation:[self.config animationOfCat:self.userID atIndex:self.index]]; // keep the animation unchanged
+	
+	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];
 	
 	NSArray *viewsInStack = self.navigationController.viewControllers;
 	// pop out two views from the navigation stack, including the current one
@@ -178,52 +151,54 @@
 
 - (void)rightTopButtonPressedForCell:(id)cell {
 	HAMGridCell *gridCell = (HAMGridCell*) cell;
+	NSString *cardID = [self cardIDs][gridCell.indexPath.row];
 	
 	if (self.cellMode == HAMGridCellModeAdd) {
 		if (gridCell.selected) {
-			HAMCard *card = self.cards[gridCell.indexPath.row];
-			[self.selectedCards removeObject:card];
+			[self.selectedCardIDs removeObject:cardID];
 			
 			gridCell.selected = NO;
 			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"unselected.png"] forState:UIControlStateNormal];
 			
 			// remove the button on the right of top bar
-			if (self.selectedCards.count == 0)
+			if (self.selectedCardIDs.count == 0)
 				self.navigationItem.rightBarButtonItem = nil;
 		}
 		else { // unselected
 			// activate the button on the right of top bar
-			if (self.selectedCards.count == 0) {
+			if (self.selectedCardIDs.count == 0) {
 				UIBarButtonItem *addCardsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCardsButtonPressed)];
 				self.navigationItem.rightBarButtonItem = addCardsButton;
 			}
 			
-			HAMCard *card = self.cards[gridCell.indexPath.row];
-			[self.selectedCards addObject:card];
+			NSString *cardID = self.cardIDs[gridCell.indexPath.row];
+			[self.selectedCardIDs addObject:cardID];
 			
 			gridCell.selected = YES;
 			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
 		}
 	}
 	else { // Mode Edit
-		/*HAMEditNodeViewController *nodeEditor = [[HAMEditNodeViewController alloc] initWithNibName:@"HAMEditNodeViewController" bundle:nil];
-		
-		nodeEditor.config = self.config;
-		// unclassifed cards are directly inserted to the user node
-		nodeEditor.parentID = (self.categoryID == nil) ? self.userID : self.categoryID;
-		nodeEditor.editMode = HAMCardEditModeEdit;
-		nodeEditor.card = self.cards[gridCell.indexPath.row];
-		
-		[self.navigationController pushViewController:nodeEditor animated:YES];*/
 		
 		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+		cardEditor.cardID = cardID;
+		cardEditor.categoryID = self.categoryID;
+		cardEditor.config = self.config;
+		cardEditor.delegate = self;
+		
 		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
 		navigator.navigationBarHidden = YES;
 		
 		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];		
-		CGRect rect = CGRectMake(screenWidth/2, screenHeight/2, 1, 1);
-		[self.popover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:0 animated:YES];
+		cardEditor.popover = self.popover;
+
+		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
 	}
+}
+
+- (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
+	// FIXME: sometimes the grid view is not refreshed
+	[self.collectionView reloadData];
 }
 
 @end

@@ -8,12 +8,41 @@
 
 #import <UIKit/UIKit.h>
 #import "HAMRecorderViewController.h"
+#import "HAMCard.h"
+#import "HAMConfig.h"
+#import "HAMConstants.h"
 
-@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@class HAMCardEditorViewController;
+@protocol HAMCardEditorViewControllerDelegate <NSObject>
+
+- (void)cardEditorDidEndEditing:(HAMCardEditorViewController*)cardEditor;
+
+@end
+
+
+@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+
+@property (strong, nonatomic) NSString *cardID;
+@property (strong, nonatomic) NSString *categoryID;
+@property (weak, nonatomic) HAMConfig *config;
+@property (weak, nonatomic) UIPopoverController *popover;
+@property (weak, nonatomic) id<HAMCardEditorViewControllerDelegate> delegate;
+
+@property (strong, nonatomic) HAMCard *tempCard;
+@property BOOL cardNameChanged;
+@property BOOL cardImageChanged;
+
+@property (nonatomic, strong) HAMRecorderViewController *recorder;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextField *cardNameField;
+@property (weak, nonatomic) IBOutlet UIButton *deleteCardButton;
+@property (weak, nonatomic) IBOutlet UIButton *finishButton;
+@property (weak, nonatomic) IBOutlet UIButton *recordButton;
 
 - (IBAction)recordButtonTapped:(id)sender;
 - (IBAction)pickImageButtonTapped:(id)sender;
-
-@property (nonatomic, strong) HAMRecorderViewController *recorder;
+- (IBAction)deleteCardButtonTapped:(id)sender;
+- (IBAction)cancelButtonTapped:(id)sender;
+- (IBAction)finishButtonTapped:(id)sender;
 
 @end

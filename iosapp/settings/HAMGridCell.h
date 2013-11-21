@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMGridCellDelegate.h"
+
+@protocol HAMGridCellDelegate <NSObject>
+
+// FIXME: change the type signature to HAMGridCell
+-(void) rightTopButtonPressedForCell: (id) cell;
+
+@end
+
 
 @interface HAMGridCell : UICollectionViewCell <UIActionSheetDelegate, UIAlertViewDelegate>
 

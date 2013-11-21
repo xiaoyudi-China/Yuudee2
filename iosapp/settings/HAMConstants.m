@@ -8,12 +8,14 @@
 
 #include "HAMConstants.h"
 
-const CGFloat gridViewWidth = 768;
-const CGFloat gridViewHeight = 979;
-const CGFloat cellWidth = 180;
-const CGFloat cellHeight = 200;
-const CGFloat interItemSpace = (gridViewWidth - 3*cellWidth) / 4;
-const CGFloat lineSpace = (gridViewHeight - 4*cellHeight) / 5;
+const CGFloat GRID_VIEW_WIDTH = 768;
+const CGFloat GRID_VIEW_HEIGHT = 979;
+const CGFloat CELL_WIDTH = 180;
+const CGFloat CELL_HEIGHT = 200;
+const CGFloat INTER_ITEM_SPACING = (GRID_VIEW_WIDTH - 3*CELL_WIDTH) / 4;
+const CGFloat LINE_SPACE = (GRID_VIEW_HEIGHT - 4*CELL_HEIGHT) / 5;
 
-const CGFloat screenWidth = 768;
-const CGFloat screenHeight = 1024;
+const CGFloat SCREEN_WIDTH = 768;
+const CGFloat SCREEN_HEIGHT = 1024;
+
+NSString* const UNCATEGORIZED_ID = @"UNCATEGORIZED";

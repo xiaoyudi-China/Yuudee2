@@ -9,14 +9,16 @@
 #ifndef iosapp_Constants_h
 #define iosapp_Constants_h
 
-extern const CGFloat gridViewWidth;
-extern const CGFloat gridViewHeight;
-extern const CGFloat cellWidth;
-extern const CGFloat cellHeight;
-extern const CGFloat interItemSpace;
-extern const CGFloat lineSpace;
+extern const CGFloat GRID_VIEW_WIDTH;
+extern const CGFloat GRID_VIEW_HEIGHT;
+extern const CGFloat CELL_WIDTH;
+extern const CGFloat CELL_HEIGHT;
+extern const CGFloat INTER_ITEM_SPACING;
+extern const CGFloat LINE_SPACE;
 
-extern const CGFloat screenWidth;
-extern const CGFloat screenHeight;
+extern const CGFloat SCREEN_WIDTH;
+extern const CGFloat SCREEN_HEIGHT;
+
+extern NSString* const UNCATEGORIZED_ID;
 
 #endif

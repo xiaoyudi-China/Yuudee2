@@ -7,6 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMRecorderViewController">
             <connections>
+                <outlet property="cancelButton" destination="kgm-Yf-Iin" id="AUl-3X-Fdl"/>
+                <outlet property="deleteButton" destination="JNw-sY-KPF" id="bkF-PF-FjB"/>
+                <outlet property="finishButton" destination="nT0-mz-exe" id="UQV-oS-Kcb"/>
+                <outlet property="pickerView" destination="9xB-7t-TvN" id="Sj8-Sd-pee"/>
+                <outlet property="playButton" destination="gPA-T4-wyh" id="gtv-9n-KFF"/>
+                <outlet property="recordButton" destination="Rhm-e1-ssT" id="cn6-nx-kwg"/>
                 <outlet property="view" destination="2" id="3"/>
             </connections>
         </placeholder>
@@ -25,6 +31,10 @@
                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9xB-7t-TvN">
                     <rect key="frame" x="0.0" y="269" width="450" height="216"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="hW1-TY-JDv"/>
+                        <outlet property="delegate" destination="-1" id="I5H-Ni-cII"/>
+                    </connections>
                 </pickerView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-e1-ssT">
                     <rect key="frame" x="114" y="181" width="30" height="30"/>
@@ -32,6 +42,9 @@
                     <state key="normal" title="录音">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="recordButtonPressed:" destination="-1" eventType="touchUpInside" id="wII-Zt-cqr"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPA-T4-wyh">
                     <rect key="frame" x="202" y="181" width="46" height="33"/>
@@ -40,6 +53,9 @@
                     <state key="normal" title="播放">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="playButtonPressed:" destination="-1" eventType="touchUpInside" id="C0z-i8-ogI"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JNw-sY-KPF">
                     <rect key="frame" x="302" y="181" width="30" height="30"/>
@@ -47,6 +63,9 @@
                     <state key="normal" title="删除">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="deleteButtonPressed:" destination="-1" eventType="touchUpInside" id="U7v-Ls-l5i"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgm-Yf-Iin">
                     <rect key="frame" x="114" y="243" width="30" height="30"/>
@@ -64,6 +83,9 @@
                     <state key="normal" title="完成">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="finishButtonPressed:" destination="-1" eventType="touchUpInside" id="gw8-Nh-Ymn"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

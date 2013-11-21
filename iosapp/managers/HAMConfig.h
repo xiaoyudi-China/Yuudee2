@@ -51,5 +51,6 @@
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image;
 
+-(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(int)beginIndex;
 -(void)deleteCard:(NSString*)UUID;
 @end

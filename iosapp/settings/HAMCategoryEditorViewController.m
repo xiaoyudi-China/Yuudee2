@@ -27,12 +27,88 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+	if (self.categoryID) // editing
+		self.categoryNameField.text = [self.config card:self.categoryID].name;
+	
+	if (self.categoryID == UNCATEGORIZED_ID)
+		self.deleteButton.hidden = YES; // don't allow deletion of the uncategorized
+	else if (self.categoryID == nil) {
+		self.deleteButton.hidden = YES; // don't allow deletion of category being created
+		self.finishButton.enabled = NO;
+	}
+	
+	self.preferredContentSize = self.view.frame.size;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)deleteButtonPressed:(id)sender {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"该分类下所有卡片均会被删除" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+	[alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) { // confirm deletion
+		// delete all cards under this category
+		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
+		for (NSString *cardID in cardIDs)
+			[self.config deleteCard:cardID];
+		
+		[self.config deleteCard:self.categoryID];
+		[self.popover dismissPopoverAnimated:YES];
+		[self.delegate categoryEditorDidEndEditing:self];
+	}
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+	self.tempCategoryName = nil;
+	
+	if (! self.categoryID) { // creating category
+		if (! [textField.text isEqualToString:@""])
+			self.tempCategoryName = textField.text;
+	}
+	else { // editting category
+		NSString *oldCategoryName = [self.config card:self.categoryID].name;
+		if ([textField.text isEqualToString:@""])
+			textField.text = oldCategoryName;
+		else if (! [textField.text isEqualToString:oldCategoryName])
+			self.tempCategoryName = textField.text;
+	}
+	
+	self.finishButton.enabled = self.tempCategoryName ? YES : NO;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return NO;
+}
+
+- (IBAction)cancelButtonPressed:(id)sender {
+	[self.popover dismissPopoverAnimated:YES];
+}
+
+- (IBAction)finishButtonPressed:(id)sender {
+	if (self.categoryID) { // editing category
+		HAMCard *category = [self.config card:self.categoryID];
+		[self.config updateCard:category name:self.tempCategoryName audio:nil image:nil];
+	}
+	else { // creating category
+		HAMCard *category = [[HAMCard alloc] initNewCard];
+		NSString *categoryName = self.tempCategoryName;
+		// type 0 indicates a category
+		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil];
+		
+		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
+		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
+	}
+	
+	[self.popover dismissPopoverAnimated:YES];
+	[self.delegate categoryEditorDidEndEditing:self];
 }
 
 @end
