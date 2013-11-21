@@ -29,14 +29,6 @@
     //nodes is always clean
     NSMutableDictionary* cards;
     NSMutableDictionary* cardTree;
-    
-    //0 - clean 1 - dirty
-    //0 - allList 1 - cardList 2 - catList
-    //int dirtyFlag[5];
-    
-    NSMutableArray* allList;
-    NSMutableArray* cardList;
-    NSMutableArray* catList;
 }
 
 @property NSString* rootID;
@@ -46,10 +38,13 @@
 -(void)clear;
 
 -(HAMCard*)card:(NSString*)UUID;
+
+-(NSMutableArray*)childrenOfCat:(NSString*)parentID;
+-(NSMutableArray*)childrenCardIDOfCat:(NSString*)parentID;
+-(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(int)index;
 -(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(int)index;
 -(int)animationOfCat:(NSString*)parentID atIndex:(int)index;
--(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(int)index;
--(NSMutableArray*)childrenCardIDOfCat:(NSString*)parentID;
+
 
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index;
 -(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(int)index;

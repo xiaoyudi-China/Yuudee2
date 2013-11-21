@@ -10,8 +10,6 @@
 #import "HAMViewController.h"
 #import "HAMFileTools.h"
 
-static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
-
 @interface HAMViewController ()
 						
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
@@ -68,8 +66,8 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
     int index = [sender tag];
     HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
     
-    CALayer* cardLayer = [[gridViewTool layerArray] objectAtIndex:index];
-    [self beginAnimation:room.animation_ onLayer:cardLayer];
+    UIView* cardView = [[gridViewTool viewArray] objectAtIndex:index];
+    [HAMAnimation beginAnimation:room.animation_ onCardView:cardView];
     
     //NSString *musicPath= [[NSBundle mainBundle] pathForResource:[[card audio] localPath] ofType:@""];
     HAMCard* card = [config card:room.cardID_];
@@ -82,57 +80,5 @@ static NSString * const kHAMPulseAnimation = @"HAMPulseAnimation";
         [audioPlayer play];
     }
 }
-
-- (void)beginAnimation:(int)animationType onLayer:(CALayer*)highlightLayer
-{
-    switch (animationType) {
-        case ROOM_ANIMATION_NONE:
-            return;
-        
-        case ROOM_ANIMATION_SCALE:
-            
-        default:
-            break;
-    }
-    CALayer* superLayer=[highlightLayer superlayer];
-    [highlightLayer removeFromSuperlayer];
-    [superLayer addSublayer:highlightLayer];
-    
-    CABasicAnimation *pulseAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-    [pulseAnimation setDuration:1];
-    [pulseAnimation setRepeatCount:1];
-    
-    [pulseAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    CATransform3D transform = CATransform3DMakeScale(3.5, 3.5, 1.0);
-    
-    [pulseAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DIdentity]];
-    [pulseAnimation setToValue:[NSValue valueWithCATransform3D:transform]];
-    
-    // Tells CA to reverse the animation (e.g. animate back to the layer's transform)
-    [pulseAnimation setAutoreverses:YES];
-    
-    CABasicAnimation *translation = [CABasicAnimation animationWithKeyPath:@"position"];
-    translation.toValue = [NSValue valueWithCGPoint:CGPointMake(384, 512)];
-    [translation setDuration:1];
-    [translation setRepeatCount:1];
-    [translation setAutoreverses:YES];
-    
-    // Finally... add the explicit animation to the layer... the animation automatically starts.
-    [highlightLayer addAnimation:pulseAnimation forKey:kHAMPulseAnimation];
-    [highlightLayer addAnimation:translation forKey:@"translation"];
-}
-
-- (void)endAnimatingLayer
-{
-    //[_layer removeAnimationForKey:kBTSPulseAnimation];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self endAnimatingLayer];
-}
-
 
 @end

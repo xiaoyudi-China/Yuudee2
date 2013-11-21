@@ -297,7 +297,9 @@ static UIImage* shrinkImage(UIImage* original,CGSize size)
     else
     {
         [config newCardWithID:card.UUID name:nameTextField.text type:1 audio:audioPath image:imageFile]; // type 1 indicates card
-        [config insertChild:card.UUID toNode:parentID];
+		NSInteger numChildren = [config childrenCardIDOfCat:parentID].count;
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:card.UUID animation:ROOM_ANIMATION_NONE];
+        [config updateRoomOfCat:parentID with:room atIndex:numChildren];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

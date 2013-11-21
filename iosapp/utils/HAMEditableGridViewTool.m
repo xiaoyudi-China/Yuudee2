@@ -16,7 +16,7 @@
 -(void)refreshView:(NSString*)nodeUUID{
     [super prepareRefreshView:nodeUUID];
     
-    cardViewArray_ = [NSMutableArray array];
+//    cardViewArray_ = [NSMutableArray array];
     editButtonArray_ = [NSMutableArray array];
     
     int childIndex=0,posIndex,pageIndex;
@@ -60,10 +60,10 @@
     if (tag == -1)
         return button;
     
-    [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
+//    [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
     
-    CALayer* buttonLayer = [layerArray objectAtIndex:tag];
-    positionArray_[tag] = buttonLayer.position;
+    UIView* cardView = [viewArray objectAtIndex:tag];
+    positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
     
     if (isBlankAtTag_[tag]) {
@@ -112,15 +112,13 @@
 #pragma mark -
 #pragma mark Actions
 
--(void)moveView:(UIView*)targetView andLayer:(CALayer*)targetLayer toPosition:(CGPoint)position animated:(Boolean)animated{
+-(void)moveView:(UIView*)targetView toPosition:(CGPoint)position animated:(Boolean)animated{
     if (!animated) {
         [CATransaction begin];
         [CATransaction setValue: (id) kCFBooleanTrue forKey: kCATransactionDisableActions];
     }
     
     targetView.center = position;
-    if (targetLayer)
-        targetLayer.position = position;
     
     if (!animated) {
         [CATransaction commit];
@@ -136,28 +134,29 @@
         editButtonArray_ = nil;
     }
     
-    UIView* cardView = recognizer.view;
-    int tag = cardView.tag;
+    UIView* buttonView = recognizer.view;
+    int tag = buttonView.tag;
+    
+    //move card
+    UIView* cardView = [viewArray objectAtIndex:tag];
+    [cardView.superview bringSubviewToFront:cardView];
     
     CGPoint newPosition = cardView.center;
     CGPoint translation = [recognizer translationInView:viewController_.view];
     [recognizer setTranslation:CGPointZero inView:viewController_.view];
     newPosition.x += translation.x;
     newPosition.y += translation.y;
-    
-    //move card
-    CALayer* cardLayer = [layerArray objectAtIndex:tag];
     //TODO: don't repeat this for efficiency
-    CALayer* superLayer = [cardLayer superlayer];
+    /*CALayer* superLayer = [cardLayer superlayer];
     [cardLayer removeFromSuperlayer];
-    [superLayer addSublayer:cardLayer];
+    [superLayer addSublayer:cardLayer];*/
     
-    [self moveView:cardView andLayer:cardLayer toPosition:newPosition animated:NO];
+    [self moveView:cardView toPosition:newPosition animated:NO];
         
     //get current index
     int currentIndex;
     int i;
-    int cardnum = [layerArray count];
+    int cardnum = [viewArray count];
     for (i=0; i<cardnum; i++) {
         if (tagOfIndex_[i] == tag){
             currentIndex = i;
@@ -188,15 +187,18 @@
     int inc = currentIndex > nearestIndex ? 1 : -1;
     for (i=nearestIndex; i!=currentIndex; i+=inc) {
         int targetTag = tagOfIndex_[i];
-        UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
-        CALayer* targetLayer = [layerArray objectAtIndex:targetTag];
+//        UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
+//        CALayer* targetLayer = [layerArray objectAtIndex:targetTag];
+        UIView* targetView = [viewArray objectAtIndex:targetTag];
         if (isBlankAtTag_[targetTag]){
-            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[currentIndex] animated:NO];
+//            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[currentIndex] animated:NO];
+            [self moveView:targetView toPosition:positionArray_[currentIndex] animated:NO];
             newTagOfIndex[currentIndex] = targetTag;
             break;
         }
         else{
-            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[i+inc] animated:YES];
+//            [self moveView:targetView andLayer:targetLayer toPosition:positionArray_[i+inc] animated:YES];
+            [self moveView:targetView toPosition:positionArray_[i+inc] animated:YES];
             newTagOfIndex[i+inc] = targetTag;
         }
     }
@@ -218,8 +220,9 @@
     //finger up
     //TODO: may need to move this part to the begining of this function. depend on the circumstances of last calling of handlePan
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
-        [self moveView:cardView andLayer:cardLayer toPosition:positionArray_[nearestIndex] animated:YES];
-        NSMutableArray* children = [[config childrenCardIDOfCat:currentUUID_] copy];
+//        [self moveView:cardView andLayer:cardLayer toPosition:positionArray_[nearestIndex] animated:YES];
+        [self moveView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
+        NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];
             if (tagOfIndex_[i] == i)

@@ -95,7 +95,7 @@
 }
 
 -(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(int)index{
-    NSMutableArray* children = [self childrenCardIDOfCat:parentID];
+    NSMutableArray* children = [self childrenOfCat:parentID];
     
     if ([children count] <= index)
         return nil;
@@ -107,7 +107,7 @@
     return (HAMRoom*)room;
 }
 
-//returns the children cardID array of parentID
+//returns the children room array of parentID
 -(NSMutableArray*)childrenOfCat:(NSString*)parentID
 {
     NSMutableArray* children = [cardTree objectForKey:parentID];
@@ -121,13 +121,13 @@
 
 -(NSMutableArray*)childrenCardIDOfCat:(NSString*)parentID
 {
-    NSArray* children = [self childrenCardIDOfCat:parentID];
+    NSArray* children = [self childrenOfCat:parentID];
     
     NSMutableArray* cardIDArray = [NSMutableArray arrayWithCapacity: children.count];
     for (int i = 0; i < children.count; i++) {
         NSObject* room = [children objectAtIndex:i];
         if (room != [NSNull null]) {
-            [HAMTools setObject:room toMutableArray:cardIDArray atIndex:i];
+            [HAMTools setObject:((HAMRoom*)room).cardID_ toMutableArray:cardIDArray atIndex:i];
         }
     }
     
@@ -170,22 +170,17 @@
         
         [nodes addObject:node];
     }
-}
+}*/
 
 #pragma mark -
 #pragma mark Lists
 
 -(NSMutableArray*)allList
 {
-    if (dirtyFlag[0]==0)
-        return allList;
-    
-    allList=[dbManager allCards:0 user:[userManager currentUser].UUID];
-    dirtyFlag[0]=0;
-    
-    return allList;
+    return [dbManager allCards:0 user:[userManager currentUser].UUID];
 }
 
+/*
 -(NSMutableArray*)cardList
 {
     if (dirtyFlag[1]==0)
@@ -213,7 +208,7 @@
 
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index
 {
-    NSMutableArray* children=[self childrenCardIDOfCat:parentID];
+    NSMutableArray* children=[self childrenOfCat:parentID];
     if (!newRoom || !newRoom.cardID_)
     {
         [HAMTools setObject:[NSNull null] toMutableArray:children atIndex:index];
@@ -228,7 +223,7 @@
 
 -(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(int)index
 {
-    NSMutableArray* children = [self childrenCardIDOfCat:parentID];
+    NSMutableArray* children = [self childrenOfCat:parentID];
     if (children.count <= index)
         return;
     
