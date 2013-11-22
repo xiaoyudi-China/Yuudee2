@@ -45,7 +45,6 @@
 -(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(int)index;
 -(int)animationOfCat:(NSString*)parentID atIndex:(int)index;
 
-
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index;
 -(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(int)index;
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
@@ -53,4 +52,6 @@
 
 -(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(int)beginIndex;
 -(void)deleteCard:(NSString*)UUID;
+
+-(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(int)index;
 @end

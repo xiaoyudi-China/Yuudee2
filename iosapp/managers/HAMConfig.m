@@ -346,4 +346,42 @@
     cardTree=[NSMutableDictionary dictionary];
 }
 
+-(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(int)index
+{
+    if (!parentID) {
+        return;
+    }
+    
+    NSMutableArray* children = [self childrenCardIDOfCat:parentID];
+    int childrenCount = children.count;
+    if (index >= childrenCount) {
+        return;
+    }
+    
+    NSString* childID = [children objectAtIndex:index];
+    HAMCard* childCard = [self card:childID];
+    
+    NSMutableArray* grandchildren = nil;
+    if (childCard.type == CARD_TYPE_CATEGORY) {
+        grandchildren = [self childrenCardIDOfCat:childID];
+    }
+    
+    //delete card
+    [self deleteCard:childID];
+    
+    //move following cards forward
+    int i;
+    for (i = index + 1; i < childrenCount; i++) {
+        HAMRoom* room = [self roomOfCat:parentID atIndex:i];
+        [self updateRoomOfCat:parentID with:room atIndex:i - 1];
+    }
+    
+    //delete grandchildren
+    if (grandchildren != nil) {
+        for (i = 0; i < grandchildren.count; i++) {
+            [self deleteChildOfCatInLib:childID atIndex:i];
+        }
+    }
+}
+
 @end
