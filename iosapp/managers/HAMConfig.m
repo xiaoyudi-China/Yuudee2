@@ -170,37 +170,6 @@
         
         [nodes addObject:node];
     }
-}
-
-#pragma mark -
-#pragma mark Lists
-
--(NSMutableArray*)allList
-{
-    return [dbManager allCards:0 user:[userManager currentUser].UUID];
-}
-
-
--(NSMutableArray*)cardList
-{
-    if (dirtyFlag[1]==0)
-        return cardList;
-    
-    cardList=[dbManager allCards:1 user:[userManager currentUser].UUID];
-    dirtyFlag[1]=0;
-    
-    return cardList;
-}
-
--(NSMutableArray*)catList
-{
-    if (dirtyFlag[2]==0)
-        return catList;
-    
-    catList=[dbManager allCards:2 user:[userManager currentUser].UUID];
-    dirtyFlag[2]=0;
-    
-    return catList;
 }*/
 
 #pragma mark -
@@ -208,6 +177,9 @@
 
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index
 {
+    if ((NSObject*)newRoom == [NSNull null])
+        newRoom = nil;
+    
     NSMutableArray* children=[self childrenOfCat:parentID];
     if (!newRoom || !newRoom.cardID_)
     {
@@ -240,7 +212,7 @@
     int i,j;
     Boolean conflictFlag = NO;
     for (i = beginIndex, j = 0; i < children.count && j < newChildren.count; i++, j++) {
-        HAMRoom* newRoom = [[HAMRoom alloc] initWithCardID:[newChildren objectAtIndex:j] animation:ROOM_ANIMATION_SCALE];
+        HAMRoom* newRoom = [newChildren objectAtIndex:j];
         if ([children objectAtIndex:i] == [NSNull null])
             [children setObject:newRoom atIndexedSubscript:i];
         else
@@ -249,14 +221,16 @@
             [children insertObject:newRoom atIndex:i];
         }
     }
-    for (; j < newChildren.count; j++) {
-        HAMRoom* newRoom = [[HAMRoom alloc] initWithCardID:[newChildren objectAtIndex:j] animation:ROOM_ANIMATION_SCALE];
-        [children addObject:newRoom];
+    for (; j < newChildren.count; i++, j++) {
+        HAMRoom* newRoom = [newChildren objectAtIndex:j];
+        [HAMTools setObject:newRoom toMutableArray:children atIndex:i];
     }
     
     int endIndex = conflictFlag ? children.count - 1 : beginIndex + newChildren.count - 1;
     for (i = beginIndex; i <= endIndex; i++)
-        [dbManager updateChildOfCat:parentID with:[children objectAtIndex:i] atIndex:i];
+    {
+        [self updateRoomOfCat:parentID with:[children objectAtIndex:i] atIndex:i];
+    }
 }
 
 /*-(void)moveChildOfCat:(NSString*)parentID fromIndex:(int)oldIndex toIndex:(int)newIndex
@@ -305,6 +279,8 @@
         [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
         [dbManager updateCard:card.UUID image:card.image.UUID];
     }
+    
+    [cards removeObjectForKey:card.UUID];
 }
 
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image
@@ -313,7 +289,6 @@
     card.UUID=UUID;
     card.name=name;
     card.type=type;
-    //[self setDirtyWithType:card.type];
     
     if (audio)
     {
@@ -337,7 +312,6 @@
 -(void)deleteCard:(NSString*)UUID
 {
     HAMCard* card=[self card:UUID];
-    //[self setDirtyWithType:card.type];
     
     [dbManager deleteResourceWithID:card.audio.UUID];
     [dbManager deleteResourceWithID:card.image.UUID];
@@ -347,6 +321,26 @@
     cardTree=[NSMutableDictionary dictionary];
 }
 
+//delete card from lib. will not move following cards forward
+-(void)deleteCardInLib:(NSString*)cardID
+{
+    HAMCard* card = [self card:cardID];
+    
+    if (card.type == CARD_TYPE_CATEGORY) {
+        NSArray* children = [self childrenCardIDOfCat:cardID];
+        int i;
+        for (i = 0; i < children.count; i++) {
+            NSObject* childID = [children objectAtIndex:i];
+            if (childID != [NSNull null]) {
+                [self deleteCardInLib:cardID];
+            }
+        }
+    }
+
+    [self deleteCard:cardID];
+}
+
+//delete card from lib. will move following cards forward
 -(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(int)index
 {
     if (!parentID) {
@@ -360,28 +354,13 @@
     }
     
     NSString* childID = [children objectAtIndex:index];
-    HAMCard* childCard = [self card:childID];
-    
-    NSMutableArray* grandchildren = nil;
-    if (childCard.type == CARD_TYPE_CATEGORY) {
-        grandchildren = [self childrenCardIDOfCat:childID];
-    }
-    
-    //delete card
-    [self deleteCard:childID];
+    [self deleteCardInLib:childID];
     
     //move following cards forward
     int i;
     for (i = index + 1; i < childrenCount; i++) {
         HAMRoom* room = [self roomOfCat:parentID atIndex:i];
         [self updateRoomOfCat:parentID with:room atIndex:i - 1];
-    }
-    
-    //delete grandchildren
-    if (grandchildren != nil) {
-        for (i = 0; i < grandchildren.count; i++) {
-            [self deleteChildOfCatInLib:childID atIndex:i];
-        }
     }
 }
 
