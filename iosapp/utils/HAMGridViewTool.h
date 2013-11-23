@@ -29,8 +29,8 @@
 @property NSMutableArray* cardViewArray_;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit;
--(void)prepareRefreshView:(NSString*)nodeUUID;
--(void)refreshView:(NSString*)nodeUUID;
+-(void)prepareRefreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage;
+-(void)refreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage;
 -(void)setLayoutWithxnum:(int)_xnum ynum:(int)_ynum;
 
 //for sub class

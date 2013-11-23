@@ -38,7 +38,7 @@
     
     HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:[self.view frame] xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];    
     gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
-    [gridViewTool refreshView:currentUUID];
+    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -52,7 +52,7 @@
     else
         currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
     
-    [gridViewTool refreshView:currentUUID];
+    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
 }
 
 -(IBAction) leafClicked:(id)sender{

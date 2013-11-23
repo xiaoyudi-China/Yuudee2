@@ -26,11 +26,13 @@
         scrollView_.showsVerticalScrollIndicator = NO;
         scrollView_.scrollsToTop = NO;
         scrollView_.delegate = self;
+        currentPage_ = 0;
     }
     return self;
 }
 
--(void)prepareRefreshView:(NSString*)nodeUUID{
+//prepare data and scrollview
+-(void)prepareRefreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage{
     currentUUID_ = nodeUUID;
     
     NSArray *views = [[scrollView_ subviews] copy];
@@ -53,15 +55,21 @@
     totalPageNum_ = ceil( (children.count + 0.0f) / btnsPerPage);
     if (totalPageNum_ == 0)
         totalPageNum_ = 1;
-    currentPage_ = 0;
+//    currentPage_ = MIN(currentPage_, totalPageNum_ - 1);
     
     pageViews_ = [NSMutableArray arrayWithCapacity:totalPageNum_];
     CGRect scrollFrame = scrollView_.frame;
     CGSize contentSize = CGSizeMake(CGRectGetWidth(scrollFrame) * totalPageNum_, CGRectGetHeight(scrollFrame));
     scrollView_.contentSize = contentSize;
-    scrollView_.contentOffset = CGPointMake(0.0f, 0.0f);
+    
+    if (showFirstPage)
+        currentPage_ = 0;
+    else
+        currentPage_ = MIN(currentPage_, totalPageNum_ - 1);
     
     CGSize frameSize = scrollFrame.size;
+    scrollView_.contentOffset = CGPointMake(frameSize.width * currentPage_, 0.0f);
+    
     for (int i = 0; i < totalPageNum_; i++) {
         CGRect frame = CGRectMake(i*frameSize.width, 0, frameSize.width, frameSize.height);
         UIView* pageView = [[UIView alloc] initWithFrame:frame];
@@ -70,8 +78,10 @@
     }
 }
 
--(void)refreshView:(NSString*)nodeUUID{
-    [self prepareRefreshView:nodeUUID];
+//add things to scroll view
+-(void)refreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage
+{
+    [self prepareRefreshView:nodeUUID scrollToFirstPage:showFirstPage];
     
     int childIndex=0,posIndex,pageIndex;
     HAMCard* card = [config card:nodeUUID];

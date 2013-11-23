@@ -19,26 +19,43 @@
 #pragma mark -
 #pragma mark View
 
--(void)refreshView:(NSString*)nodeUUID{
-    [super prepareRefreshView:nodeUUID];
+-(void)prepareRefreshView:(NSString *)nodeUUID scrollToFirstPage:(Boolean)showFirstPage
+{
+    [super prepareRefreshView:nodeUUID scrollToFirstPage:showFirstPage];
+    
+    //add extra page
+    totalPageNum_++;
+    CGSize scrollFrameSize = scrollView_.frame.size;
+    CGSize contentSize = CGSizeMake(scrollFrameSize.width * totalPageNum_, scrollFrameSize.height);
+    scrollView_.contentSize = contentSize;
+    
+    
+    CGRect newPageFrame = CGRectMake((totalPageNum_ - 1) * scrollFrameSize.width, 0, scrollFrameSize.width, scrollFrameSize.height);
+    UIView* pageView = [[UIView alloc] initWithFrame:newPageFrame];
+    [scrollView_ addSubview:pageView];
+    [pageViews_ addObject:pageView];
+}
+
+-(void)refreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage{
+    [self prepareRefreshView:nodeUUID scrollToFirstPage:showFirstPage];
     
 //    cardViewArray_ = [NSMutableArray array];
     editButtonArray_ = [NSMutableArray array];
     
     int childIndex=0,posIndex,pageIndex;
     HAMCard* card = [config card:nodeUUID];
-    Boolean isRoot = [card.UUID isEqualToString:config.rootID];
+    //Boolean isRoot = [card.UUID isEqualToString:config.rootID];
     int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
     
     for (pageIndex = 0; pageIndex < totalPageNum_; pageIndex++) {
         posIndex = 0;
         //add home btn
-        if (!isRoot)
+        /*if (!isRoot)
         {
             [self addButtonWithi:0 j:0 onPage:pageIndex picName:@"back.png" action:@selector(groupClicked:) tag:-1 bgType:-1];
             [self addLabelWithi:0 j:0 onPage:pageIndex text:@"返回" color:[UIColor blackColor] tag:-1];
             posIndex=1;
-        }
+        }*/
         //add else btn
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
@@ -48,10 +65,12 @@
             if(!childID || (NSNull*)childID==[NSNull null])
             {
                 isBlankAtTag_[childIndex] = YES;
+                //isBlankAtIndex_[posIndex + pageIndex * btnsPerPage] = YES;
                 [self addAddNodeAtPos:posIndex onPage:pageIndex index:childIndex];
                 continue;
             }
             
+//            isBlankAtIndex_[posIndex + pageIndex * btnsPerPage] = NO;
             isBlankAtTag_[childIndex] = NO;
             [self addCardAtPos:posIndex onPage:pageIndex cardID:childID index:childIndex];
             [self addEditButtonAtPos:posIndex onPage:pageIndex tag:childIndex];
@@ -63,6 +82,9 @@
 
 - (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
 {
+//    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
+//    int index = i * j + btnsPerPage * pageIndex;
+    
     UIButton* button = [super addButtonWithi:i j:j onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
     //don't add return button
     if (tag == -1)
@@ -73,6 +95,7 @@
     UIView* cardView = [cardViewArray_ objectAtIndex:tag];
     positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
+//    indexOfTag_[tag] = index;
     
     if (isBlankAtTag_[tag]) {
         return button;
@@ -140,6 +163,19 @@
     }
 }
 
+-(void)moveCardView:(UIView*)targetView toIndex:(int)index animated:(Boolean)animated{
+    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int onPagenum = index / cardsPerPage;
+    UIView* superView = [pageViews_ objectAtIndex:onPagenum];
+    
+    if (targetView.superview != superView) {
+        [targetView removeFromSuperview];
+        [superView addSubview:targetView];
+    }
+    
+    [self moveCardView:targetView toPosition:positionArray_[index] animated:animated];
+}
+
 - (void)moveCardView:(UIView*)cardView toPage:(int)pagenum
 {
     CGRect cardFrame = cardView.frame;
@@ -192,6 +228,39 @@
     }
 }
 
+-(int)findNearestIndexOfPosition:(CGPoint)newPosition
+{
+    /*double minDist = MAXFLOAT;
+    int nearestIndex, i;
+    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int endIndex = MIN([cardViewArray_ count], cardsPerPage*(pagenum+1));
+    
+    for (i = pagenum * cardsPerPage; i < endIndex ; i++) {
+        CGPoint position = positionArray_[i];
+        double dist = (newPosition.x - position.x) * (newPosition.x - position.x) + (newPosition.y - position.y) * (newPosition.y - position.y);
+        if (minDist > dist){
+            minDist = dist;
+            nearestIndex = i;
+        }
+    }
+    return nearestIndex;*/
+    
+    double minDist = MAXFLOAT;
+    int nearestIndex, i;
+    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    
+    //search only in the 1st page for every page has the same layout
+    for (i = 0; i < cardsPerPage ; i++) {
+        CGPoint position = positionArray_[i];
+        double dist = (newPosition.x - position.x) * (newPosition.x - position.x) + (newPosition.y - position.y) * (newPosition.y - position.y);
+        if (minDist > dist){
+            minDist = dist;
+            nearestIndex = i;
+        }
+    }
+    return nearestIndex;
+}
+
 - (void) handlePan:(UIPanGestureRecognizer*) recognizer
 {
     if (editButtonArray_){
@@ -232,10 +301,10 @@
     [self moveCardView:cardView toPosition:newPosition animated:NO];
         
     //get current index
-    int currentIndex;
-    int i;
-    int cardnum = [cardViewArray_ count];
-    for (i=0; i<cardnum; i++) {
+    int currentIndex = 0;
+    int i, cardnum = [cardViewArray_ count];
+    
+    for (i = 0; i < cardnum; i++) {
         if (tagOfIndex_[i] == tag){
             currentIndex = i;
             break;
@@ -243,36 +312,31 @@
     }
     
     //find nearest
-    double minDist = MAXFLOAT;
-    int nearestIndex;
-    for (i=0; i<cardnum; i++) {
-        CGPoint position = positionArray_[i];
-        double dist = (newPosition.x - position.x)*(newPosition.x - position.x) + (newPosition.y - position.y)*(newPosition.y - position.y);
-        if (minDist > dist){
-            minDist = dist;
-            nearestIndex = i;
-        }
-    }
+    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int nearestIndex = [self findNearestIndexOfPosition:newPosition] + cardsPerPage * currentPage_;
     
     //move other cards
-    int newTagOfIndex[MAX_CARD_NUM];
+    int newTagOfIndex[EDITVIEW_MAX_CARD_NUM];
     for (i=0; i<cardnum; i++){
         newTagOfIndex[i] = tagOfIndex_[i];
     }
     newTagOfIndex[nearestIndex] = tag;
     
+    
     //sequential move solution:
     int inc = currentIndex > nearestIndex ? 1 : -1;
-    for (i=nearestIndex; i!=currentIndex; i+=inc) {
+    for (i = nearestIndex; i != currentIndex; i += inc) {
         int targetTag = tagOfIndex_[i];
         UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
         if (isBlankAtTag_[targetTag]){
-            [self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
+            //[self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
+            [self moveCardView:targetView toIndex:currentIndex animated:NO];
             newTagOfIndex[currentIndex] = targetTag;
             break;
         }
         else{
-            [self moveCardView:targetView toPosition:positionArray_[i+inc] animated:YES];
+            //[self moveCardView:targetView toPosition:positionArray_[i+inc] animated:YES];
+            [self moveCardView:targetView toIndex:i+inc animated:YES];
             newTagOfIndex[i+inc] = targetTag;
         }
     }
@@ -294,7 +358,8 @@
     //finger up
     //TODO: may need to move this part to the begining of this function. depend on the circumstances of last calling of handlePan
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
-        [self moveCardView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
+//        [self moveCardView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
+        [self moveCardView:cardView toIndex:nearestIndex animated:YES];
         NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];
@@ -315,7 +380,7 @@
         }
         
         //swap is quicker, but refresh is safer
-        [self refreshView:currentUUID_];
+        [self refreshView:currentUUID_ scrollToFirstPage:NO];
         /*for (i=0; i<cardnum; i++) {
             tagOfIndex_[i] = i;
             isBlankAtTag_[i] = newIsBlankAtTag[i];

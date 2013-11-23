@@ -218,7 +218,7 @@
                 case 2:
                     //delete card here
                     [config updateRoomOfCat:currentUUID with:nil atIndex:selectedTag_];
-                    [dragableView refreshView:currentUUID];
+                    [dragableView refreshView:currentUUID scrollToFirstPage:NO];
                     break;
                     
                 case 3:
@@ -310,7 +310,7 @@
 
 -(void)refreshGridView
 {
-    [dragableView refreshView:currentUUID];
+    [dragableView refreshView:currentUUID scrollToFirstPage:YES];
     //viewArray = dragableView.viewArray_;
 }
 
