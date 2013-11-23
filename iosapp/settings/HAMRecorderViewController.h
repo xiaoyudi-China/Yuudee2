@@ -14,16 +14,14 @@
 @interface HAMRecorderViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) HAMConfig *config;
-@property (weak, nonatomic) HAMCard *tempCard;
+@property (strong, nonatomic) HAMCard *tempCard; // !!!: don't pass changes back to card editor
 @property (weak, nonatomic) UIPopoverController *popover;
-@property (weak, nonatomic) NSString *cardID; //FIXME: this should NOT exist
 @property (weak, nonatomic) NSString *categoryID;
 
 @property (strong, nonatomic) NSArray *categoryIDs;
 @property (strong, nonatomic) NSString *tempCategoryID;
 @property NSInteger initRow;
 @property NSInteger selectedRow;
-@property BOOL audioChanged;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;

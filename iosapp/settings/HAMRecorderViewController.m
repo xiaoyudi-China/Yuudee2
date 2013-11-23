@@ -10,6 +10,10 @@
 
 @interface HAMRecorderViewController ()
 
+@property NSString *audioPath;
+@property NSString *tempAudioPath;
+@property BOOL isNewCard;
+
 @end
 
 @implementation HAMRecorderViewController
@@ -28,26 +32,35 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
-	// save the audio to a temporary file before committing
-	NSString *tempAudioPath = [NSString stringWithFormat:@"%@.caf-temp", self.tempCard.UUID];
-	if (! self.tempCard.audio.localPath) { // no audio to play or delete
+	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+	// FIXME: error handling
+	NSError *error;
+	[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+	[audioSession setActive:YES error:&error];
+	
+	if (self.tempCard.audio) { // audio already exists
+		// copy the existing audio file to the temporary file
+		NSFileManager *manager = [NSFileManager defaultManager];
+		// FIXME: error handling
+		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
+		
+		self.tempCard.audio.localPath = self.tempAudioPath; // point to the temp file
+	}
+	else {
 		self.deleteButton.enabled = NO;
 		self.playButton.enabled = NO;
 	}
-	else {
-		NSFileManager *manager = [NSFileManager defaultManager];
-		// copy the existing audio file to the temporary file, so we can play it
-		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:tempAudioPath] error:nil];
-	}
-	self.tempCard.audio = [[HAMResource alloc] initWithPath:tempAudioPath];
-	self.audioChanged = NO;
-	
+		
 	NSMutableDictionary* recordSettings = [[NSMutableDictionary alloc] init];
 	[recordSettings setValue :[NSNumber numberWithInt:kAudioFormatAppleIMA4] forKey:AVFormatIDKey];
 	[recordSettings setValue:[NSNumber numberWithFloat:44110] forKey:AVSampleRateKey];
 	[recordSettings setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
 	
-	self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[HAMFileTools fileURL:self.tempCard.audio.localPath] settings:recordSettings error:NULL];
+	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
+	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
+
+	// save audio to the temporary file
+	self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[HAMFileTools fileURL:self.tempAudioPath] settings:recordSettings error:NULL];
 	if (! self.audioRecorder) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法启动录音设备" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles: nil];
 		[alert show];
@@ -65,7 +78,8 @@
 			break;
 		}
 	}
-	if (self.initRow == -1) { // new card
+	self.isNewCard = (self.initRow == -1);
+	if (self.isNewCard) {
 		if (self.categoryID) // created with a specific category
 			self.initRow = [self.categoryIDs indexOfObject:self.categoryID];
 		else // default uncategorized
@@ -91,30 +105,35 @@
 
 - (IBAction)finishButtonPressed:(id)sender {
 	
-	if (!self.cardID) { // card not created yet
-		[self.config newCardWithID:self.tempCard.UUID name:self.tempCard.name type:1 audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath]; // type 1 indicates a card
-	}
-	
-	if (self.audioChanged) {
+	if (self.tempCard.audio) { // has audio, either newly recorded or already existing
 		NSFileManager *manager = [NSFileManager defaultManager];
-		NSString *audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
 		// copy and then delete the temporary audio file
-		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:audioPath] error:NULL];
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] error:NULL];
+		// FIXME: error handling
+		[manager copyItemAtPath:[HAMFileTools filePath:self.tempAudioPath] toPath:[HAMFileTools filePath:self.audioPath] error:NULL];
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:NULL];
 		
-		self.tempCard.audio.localPath = audioPath;
+		NSString *imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
+		NSString *tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
+		// copy and then delete the temporary image file, on behalf of the card editor
+		// FIXME: error handling
+		[manager copyItemAtPath:[HAMFileTools filePath:tempImagePath] toPath:[HAMFileTools filePath:imagePath] error:NULL];
+		[manager removeItemAtPath:[HAMFileTools filePath:tempImagePath] error:NULL];
+		
+		self.tempCard.audio.localPath = self.audioPath;
+		self.tempCard.image.localPath = imagePath;
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 	}
 	
-	if (self.selectedRow != self.initRow) { // category was changed
-		//NSString *oldCategoryID = self.categoryIDs[self.initRow];
-		NSString *newCategoryID = self.categoryIDs[self.selectedRow];
-		
+	NSString *newCategoryID = self.categoryIDs[self.selectedRow];
+	NSInteger numChildren = [self.config childrenCardIDOfCat:newCategoryID].count;
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation: ROOM_ANIMATION_NONE];
+	if (self.isNewCard) {
 		// add the card to the new category
-		NSInteger numChildren = [self.config childrenCardIDOfCat:newCategoryID].count;
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation: ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
-		
+	}
+	else if (self.initRow != self.selectedRow) { // category changed for an old card
+		// add the card to the new category
+		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
 		// TODO: remove the card from the old category
 	}
 	
@@ -124,9 +143,10 @@
 - (IBAction)recordButtonPressed:(id)sender {
 	if (self.audioRecorder.recording) { // stop recording
 		[self.audioRecorder stop];
-		self.recordButton.titleLabel.text = @"录音";
-		self.audioChanged = YES;
-		self.playButton.enabled = YES; // now we have audio to play
+		if (! self.tempCard.audio)
+			self.tempCard.audio = [[HAMResource alloc] initWithPath:self.tempAudioPath];
+		
+		[self.recordButton setTitle:@"录音" forState:UIControlStateNormal];
 		
 		// re-enable other views
 		self.playButton.enabled = YES;
@@ -136,8 +156,9 @@
 		self.pickerView.userInteractionEnabled = YES;
 	}
 	else { // start recording
+		// FIXME: error handling
 		[self.audioRecorder record];
-		self.recordButton.titleLabel.text = @"停止";
+		[self.recordButton setTitle:@"停止" forState:UIControlStateNormal];
 		
 		// disable all other views while recording
 		self.playButton.enabled = NO;
@@ -149,17 +170,18 @@
 }
 
 - (IBAction)playButtonPressed:(id)sender {
-	NSString *audioToPlayPath = self.tempCard.audio.localPath;
+	NSString *audioToPlayPath = self.tempAudioPath;
 	self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[HAMFileTools fileURL:audioToPlayPath] error:NULL];
 	if (! self.audioPlayer) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"播放音频失败" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles: nil];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法播放音频" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles: nil];
 		[alert show];
 		
 		self.playButton.hidden = YES;
 	}
-	
+	self.audioPlayer.delegate = self; // !!!
+
 	[self.audioPlayer play];
-	self.playButton.titleLabel.text = @"停止";
+	[self.playButton setTitle:@"停止" forState:UIControlStateNormal];
 	
 	// disable all other views while playing audio
 	self.recordButton.enabled = NO;
@@ -171,17 +193,14 @@
 
 - (IBAction)deleteButtonPressed:(id)sender {
 	NSFileManager *manager = [NSFileManager defaultManager];
-	NSString *audioPath = self.tempCard.audio.localPath;
-	BOOL success = [manager removeItemAtPath:[HAMFileTools filePath:audioPath] error:nil];
-	if (! success) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"删除音频失败" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles: nil];
-		[alert show];
-	}
-	else {
-		// set the audio path to nil
-		self.tempCard.audio = nil;
-		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
-	}
+	// FIXME: what if the audio file doesn't exist?
+	[manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+	
+	// set the audio path to nil
+	self.tempCard.audio = nil;
+	// no audio to play or delete now
+	self.deleteButton.enabled = NO;
+	self.playButton.enabled = NO;
 }
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
@@ -190,7 +209,7 @@
 		[alert show];
 	}
 	
-	self.playButton.titleLabel.text = @"播放";
+	[self.playButton setTitle:@"播放" forState:UIControlStateNormal];
 	
 	// re-enable other views
 	self.recordButton.enabled = YES;

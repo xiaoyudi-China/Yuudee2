@@ -284,7 +284,8 @@
 
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image
 {
-    if (![name isEqualToString:card.name])
+	// the equivalence check should be done by the caller, not here
+    //if (![name isEqualToString:card.name])
     {
         card.name=name;
         [dbManager updateCard:card.UUID name:name];

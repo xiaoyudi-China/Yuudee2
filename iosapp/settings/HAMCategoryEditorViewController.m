@@ -51,16 +51,19 @@
 	[alert show];
 }
 
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) { // confirm deletion
+	
+	if (buttonIndex == 1) { // confirm deletion
 		// delete all cards under this category
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
 		for (NSString *cardID in cardIDs)
 			[self.config deleteCard:cardID];
 		
 		[self.config deleteCard:self.categoryID];
+		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
+		
 		[self.popover dismissPopoverAnimated:YES];
-		[self.delegate categoryEditorDidEndEditing:self];
 	}
 }
 
@@ -87,6 +90,11 @@
 	return NO;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	// disable finish button while editing
+	self.finishButton.enabled = NO;
+}
+
 - (IBAction)cancelButtonPressed:(id)sender {
 	[self.popover dismissPopoverAnimated:YES];
 }
@@ -108,7 +116,7 @@
 	}
 	
 	[self.popover dismissPopoverAnimated:YES];
-	[self.delegate categoryEditorDidEndEditing:self];
+	[self.delegate categoryEditorDidEndEditing:self]; // ask the grid view to refresh
 }
 
 @end

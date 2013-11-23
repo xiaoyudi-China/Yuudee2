@@ -29,8 +29,6 @@
 @property (weak, nonatomic) id<HAMCardEditorViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) HAMCard *tempCard;
-@property BOOL cardNameChanged;
-@property BOOL cardImageChanged;
 
 @property (nonatomic, strong) HAMRecorderViewController *recorder;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
