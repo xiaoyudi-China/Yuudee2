@@ -15,6 +15,7 @@
 @synthesize name;
 @synthesize image;
 @synthesize audio;
+@synthesize isRemovable_;
 
 -(id)initWithID:(NSString *)_UUID
 {

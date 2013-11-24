@@ -22,6 +22,7 @@
 @property NSString* name;
 @property HAMResource* image;
 @property HAMResource* audio;
+@property Boolean isRemovable_;
 
 -(id)initWithID:(NSString*)_UUID;
 -(id)initNewCard;

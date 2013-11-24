@@ -154,6 +154,8 @@
     NSString* imageID,* audioID;
     imageID=[self stringAt:3];
     audioID=[self stringAt:4];
+    int isRemovable = sqlite3_column_int(statement, 6);
+    
     [self closeDatabase];
     
     if (imageID)
@@ -161,10 +163,12 @@
     if (audioID)
         card.audio=[self resource:audioID];
     
+    card.isRemovable_ = isRemovable;
+    
     return card;
 }
 
--(NSMutableArray*)allCards:(int)mode user:(NSString*)userID
+/*-(NSMutableArray*)allCards:(int)mode user:(NSString*)userID
 {
     [self openDatabase];
     
@@ -207,7 +211,7 @@
     
     [self closeDatabase];
     return cards;
-}
+}*/
 
 -(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode
 {
@@ -292,7 +296,7 @@
 {
     [self openDatabase];
     
-    char* update="INSERT INTO CARD (ID, TYPE, NAME, IMAGE, AUDIO, USER) VALUES (?, ?, ?, ?, ?, ?);";
+    char* update="INSERT INTO CARD (ID, TYPE, NAME, IMAGE, AUDIO, USER, REMOVABLE) VALUES (?, ?, ?, ?, ?, ?, 0);";
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(database, update, -1, &stmt, nil)==SQLITE_OK)
     {
@@ -318,6 +322,7 @@
         sqlite3_bind_text(stmt, 4, [card.image.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 5, [card.audio.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 6, [user UTF8String], -1, NULL);
+        sqlite3_bind_int(statement, 7, card.isRemovable_);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)
         NSAssert(0, @"Error inserting into card");

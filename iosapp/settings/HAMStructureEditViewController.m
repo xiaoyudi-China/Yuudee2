@@ -20,7 +20,6 @@
 @synthesize scrollView_;
 
 @synthesize selectorViewController;
-@synthesize editNodeController;
 @synthesize syncViewController;
 @synthesize userViewController;
 
@@ -158,16 +157,6 @@
     switch (alertView.tag) {
         case 0:
             //newNodeAlert
-            switch (buttonIndex) {
-                case 1:{
-                    [self gotoEditNode:1];
-                }break;
-                case 2:{
-                    [self gotoEditNode:0];
-                }break;
-                default:
-                    break;
-            }
             break;
         
         case 1:
@@ -325,19 +314,6 @@
     selectorViewController.index=index;
     
     [self.navigationController pushViewController:selectorViewController animated:YES];
-}
-
--(void)gotoEditNode:(int)newType
-{
-    if (editNodeController==nil)
-    {
-        editNodeController=[[HAMEditNodeViewController alloc]
-                            initWithNibName:@"HAMEditNodeViewController" bundle:nil];
-        editNodeController.config=config;
-    }
-    editNodeController.parentID=currentUUID;
-    editNodeController.newFlag=newType;
-    [self.navigationController pushViewController:editNodeController animated:YES];
 }
 
 @end
