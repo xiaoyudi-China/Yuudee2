@@ -138,20 +138,20 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)addCardsButtonPressed {
-	/*
+	
 	// FIXME: this is just testing, should add all the selected cards later
 	NSString *cardID = [self.selectedCardIDs anyObject];
 	HAMRoom *room = [[HAMRoom alloc] initWithCardID:cardID animation:[self.config animationOfCat:self.userID atIndex:self.index]]; // keep the animation unchanged
 	
-	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];*/
-	
+	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];
+	/*
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
 	// FIXME: the order of selection
 	for (NSString *cardID in self.selectedCardIDs)
 		[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
 	
-	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];
+	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];*/
 	
 	NSArray *viewsInStack = self.navigationController.viewControllers;
 	// pop out two views from the navigation stack, including the current one

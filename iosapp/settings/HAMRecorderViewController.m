@@ -134,7 +134,11 @@
 	else if (self.initRow != self.selectedRow) { // category changed for an old card
 		// add the card to the new category
 		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
-		// TODO: remove the card from the old category
+		
+		// remove the card from the old category
+		NSString *oldCategoryID = self.categoryIDs[self.initRow];
+		NSInteger oldIndex = [[self.config childrenCardIDOfCat:oldCategoryID] indexOfObject:self.tempCard.UUID];
+		[self.config deleteChildOfCatInLib:oldCategoryID atIndex:oldIndex];
 	}
 	
 	[self.popover dismissPopoverAnimated:YES];
