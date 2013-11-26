@@ -63,7 +63,7 @@
 }*/
 
 #pragma mark -
-#pragma mark Card & CardTree
+#pragma mark Card
 
 -(HAMCard*)card:(NSString*)UUID
 {
@@ -75,6 +75,75 @@
     [cards setObject:card forKey:UUID];
     return card;
 }
+
+-(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image
+{
+	// the equivalence check should be done by the caller, not here
+    //if (![name isEqualToString:card.name])
+    {
+        card.name=name;
+        [dbManager updateCard:card.UUID name:name];
+        //[self setDirtyWithType:card.type];
+    }
+    
+    if (audio)
+    {
+        card.audio=[[HAMResource alloc] initWithPath:audio];
+        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
+        [dbManager updateCard:card.UUID audio:card.audio.UUID];
+    }
+    
+    if (image)
+    {
+        card.image=[[HAMResource alloc] initWithPath:image];
+        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
+        [dbManager updateCard:card.UUID image:card.image.UUID];
+    }
+    
+    [cards removeObjectForKey:card.UUID];
+}
+
+-(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image
+{
+    HAMCard* card = [HAMCard alloc];
+    card.UUID = UUID;
+    card.name = name;
+    card.type = type;
+    card.isRemovable_ = YES;
+    
+    if (audio)
+    {
+        [dbManager deleteResourceWithID:card.audio.UUID];
+        card.audio = [[HAMResource alloc] initWithPath:audio];
+        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
+    }
+    
+    if (image)
+    {
+        [dbManager deleteResourceWithID:card.image.UUID];
+        card.image = [[HAMResource alloc] initWithPath:image];
+        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
+    }
+    
+    [dbManager insertCard:card user:[userManager currentUser].UUID];
+    
+    [cards setObject:card forKey:card.UUID];
+}
+
+-(void)deleteCard:(NSString*)UUID
+{
+    HAMCard* card=[self card:UUID];
+    
+    [dbManager deleteResourceWithID:card.audio.UUID];
+    [dbManager deleteResourceWithID:card.image.UUID];
+    [dbManager deleteCardFromTree:card.UUID];
+    [dbManager deleteCardWithID:card.UUID];
+    
+    cardTree=[NSMutableDictionary dictionary];
+}
+
+#pragma mark -
+#pragma mark Card_tree
 
 -(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(int)index
 {
@@ -172,9 +241,6 @@
     }
 }*/
 
-#pragma mark -
-#pragma mark Update Data Methods
-
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index
 {
     if ((NSObject*)newRoom == [NSNull null])
@@ -256,70 +322,6 @@
     [HAMTools setObject:childID toMutableArray:children atIndex:pos];
 }*/
 
--(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image
-{
-	// the equivalence check should be done by the caller, not here
-    //if (![name isEqualToString:card.name])
-    {
-        card.name=name;
-        [dbManager updateCard:card.UUID name:name];
-        //[self setDirtyWithType:card.type];
-    }
-    
-    if (audio)
-    {
-        card.audio=[[HAMResource alloc] initWithPath:audio];
-        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
-        [dbManager updateCard:card.UUID audio:card.audio.UUID];
-    }
-    
-    if (image)
-    {
-        card.image=[[HAMResource alloc] initWithPath:image];
-        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
-        [dbManager updateCard:card.UUID image:card.image.UUID];
-    }
-    
-    [cards removeObjectForKey:card.UUID];
-}
-
--(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image
-{
-    HAMCard* card=[HAMCard alloc];
-    card.UUID=UUID;
-    card.name=name;
-    card.type=type;
-    
-    if (audio)
-    {
-        [dbManager deleteResourceWithID:card.audio.UUID];
-        card.audio=[[HAMResource alloc] initWithPath:audio];
-        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
-    }
-    
-    if (image)
-    {
-        [dbManager deleteResourceWithID:card.image.UUID];
-        card.image=[[HAMResource alloc] initWithPath:image];
-        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
-    }
-    
-    [dbManager insertCard:card user:[userManager currentUser].UUID];
-    
-    [cards setObject:card forKey:card.UUID];
-}
-
--(void)deleteCard:(NSString*)UUID
-{
-    HAMCard* card=[self card:UUID];
-    
-    [dbManager deleteResourceWithID:card.audio.UUID];
-    [dbManager deleteResourceWithID:card.image.UUID];
-    [dbManager deleteCardFromTree:card.UUID];
-    [dbManager deleteCardWithID:card.UUID];
-    
-    cardTree=[NSMutableDictionary dictionary];
-}
 
 //delete card from lib. will not move following cards forward
 -(void)deleteCardInLib:(NSString*)cardID
