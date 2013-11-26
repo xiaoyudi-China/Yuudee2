@@ -106,8 +106,13 @@ CGRect CENTRAL_POINT_RECT;
 	cell.frameImageView.image = [UIImage imageNamed:@"card.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"unselected.png"]forState:UIControlStateNormal];
-	else
+	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+		
+		// don't allow deleting system-provided categories or cards
+		if (! card.isRemovable_)
+			cell.rightTopButton.hidden = TRUE;
+	}
 	
 	cell.indexPath = indexPath;
 	cell.selected = NO;
@@ -138,20 +143,22 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)addCardsButtonPressed {
-	
+	/*
 	// FIXME: this is just testing, should add all the selected cards later
 	NSString *cardID = [self.selectedCardIDs anyObject];
 	HAMRoom *room = [[HAMRoom alloc] initWithCardID:cardID animation:[self.config animationOfCat:self.userID atIndex:self.index]]; // keep the animation unchanged
 	
-	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];
-	/*
+	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];*/
+	
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
-	// FIXME: the order of selection
-	for (NSString *cardID in self.selectedCardIDs)
-		[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
+	// retain the order of selection
+	for (NSString *cardID in [self cardIDs])
+		if ([self.selectedCardIDs containsObject:cardID])
+			[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
 	
-	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];*/
+	// insert all the selected cards
+	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];
 	
 	NSArray *viewsInStack = self.navigationController.viewControllers;
 	// pop out two views from the navigation stack, including the current one

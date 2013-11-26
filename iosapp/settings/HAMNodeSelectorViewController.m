@@ -37,6 +37,7 @@ CGRect CENTRAL_POINT_RECT;
 		HAMCard *category = [[HAMCard alloc] initWithID:UNCATEGORIZED_ID];
 		NSString *categoryName = @"未分类";
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil]; // type 0 indicates a category
+		category.isRemovable_ = NO; // YES in default
 		
 		// insert the new category in to library
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
@@ -112,13 +113,14 @@ CGRect CENTRAL_POINT_RECT;
 	cell.frameImageView.image = [UIImage imageNamed:@"category.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
-	else
+	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
-	
-	// don't allow to edit the unclassified category
-	if (category.UUID == nil && self.cellMode == HAMGridCellModeEdit)
-		cell.rightTopButton.hidden = TRUE;
-	
+		
+		// don't allow deleting system-provided categories or cards
+		if (! category.isRemovable_)
+			cell.rightTopButton.hidden = TRUE;
+	}
+		
 	cell.indexPath = indexPath;
 	cell.delegate = self;
 	cell.selected = NO; // redundant?
