@@ -79,6 +79,8 @@
 		8EE7A2E51822361A007356B1 /* HAMCardSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DF1822361A007356B1 /* HAMCardSelectorViewController.xib */; };
 		8EE7A2E61822361A007356B1 /* HAMConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E11822361A007356B1 /* HAMConstants.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
+		ABC6DA6C1846D8A700E16C67 /* HAMImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABC6DA6A1846D8A700E16C67 /* HAMImageCropperViewController.m */; };
+		ABC6DA6D1846D8A700E16C67 /* HAMImageCropperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABC6DA6B1846D8A700E16C67 /* HAMImageCropperViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -192,6 +194,9 @@
 		8EE7A2E01822361A007356B1 /* HAMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMConstants.h; path = settings/HAMConstants.h; sourceTree = "<group>"; };
 		8EE7A2E11822361A007356B1 /* HAMConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMConstants.m; path = settings/HAMConstants.m; sourceTree = "<group>"; };
 		8EE7A2E21822361A007356B1 /* HAMGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridCell.xib; path = settings/HAMGridCell.xib; sourceTree = "<group>"; };
+		ABC6DA691846D8A700E16C67 /* HAMImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMImageCropperViewController.h; path = settings/HAMImageCropperViewController.h; sourceTree = "<group>"; };
+		ABC6DA6A1846D8A700E16C67 /* HAMImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMImageCropperViewController.m; path = settings/HAMImageCropperViewController.m; sourceTree = "<group>"; };
+		ABC6DA6B1846D8A700E16C67 /* HAMImageCropperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMImageCropperViewController.xib; path = settings/HAMImageCropperViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -360,6 +365,9 @@
 				8E07286A183609A100E538FB /* HAMCardEditorViewController.h */,
 				8E07286B183609A100E538FB /* HAMCardEditorViewController.m */,
 				8E07286C183609A100E538FB /* HAMCardEditorViewController.xib */,
+				ABC6DA691846D8A700E16C67 /* HAMImageCropperViewController.h */,
+				ABC6DA6A1846D8A700E16C67 /* HAMImageCropperViewController.m */,
+				ABC6DA6B1846D8A700E16C67 /* HAMImageCropperViewController.xib */,
 				8E07286F1836202B00E538FB /* HAMRecorderViewController.h */,
 				8E0728701836202B00E538FB /* HAMRecorderViewController.m */,
 				8E0728711836202B00E538FB /* HAMRecorderViewController.xib */,
@@ -513,6 +521,7 @@
 				666104A9178BB04A003AEE3D /* Default-568h@2x.png in Resources */,
 				666104AF178BB04A003AEE3D /* HAMViewController_iPhone.xib in Resources */,
 				666104B2178BB04A003AEE3D /* HAMViewController_iPad.xib in Resources */,
+				ABC6DA6D1846D8A700E16C67 /* HAMImageCropperViewController.xib in Resources */,
 				8EAF0A5B1834771900FE94C6 /* edit.png in Resources */,
 				8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */,
 				6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */,
@@ -560,6 +569,7 @@
 				8ECB04FB183A428600EA506C /* HAMAnimation.m in Sources */,
 				6697BDB2179FD7C0002E37E8 /* HAMNodeSelectorViewController.m in Sources */,
 				8ECB0518183A499900EA506C /* QBAnimationGroup.m in Sources */,
+				ABC6DA6C1846D8A700E16C67 /* HAMImageCropperViewController.m in Sources */,
 				66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */,
 				8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */,
 				8ECB0519183A499900EA506C /* QBAnimationItem.m in Sources */,

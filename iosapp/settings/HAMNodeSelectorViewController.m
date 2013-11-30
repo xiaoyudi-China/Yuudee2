@@ -15,7 +15,7 @@
 
 @implementation HAMNodeSelectorViewController
 
-// FIXME: how to refactor?
+// TODO: refactor?
 CGRect CENTRAL_POINT_RECT;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -31,13 +31,13 @@ CGRect CENTRAL_POINT_RECT;
 - (NSArray*) categoryIDs {
 	
 	// the uncategorized category is not created yet
-	// FIXME: this should be done in DaiYue's part
+	// TODO: this should be done in DaiYue's part
 	NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
 	if ([catIDs indexOfObject:UNCATEGORIZED_ID] == NSNotFound) {
 		HAMCard *category = [[HAMCard alloc] initWithID:UNCATEGORIZED_ID];
 		NSString *categoryName = @"未分类";
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil]; // type 0 indicates a category
-		category.isRemovable_ = NO; // YES in default
+		category.isRemovable_ = NO;
 		
 		// insert the new category in to library
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
@@ -109,6 +109,8 @@ CGRect CENTRAL_POINT_RECT;
 
 	NSString *categoryID = [self categoryIDs][indexPath.row];
   	HAMCard *category = [self.config card:categoryID]; // only display categories
+	if (category.UUID == UNCATEGORIZED_ID) // FIXME: this is inelegant
+		category.isRemovable_ = NO;
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"category.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
@@ -116,9 +118,10 @@ CGRect CENTRAL_POINT_RECT;
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
-		// don't allow deleting system-provided categories or cards
-		if (! category.isRemovable_)
-			cell.rightTopButton.hidden = TRUE;
+		// don't allow editing system-provided categories or cards
+		// FIXME: not working
+		//if (! category.isRemovable_)
+		//	cell.rightTopButton.hidden = TRUE;
 	}
 		
 	cell.indexPath = indexPath;

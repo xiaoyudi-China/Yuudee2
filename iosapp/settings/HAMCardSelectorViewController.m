@@ -109,9 +109,10 @@ CGRect CENTRAL_POINT_RECT;
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
-		// don't allow deleting system-provided categories or cards
-		if (! card.isRemovable_)
-			cell.rightTopButton.hidden = TRUE;
+		// don't allow editing system-provided categories or cards
+		// FIXME: not working
+		//if (! card.isRemovable_)
+		//	cell.rightTopButton.hidden = TRUE;
 	}
 	
 	cell.indexPath = indexPath;
@@ -213,7 +214,6 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
-	// FIXME: sometimes the grid view is not refreshed
 	[self.collectionView reloadData];
 }
 

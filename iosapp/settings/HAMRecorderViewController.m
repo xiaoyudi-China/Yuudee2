@@ -33,15 +33,19 @@
     // Do any additional setup after loading the view from its nib.
 	
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	// FIXME: error handling
-	NSError *error;
-	[audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
-	[audioSession setActive:YES error:&error];
+	BOOL success = [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+	success = success && [audioSession setActive:YES error:nil];
+	if (! success) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法启动音频设备" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles: nil];
+		[alert show];
+		
+		self.recordButton.hidden = self.playButton.hidden = YES;
+	}
 	
 	if (self.tempCard.audio) { // audio already exists
 		// copy the existing audio file to the temporary file
 		NSFileManager *manager = [NSFileManager defaultManager];
-		// FIXME: error handling
+		// FIXME: *elegant* error handling
 		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
 		
 		self.tempCard.audio.localPath = self.tempAudioPath; // point to the temp file
@@ -108,16 +112,32 @@
 	if (self.tempCard.audio) { // has audio, either newly recorded or already existing
 		NSFileManager *manager = [NSFileManager defaultManager];
 		// copy and then delete the temporary audio file
-		// FIXME: error handling
-		[manager copyItemAtPath:[HAMFileTools filePath:self.tempAudioPath] toPath:[HAMFileTools filePath:self.audioPath] error:NULL];
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:NULL];
+		BOOL success = YES;
+		// must delete the original file before writing new data to it
+		if ([manager fileExistsAtPath:[HAMFileTools filePath:self.audioPath]])
+			success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+		success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempAudioPath] toPath:[HAMFileTools filePath:self.audioPath] error:nil];
+		if (!success) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存音频" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+			[alert show];
+			
+			return;
+		}
 		
 		NSString *imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
 		NSString *tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
 		// copy and then delete the temporary image file, on behalf of the card editor
-		// FIXME: error handling
-		[manager copyItemAtPath:[HAMFileTools filePath:tempImagePath] toPath:[HAMFileTools filePath:imagePath] error:NULL];
-		[manager removeItemAtPath:[HAMFileTools filePath:tempImagePath] error:NULL];
+		success = YES;
+		// must delete the original file before writing new data to it
+		if ([manager fileExistsAtPath:[HAMFileTools filePath:imagePath]])
+			success = success && [manager removeItemAtPath:[HAMFileTools filePath:imagePath] error:nil];
+		success = success && [manager moveItemAtPath:[HAMFileTools filePath:tempImagePath] toPath:[HAMFileTools filePath:imagePath] error:NULL];
+		if (!success) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+			[alert show];
+			
+			return;
+		}
 		
 		self.tempCard.audio.localPath = self.audioPath;
 		self.tempCard.image.localPath = imagePath;
@@ -160,8 +180,12 @@
 		self.pickerView.userInteractionEnabled = YES;
 	}
 	else { // start recording
-		// FIXME: error handling
-		[self.audioRecorder record];
+		BOOL success = [self.audioRecorder record];
+		if (! success) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法开始录音" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+			[alert show];
+			return;
+		}
 		[self.recordButton setTitle:@"停止" forState:UIControlStateNormal];
 		
 		// disable all other views while recording
@@ -197,8 +221,12 @@
 
 - (IBAction)deleteButtonPressed:(id)sender {
 	NSFileManager *manager = [NSFileManager defaultManager];
-	// FIXME: what if the audio file doesn't exist?
-	[manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+	// FIXME: error handling
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.audioPath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
 	
 	// set the audio path to nil
 	self.tempCard.audio = nil;
