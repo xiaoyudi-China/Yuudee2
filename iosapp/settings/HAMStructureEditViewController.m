@@ -74,7 +74,8 @@
     HAMUser* currentUser=[userManager currentUser];
     
     //grid view
-    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:scrollView_.frame xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
+//    HAMViewInfo* viewInfo=[[HAMViewInfo alloc] initWithframe:scrollView_.frame xnum:currentUser.layoutx ynum:currentUser.layouty h:0 minspace:30];
+    HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
     dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:YES];
 }
 
@@ -88,11 +89,12 @@
 #pragma mark Actions
 
 -(IBAction) groupClicked:(id)sender{
-    int index=[sender tag];
+    int index=[sender tag];/*
     if (index==-1)
         currentUUID=config.rootID;
     else
-        currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
+        */
+    currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
     
     [self refreshGridView];
 }

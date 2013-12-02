@@ -34,8 +34,8 @@
 -(void)setLayoutWithxnum:(int)_xnum ynum:(int)_ynum;
 
 //for sub class
-- (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType;
-- (void)addLabelWithi:(int)i j:(int)j onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color tag:(int)index;
-- (void)addCardAtPos:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index;
+- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType;
+- (void)addLabelAtPosIndex:(int)index onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color type:(int)cardType tag:(int)tag;
+- (void)addCardAtPosIndex:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index;
 
 @end

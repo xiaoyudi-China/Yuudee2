@@ -10,12 +10,8 @@
 		6612626917AB7B0C0047AA9B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6612626817AB7B0C0047AA9B /* QuartzCore.framework */; };
 		6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6613011A17C1FA8B00903CA8 /* Settings.bundle */; };
 		6632DF5D181AC2AD00A8EA03 /* HAMEditableGridViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */; };
-		6650B2D917D5D1D200770C25 /* citiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2D617D5D1D100770C25 /* citiao.png */; };
-		6650B2DA17D5D1D200770C25 /* fenlei.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2D717D5D1D100770C25 /* fenlei.png */; };
-		6650B2DB17D5D1D200770C25 /* quanbu.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2D817D5D1D200770C25 /* quanbu.png */; };
 		6650B2E117D5D60000770C25 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2E017D5D60000770C25 /* icon1.png */; };
 		6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2E217D5D60A00770C25 /* icon1_retina.png */; };
-		6650B2E517D5D6C500770C25 /* nopic.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2E417D5D6C500770C25 /* nopic.png */; };
 		6653A59F179E75E900A405B0 /* HAMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6653A59D179E75E900A405B0 /* HAMSettingsViewController.m */; };
 		6653A5A4179E894B00A405B0 /* HAMFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6653A5A3179E894B00A405B0 /* HAMFileTools.m */; };
 		66610493178BB04A003AEE3D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66610492178BB04A003AEE3D /* UIKit.framework */; };
@@ -52,7 +48,13 @@
 		66CC962317B4E7AD00DB3A57 /* HAMWebTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC962217B4E7AD00DB3A57 /* HAMWebTool.m */; };
 		66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */; };
 		66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D7E6BE17A0D19A00CB122D /* HAMConfig.m */; };
-		66E66BD117A8FD4200F6177B /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD017A8FD4100F6177B /* bg.png */; };
+		66DE8E19184BB1F7009AFF39 /* common_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E12184BB1F7009AFF39 /* common_background.png */; };
+		66DE8E1A184BB1F7009AFF39 /* common_card_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E13184BB1F7009AFF39 /* common_card_bg.png */; };
+		66DE8E1B184BB1F7009AFF39 /* common_card_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E14184BB1F7009AFF39 /* common_card_white.png */; };
+		66DE8E1C184BB1F7009AFF39 /* common_card_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E15184BB1F7009AFF39 /* common_card_wood.png */; };
+		66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E16184BB1F7009AFF39 /* common_cat_bg.png */; };
+		66DE8E1E184BB1F7009AFF39 /* common_cat_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E17184BB1F7009AFF39 /* common_cat_white.png */; };
+		66DE8E1F184BB1F7009AFF39 /* common_cat_wood.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DE8E18184BB1F7009AFF39 /* common_cat_wood.png */; };
 		66E66BD317A90A9F00F6177B /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD217A90A9F00F6177B /* card.png */; };
 		66E66BD517A90AA200F6177B /* category.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E66BD417A90AA200F6177B /* category.png */; };
 		66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E66BD617A9168D00F6177B /* CoreAudio.framework */; };
@@ -87,12 +89,8 @@
 		6632DF5B181AC2AD00A8EA03 /* HAMEditableGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditableGridViewTool.h; path = utils/HAMEditableGridViewTool.h; sourceTree = "<group>"; };
 		6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditableGridViewTool.m; path = utils/HAMEditableGridViewTool.m; sourceTree = "<group>"; };
 		6650B2D117D5CB3D00770C25 /* iosapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iosapp.entitlements; sourceTree = "<group>"; };
-		6650B2D617D5D1D100770C25 /* citiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = citiao.png; sourceTree = "<group>"; };
-		6650B2D717D5D1D100770C25 /* fenlei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fenlei.png; sourceTree = "<group>"; };
-		6650B2D817D5D1D200770C25 /* quanbu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quanbu.png; sourceTree = "<group>"; };
 		6650B2E017D5D60000770C25 /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1.png; path = ../icon1.png; sourceTree = "<group>"; };
 		6650B2E217D5D60A00770C25 /* icon1_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1_retina.png; path = ../icon1_retina.png; sourceTree = "<group>"; };
-		6650B2E417D5D6C500770C25 /* nopic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nopic.png; sourceTree = "<group>"; };
 		6653A59C179E75E900A405B0 /* HAMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAMSettingsViewController.h; sourceTree = "<group>"; };
 		6653A59D179E75E900A405B0 /* HAMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAMSettingsViewController.m; sourceTree = "<group>"; };
 		6653A5A2179E894B00A405B0 /* HAMFileTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMFileTools.h; path = utils/HAMFileTools.h; sourceTree = "<group>"; };
@@ -152,7 +150,13 @@
 		66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMRoom.m; path = datastructure/HAMRoom.m; sourceTree = "<group>"; };
 		66D7E6BD17A0D19A00CB122D /* HAMConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMConfig.h; path = managers/HAMConfig.h; sourceTree = "<group>"; };
 		66D7E6BE17A0D19A00CB122D /* HAMConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMConfig.m; path = managers/HAMConfig.m; sourceTree = "<group>"; };
-		66E66BD017A8FD4100F6177B /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		66DE8E12184BB1F7009AFF39 /* common_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_background.png; sourceTree = "<group>"; };
+		66DE8E13184BB1F7009AFF39 /* common_card_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_card_bg.png; sourceTree = "<group>"; };
+		66DE8E14184BB1F7009AFF39 /* common_card_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_card_white.png; sourceTree = "<group>"; };
+		66DE8E15184BB1F7009AFF39 /* common_card_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_card_wood.png; sourceTree = "<group>"; };
+		66DE8E16184BB1F7009AFF39 /* common_cat_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_cat_bg.png; sourceTree = "<group>"; };
+		66DE8E17184BB1F7009AFF39 /* common_cat_white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_cat_white.png; sourceTree = "<group>"; };
+		66DE8E18184BB1F7009AFF39 /* common_cat_wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = common_cat_wood.png; sourceTree = "<group>"; };
 		66E66BD217A90A9F00F6177B /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
 		66E66BD417A90AA200F6177B /* category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category.png; sourceTree = "<group>"; };
 		66E66BD617A9168D00F6177B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -299,6 +303,7 @@
 				666104AB178BB04A003AEE3D /* HAMViewController.m */,
 				666104AD178BB04A003AEE3D /* HAMViewController_iPhone.xib */,
 				666104B0178BB04A003AEE3D /* HAMViewController_iPad.xib */,
+				6661049E178BB04A003AEE3D /* main.m */,
 				66610499178BB04A003AEE3D /* Supporting Files */,
 			);
 			path = iosapp;
@@ -307,22 +312,17 @@
 		66610499178BB04A003AEE3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				66DE8E10184BB1F7009AFF39 /* resources */,
 				8EAF0A5A1834771900FE94C6 /* edit.png */,
 				8E5626141833654900351EA2 /* add.png */,
 				8E56261018335ADD00351EA2 /* unselected.png */,
 				8E56261118335ADD00351EA2 /* selected.png */,
-				6650B2E417D5D6C500770C25 /* nopic.png */,
 				6650B2E217D5D60A00770C25 /* icon1_retina.png */,
 				6650B2E017D5D60000770C25 /* icon1.png */,
-				6650B2D617D5D1D100770C25 /* citiao.png */,
-				6650B2D717D5D1D100770C25 /* fenlei.png */,
-				6650B2D817D5D1D200770C25 /* quanbu.png */,
-				66E66BD017A8FD4100F6177B /* bg.png */,
 				66E66BD217A90A9F00F6177B /* card.png */,
 				66E66BD417A90AA200F6177B /* category.png */,
 				6661049A178BB04A003AEE3D /* iosapp-Info.plist */,
 				6661049B178BB04A003AEE3D /* InfoPlist.strings */,
-				6661049E178BB04A003AEE3D /* main.m */,
 				666104A0178BB04A003AEE3D /* iosapp-Prefix.pch */,
 				666104A4178BB04A003AEE3D /* Default.png */,
 				666104A6178BB04A003AEE3D /* Default@2x.png */,
@@ -424,6 +424,28 @@
 			name = h;
 			sourceTree = "<group>";
 		};
+		66DE8E10184BB1F7009AFF39 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				66DE8E11184BB1F7009AFF39 /* common */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		66DE8E11184BB1F7009AFF39 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				66DE8E12184BB1F7009AFF39 /* common_background.png */,
+				66DE8E13184BB1F7009AFF39 /* common_card_bg.png */,
+				66DE8E14184BB1F7009AFF39 /* common_card_white.png */,
+				66DE8E15184BB1F7009AFF39 /* common_card_wood.png */,
+				66DE8E16184BB1F7009AFF39 /* common_cat_bg.png */,
+				66DE8E17184BB1F7009AFF39 /* common_cat_white.png */,
+				66DE8E18184BB1F7009AFF39 /* common_cat_wood.png */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
 		8ECB050C183A499900EA506C /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -516,26 +538,28 @@
 				8EAF0A5B1834771900FE94C6 /* edit.png in Resources */,
 				8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */,
 				6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */,
+				66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */,
 				8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */,
 				6697BDB3179FD7C0002E37E8 /* HAMNodeSelectorViewController.xib in Resources */,
-				66E66BD117A8FD4200F6177B /* bg.png in Resources */,
 				66E66BD317A90A9F00F6177B /* card.png in Resources */,
 				66E66BD517A90AA200F6177B /* category.png in Resources */,
+				66DE8E19184BB1F7009AFF39 /* common_background.png in Resources */,
 				8E0728731836202B00E538FB /* HAMRecorderViewController.xib in Resources */,
 				66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */,
 				8ECB051A183A499900EA506C /* QBAnimationSequence-Info.plist in Resources */,
+				66DE8E1B184BB1F7009AFF39 /* common_card_white.png in Resources */,
+				66DE8E1E184BB1F7009AFF39 /* common_cat_white.png in Resources */,
+				66DE8E1C184BB1F7009AFF39 /* common_card_wood.png in Resources */,
 				8EE7A2E51822361A007356B1 /* HAMCardSelectorViewController.xib in Resources */,
 				66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */,
+				66DE8E1A184BB1F7009AFF39 /* common_card_bg.png in Resources */,
 				6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */,
-				6650B2D917D5D1D200770C25 /* citiao.png in Resources */,
-				6650B2DA17D5D1D200770C25 /* fenlei.png in Resources */,
-				6650B2DB17D5D1D200770C25 /* quanbu.png in Resources */,
 				6650B2E117D5D60000770C25 /* icon1.png in Resources */,
 				8E56261218335ADD00351EA2 /* unselected.png in Resources */,
 				8E56261318335ADD00351EA2 /* selected.png in Resources */,
 				8E07286E183609A100E538FB /* HAMCardEditorViewController.xib in Resources */,
+				66DE8E1F184BB1F7009AFF39 /* common_cat_wood.png in Resources */,
 				6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */,
-				6650B2E517D5D6C500770C25 /* nopic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

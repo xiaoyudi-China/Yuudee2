@@ -246,6 +246,11 @@
     if ((NSObject*)newRoom == [NSNull null])
         newRoom = nil;
     
+    HAMRoom* oldRoom = [self roomOfCat:parentID atIndex:index];
+    
+    if ((oldRoom == nil && newRoom == nil) || [oldRoom isEqualToRoom:newRoom])
+        return;
+    
     NSMutableArray* children=[self childrenOfCat:parentID];
     if (!newRoom || !newRoom.cardID_)
     {

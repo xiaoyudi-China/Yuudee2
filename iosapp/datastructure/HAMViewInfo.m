@@ -10,23 +10,25 @@
 
 @implementation HAMViewInfo
 
-@synthesize xnum;
-@synthesize ynum;
-@synthesize a;
-@synthesize h;
-@synthesize xSpace;
-@synthesize ySpace;
+@synthesize xnum_;
+@synthesize ynum_;
+@synthesize cardHeight;
+@synthesize cardWidth;
+
+@synthesize catLableY;
+@synthesize cardLableY;
+@synthesize fontSize;
+
 @synthesize picOffsetX;
 @synthesize picOffsetY;
 @synthesize picHeight;
 @synthesize picWidth;
-@synthesize wordh;
 
 -(id)initWithframe:(CGRect)frame xnum:(int)_xnum ynum:(int)_ynum h:(double)_h minspace:(double)_minspace
 {
     if (self=[super init]){
-        xnum=_xnum;
-        ynum=_ynum;
+        xnum_=_xnum;
+        ynum_=_ynum;
         //h=_h;
         
         //CGRect rect=[[UIScreen mainScreen]bounds];
@@ -36,45 +38,76 @@
         
         minspace=_minspace;
         
-        [self updateInfo];
+        //[self updateInfo];
     }
     return self;
 }
 
--(void)updateInfoWithxnum:(int)_xnum ynum:(int)_ynum
+-(id)initWithXnum:(int)xnum ynum:(int)ynum
 {
-    xnum=_xnum;
-    ynum=_ynum;
-    [self updateInfo];
+    CGRect cardZone;
+    if (self = [super init]) {
+        switch (xnum) {
+            case VIEWINFO_LAYOUT_1x1:
+                cardWidth = 632.5;
+                cardHeight = 612;
+                xnum_ = 1;
+                ynum_ = 1;
+                cardZone.origin = CGPointMake(70, 250);
+                break;
+            
+            case VIEWINFO_LAYOUT_2x2:
+                cardWidth = 351.5;
+                cardHeight = 340;
+                xnum_ = 2;
+                ynum_ = 2;
+                cardZone = CGRectMake(40, 220, 688, 684);
+                break;
+                
+            case VIEWINFO_LAYOUT_3x3:
+                cardWidth = 239;
+                cardHeight = 231;
+                xnum_ = 3;
+                ynum_ = 3;
+                cardZone = CGRectMake(20, 215, 726, 694);
+                break;
+                
+            default:
+                break;
+        }
+    }
+    picOffsetX = 70 * cardWidth / 632.5;
+    picOffsetY = 40 * cardWidth / 632.5;
+    picWidth = cardWidth - 2 * picOffsetX;
+    picHeight = cardHeight * 0.6;
+    
+    fontSize = 49 * cardWidth / 632.5;
+    catLableY = 425 * cardWidth / 632.5;
+    cardLableY = 252 * cardWidth / 351.5;
+    [self getCardPosWithCardZone:cardZone];
+    return self;
 }
 
--(void)updateInfo
+-(void)getCardPosWithCardZone:(CGRect)cardZone
 {
-    double a1=(maxx-(xnum+1)*minspace)/xnum;
-    double a2=(maxy-(ynum+2)*minspace)/ynum-h;
-    a=MIN(a1, a2);
+    double xSpace = (cardZone.size.width - xnum_ * cardWidth) / (xnum_ - 1);
+    double ySpace = (cardZone.size.height - ynum_ * cardHeight) / (ynum_ - 1);
     
-    xSpace=(maxx-xnum*a)/(xnum+1);
-    ySpace=(maxy-ynum*(a+h))/(ynum+1);
-    
-    //temp calculations
-    h=0;
-    wordh=a*0.235;
-    
-    picOffsetX=a*0.05;
-    picOffsetY=picOffsetX;
-    picWidth=a-2*picOffsetX;
-    picHeight=a-wordh-picOffsetY;
+    int i,j;
+    for (i = 0; i < ynum_; i++) {
+        for (j = 0; j < xnum_; j++) {
+            double cardX = cardZone.origin.x + j * (cardWidth + xSpace);
+            double cardY = cardZone.origin.y + i * (cardHeight + ySpace);
+            cardPos[i * xnum_ + j] = CGPointMake(cardX, cardY);
+        }
+    }
 
 }
 
--(CGPoint)positionAtPosIndex:(int)index;
+-(CGPoint)cardPositionAtIndex:(int)index;
 {
-    int i = index / xnum;
-    int j = index % xnum;
-    double x = j*a + (j+1) * xSpace;
-    double y = i*(a+h) + (i+1) * ySpace;
-    return CGPointMake(x, y);
+    index = index % (xnum_ * ynum_);
+    return cardPos[index];
 }
 
 +(double)maxx

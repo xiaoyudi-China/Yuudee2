@@ -19,5 +19,6 @@
 @property int animation_;
 
 -(HAMRoom*)initWithCardID:(NSString*)cardID animation:(int)animation;
+-(Boolean)isEqualToRoom:(HAMRoom*)aRoom;
 
 @end

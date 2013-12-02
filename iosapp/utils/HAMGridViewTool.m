@@ -50,7 +50,7 @@
     cardViewArray_=[NSMutableArray array];
     
     NSArray* children = [config childrenCardIDOfCat:nodeUUID];
-    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int btnsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     
     totalPageNum_ = ceil( (children.count + 0.0f) / btnsPerPage);
     if (totalPageNum_ == 0)
@@ -85,18 +85,18 @@
     
     int childIndex=0,posIndex,pageIndex;
     HAMCard* card = [config card:nodeUUID];
-    Boolean isRoot = [card.UUID isEqualToString:config.rootID];
-    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
+    //Boolean isRoot = [card.UUID isEqualToString:config.rootID];
+    int btnsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     
     for (pageIndex = 0; pageIndex < totalPageNum_; pageIndex++) {
         posIndex = 0;
         //add home btn
-        if (!isRoot)
+        /*if (!isRoot)
         {
-            [self addButtonWithi:0 j:0 onPage:pageIndex picName:@"back.png" action:@selector(groupClicked:) tag:-1 bgType:-1];
-            [self addLabelWithi:0 j:0 onPage:pageIndex text:@"返回" color:[UIColor blackColor] tag:-1];
+            [self addButtonAtPosIndex:posIndex onPage:pageIndex picName:@"back.png" action:@selector(groupClicked:) tag:-1 bgType:-1];
+            [self addLabelAtPosIndex:posIndex onPage:pageIndex text:@"返回" color:[UIColor blackColor] tag:-1];
             posIndex=1;
-        }
+        }*/
         //add else btn
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
@@ -106,37 +106,37 @@
             if(!childID || (NSNull*)childID==[NSNull null])
                 continue;
         
-            [self addCardAtPos:posIndex onPage:pageIndex cardID:childID index:childIndex];
+            [self addCardAtPosIndex:posIndex onPage:pageIndex cardID:childID index:childIndex];
         }
     }
 }
 
 - (void)setLayoutWithxnum:(int)_xnum ynum:(int)_ynum
 {
-    [viewInfo updateInfoWithxnum:_xnum ynum:_ynum];
+    viewInfo = [[HAMViewInfo alloc] initWithXnum:_xnum ynum:_ynum];
 }
 
-- (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
+- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
 {
     if (pageIndex > pageViews_.count) {
         return nil;
     }
     
+    //add card view
     UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
     
-    double a=viewInfo.a;
-    double x=j*a+(j+1)*viewInfo.xSpace;
-    double y=i*(a+viewInfo.h)+(i+1)*viewInfo.ySpace;
-    
-    CGRect frame = CGRectMake(x, y, a, a);
+    CGRect frame = CGRectMake(cardPosition.x, cardPosition.y, viewInfo.cardWidth, viewInfo.cardHeight);
     UIView* cardView = [[UIView alloc] initWithFrame:frame];
     [pageView addSubview:cardView];
+    if (tag!=-1)
+        [HAMTools setObject:cardView toMutableArray:cardViewArray_ atIndex:tag];
     
+    //add button area
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     //a tested value. to hide the button.
     double offset=7;
-//    button.frame = CGRectMake(x+offset,y+offset,a-2*offset,a-2*offset);
-    button.frame = CGRectMake(offset, offset, a - 2 * offset, a - 2 * offset);
+    button.frame = CGRectMake(offset, offset, viewInfo.cardWidth - 2 * offset, viewInfo.cardHeight - 2 * offset);
 //    button.backgroundColor = [UIColor redColor];
     button.tag = tag;
     [button addTarget:viewController_ action:action forControlEvents:UIControlEventTouchUpInside];
@@ -149,101 +149,94 @@
     
     [cardView addSubview:button];
     
-    //CALayer* cardLayer=[[CALayer alloc] init];
-    //[cardLayer setFrame:frame];
     
-    //[cardView setPosition:CGPointMake(x+frame.size.width/2, y+frame.size.height/2)];
-    //[[pageView layer]addSublayer:cardLayer];
+    //draw cardwhite
+    CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
+    UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
+    [cardWhiteBg setFrame:localFrame];
+    [cardView addSubview:cardWhiteBg];
     
-    if (tag!=-1)
-        [HAMTools setObject:cardView toMutableArray:cardViewArray_ atIndex:tag];
-    
-    //draw foreground
+    //draw cardpic
     UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:picName]];
     UIImageView* fgView=[[UIImageView alloc] initWithImage:fgImage];
     CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
     [fgView setFrame:picFrame];
     [cardView addSubview:fgView];
     
-    //draw background
+    //draw cardbg
     UIImage* bgImage=nil;
     switch (bgType) {
-        case 0:
-            bgImage =[UIImage imageNamed:@"category.png"];
+        case CARD_TYPE_CATEGORY:
+            bgImage =[UIImage imageNamed:@"common_cat_bg.png"];
             break;
             
-        case 1:
-            bgImage =[UIImage imageNamed:@"card.png"];
+        case CARD_TYPE_CARD:
+            bgImage =[UIImage imageNamed:@"common_card_bg.png"];
             break;
             
         default:
-            return button;
             break;
     }
     UIImageView* bgView=[[UIImageView alloc] initWithImage:bgImage];
-    //TODO:1.153 is a tested value
-    [bgView setFrame:CGRectMake(0, -a*0.14/2, a, a*1.153)];
-    [pageView addSubview:bgView];
+    [bgView setFrame:CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight)];
     [cardView addSubview:bgView];
+    
+    //draw cardwood
+    UIImageView* cardWoodBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_wood.png"]];
+    [cardWoodBg setFrame:localFrame];
+    [cardView addSubview:cardWoodBg];
     
     return button;
 }
 
--(void)addCardAtPos:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index
+-(void)addCardAtPosIndex:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index
 {
-    int xid=pos/viewInfo.xnum;
-    int yid=pos%viewInfo.xnum;
-    
     HAMCard* card=[config card:cardID];
     NSString* imagePath=[[card image] localPath];
     
     if ([card type]==1)
-        [self addButtonWithi:xid j:yid onPage:pageIndex picName:imagePath action:@selector(leafClicked:) tag:index bgType:1];
+        [self addButtonAtPosIndex:index onPage:pageIndex picName:imagePath action:@selector(leafClicked:) tag:index bgType:1];
     else
-        [self addButtonWithi:xid j:yid onPage:pageIndex picName:imagePath action:@selector(groupClicked:) tag:index bgType:0];
+        [self addButtonAtPosIndex:index onPage:pageIndex picName:imagePath action:@selector(groupClicked:) tag:index bgType:0];
     
-    [self addLabelWithi:xid j:yid onPage:pageIndex text:[card name] color:[UIColor whiteColor] tag:index];
+    [self addLabelAtPosIndex:index onPage:pageIndex text:[card name] color:[UIColor colorWithRed:100.0/255.0 green:60.0/255.0 blue:20.0/255.0 alpha:1] type:card.type tag:index];
 }
 
--(void)addLabelWithi:(int)i j:(int)j onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color tag:(int)index
+-(void)addLabelAtPosIndex:(int)index onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color type:(int)cardType tag:(int)tag
 {
     if (pageIndex > pageViews_.count) {
         return;
     }
     UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     
-    double y=viewInfo.a-viewInfo.wordh;
-//    double xoff=j*viewInfo.a+(j+1)*viewInfo.xSpace;
-//    double yoff=i*(viewInfo.a+viewInfo.h)+(i+1)*viewInfo.ySpace;
-
-    //CATextLayer *textLayer = [CATextLayer layer];
-    //[textLayer setContentsScale:[[UIScreen mainScreen] scale]];
-    UITextView* labelView = [[UITextView alloc] initWithFrame:CGRectMake(0, y, viewInfo.a, viewInfo.wordh)];
-    //[textLayer setString:text];
+    double posY;
+    switch (cardType) {
+        case CARD_TYPE_CARD:
+            posY = viewInfo.cardLableY;
+            break;
+            
+        case CARD_TYPE_CATEGORY:
+            posY = viewInfo.catLableY;
+            break;
+            
+        default:
+            posY = 0;
+            break;
+    }
+  
+    UILabel* labelView = [[UILabel alloc] initWithFrame:CGRectMake(0, posY, viewInfo.cardWidth, viewInfo.fontSize)];
     labelView.text = text;
     labelView.textColor = color;
-    labelView.font = [UIFont boldSystemFontOfSize:viewInfo.a * 0.13];
-    labelView.textAlignment = UITextAlignmentCenter;
-    labelView.backgroundColor = [UIColor clearColor];
-    labelView.editable = NO;
-    labelView.selectable = NO;
+    labelView.font = [UIFont boldSystemFontOfSize:viewInfo.fontSize];
+    labelView.textAlignment = NSTextAlignmentCenter;
     labelView.userInteractionEnabled = NO;
-//    [textLayer setFontSize:viewInfo.a*0.13];
-//    [textLayer setAlignmentMode:kCAAlignmentCenter];
-//    textLayer.foregroundColor=[color CGColor];
-//    [textLayer setFrame:CGRectMake(0,y,viewInfo.a,viewInfo.wordh)];
-//    [textLayer setPosition:CGPointMake(viewInfo.a/2.0, y+viewInfo.wordh/1.5)];
     
-    if (index>=0 && [cardViewArray_ count]>index)
-        [[cardViewArray_ objectAtIndex:index] addSubview:labelView];
+    if (tag >=0 && [cardViewArray_ count] > tag)
+        [[cardViewArray_ objectAtIndex:tag] addSubview:labelView];
     else
     {
-        //CGRect frame = labelView.frame;
-        //frame.origin = CGPointMake(, <#CGFloat y#>)
-        //[textLayer setPosition:CGPointMake(xoff+viewInfo.a/2.0, yoff+y+viewInfo.wordh/1.5)];
         [pageView addSubview:labelView];
     }
-    //[view addSubview:label];*/
 }
 
 @end

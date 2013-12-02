@@ -23,4 +23,9 @@
     return self;
 }
 
+-(Boolean)isEqualToRoom:(HAMRoom*)aRoom
+{
+    return (cardID_ == aRoom.cardID_ && animation_ == aRoom.animation_);
+}
+
 @end

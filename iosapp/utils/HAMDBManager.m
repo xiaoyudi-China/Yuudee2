@@ -322,7 +322,7 @@
         sqlite3_bind_text(stmt, 4, [card.image.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 5, [card.audio.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 6, [user UTF8String], -1, NULL);
-        sqlite3_bind_int(statement, 7, card.isRemovable_);
+        sqlite3_bind_int(stmt, 7, card.isRemovable_);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)
         NSAssert(0, @"Error inserting into card");

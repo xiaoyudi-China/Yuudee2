@@ -29,7 +29,6 @@
     CGSize contentSize = CGSizeMake(scrollFrameSize.width * totalPageNum_, scrollFrameSize.height);
     scrollView_.contentSize = contentSize;
     
-    
     CGRect newPageFrame = CGRectMake((totalPageNum_ - 1) * scrollFrameSize.width, 0, scrollFrameSize.width, scrollFrameSize.height);
     UIView* pageView = [[UIView alloc] initWithFrame:newPageFrame];
     [scrollView_ addSubview:pageView];
@@ -37,15 +36,16 @@
 }
 
 -(void)refreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage{
+    NSLog(@"refreshView - Enter refreshView: %f",[NSDate timeIntervalSinceReferenceDate]);
     [self prepareRefreshView:nodeUUID scrollToFirstPage:showFirstPage];
-    
+    NSLog(@"refreshView - After prepareRefreshView:%f",[NSDate timeIntervalSinceReferenceDate]);
 //    cardViewArray_ = [NSMutableArray array];
     editButtonArray_ = [NSMutableArray array];
     
     int childIndex=0,posIndex,pageIndex;
     HAMCard* card = [config card:nodeUUID];
     //Boolean isRoot = [card.UUID isEqualToString:config.rootID];
-    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int btnsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     
     for (pageIndex = 0; pageIndex < totalPageNum_; pageIndex++) {
         posIndex = 0;
@@ -72,20 +72,22 @@
             
 //            isBlankAtIndex_[posIndex + pageIndex * btnsPerPage] = NO;
             isBlankAtTag_[childIndex] = NO;
-            [self addCardAtPos:posIndex onPage:pageIndex cardID:childID index:childIndex];
+            [self addCardAtPosIndex:posIndex onPage:pageIndex cardID:childID index:childIndex];
             [self addEditButtonAtPos:posIndex onPage:pageIndex tag:childIndex];
         }
     }
     
+    NSLog(@"refreshView - After drawing buttons:%f",[NSDate timeIntervalSinceReferenceDate]);
+    
     onEdgeCounter_ = 0;
 }
 
-- (UIButton*)addButtonWithi:(int)i j:(int)j onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
+- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
 {
 //    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
 //    int index = i * j + btnsPerPage * pageIndex;
     
-    UIButton* button = [super addButtonWithi:i j:j onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
+    UIButton* button = [super addButtonAtPosIndex:index onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
     //don't add return button
     if (tag == -1)
         return button;
@@ -110,11 +112,8 @@
 
 - (void)addAddNodeAtPos:(int)pos onPage:(int)pageIndex index:(int)index
 {
-    int xid=pos/viewInfo.xnum;
-    int yid=pos%viewInfo.xnum;
-    
-    [self addButtonWithi:xid j:yid onPage:pageIndex picName:@"add.png" action:@selector(addClicked:) tag:index bgType:-1];
-    [self addLabelWithi:xid j:yid onPage:pageIndex text:@"新增词条/分组" color:[UIColor blackColor] tag:index];
+    [self addButtonAtPosIndex:index onPage:pageIndex picName:@"add.png" action:@selector(addClicked:) tag:index bgType:-1];
+    [self addLabelAtPosIndex:pos onPage:pageIndex text:@"新增词条/分组" color:[UIColor blackColor] type:CARD_TYPE_CARD tag:index];
 }
 
 - (void)addEditButtonAtPos:(int)pos onPage:(int)pageIndex tag:(int)tag
@@ -122,10 +121,10 @@
     UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     
     UIButton* editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    CGPoint position = [viewInfo positionAtPosIndex:pos];
-    double length = viewInfo.a * 0.25;
-    position.x += viewInfo.a - length;
-    editButton.frame = CGRectMake(position.x, position.y, length, length);
+    CGPoint position = [viewInfo cardPositionAtIndex:pos];
+    double buttonWidth = viewInfo.cardWidth * 0.25;
+    position.x += viewInfo.cardWidth - buttonWidth;
+    editButton.frame = CGRectMake(position.x, position.y, buttonWidth, buttonWidth);
     editButton.backgroundColor = [UIColor whiteColor];
     editButton.tag = tag;
     [editButton addTarget:viewController_ action:@selector(editClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -164,7 +163,7 @@
 }
 
 -(void)moveCardView:(UIView*)targetView toIndex:(int)index animated:(Boolean)animated{
-    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     int onPagenum = index / cardsPerPage;
     UIView* superView = [pageViews_ objectAtIndex:onPagenum];
     
@@ -230,24 +229,9 @@
 
 -(int)findNearestIndexOfPosition:(CGPoint)newPosition
 {
-    /*double minDist = MAXFLOAT;
-    int nearestIndex, i;
-    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
-    int endIndex = MIN([cardViewArray_ count], cardsPerPage*(pagenum+1));
-    
-    for (i = pagenum * cardsPerPage; i < endIndex ; i++) {
-        CGPoint position = positionArray_[i];
-        double dist = (newPosition.x - position.x) * (newPosition.x - position.x) + (newPosition.y - position.y) * (newPosition.y - position.y);
-        if (minDist > dist){
-            minDist = dist;
-            nearestIndex = i;
-        }
-    }
-    return nearestIndex;*/
-    
     double minDist = MAXFLOAT;
     int nearestIndex, i;
-    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     
     //search only in the 1st page for every page has the same layout
     for (i = 0; i < cardsPerPage ; i++) {
@@ -312,7 +296,7 @@
     }
     
     //find nearest
-    int cardsPerPage = viewInfo.xnum * viewInfo.ynum;
+    int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     int nearestIndex = [self findNearestIndexOfPosition:newPosition] + cardsPerPage * currentPage_;
     
     //move other cards
@@ -356,11 +340,13 @@
     }
     
     //finger up
-    //TODO: may need to move this part to the begining of this function. depend on the circumstances of last calling of handlePan
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
+        NSLog(@"handlePan - Recongnized finger up:%f",[NSDate timeIntervalSinceReferenceDate]);
 //        [self moveCardView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
         [self moveCardView:cardView toIndex:nearestIndex animated:YES];
+        NSLog(@"handlePan - Moved card view:%f",[NSDate timeIntervalSinceReferenceDate]);
         NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
+        NSLog(@"handlePan - Got old children:%f",[NSDate timeIntervalSinceReferenceDate]);
         for (i=0; i<cardnum; i++) {
             int targetTag = tagOfIndex_[i];
             if (tagOfIndex_[i] == i)
@@ -378,9 +364,11 @@
             }
             [config updateRoomOfCat:currentUUID_ with:(HAMRoom*)child atIndex:i];
         }
+        NSLog(@"handlePan - Saved changes to database:%f",[NSDate timeIntervalSinceReferenceDate]);
         
         //swap is quicker, but refresh is safer
         [self refreshView:currentUUID_ scrollToFirstPage:NO];
+        NSLog(@"handlePan - Refreshed view:%f",[NSDate timeIntervalSinceReferenceDate]);
         /*for (i=0; i<cardnum; i++) {
             tagOfIndex_[i] = i;
             isBlankAtTag_[i] = newIsBlankAtTag[i];
