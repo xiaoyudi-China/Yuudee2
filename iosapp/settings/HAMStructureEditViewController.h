@@ -10,7 +10,7 @@
 #import "HAMViewTool.h"
 #import "HAMEditableGridViewTool.h"
 #import "HAMFileTools.h"
-#import "HAMCategorySelectorViewController.h"
+#import "HAMNodeSelectorViewController.h"
 #import "HAMSyncViewController.h"
 #import "HAMUserViewController.h"
 #import "HAMConfig.h"
@@ -30,7 +30,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
 
-@property (strong,nonatomic) HAMCategorySelectorViewController *selectorViewController;
+@property (strong,nonatomic) HAMNodeSelectorViewController *selectorViewController;
 @property (strong,nonatomic) HAMSyncViewController* syncViewController;
 @property (strong,nonatomic) HAMUserViewController* userViewController;
 

@@ -10,7 +10,7 @@
 
 @protocol HAMGridCellDelegate <NSObject>
 
-// TODO: change the type signature to HAMGridCell
+// FIXME: change the type signature to HAMGridCell
 -(void) rightTopButtonPressedForCell: (id) cell;
 
 @end

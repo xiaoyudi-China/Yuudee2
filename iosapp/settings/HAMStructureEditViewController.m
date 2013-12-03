@@ -309,7 +309,7 @@
 {
     if (selectorViewController==nil)
     {
-        selectorViewController=[[HAMCategorySelectorViewController alloc]initWithNibName:@"HAMGridViewController" bundle:nil];
+        selectorViewController=[[HAMNodeSelectorViewController alloc]initWithNibName:@"HAMNodeSelectorViewController" bundle:nil];
     }
     selectorViewController.config=config;
     selectorViewController.parentID=currentUUID;

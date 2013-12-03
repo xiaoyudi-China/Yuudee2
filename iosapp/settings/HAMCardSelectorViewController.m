@@ -36,10 +36,24 @@ CGRect CENTRAL_POINT_RECT;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-		
-    // Do any additional setup after loading the view from its nib.
 	self.title = @"选择卡片";
-	[self.collectionView registerClass:[HAMGridCell class] forCellWithReuseIdentifier:@"CardCell"];
+	
+	// note
+	[self.collectionView registerClass:[HAMGridCell class] forCellWithReuseIdentifier:@"GridCell"];
+	
+    // Do any additional setup after loading the view from its nib.
+	
+	// set the layout of collection view
+	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+	
+	flowLayout.itemSize = CGSizeMake(CELL_WIDTH, CELL_HEIGHT);
+	flowLayout.minimumInteritemSpacing = (GRID_VIEW_WIDTH - 3*CELL_WIDTH) / 4;
+	flowLayout.minimumLineSpacing = (GRID_VIEW_HEIGHT - 4*CELL_HEIGHT) / 5;
+	flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+	flowLayout.sectionInset = UIEdgeInsetsMake(0, INTER_ITEM_SPACING, 0, INTER_ITEM_SPACING);
+    
+    [self.collectionView setCollectionViewLayout:flowLayout];
+
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -81,7 +95,7 @@ CGRect CENTRAL_POINT_RECT;
 
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString* cellID = @"CardCell";
+	static NSString* cellID = @"GridCell";
 	HAMGridCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
 	
 	// load the text
@@ -89,23 +103,21 @@ CGRect CENTRAL_POINT_RECT;
 	cell.textLabel.text = card.name;
 	
 	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
-	cell.frameImageView.image = [UIImage imageNamed:@"cardBG.png"];
+	cell.frameImageView.image = [UIImage imageNamed:@"card.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"unselected.png"]forState:UIControlStateNormal];
-	else { // Mode edit
+	else
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
-		
-		// don't allow editing system-provided categories or cards
-		// FIXME: not working
-		//if (! card.isRemovable_)
-		//	cell.rightTopButton.hidden = TRUE;
-	}
 	
 	cell.indexPath = indexPath;
 	cell.selected = NO;
 	cell.delegate = self;
 	
 	return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	
 }
 
 - (void)createCardButtonPressed {
@@ -126,15 +138,19 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)addCardsButtonPressed {
+	/*
+	// FIXME: this is just testing, should add all the selected cards later
+	NSString *cardID = [self.selectedCardIDs anyObject];
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:cardID animation:[self.config animationOfCat:self.userID atIndex:self.index]]; // keep the animation unchanged
+	
+	[self.config updateRoomOfCat:self.userID with:room atIndex:self.index];*/
 	
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
-	// retain the order of selection
-	for (NSString *cardID in [self cardIDs])
-		if ([self.selectedCardIDs containsObject:cardID])
-			[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
+	// FIXME: the order of selection
+	for (NSString *cardID in self.selectedCardIDs)
+		[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
 	
-	// insert all the selected cards
 	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];
 	
 	NSArray *viewsInStack = self.navigationController.viewControllers;
@@ -190,6 +206,7 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
+	// FIXME: sometimes the grid view is not refreshed
 	[self.collectionView reloadData];
 }
 

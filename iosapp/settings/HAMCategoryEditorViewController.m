@@ -109,7 +109,6 @@
 		NSString *categoryName = self.tempCategoryName;
 		// type 0 indicates a category
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil];
-		category.isRemovable_ = YES;
 		
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
