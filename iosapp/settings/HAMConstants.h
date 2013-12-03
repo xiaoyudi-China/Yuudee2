@@ -16,6 +16,8 @@ extern const CGFloat CELL_HEIGHT;
 extern const CGFloat INTER_ITEM_SPACING;
 extern const CGFloat LINE_SPACE;
 
+extern const NSInteger COLLECTION_VIEW_TAG;
+
 extern const CGFloat SCREEN_WIDTH;
 extern const CGFloat SCREEN_HEIGHT;
 

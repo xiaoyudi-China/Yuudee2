@@ -153,7 +153,7 @@
 	
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
-	//imagePicker.allowsEditing = YES;
+	imagePicker.allowsEditing = YES;
 	
 	if (buttonIndex == 0) // use camera
 		imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -167,15 +167,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	
-	HAMImageCropperViewController *imageCropper = [[HAMImageCropperViewController alloc] initWithNibName:@"HAMImageCropperViewController" bundle:nil];
-	imageCropper.image = [info objectForKey:UIImagePickerControllerOriginalImage];
-	imageCropper.delegate = self;
-	
-	[picker pushViewController:imageCropper animated:YES];
-}
-
-- (void)imageCropper:(HAMImageCropperViewController *)imageCropper didFinishCroppingWithImage:(UIImage *)croppedImage {
-	UIImage *tempImage = croppedImage;
+	UIImage *tempImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 	self.imageView.image = tempImage; // update the displaying
 	
 	// save the image to a temporary file
@@ -195,6 +187,8 @@
 		self.finishButton.enabled = YES;
 		self.recordButton.enabled = YES;
 	}
+
+	[picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {
