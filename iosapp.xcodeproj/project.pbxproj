@@ -303,7 +303,6 @@
 				666104AB178BB04A003AEE3D /* HAMViewController.m */,
 				666104AD178BB04A003AEE3D /* HAMViewController_iPhone.xib */,
 				666104B0178BB04A003AEE3D /* HAMViewController_iPad.xib */,
-				6661049E178BB04A003AEE3D /* main.m */,
 				66610499178BB04A003AEE3D /* Supporting Files */,
 			);
 			path = iosapp;
@@ -314,6 +313,7 @@
 			children = (
 				66DE8E10184BB1F7009AFF39 /* resources */,
 				8EAF0A5A1834771900FE94C6 /* edit.png */,
+				6661049E178BB04A003AEE3D /* main.m */,
 				8E5626141833654900351EA2 /* add.png */,
 				8E56261018335ADD00351EA2 /* unselected.png */,
 				8E56261118335ADD00351EA2 /* selected.png */,

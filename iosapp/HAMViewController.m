@@ -47,6 +47,9 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark -
+#pragma mark Actions
+
 -(IBAction) groupClicked:(id)sender{
     int index=[sender tag];
     if (index==-1)
@@ -81,6 +84,53 @@
         [audioPlayer setDelegate:self];
         [audioPlayer play];
     }
+}
+
+#pragma mark -
+#pragma mark Multi Touch
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSLog(@"touchNumber:%d", [touches count]);
+   
+    for(UITouch *touch in touches)
+    {
+        CGPoint pt = [touch locationInView:self.view];
+        [pointLocation addObject:[NSValue valueWithCGPoint:pt]];
+        
+        NSLog(@"touchHash:%d",touch.hash);
+    }//[pointLocation replaceObjectAtIndex:touchNumber withObject:[NSValue valueWithCGPoint:pt]];
+    
+    /*
+     NSLog(@"%f,%f", pt.x, pt.y);
+     NSLog(@"------touch point stored------");
+     for (int i = 0; i < [pointLocation count]; i++) {
+     CGPoint temp = [(NSValue *)[pointLocation objectAtIndex:i] CGPointValue];
+     NSLog(@"存在点:%f, %f", temp.x, temp.y);
+     }
+     NSLog(@"------touch point stored------");
+     */
+    
+    if ([pointLocation count] == 3) {
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        for (int i = 0; i < [pointLocation count]; i++) {
+            CGPoint temp = [(NSValue *)[pointLocation objectAtIndex:i] CGPointValue];
+            NSLog(@"存在点:%f, %f", temp.x, temp.y);
+            if(temp.x < 100 && temp.y < 100)
+                a = 1;
+            if(temp.x < 100 && temp.y > 800)
+                b = 1;
+            if(temp.x > 700 && temp.y < 100)
+                c = 1;
+        }
+        if(a == 1 && b == 1 && c == 1)
+        {
+            alertLabel.text = @"3 point !";
+        }
+    }
+    
+    
 }
 
 @end

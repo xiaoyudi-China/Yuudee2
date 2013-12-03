@@ -16,8 +16,8 @@
 @synthesize viewController;
 @synthesize navController;
 @synthesize structureEditViewController;
-@synthesize urlFlag;
-
+//@synthesize urlFlag;
+/*
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     if (!url)
@@ -38,39 +38,14 @@
         [self.window addSubview:navController.view];
     }
     return YES;
-}
+}*/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    //background
-    //UIImage* draw = [UIImage imageNamed:@"bg.png"];
-    UIView* myView=[[UIView alloc]initWithFrame:[[UIScreen mainScreen] bounds]];
-    //UIColor *backgroundColor = [UIColor colorWithPatternImage:draw];
-    
-    [myView setBackgroundColor:[UIColor whiteColor]];
-    //[draw drawAsPatternInRect:myView.frame];
-    [self.window addSubview:myView];
-    
-    NSURL *url = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-    if(url) {
-        if ([[url scheme] isEqualToString:@"iosapp"]) {
-            urlFlag=YES;
-            self.window.rootViewController = self.navController;
-            [self.window makeKeyAndVisible];
-            return YES;
-        }
-    }
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
-    }
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    urlFlag=NO;
+    [self turnToChildView];
+
     return YES;
 }
 
@@ -95,27 +70,39 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if (urlFlag==YES)
+    /*if (urlFlag==YES)
     {
         urlFlag=NO;
         return;
-    }
+    }*/
     
-    if (!viewController)
-    {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPhone" bundle:nil];
-        } else {
-            viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
-        }
-    }
     
+}
+
+-(void)turnToChildView
+{
     if (self.structureEditViewController!=nil)
         [structureEditViewController.view removeFromSuperview];
     if (self.navController!=nil)
         [navController.view removeFromSuperview];
     
-    [self.window addSubview:viewController.view];
+    self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+}
+
+-(void)turnToParentView
+{
+    if (self.viewController!=nil)
+        [[self viewController].view removeFromSuperview];
+    
+    if (!structureEditViewController)
+        structureEditViewController=[[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
+    
+    if (!navController)
+        navController=[[UINavigationController alloc] initWithRootViewController:structureEditViewController];
+    
+    [self.window addSubview:navController.view];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
