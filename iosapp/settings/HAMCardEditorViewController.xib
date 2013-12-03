@@ -46,6 +46,10 @@
                         <action selector="pickImageButtonTapped:" destination="-1" eventType="touchUpInside" id="Dvx-T1-id2"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spa-Fx-Q2D">
+                    <rect key="frame" x="145" y="156" width="160" height="120"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="card.png" translatesAutoresizingMaskIntoConstraints="NO" id="gVA-ku-x0y">
                     <rect key="frame" x="135" y="130" width="180" height="208"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,10 +75,6 @@
                         <action selector="deleteCardButtonTapped:" destination="-1" eventType="touchUpInside" id="nhk-oB-YhR"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spa-Fx-Q2D">
-                    <rect key="frame" x="145" y="150" width="160" height="132"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axW-XG-eeR">
                     <rect key="frame" x="20" y="450" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

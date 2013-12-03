@@ -10,16 +10,16 @@
 #import "HAMConfig.h"
 #import "HAMGridCell.h"
 #import "HAMConstants.h"
+#import "HAMGridViewController.h"
 #import "HAMCardEditorViewController.h"
 
-@interface HAMCardSelectorViewController : UIViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
+@interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *categoryID;
 @property (nonatomic, weak) HAMConfig *config;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, assign) int index;
 @property (nonatomic, assign) HAMGridCellMode cellMode;
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) NSMutableSet *selectedCardIDs;
 

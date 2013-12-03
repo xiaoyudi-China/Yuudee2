@@ -15,6 +15,18 @@
 
 @end
 
+@interface UIImagePickerController(NoRotation)
+- (BOOL)shouldAutorotate;
+@end
+
+@implementation UIImagePickerController(NoRotation)
+
+- (BOOL)shouldAutorotate {
+	return NO;
+}
+
+@end
+
 @implementation HAMCardEditorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +54,8 @@
 	else { // creating card
 		self.tempCard = [[HAMCard alloc] initNewCard]; // get a UUID
 		[self.config newCardWithID:self.tempCard.UUID name:nil type:1 audio:nil image:nil]; // type 1 indicates a card
-		self.tempCard.type = 1; // FIXME: why should I set this attribute MANUALLY?
+		self.tempCard.type = 1; // this statement can be removed
+		self.tempCard.isRemovable_ = YES;
 	}
 	
 	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
@@ -50,7 +63,7 @@
 	// update the view accordingly
 	if (self.cardID) { // editing card
 		// copy the existing image file to the temporary
-		// FIXME: error handling
+		// FIXME: *elegant* error handling
 		NSFileManager *manager = [NSFileManager defaultManager];
 		[manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
 		
@@ -140,15 +153,16 @@
 	
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
+	imagePicker.allowsEditing = YES;
+	
 	if (buttonIndex == 0) // use camera
 		imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
 	else if (buttonIndex == 1) // use photo library
 		imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 	else // cancel
 		return;
-	
+		
 	[self presentViewController:imagePicker animated:YES completion:NULL];
-	//self.popover.contentViewController = imagePicker;
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -173,7 +187,7 @@
 		self.finishButton.enabled = YES;
 		self.recordButton.enabled = YES;
 	}
-	
+
 	[picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -186,11 +200,18 @@
 
 - (IBAction)finishButtonTapped:(id)sender {
 		
-	// FIXME: error handling
 	NSFileManager *manager = [NSFileManager defaultManager];
 	// copy and then delete the temporary image file
-	[manager copyItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	[manager removeItemAtPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
+	BOOL success = YES;
+	// must delete the original file before writing new data to it
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]])
+		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:nil];
+	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
+	if (! success) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
 	
 	self.tempCard.image.localPath = self.imagePath;
 	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
