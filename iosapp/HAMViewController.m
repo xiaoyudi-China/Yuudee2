@@ -91,7 +91,7 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"touchNumber:%d", [touches count]);
-   
+    /*
     for(UITouch *touch in touches)
     {
         CGPoint pt = [touch locationInView:self.view];
@@ -100,7 +100,7 @@
         NSLog(@"touchHash:%d",touch.hash);
     }//[pointLocation replaceObjectAtIndex:touchNumber withObject:[NSValue valueWithCGPoint:pt]];
     
-    /*
+    
      NSLog(@"%f,%f", pt.x, pt.y);
      NSLog(@"------touch point stored------");
      for (int i = 0; i < [pointLocation count]; i++) {
@@ -108,7 +108,7 @@
      NSLog(@"存在点:%f, %f", temp.x, temp.y);
      }
      NSLog(@"------touch point stored------");
-     */
+     
     
     if ([pointLocation count] == 3) {
         int a = 0;
@@ -128,7 +128,7 @@
         {
             alertLabel.text = @"3 point !";
         }
-    }
+    }*/
     
     
 }
