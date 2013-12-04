@@ -90,9 +90,6 @@
 			self.initRow = [self.categoryIDs indexOfObject:UNCATEGORIZED_ID];
 	}
 	
-	[self.pickerView selectRow:self.initRow inComponent:0 animated:NO];
-	self.selectedRow = self.initRow;
-
 	// fit into the popover
 	self.preferredContentSize = self.view.frame.size;
 }
@@ -144,23 +141,6 @@
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 	}
 	
-	NSString *newCategoryID = self.categoryIDs[self.selectedRow];
-	NSInteger numChildren = [self.config childrenCardIDOfCat:newCategoryID].count;
-	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation: ROOM_ANIMATION_NONE];
-	if (self.isNewCard) {
-		// add the card to the new category
-		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
-	}
-	else if (self.initRow != self.selectedRow) { // category changed for an old card
-		// add the card to the new category
-		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
-		
-		// remove the card from the old category
-		NSString *oldCategoryID = self.categoryIDs[self.initRow];
-		NSInteger oldIndex = [[self.config childrenCardIDOfCat:oldCategoryID] indexOfObject:self.tempCard.UUID];
-		[self.config deleteChildOfCatInLib:oldCategoryID atIndex:oldIndex];
-	}
-	
 	[self.popover dismissPopoverAnimated:YES];
 }
 
@@ -170,14 +150,14 @@
 		if (! self.tempCard.audio)
 			self.tempCard.audio = [[HAMResource alloc] initWithPath:self.tempAudioPath];
 		
-		[self.recordButton setTitle:@"录音" forState:UIControlStateNormal];
+		[self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
+		self.statusLabel.text = @"录音结束";
 		
 		// re-enable other views
 		self.playButton.enabled = YES;
 		self.deleteButton.enabled = YES;
 		self.cancelButton.enabled = YES;
 		self.finishButton.enabled = YES;
-		self.pickerView.userInteractionEnabled = YES;
 	}
 	else { // start recording
 		BOOL success = [self.audioRecorder record];
@@ -186,14 +166,14 @@
 			[alert show];
 			return;
 		}
-		[self.recordButton setTitle:@"停止" forState:UIControlStateNormal];
+		[self.recordButton setImage:[UIImage imageNamed:@"recordDOWN.png"] forState:UIControlStateNormal];
+		self.statusLabel.text = @"录音中...";
 		
 		// disable all other views while recording
 		self.playButton.enabled = NO;
 		self.deleteButton.enabled = NO;
 		self.cancelButton.enabled = NO;
 		self.finishButton.enabled = NO;
-		self.pickerView.userInteractionEnabled = NO;
 	}
 }
 
@@ -209,14 +189,15 @@
 	self.audioPlayer.delegate = self; // !!!
 
 	[self.audioPlayer play];
-	[self.playButton setTitle:@"停止" forState:UIControlStateNormal];
+	// temporarily disable the play button while playing audio
+	self.playButton.enabled = NO;
+	self.statusLabel.text = @"播放中...";
 	
 	// disable all other views while playing audio
 	self.recordButton.enabled = NO;
 	self.deleteButton.enabled = NO;
 	self.cancelButton.enabled = NO;
 	self.finishButton.enabled = NO;
-	self.pickerView.userInteractionEnabled = NO;
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
@@ -241,19 +222,14 @@
 		[alert show];
 	}
 	
-	[self.playButton setTitle:@"播放" forState:UIControlStateNormal];
+	self.playButton.enabled = YES;
+	self.statusLabel.text = @"播放结束";
 	
 	// re-enable other views
 	self.recordButton.enabled = YES;
 	self.deleteButton.enabled = YES;
 	self.cancelButton.enabled = YES;
 	self.finishButton.enabled = YES;
-	self.pickerView.userInteractionEnabled = YES;
-}
-
-- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-
-	self.selectedRow = row;
 }
 
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {

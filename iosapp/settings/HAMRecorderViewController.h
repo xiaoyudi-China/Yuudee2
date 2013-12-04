@@ -11,7 +11,7 @@
 #import "HAMConfig.h"
 #import "HAMConstants.h"
 
-@interface HAMRecorderViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, AVAudioPlayerDelegate>
+@interface HAMRecorderViewController : UIViewController <UIPickerViewDataSource, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) HAMConfig *config;
 @property (strong, nonatomic) HAMCard *tempCard; // !!!: don't pass changes back to card editor
@@ -21,14 +21,13 @@
 @property (strong, nonatomic) NSArray *categoryIDs;
 @property (strong, nonatomic) NSString *tempCategoryID;
 @property NSInteger initRow;
-@property NSInteger selectedRow;
 
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) AVAudioRecorder *audioRecorder;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 

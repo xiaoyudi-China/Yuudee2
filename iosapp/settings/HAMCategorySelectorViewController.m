@@ -155,13 +155,15 @@
 		
 		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 		cardEditor.cardID = nil;
-		cardEditor.categoryID = nil;
+		cardEditor.categoryID = UNCATEGORIZED_ID;
 		cardEditor.config = self.config;
 		
 		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
 		navigator.navigationBarHidden = YES; // don't show navigation bar
 		
 		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
+		self.popover.backgroundColor = [UIColor clearColor];
+		//self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 		cardEditor.popover = self.popover;
 		
 		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];

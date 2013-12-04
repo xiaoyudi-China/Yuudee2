@@ -21,12 +21,14 @@
 @end
 
 
-@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HAMImageCropperViewControllerDelegate>
+@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HAMImageCropperViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSString *cardID;
 @property (strong, nonatomic) NSString *categoryID;
+@property (strong, nonatomic) NSArray *categoryIDs;
 @property (weak, nonatomic) HAMConfig *config;
 @property (weak, nonatomic) UIPopoverController *popover;
+@property (strong, nonatomic) UIPopoverController *popoverForCategories;
 @property (weak, nonatomic) id<HAMCardEditorViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) HAMCard *tempCard;
@@ -37,11 +39,17 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
+@property (weak, nonatomic) IBOutlet UIButton *shootImageButton;
+@property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cardNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *chooseCategoryButton;
 
 - (IBAction)recordButtonTapped:(id)sender;
-- (IBAction)pickImageButtonTapped:(id)sender;
+- (IBAction)shootImageButtonPressed:(id)sender;
+- (IBAction)pickImageButtonPressed:(id)sender;
 - (IBAction)deleteCardButtonTapped:(id)sender;
 - (IBAction)cancelButtonTapped:(id)sender;
 - (IBAction)finishButtonTapped:(id)sender;
+- (IBAction)chooseCategoryButtonPressed:(id)sender;
 
 @end
