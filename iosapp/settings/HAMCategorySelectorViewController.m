@@ -15,15 +15,11 @@
 
 @implementation HAMCategorySelectorViewController
 
-// TODO: refactor?
-CGRect CENTRAL_POINT_RECT;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];	
     if (self) {
         // Custom initialization
-		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
     }
     return self;
 }
@@ -141,6 +137,8 @@ CGRect CENTRAL_POINT_RECT;
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) { // create category
+		[MobClick event:@"create_category"];
+		
 		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
 		categoryEditor.categoryID = nil;
 		categoryEditor.config = self.config;
@@ -153,6 +151,8 @@ CGRect CENTRAL_POINT_RECT;
 		
 	}
 	else if (buttonIndex == 1) { // create card
+		[MobClick event:@"create_card"];
+		
 		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 		cardEditor.cardID = nil;
 		cardEditor.categoryID = nil;

@@ -11,6 +11,7 @@
 #import "HAMCard.h"
 #import "HAMConfig.h"
 #import "HAMConstants.h"
+#import "HAMImageCropperViewController.h"
 
 @class HAMCardEditorViewController;
 @protocol HAMCardEditorViewControllerDelegate <NSObject>
@@ -20,7 +21,7 @@
 @end
 
 
-@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HAMImageCropperViewControllerDelegate>
 
 @property (strong, nonatomic) NSString *cardID;
 @property (strong, nonatomic) NSString *categoryID;

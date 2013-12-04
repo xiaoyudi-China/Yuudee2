@@ -153,7 +153,7 @@
 	
 	UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
 	imagePicker.delegate = self;
-	imagePicker.allowsEditing = YES;
+	//imagePicker.allowsEditing = YES;
 	
 	if (buttonIndex == 0) // use camera
 		imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -168,10 +168,19 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	
 	UIImage *tempImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-	self.imageView.image = tempImage; // update the displaying
+	HAMImageCropperViewController *imageCropper = [[HAMImageCropperViewController alloc] initWithNibName:@"HAMImageCropperViewController" bundle:nil];
+	imageCropper.image = tempImage;
+	imageCropper.delegate = self;
+	
+	[picker pushViewController:imageCropper animated:YES];
+}
+
+- (void)imageCropper:(HAMImageCropperViewController *)imageCropper didFinishCroppingWithImage:(UIImage *)croppedImage {
+	
+	self.imageView.image = croppedImage; // update the displaying
 	
 	// save the image to a temporary file
-	BOOL success = [UIImageJPEGRepresentation(tempImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImagePath] atomically:YES];
+	BOOL success = [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImagePath] atomically:YES];
 	if (!success) { // something wrong
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法选取图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
 		[alert show];
@@ -187,8 +196,6 @@
 		self.finishButton.enabled = YES;
 		self.recordButton.enabled = YES;
 	}
-
-	[picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {

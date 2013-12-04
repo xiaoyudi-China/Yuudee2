@@ -12,8 +12,6 @@
 
 @end
 
-CGRect CENTRAL_POINT_RECT;
-
 @implementation HAMCardSelectorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -21,7 +19,6 @@ CGRect CENTRAL_POINT_RECT;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
 		self.selectedCardIDs = [[NSMutableSet alloc] init];
     }
     return self;
@@ -109,6 +106,8 @@ CGRect CENTRAL_POINT_RECT;
 }
 
 - (void)createCardButtonPressed {
+	
+	[MobClick event:@"create_card"]; // trace the event
 	
 	HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 	cardEditor.cardID = nil;

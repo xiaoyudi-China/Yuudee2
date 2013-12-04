@@ -82,6 +82,12 @@
 		ABAB5341184D7A5800BD8DAF /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = ABAB5340184D7A5800BD8DAF /* background.png */; };
 		ABAB534A184D884F00BD8DAF /* HAMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5348184D884F00BD8DAF /* HAMGridViewController.m */; };
 		ABAB534B184D884F00BD8DAF /* HAMGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAB5349184D884F00BD8DAF /* HAMGridViewController.xib */; };
+		ABAB5385184E1C3400BD8DAF /* HAMImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAB5383184E1C3400BD8DAF /* HAMImageCropperViewController.m */; };
+		ABAB5386184E1C3400BD8DAF /* HAMImageCropperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABAB5384184E1C3400BD8DAF /* HAMImageCropperViewController.xib */; };
+		ABAB5389184EDA9800BD8DAF /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAB5387184EDA9800BD8DAF /* libMobClickLibrary.a */; };
+		ABAB538B184EDACD00BD8DAF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ABAB538A184EDACD00BD8DAF /* libz.dylib */; };
+		ABAB538E184EF6BF00BD8DAF /* addnew in Resources */ = {isa = PBXBuildFile; fileRef = ABAB538C184EF6BF00BD8DAF /* addnew */; };
+		ABAB538F184EF6BF00BD8DAF /* back in Resources */ = {isa = PBXBuildFile; fileRef = ABAB538D184EF6BF00BD8DAF /* back */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -199,6 +205,14 @@
 		ABAB5347184D884F00BD8DAF /* HAMGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMGridViewController.h; path = settings/HAMGridViewController.h; sourceTree = "<group>"; };
 		ABAB5348184D884F00BD8DAF /* HAMGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMGridViewController.m; path = settings/HAMGridViewController.m; sourceTree = "<group>"; };
 		ABAB5349184D884F00BD8DAF /* HAMGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridViewController.xib; path = settings/HAMGridViewController.xib; sourceTree = "<group>"; };
+		ABAB5382184E1C3400BD8DAF /* HAMImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMImageCropperViewController.h; path = settings/HAMImageCropperViewController.h; sourceTree = "<group>"; };
+		ABAB5383184E1C3400BD8DAF /* HAMImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMImageCropperViewController.m; path = settings/HAMImageCropperViewController.m; sourceTree = "<group>"; };
+		ABAB5384184E1C3400BD8DAF /* HAMImageCropperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMImageCropperViewController.xib; path = settings/HAMImageCropperViewController.xib; sourceTree = "<group>"; };
+		ABAB5387184EDA9800BD8DAF /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		ABAB5388184EDA9800BD8DAF /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		ABAB538A184EDACD00BD8DAF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		ABAB538C184EF6BF00BD8DAF /* addnew */ = {isa = PBXFileReference; lastKnownFileType = file; name = addnew; path = "../../../../Downloads/20131204 素材库/addnew"; sourceTree = "<group>"; };
+		ABAB538D184EF6BF00BD8DAF /* back */ = {isa = PBXFileReference; lastKnownFileType = file; name = back; path = "../../../../Downloads/20131204 素材库/back"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +220,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABAB538B184EDACD00BD8DAF /* libz.dylib in Frameworks */,
+				ABAB5389184EDA9800BD8DAF /* libMobClickLibrary.a in Frameworks */,
 				66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */,
 				667E53BC17A633DC00BBDE35 /* libsqlite3.dylib in Frameworks */,
 				667059241796A46900E3B156 /* AVFoundation.framework in Frameworks */,
@@ -280,6 +296,7 @@
 		66610491178BB04A003AEE3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB538A184EDACD00BD8DAF /* libz.dylib */,
 				667E53BB17A633DC00BBDE35 /* libsqlite3.dylib */,
 				66CC961717B4BDE700DB3A57 /* SystemConfiguration.framework */,
 				6612626817AB7B0C0047AA9B /* QuartzCore.framework */,
@@ -295,6 +312,7 @@
 		66610498178BB04A003AEE3D /* iosapp */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB5390184EF8D900BD8DAF /* umeng */,
 				8ECB050C183A499900EA506C /* lib */,
 				6613011917C1FA6800903CA8 /* supports */,
 				6697BD98179F6FC7002E37E8 /* settings */,
@@ -315,6 +333,8 @@
 		66610499178BB04A003AEE3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABAB538C184EF6BF00BD8DAF /* addnew */,
+				ABAB538D184EF6BF00BD8DAF /* back */,
 				ABAB5340184D7A5800BD8DAF /* background.png */,
 				ABAB533C184D753E00BD8DAF /* cardBG.png */,
 				ABAB533D184D753E00BD8DAF /* classBG.png */,
@@ -371,6 +391,9 @@
 				8E07286A183609A100E538FB /* HAMCardEditorViewController.h */,
 				8E07286B183609A100E538FB /* HAMCardEditorViewController.m */,
 				8E07286C183609A100E538FB /* HAMCardEditorViewController.xib */,
+				ABAB5382184E1C3400BD8DAF /* HAMImageCropperViewController.h */,
+				ABAB5383184E1C3400BD8DAF /* HAMImageCropperViewController.m */,
+				ABAB5384184E1C3400BD8DAF /* HAMImageCropperViewController.xib */,
 				8E07286F1836202B00E538FB /* HAMRecorderViewController.h */,
 				8E0728701836202B00E538FB /* HAMRecorderViewController.m */,
 				8E0728711836202B00E538FB /* HAMRecorderViewController.xib */,
@@ -460,6 +483,15 @@
 			path = animationLib;
 			sourceTree = "<group>";
 		};
+		ABAB5390184EF8D900BD8DAF /* umeng */ = {
+			isa = PBXGroup;
+			children = (
+				ABAB5387184EDA9800BD8DAF /* libMobClickLibrary.a */,
+				ABAB5388184EDA9800BD8DAF /* MobClick.h */,
+			);
+			name = umeng;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -533,6 +565,7 @@
 				ABAB533F184D753E00BD8DAF /* classBG.png in Resources */,
 				66E66BD117A8FD4200F6177B /* bg.png in Resources */,
 				66E66BD317A90A9F00F6177B /* card.png in Resources */,
+				ABAB538E184EF6BF00BD8DAF /* addnew in Resources */,
 				66E66BD517A90AA200F6177B /* category.png in Resources */,
 				8E0728731836202B00E538FB /* HAMRecorderViewController.xib in Resources */,
 				66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */,
@@ -548,8 +581,10 @@
 				8E56261318335ADD00351EA2 /* selected.png in Resources */,
 				8E07286E183609A100E538FB /* HAMCardEditorViewController.xib in Resources */,
 				6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */,
+				ABAB5386184E1C3400BD8DAF /* HAMImageCropperViewController.xib in Resources */,
 				ABAB533E184D753E00BD8DAF /* cardBG.png in Resources */,
 				6650B2E517D5D6C500770C25 /* nopic.png in Resources */,
+				ABAB538F184EF6BF00BD8DAF /* back in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +608,7 @@
 				6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */,
 				8ECB04FB183A428600EA506C /* HAMAnimation.m in Sources */,
 				6697BDB2179FD7C0002E37E8 /* HAMCategorySelectorViewController.m in Sources */,
+				ABAB5385184E1C3400BD8DAF /* HAMImageCropperViewController.m in Sources */,
 				8ECB0518183A499900EA506C /* QBAnimationGroup.m in Sources */,
 				66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */,
 				8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */,
@@ -701,6 +737,7 @@
 					"$(inherited)",
 					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp/UMSocial_Sdk_3.1/frameworks/Wechat,
 					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp/UMSocial_Sdk_3.1,
+					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp,
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
@@ -724,6 +761,7 @@
 					"$(inherited)",
 					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp/UMSocial_Sdk_3.1/frameworks/Wechat,
 					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp/UMSocial_Sdk_3.1,
+					/Users/lei/Documents/Projects/xiaoyudi_iOS/iosapp,
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";

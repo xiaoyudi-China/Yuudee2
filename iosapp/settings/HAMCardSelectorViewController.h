@@ -12,6 +12,7 @@
 #import "HAMConstants.h"
 #import "HAMGridViewController.h"
 #import "HAMCardEditorViewController.h"
+#import "MobClick.h"
 
 @interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 

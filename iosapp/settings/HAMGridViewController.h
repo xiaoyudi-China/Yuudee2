@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAMConstants.h"
+
+CGRect CENTRAL_POINT_RECT;
 
 @interface HAMGridViewController : UIViewController 
 
