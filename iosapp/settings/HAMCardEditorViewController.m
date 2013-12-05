@@ -69,12 +69,12 @@
 		
 		self.tempCard.image.localPath = self.tempImagePath; // point to the temporary file
 		self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+		
+		self.editCardTitleView.hidden = NO; // default state is hidden
 	}
 	else { // new card
 		// don't allow deletion when creating a card
 		self.deleteCardButton.hidden = YES;
-		// must specify card name and image before saving
-		self.finishButton.enabled = NO;
 		// must specify card name and image before recording
 		self.recordButton.enabled = NO;
 	}
@@ -88,6 +88,7 @@
 	
 	HAMCard *category = [self.config card:self.categoryID];
 	self.categoryNameLabel.text = category.name;
+	self.newCategoryID = self.categoryID;
 	
 	self.cardNameLabel.text = self.tempCard.name;
 	
@@ -95,7 +96,8 @@
 	self.recorder = [[HAMRecorderViewController alloc] initWithNibName:@"HAMRecorderViewController" bundle:nil];
 	self.recorder.config = self.config;
 	self.recorder.tempCard = self.tempCard;
-	self.recorder.categoryID = self.categoryID;
+	self.recorder.isNewCard = ! self.cardID;
+	self.recorder.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,8 +127,7 @@
 	self.cardNameLabel.text = self.tempCard.name ? self.tempCard.name : self.cardNameLabel.text;
 	
 	// can save new card now
-	self.finishButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
-	self.recordButton.enabled = self.finishButton.enabled;
+	self.recordButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -134,13 +135,11 @@
 	return  NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-	// disable finish button while editing
-	self.finishButton.enabled = NO;
-}
-
 - (IBAction)recordButtonTapped:(id)sender {
 	self.recorder.popover = self.popover; // !!!
+	self.recorder.categoryID = self.categoryID;
+	self.recorder.newCategoryID = self.newCategoryID;
+	
 	[self.navigationController pushViewController:self.recorder animated:YES];
 }
 
@@ -187,10 +186,9 @@
 	}
 	
 	// can save new card now
-	if (self.tempCard.name) {
-		self.finishButton.enabled = YES;
+	if (self.tempCard.name)
 		self.recordButton.enabled = YES;
-	}
+
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {
@@ -200,32 +198,11 @@
 	[self.popover dismissPopoverAnimated:YES];
 }
 
-- (IBAction)finishButtonTapped:(id)sender {
-		
-	NSFileManager *manager = [NSFileManager defaultManager];
-	// copy and then delete the temporary image file
-	BOOL success = YES;
-	// must delete the original file before writing new data to it
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]])
-		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	if (! success) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
-	
-	self.tempCard.image.localPath = self.imagePath;
-	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
-	
-	if (! self.cardID) { // if this is a new card, then insert it into a category
-		NSInteger numChildren = [self.config childrenCardIDOfCat:self.categoryID].count;
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation:ROOM_ANIMATION_NONE];
-		[self.config updateRoomOfCat:self.categoryID with:room atIndex:numChildren];
-	}
-	
-	[self.popover dismissPopoverAnimated:YES];
+- (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
+	
+	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
+	[MobClick event:@"create_card" attributes:attrs]; // trace event
 }
 
 - (IBAction)chooseCategoryButtonPressed:(id)sender {
@@ -256,8 +233,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	self.categoryID = self.categoryIDs[indexPath.row];
-	HAMCard *category = [self.config card:self.categoryID];
+	self.newCategoryID = self.categoryIDs[indexPath.row];
+	HAMCard *category = [self.config card:self.newCategoryID];
 	self.categoryNameLabel.text = category.name;
 }
 

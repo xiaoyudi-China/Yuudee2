@@ -12,7 +12,7 @@
                 <outlet property="categoryNameLabel" destination="udm-uy-gR1" id="6fc-7t-uPJ"/>
                 <outlet property="chooseCategoryButton" destination="q0A-On-nio" id="Z5j-cd-zKa"/>
                 <outlet property="deleteCardButton" destination="DLa-zf-tZ3" id="IWT-es-Uub"/>
-                <outlet property="finishButton" destination="b3s-04-I2z" id="CEk-7o-P2w"/>
+                <outlet property="editCardTitleView" destination="biN-6E-Y8u" id="ht2-rU-D4X"/>
                 <outlet property="imageView" destination="spa-Fx-Q2D" id="SRF-I6-e3l"/>
                 <outlet property="recordButton" destination="8FH-lh-VwA" id="5LY-LM-N7o"/>
                 <outlet property="shootImageButton" destination="QRT-0m-q3l" id="eu7-mN-aoC"/>
@@ -87,16 +87,6 @@
                         <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="eu8-m5-4HK"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3s-04-I2z">
-                    <rect key="frame" x="313" y="367" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="完成">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="finishButtonTapped:" destination="-1" eventType="touchUpInside" id="wAn-PN-NXs"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-Yw-AeG">
                     <rect key="frame" x="396" y="201" width="123" height="68"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -129,6 +119,10 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="biN-6E-Y8u">
+                    <rect key="frame" x="194" y="42" width="185" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -142,6 +136,7 @@
         <image name="cancel" width="338" height="178"/>
         <image name="cardBG.png" width="1265" height="1224"/>
         <image name="choose" width="496" height="142"/>
+        <image name="editcard.png" width="370" height="90"/>
         <image name="name" width="480" height="135"/>
         <image name="next" width="338" height="178"/>
     </resources>

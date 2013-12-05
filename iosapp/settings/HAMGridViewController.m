@@ -36,9 +36,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)returnButtonPressed:(id)sender {
+- (IBAction)leftTopButtonPressed:(id)sender {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)createButtonPressed:(id)sender {
+- (IBAction)rightTopButtonPressed:(id)sender {
+	// to be overridden
 }
 @end

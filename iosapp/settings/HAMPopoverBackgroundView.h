@@ -10,8 +10,8 @@
 
 @interface HAMPopoverBackgroundView : UIPopoverBackgroundView
 
-@property (nonatomic, readwrite) CGFloat arrowOffset;
-@property (nonatomic, readwrite) UIPopoverArrowDirection arrowDirection;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic, readwrite) UIPopoverArrowDirection arrowDirection;
+@property (nonatomic, readwrite) CGFloat arrowOffset;
 
 @end

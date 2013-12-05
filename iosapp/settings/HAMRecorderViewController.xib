@@ -8,8 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMRecorderViewController">
             <connections>
                 <outlet property="cancelButton" destination="kgm-Yf-Iin" id="AUl-3X-Fdl"/>
+                <outlet property="cardNameLabel" destination="DoT-DC-x81" id="zRS-rM-NFI"/>
                 <outlet property="deleteButton" destination="JNw-sY-KPF" id="bkF-PF-FjB"/>
                 <outlet property="finishButton" destination="nT0-mz-exe" id="UQV-oS-Kcb"/>
+                <outlet property="imageView" destination="op5-i8-FUz" id="XRt-tM-lZg"/>
                 <outlet property="playButton" destination="gPA-T4-wyh" id="gtv-9n-KFF"/>
                 <outlet property="recordButton" destination="Rhm-e1-ssT" id="cn6-nx-kwg"/>
                 <outlet property="statusLabel" destination="py0-Oh-zY8" id="USl-BQ-buz"/>
@@ -68,7 +70,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-mz-exe">
-                    <rect key="frame" x="345" y="436" width="169" height="89"/>
+                    <rect key="frame" x="346" y="436" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="confirm">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

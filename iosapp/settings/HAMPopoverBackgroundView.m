@@ -1,55 +1,55 @@
 //
-//  HAMPopoverBackgroundView.m
-//  iosapp
+//  PopoverBackgroundView.m
+//  CustomPopover
 //
-//  Created by 张 磊 on 13-12-4.
-//  Copyright (c) 2013年 Droplings. All rights reserved.
+//  Created by Aaron Crabtree on 3/25/13.
+//  Copyright (c) 2013 Tap Dezign. All rights reserved.
 //
 
 #import "HAMPopoverBackgroundView.h"
 
+@interface HAMPopoverBackgroundView()
+@end
+
+
 @implementation HAMPopoverBackgroundView
+
+// TODO: understand this !!!
+@synthesize arrowDirection  = _arrowDirection;
+@synthesize arrowOffset     = _arrowOffset;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-		self.imageView = [[UIImageView alloc] init];
-		self.imageView.alpha = 0.0;
-		
-		[self addSubview:self.imageView];
+        self.backgroundColor = [UIColor clearColor];
+		self.layer.shadowColor = [UIColor clearColor].CGColor; // remove the shadow
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
++ (CGFloat)arrowBase
 {
-    // Drawing code
-}
-*/
-
-- (void)layoutSubviews {
-	self.imageView.frame = (CGRect){CGPointZero, self.frame.size};
+    return 0.0;
 }
 
-+ (CGFloat)arrowBase {
-	return 0.0;
++ (CGFloat)arrowHeight
+{
+    return 0.0;
 }
 
-+ (CGFloat)arrowHeight {
-	return 0.0;
-}
-
-+ (UIEdgeInsets)contentViewInsets {
-	return UIEdgeInsetsZero;
++ (UIEdgeInsets)contentViewInsets
+{
+    return UIEdgeInsetsZero;
 }
 
 + (BOOL)wantsDefaultContentAppearance {
 	return NO;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
 }
 
 @end

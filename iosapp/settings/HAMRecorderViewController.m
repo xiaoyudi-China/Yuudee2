@@ -12,7 +12,8 @@
 
 @property NSString *audioPath;
 @property NSString *tempAudioPath;
-@property BOOL isNewCard;
+@property NSString *imagePath;
+@property NSString *tempImagePath;
 
 @end
 
@@ -62,6 +63,9 @@
 	
 	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
 	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
+	
+	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
+	self.tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
 
 	// save audio to the temporary file
 	self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[HAMFileTools fileURL:self.tempAudioPath] settings:recordSettings error:NULL];
@@ -72,23 +76,8 @@
 		self.recordButton.hidden = YES;
 	}
 	
-	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
-	self.initRow = -1;
-	// find the card's category
-	for (NSString *categoryID in self.categoryIDs) {
-		NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
-		if ([cardIDs containsObject:self.tempCard.UUID]) {
-			self.initRow = [self.categoryIDs indexOfObject:categoryID];
-			break;
-		}
-	}
-	self.isNewCard = (self.initRow == -1);
-	if (self.isNewCard) {
-		if (self.categoryID) // created with a specific category
-			self.initRow = [self.categoryIDs indexOfObject:self.categoryID];
-		else // default uncategorized
-			self.initRow = [self.categoryIDs indexOfObject:UNCATEGORIZED_ID];
-	}
+	self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+	self.cardNameLabel.text = self.tempCard.name;
 	
 	// fit into the popover
 	self.preferredContentSize = self.view.frame.size;
@@ -106,6 +95,25 @@
 
 - (IBAction)finishButtonPressed:(id)sender {
 	
+	// store image and card name
+	// ---------------------------
+	NSFileManager *manager = [NSFileManager defaultManager];
+	// copy and then delete the temporary image file
+	BOOL success = YES;
+	// must delete the original file before writing new data to it
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]])
+		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:nil];
+	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
+	if (! success) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
+	self.tempCard.image.localPath = self.imagePath;
+	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
+		
+	// store audio
+	// ------------------
 	if (self.tempCard.audio) { // has audio, either newly recorded or already existing
 		NSFileManager *manager = [NSFileManager defaultManager];
 		// copy and then delete the temporary audio file
@@ -121,26 +129,29 @@
 			return;
 		}
 		
-		NSString *imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
-		NSString *tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
-		// copy and then delete the temporary image file, on behalf of the card editor
-		success = YES;
-		// must delete the original file before writing new data to it
-		if ([manager fileExistsAtPath:[HAMFileTools filePath:imagePath]])
-			success = success && [manager removeItemAtPath:[HAMFileTools filePath:imagePath] error:nil];
-		success = success && [manager moveItemAtPath:[HAMFileTools filePath:tempImagePath] toPath:[HAMFileTools filePath:imagePath] error:NULL];
-		if (!success) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-			[alert show];
-			
-			return;
-		}
-		
 		self.tempCard.audio.localPath = self.audioPath;
-		self.tempCard.image.localPath = imagePath;
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 	}
 	
+	// update category
+	// ------------------
+	NSInteger numChildren = [self.config childrenCardIDOfCat:self.newCategoryID].count;
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation:ROOM_ANIMATION_NONE];
+	
+	if (self.isNewCard) {
+		// if this is a new card, then insert it into a new category
+		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
+	}
+	else if (! [self.newCategoryID isEqualToString:self.categoryID]) { // category is changed
+		// add the card to the new category
+		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
+		
+		// remove the card from the old category
+		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
+		[self.config deleteChildOfCatInLib:self.categoryID atIndex:oldIndex];
+	}
+	
+	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
 	[self.popover dismissPopoverAnimated:YES];
 }
 
@@ -230,19 +241,6 @@
 	self.deleteButton.enabled = YES;
 	self.cancelButton.enabled = YES;
 	self.finishButton.enabled = YES;
-}
-
-- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	NSString *categoryID = self.categoryIDs[row];
-	return [self.config card:categoryID].name;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-	return 1;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return self.categoryIDs.count;
 }
 
 @end

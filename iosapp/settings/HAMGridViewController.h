@@ -14,5 +14,9 @@ CGRect CENTRAL_POINT_RECT;
 @interface HAMGridViewController : UIViewController 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *rightTopButton;
+
+- (IBAction)leftTopButtonPressed:(id)sender;
+- (IBAction)rightTopButtonPressed:(id)sender;
 
 @end

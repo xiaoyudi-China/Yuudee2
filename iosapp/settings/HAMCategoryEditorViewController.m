@@ -105,6 +105,7 @@
 		[self.config updateCard:category name:self.tempCategoryName audio:nil image:nil];
 	}
 	else { // creating category
+		
 		HAMCard *category = [[HAMCard alloc] initNewCard];
 		NSString *categoryName = self.tempCategoryName;
 		// type 0 indicates a category
@@ -114,6 +115,9 @@
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
+		
+		NSDictionary *attrs = [NSDictionary dictionaryWithObject:categoryName forKey:@"分类名称"];
+		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
 	
 	[self.popover dismissPopoverAnimated:YES];
