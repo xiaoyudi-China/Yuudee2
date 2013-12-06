@@ -110,8 +110,12 @@
 
 -(void)getCardPosWithCardZone:(CGRect)cardZone
 {
-    double xSpace = (cardZone.size.width - xnum_ * cardWidth) / (xnum_ - 1);
-    double ySpace = (cardZone.size.height - ynum_ * cardHeight) / (ynum_ - 1);
+    double xSpace =  0;
+    if (xnum_ > 1)
+        xSpace = (cardZone.size.width - xnum_ * cardWidth) / (xnum_ - 1);
+    double ySpace = 0;
+    if (ynum_ > 1)
+        ySpace = (cardZone.size.height - ynum_ * cardHeight) / (ynum_ - 1);
     
     int i,j;
     for (i = 0; i < ynum_; i++) {
