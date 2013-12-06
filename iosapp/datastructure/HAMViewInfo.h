@@ -35,6 +35,14 @@
 @property double picWidth;
 @property double picHeight;
 
+@property CGPoint editBtnOffset;
+@property double editBtnWidth;
+@property double editBtnHeight;
+
+@property double blankBtnWidth;
+@property double blankBtnHeight;
+@property CGPoint blankBtnOffset;
+
 //-(id)initWithframe:(CGRect)frame xnum:(int)_xnum ynum:(int)_ynum h:(double)_h minspace:(double)_minspace;
 -(id)initWithXnum:(int)xnum ynum:(int)ynum;
 

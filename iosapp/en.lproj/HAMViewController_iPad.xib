@@ -24,6 +24,58 @@
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mMR-wX-soC">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchDownEnterEditButton:" destination="-1" eventType="touchDown" id="qEO-j6-3en"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpOutside" id="XCm-5G-TSw"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpInside" id="wtp-jT-uOX"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FqL-f7-1mm">
+                    <rect key="frame" x="618" y="874" width="150" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchDownEnterEditButton:" destination="-1" eventType="touchDown" id="pPo-Bh-Zcg"/>
+                        <action selector="touchDownEnterEditButton:" destination="-1" eventType="touchUpInside" id="v86-o7-qCp"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpOutside" id="gkM-cf-8Hq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XWg-Qg-ZPW">
+                    <rect key="frame" x="618" y="0.0" width="150" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchDownEnterEditButton:" destination="-1" eventType="touchDown" id="XGL-Bc-nEN"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpOutside" id="ZlZ-LV-11I"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpInside" id="nm6-aL-Z9C"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mzD-Xd-GZq">
+                    <rect key="frame" x="0.0" y="874" width="150" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="touchDownEnterEditButton:" destination="-1" eventType="touchDown" id="Lvo-Di-Y3v"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpOutside" id="8BO-po-Iml"/>
+                        <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpInside" id="HGb-Rk-deu"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>

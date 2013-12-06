@@ -11,5 +11,6 @@
 @interface HAMViewTool : NSObject
 
 +(void)showAlert:(NSString*)text;
++(void)setHighLightImage:(NSString*)imageName forButton:(UIButton*)button;
 
 @end

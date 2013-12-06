@@ -100,7 +100,10 @@
         structureEditViewController=[[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
     
     if (!navController)
+    {
         navController=[[UINavigationController alloc] initWithRootViewController:structureEditViewController];
+        navController.navigationBarHidden = YES;
+    }
     
     [self.window addSubview:navController.view];
 }

@@ -24,6 +24,14 @@
 @synthesize picHeight;
 @synthesize picWidth;
 
+@synthesize editBtnOffset;
+@synthesize editBtnHeight;
+@synthesize editBtnWidth;
+
+@synthesize blankBtnHeight;
+@synthesize blankBtnOffset;
+@synthesize blankBtnWidth;
+
 -(id)initWithframe:(CGRect)frame xnum:(int)_xnum ynum:(int)_ynum h:(double)_h minspace:(double)_minspace
 {
     if (self=[super init]){
@@ -76,14 +84,26 @@
                 break;
         }
     }
-    picOffsetX = 70 * cardWidth / 632.5;
-    picOffsetY = 40 * cardWidth / 632.5;
+    double scale = cardWidth / 632.5;
+    double scaleMid = cardWidth / 351.5;
+    
+    picOffsetX = 70 * scale;
+    picOffsetY = 40 * scale;
     picWidth = cardWidth - 2 * picOffsetX;
     picHeight = cardHeight * 0.6;
     
-    fontSize = 49 * cardWidth / 632.5;
-    catLableY = 425 * cardWidth / 632.5;
-    cardLableY = 252 * cardWidth / 351.5;
+    fontSize = 49 * scale;
+    catLableY = 425 * scale;
+    cardLableY = 252 * scaleMid;
+    
+    editBtnWidth = 82 * scaleMid;
+    editBtnHeight = 86 * scaleMid;
+    editBtnOffset = CGPointMake(cardWidth - editBtnWidth, -25 * scaleMid);
+    
+    blankBtnWidth = 317 * scaleMid;
+    blankBtnHeight = 317 * scaleMid;
+    blankBtnOffset = CGPointMake((cardWidth - blankBtnWidth) / 2, (cardHeight - blankBtnHeight) / 8);
+
     [self getCardPosWithCardZone:cardZone];
     return self;
 }

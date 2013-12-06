@@ -25,4 +25,7 @@
     
     NSString* currentUUID;
 }
+- (IBAction)touchDownEnterEditButton:(UIButton *)sender;
+- (IBAction)touchUpEnterEditButton:(UIButton *)sender;
+
 @end

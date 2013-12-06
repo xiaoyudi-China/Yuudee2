@@ -66,7 +66,7 @@
             {
                 isBlankAtTag_[childIndex] = YES;
                 //isBlankAtIndex_[posIndex + pageIndex * btnsPerPage] = YES;
-                [self addAddNodeAtPos:posIndex onPage:pageIndex index:childIndex];
+                [self addBlankButtonAtPos:posIndex onPage:pageIndex index:childIndex];
                 continue;
             }
             
@@ -88,7 +88,6 @@
 //    int index = i * j + btnsPerPage * pageIndex;
     
     UIButton* button = [super addButtonAtPosIndex:index onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
-    //don't add return button
     if (tag == -1)
         return button;
     
@@ -97,7 +96,6 @@
     UIView* cardView = [cardViewArray_ objectAtIndex:tag];
     positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
-//    indexOfTag_[tag] = index;
     
     if (isBlankAtTag_[tag]) {
         return button;
@@ -110,31 +108,51 @@
     return nil;
 }
 
-- (void)addAddNodeAtPos:(int)pos onPage:(int)pageIndex index:(int)index
+- (void)addBlankButtonAtPos:(int)pos onPage:(int)pageIndex index:(int)index
 {
-    [self addButtonAtPosIndex:index onPage:pageIndex picName:@"add.png" action:@selector(addClicked:) tag:index bgType:-1];
-    [self addLabelAtPosIndex:pos onPage:pageIndex text:@"新增词条/分组" color:[UIColor blackColor] type:CARD_TYPE_CARD tag:index];
+    //add card view
+    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
+    CGPoint blankBtnOffset = viewInfo.blankBtnOffset;
+    CGRect frame = CGRectMake(cardPosition.x + blankBtnOffset.x, cardPosition.y + blankBtnOffset.y, viewInfo.blankBtnWidth, viewInfo.blankBtnHeight);
+    
+    UIButton* blankButton = [[UIButton alloc] initWithFrame:frame];
+    UIImage* bgImage = [UIImage imageNamed:@"parent_main_blankcard.png"];
+    [blankButton setImage:bgImage forState:UIControlStateNormal];
+    
+    blankButton.tag = index;
+    [blankButton addTarget:viewController_ action:@selector(addClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [pageView addSubview:blankButton];
+    [HAMTools setObject:blankButton toMutableArray:cardViewArray_ atIndex:index];
 }
 
 - (void)addEditButtonAtPos:(int)pos onPage:(int)pageIndex tag:(int)tag
 {
-    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
-    
-    UIButton* editButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     CGPoint position = [viewInfo cardPositionAtIndex:pos];
-    double buttonWidth = viewInfo.cardWidth * 0.25;
-    position.x += viewInfo.cardWidth - buttonWidth;
-    editButton.frame = CGRectMake(position.x, position.y, buttonWidth, buttonWidth);
-    editButton.backgroundColor = [UIColor whiteColor];
+    CGPoint editBtnOffset = viewInfo.editBtnOffset;
+    
+    position.x += editBtnOffset.x;
+    position.y += editBtnOffset.y;
+    
+    CGRect frame = CGRectMake(position.x, position.y, viewInfo.editBtnWidth, viewInfo.editBtnHeight);
+    UIButton* editButton = [[UIButton alloc] initWithFrame:frame];
+    
+    UIImage *bgImageNom = [UIImage imageNamed:@"parent_main_editbtn.png"];
+    UIImage *bgImageHighlight = [UIImage imageNamed:@"parent_main_editbtn_down.png"];
+    [editButton setImage:bgImageNom forState:UIControlStateNormal];//正常状态
+    [editButton setImage:bgImageHighlight forState:UIControlStateHighlighted];//点击高亮状态
+    
     editButton.tag = tag;
     [editButton addTarget:viewController_ action:@selector(editClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
+    /*
     CALayer * downButtonLayer = [editButton layer];
     [downButtonLayer setMasksToBounds:YES];
     [downButtonLayer setCornerRadius:20.0];
     [downButtonLayer setBorderWidth:1.0];
-    [downButtonLayer setBorderColor:[[UIColor grayColor] CGColor]];
+    [downButtonLayer setBorderColor:[[UIColor grayColor] CGColor]];*/
     
+    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     [pageView addSubview:editButton];
     [editButtonArray_ addObject:editButton];
 }
@@ -147,7 +165,6 @@
     CGFloat pageWidth = CGRectGetWidth(scrollView_.frame);
     currentPage_ = floor((scrollView_.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 }
-
 
 -(void)moveCardView:(UIView*)targetView toPosition:(CGPoint)position animated:(Boolean)animated{
     if (!animated) {

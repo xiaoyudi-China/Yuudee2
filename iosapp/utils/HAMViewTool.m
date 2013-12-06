@@ -20,4 +20,9 @@
     [alert show];
 }
 
++(void)setHighLightImage:(NSString*)imageName forButton:(UIButton*)button{
+    UIImage *highLightImage = [UIImage imageNamed:imageName];
+    [button setImage:highLightImage forState:UIControlStateHighlighted];
+}
+
 @end
