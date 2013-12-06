@@ -26,15 +26,15 @@
                         <rect key="frame" x="19" y="161" width="200" height="27"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                        <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-rc-3AL">
-                        <rect key="frame" x="157" y="0.0" width="82" height="86"/>
+                        <rect key="frame" x="192" y="0.0" width="45" height="45"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="tintColor" red="0.26246229397186993" green="0.27958683772915971" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <state key="normal" image="edititem"/>
+                        <state key="normal" image="unselected.png"/>
                         <connections>
                             <action selector="rightTopButtonPressed:" destination="bp9-r6-XfT" eventType="touchUpInside" id="qWg-sq-idn"/>
                         </connections>
@@ -52,6 +52,6 @@
     </objects>
     <resources>
         <image name="cardBG.png" width="1265" height="1224"/>
-        <image name="edititem" width="164" height="172"/>
+        <image name="unselected.png" width="84" height="84"/>
     </resources>
 </document>

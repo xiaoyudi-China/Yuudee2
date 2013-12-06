@@ -15,11 +15,15 @@
 
 @implementation HAMCategorySelectorViewController
 
+// TODO: refactor?
+CGRect CENTRAL_POINT_RECT;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];	
     if (self) {
         // Custom initialization
+		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
     }
     return self;
 }
@@ -51,7 +55,6 @@
     [super viewDidLoad];
 	
 	[self.collectionView registerClass:[HAMGridCell class] forCellWithReuseIdentifier:@"CategoryCell"];
-	self.navigationController.navigationBarHidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -63,10 +66,13 @@
 	
 	if (self.cellMode == HAMGridCellModeEdit) {
 		self.title = @"编辑卡片/分类";
+		// press this button to create a new card or new category
+		UIBarButtonItem *createItemButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(createItemButtonPressed)];
+		self.navigationItem.rightBarButtonItem = createItemButton;
 	}
 	else {
 		self.title = @"选择分类";
-		self.rightTopButton.hidden = YES;
+		self.navigationItem.rightBarButtonItem = nil;
 	}
 	
 	// !!!
@@ -97,8 +103,7 @@
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
 	else { // Mode edit
-		// FIXME: should use the file name offered by XingMei
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"edititem.png"] forState:UIControlStateNormal];
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
 		// FIXME: not working
@@ -127,38 +132,36 @@
 	[self.navigationController pushViewController:cardSelector animated:YES];
 }
 
-- (void)rightTopButtonPressed:(id)sender {
+
+- (void)createItemButtonPressed {
+	
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"创建分类", @"创建卡片", nil];
-	[actionSheet showFromRect:self.rightTopButton.frame inView:self.view animated:YES];
+	[actionSheet showFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) { // create category
-		
 		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
 		categoryEditor.categoryID = nil;
 		categoryEditor.config = self.config;
 		categoryEditor.delegate = self;
 		
 		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 		categoryEditor.popover = self.popover;
 
 		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
 		
 	}
 	else if (buttonIndex == 1) { // create card
-		
 		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 		cardEditor.cardID = nil;
-		cardEditor.categoryID = UNCATEGORIZED_ID;
+		cardEditor.categoryID = nil;
 		cardEditor.config = self.config;
 		
 		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
 		navigator.navigationBarHidden = YES; // don't show navigation bar
 		
 		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 		cardEditor.popover = self.popover;
 		
 		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
@@ -174,11 +177,6 @@
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:categoryID animation:[self.config animationOfCat:self.parentID atIndex:self.index]]; // keep the animation unchanged
 		[self.config updateRoomOfCat:self.parentID with:room atIndex:self.index];
 		[self.navigationController popViewControllerAnimated:TRUE];
-		
-		// trace user events
-		HAMCard *category = [self.config card:categoryID];
-		NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:category.name, @"分类名称", [NSString stringWithFormat:@"%d", self.index], @"添加位置", nil];
-		[MobClick event:@"add_category" attributes:attrs];
 	}
 	else { // Mode Edit
 		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
@@ -187,9 +185,9 @@
 		categoryEditor.delegate = self;
 		
 		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 		categoryEditor.popover = self.popover;
 
+		// FIXME: the arrow direction
 		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
 	}
 }

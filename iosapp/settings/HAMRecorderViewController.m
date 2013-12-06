@@ -12,8 +12,7 @@
 
 @property NSString *audioPath;
 @property NSString *tempAudioPath;
-@property NSString *imagePath;
-@property NSString *tempImagePath;
+@property BOOL isNewCard;
 
 @end
 
@@ -46,13 +45,8 @@
 	if (self.tempCard.audio) { // audio already exists
 		// copy the existing audio file to the temporary file
 		NSFileManager *manager = [NSFileManager defaultManager];
-		success = [manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
-		if (! success) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法读取音频文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-			[alert show];
-			
-			self.playButton.enabled = NO;
-		}
+		// FIXME: *elegant* error handling
+		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
 		
 		self.tempCard.audio.localPath = self.tempAudioPath; // point to the temp file
 	}
@@ -68,9 +62,6 @@
 	
 	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
 	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
-	
-	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
-	self.tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
 
 	// save audio to the temporary file
 	self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[HAMFileTools fileURL:self.tempAudioPath] settings:recordSettings error:NULL];
@@ -81,9 +72,27 @@
 		self.recordButton.hidden = YES;
 	}
 	
-	self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
-	self.cardNameLabel.text = self.tempCard.name;
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	self.initRow = -1;
+	// find the card's category
+	for (NSString *categoryID in self.categoryIDs) {
+		NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
+		if ([cardIDs containsObject:self.tempCard.UUID]) {
+			self.initRow = [self.categoryIDs indexOfObject:categoryID];
+			break;
+		}
+	}
+	self.isNewCard = (self.initRow == -1);
+	if (self.isNewCard) {
+		if (self.categoryID) // created with a specific category
+			self.initRow = [self.categoryIDs indexOfObject:self.categoryID];
+		else // default uncategorized
+			self.initRow = [self.categoryIDs indexOfObject:UNCATEGORIZED_ID];
+	}
 	
+	[self.pickerView selectRow:self.initRow inComponent:0 animated:NO];
+	self.selectedRow = self.initRow;
+
 	// fit into the popover
 	self.preferredContentSize = self.view.frame.size;
 }
@@ -100,25 +109,6 @@
 
 - (IBAction)finishButtonPressed:(id)sender {
 	
-	// store image and card name
-	// ---------------------------
-	NSFileManager *manager = [NSFileManager defaultManager];
-	// copy and then delete the temporary image file
-	BOOL success = YES;
-	// must delete the original file before writing new data to it
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]])
-		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	if (! success) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
-	self.tempCard.image.localPath = self.imagePath;
-	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
-		
-	// store audio
-	// ------------------
 	if (self.tempCard.audio) { // has audio, either newly recorded or already existing
 		NSFileManager *manager = [NSFileManager defaultManager];
 		// copy and then delete the temporary audio file
@@ -134,29 +124,43 @@
 			return;
 		}
 		
+		NSString *imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
+		NSString *tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
+		// copy and then delete the temporary image file, on behalf of the card editor
+		success = YES;
+		// must delete the original file before writing new data to it
+		if ([manager fileExistsAtPath:[HAMFileTools filePath:imagePath]])
+			success = success && [manager removeItemAtPath:[HAMFileTools filePath:imagePath] error:nil];
+		success = success && [manager moveItemAtPath:[HAMFileTools filePath:tempImagePath] toPath:[HAMFileTools filePath:imagePath] error:NULL];
+		if (!success) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+			[alert show];
+			
+			return;
+		}
+		
 		self.tempCard.audio.localPath = self.audioPath;
+		self.tempCard.image.localPath = imagePath;
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 	}
 	
-	// update category
-	// ------------------
-	NSInteger numChildren = [self.config childrenCardIDOfCat:self.newCategoryID].count;
-	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation:ROOM_ANIMATION_NONE];
-	
+	NSString *newCategoryID = self.categoryIDs[self.selectedRow];
+	NSInteger numChildren = [self.config childrenCardIDOfCat:newCategoryID].count;
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.UUID animation: ROOM_ANIMATION_NONE];
 	if (self.isNewCard) {
-		// if this is a new card, then insert it into a new category
-		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
-	}
-	else if (! [self.newCategoryID isEqualToString:self.categoryID]) { // category is changed
 		// add the card to the new category
-		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
+		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
+	}
+	else if (self.initRow != self.selectedRow) { // category changed for an old card
+		// add the card to the new category
+		[self.config updateRoomOfCat:newCategoryID with:room atIndex:numChildren];
 		
 		// remove the card from the old category
-		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
-		[self.config deleteChildOfCatInLib:self.categoryID atIndex:oldIndex];
+		NSString *oldCategoryID = self.categoryIDs[self.initRow];
+		NSInteger oldIndex = [[self.config childrenCardIDOfCat:oldCategoryID] indexOfObject:self.tempCard.UUID];
+		[self.config deleteChildOfCatInLib:oldCategoryID atIndex:oldIndex];
 	}
 	
-	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
 	[self.popover dismissPopoverAnimated:YES];
 }
 
@@ -166,14 +170,14 @@
 		if (! self.tempCard.audio)
 			self.tempCard.audio = [[HAMResource alloc] initWithPath:self.tempAudioPath];
 		
-		[self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
-		self.statusLabel.text = @"录音结束";
+		[self.recordButton setTitle:@"录音" forState:UIControlStateNormal];
 		
 		// re-enable other views
 		self.playButton.enabled = YES;
 		self.deleteButton.enabled = YES;
 		self.cancelButton.enabled = YES;
 		self.finishButton.enabled = YES;
+		self.pickerView.userInteractionEnabled = YES;
 	}
 	else { // start recording
 		BOOL success = [self.audioRecorder record];
@@ -182,14 +186,14 @@
 			[alert show];
 			return;
 		}
-		[self.recordButton setImage:[UIImage imageNamed:@"recordDOWN.png"] forState:UIControlStateNormal];
-		self.statusLabel.text = @"录音中...";
+		[self.recordButton setTitle:@"停止" forState:UIControlStateNormal];
 		
 		// disable all other views while recording
 		self.playButton.enabled = NO;
 		self.deleteButton.enabled = NO;
 		self.cancelButton.enabled = NO;
 		self.finishButton.enabled = NO;
+		self.pickerView.userInteractionEnabled = NO;
 	}
 }
 
@@ -205,31 +209,24 @@
 	self.audioPlayer.delegate = self; // !!!
 
 	[self.audioPlayer play];
-	// temporarily disable the play button while playing audio
-	self.playButton.enabled = NO;
-	self.statusLabel.text = @"播放中...";
+	[self.playButton setTitle:@"停止" forState:UIControlStateNormal];
 	
 	// disable all other views while playing audio
 	self.recordButton.enabled = NO;
 	self.deleteButton.enabled = NO;
 	self.cancelButton.enabled = NO;
 	self.finishButton.enabled = NO;
+	self.pickerView.userInteractionEnabled = NO;
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
 	NSFileManager *manager = [NSFileManager defaultManager];
-	BOOL success = YES;
+	// FIXME: error handling
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.audioPath]])
-		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+		[manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
 
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
-		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
-	
-	if (! success) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法删除音频文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-		[alert show];
-		return;
-	}
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
 	
 	// set the audio path to nil
 	self.tempCard.audio = nil;
@@ -244,14 +241,32 @@
 		[alert show];
 	}
 	
-	self.playButton.enabled = YES;
-	self.statusLabel.text = @"播放结束";
+	[self.playButton setTitle:@"播放" forState:UIControlStateNormal];
 	
 	// re-enable other views
 	self.recordButton.enabled = YES;
 	self.deleteButton.enabled = YES;
 	self.cancelButton.enabled = YES;
 	self.finishButton.enabled = YES;
+	self.pickerView.userInteractionEnabled = YES;
+}
+
+- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+
+	self.selectedRow = row;
+}
+
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+	NSString *categoryID = self.categoryIDs[row];
+	return [self.config card:categoryID].name;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+	return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+	return self.categoryIDs.count;
 }
 
 @end

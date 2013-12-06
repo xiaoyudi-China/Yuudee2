@@ -11,36 +11,26 @@
 #import "HAMConfig.h"
 #import "HAMConstants.h"
 
-@class HAMRecorderViewController;
-@protocol HAMRecorderViewControllerDelegate <NSObject>
-
-- (void)recorderDidEndRecording:(HAMRecorderViewController*)recorder;
-
-@end
-
-
-@interface HAMRecorderViewController : UIViewController <AVAudioPlayerDelegate>
+@interface HAMRecorderViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) HAMConfig *config;
 @property (strong, nonatomic) HAMCard *tempCard; // !!!: don't pass changes back to card editor
 @property (weak, nonatomic) UIPopoverController *popover;
 @property (weak, nonatomic) NSString *categoryID;
-@property (weak, nonatomic, getter = theNewCategoryID) NSString *newCategoryID;
-@property BOOL isNewCard;
-@property (weak, nonatomic) id<HAMRecorderViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) AVAudioRecorder *audioRecorder;
-@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) NSArray *categoryIDs;
+@property (strong, nonatomic) NSString *tempCategoryID;
+@property NSInteger initRow;
+@property NSInteger selectedRow;
 
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *cardNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
+@property (strong, nonatomic) AVAudioRecorder *audioRecorder;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)finishButtonPressed:(id)sender;

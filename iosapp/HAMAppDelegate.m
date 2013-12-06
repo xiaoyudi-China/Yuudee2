@@ -10,7 +10,6 @@
 #import "HAMViewController.h"
 #import "HAMSettingsViewController.h"
 #import "HAMStructureEditViewController.h"
-#import "MobClick.h"
 
 @implementation HAMAppDelegate
 
@@ -43,9 +42,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// incorporate the UMeng SDK
-	[MobClick startWithAppkey:@"529d8c2556240b9e4d007957"];
-	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self turnToChildView];
