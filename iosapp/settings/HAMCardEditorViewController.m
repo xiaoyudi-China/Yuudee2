@@ -62,12 +62,9 @@
 	// update the view accordingly
 	if (self.cardID) { // editing card
 		// copy the existing image file to the temporary
+		// FIXME: *elegant* error handling
 		NSFileManager *manager = [NSFileManager defaultManager];
-		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
-		if (! success) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-			[alert show];
-		}
+		[manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
 		
 		self.tempCard.image.localPath = self.tempImagePath; // point to the temporary file
 		self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
