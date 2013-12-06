@@ -46,8 +46,13 @@
 	if (self.tempCard.audio) { // audio already exists
 		// copy the existing audio file to the temporary file
 		NSFileManager *manager = [NSFileManager defaultManager];
-		// FIXME: *elegant* error handling
-		[manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
+		success = [manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
+		if (! success) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法读取音频文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+			[alert show];
+			
+			self.playButton.enabled = NO;
+		}
 		
 		self.tempCard.audio.localPath = self.tempAudioPath; // point to the temp file
 	}
@@ -213,12 +218,18 @@
 
 - (IBAction)deleteButtonPressed:(id)sender {
 	NSFileManager *manager = [NSFileManager defaultManager];
-	// FIXME: error handling
+	BOOL success = YES;
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.audioPath]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
+		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.audioPath] error:nil];
 
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
+		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:nil];
+	
+	if (! success) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法删除音频文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
+		[alert show];
+		return;
+	}
 	
 	// set the audio path to nil
 	self.tempCard.audio = nil;
