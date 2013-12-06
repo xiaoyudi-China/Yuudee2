@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="573" height="585"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addnewBG" translatesAutoresizingMaskIntoConstraints="NO" id="Or7-Fd-GCc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addnewBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="Or7-Fd-GCc">
                     <rect key="frame" x="-8" y="0.0" width="581" height="585"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -33,7 +33,7 @@
                     <rect key="frame" x="350" y="433" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="next">
+                    <state key="normal" image="next.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -44,7 +44,7 @@
                     <rect key="frame" x="267" y="201" width="123" height="67"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" image="camera"/>
+                    <state key="normal" image="camera.png"/>
                     <connections>
                         <action selector="shootImageButtonPressed:" destination="-1" eventType="touchUpInside" id="pSB-HL-utp"/>
                     </connections>
@@ -57,7 +57,7 @@
                     <rect key="frame" x="32" y="128" width="239" height="231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="添加卡片名称" textAlignment="center" minimumFontSize="17" background="name" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="添加卡片名称" textAlignment="center" minimumFontSize="17" background="name.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
                     <rect key="frame" x="267" y="276" width="252" height="68"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -80,7 +80,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axW-XG-eeR">
                     <rect key="frame" x="49" y="433" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="cancel">
+                    <state key="normal" image="cancel.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -90,7 +90,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-Yw-AeG">
                     <rect key="frame" x="396" y="201" width="123" height="68"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="album">
+                    <state key="normal" image="album.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -107,7 +107,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0A-On-nio">
                     <rect key="frame" x="267" y="128" width="252" height="71"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="choose">
+                    <state key="normal" image="choose.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -132,14 +132,14 @@
         </view>
     </objects>
     <resources>
-        <image name="addnewBG" width="1170" height="1146"/>
-        <image name="album" width="246" height="134"/>
-        <image name="camera" width="246" height="134"/>
-        <image name="cancel" width="338" height="178"/>
+        <image name="addnewBG.png" width="1170" height="1146"/>
+        <image name="album.png" width="246" height="134"/>
+        <image name="camera.png" width="246" height="134"/>
+        <image name="cancel.png" width="338" height="178"/>
         <image name="cardBG.png" width="1265" height="1224"/>
-        <image name="choose" width="496" height="142"/>
+        <image name="choose.png" width="496" height="142"/>
         <image name="editcard.png" width="370" height="90"/>
-        <image name="name" width="480" height="135"/>
-        <image name="next" width="338" height="178"/>
+        <image name="name.png" width="480" height="135"/>
+        <image name="next.png" width="338" height="178"/>
     </resources>
 </document>
