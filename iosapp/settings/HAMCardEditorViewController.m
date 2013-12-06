@@ -34,8 +34,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		
-    }
+	}
     return self;
 }
 
@@ -46,7 +45,7 @@
 	
 	// fit into the popover
 	self.preferredContentSize = self.view.frame.size;
-	
+		
 	// initialize the temporary card
 	if (self.cardID) { // editing card
 		self.tempCard = [self.config card:self.cardID];

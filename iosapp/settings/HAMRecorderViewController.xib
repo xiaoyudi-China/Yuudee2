@@ -11,6 +11,7 @@
                 <outlet property="cardNameLabel" destination="DoT-DC-x81" id="zRS-rM-NFI"/>
                 <outlet property="deleteButton" destination="JNw-sY-KPF" id="bkF-PF-FjB"/>
                 <outlet property="finishButton" destination="nT0-mz-exe" id="UQV-oS-Kcb"/>
+                <outlet property="greetingLabel" destination="NwQ-Wz-RRV" id="lZt-Gy-C1B"/>
                 <outlet property="imageView" destination="op5-i8-FUz" id="XRt-tM-lZg"/>
                 <outlet property="playButton" destination="gPA-T4-wyh" id="gtv-9n-KFF"/>
                 <outlet property="recordButton" destination="Rhm-e1-ssT" id="cn6-nx-kwg"/>
@@ -94,11 +95,18 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py0-Oh-zY8">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="准备" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="py0-Oh-zY8">
                     <rect key="frame" x="403" y="231" width="123" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.96470588235294119" green="0.94509803921568625" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="给卡片录一段语音吧， 比如“我要吃苹果”。 让孩子随时听到你的声音。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="NwQ-Wz-RRV">
+                    <rect key="frame" x="287" y="126" width="228" height="74"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
