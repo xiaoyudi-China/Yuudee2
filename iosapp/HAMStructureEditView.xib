@@ -29,17 +29,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GmP-bq-sP3">
-                    <rect key="frame" x="325" y="952" width="117" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.59999999999999998" green="0.16862745100000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="syncButtonClicked:" destination="-1" eventType="touchUpInside" id="eiA-ei-nx4"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_main_title" id="U1d-dE-bcY">
                     <rect key="frame" x="217" y="30" width="334" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -109,6 +98,17 @@
                 </barButtonItem>
             </items>
         </toolbar>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GmP-bq-sP3">
+            <rect key="frame" x="0.0" y="0.0" width="117" height="42"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.59999999999999998" green="0.16862745100000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+            <state key="normal" title="Button">
+                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+            </state>
+            <connections>
+                <action selector="syncButtonClicked:" destination="-1" eventType="touchUpInside" id="eiA-ei-nx4"/>
+            </connections>
+        </button>
     </objects>
     <resources>
         <image name="parent_main_addbtn" width="298" height="187"/>

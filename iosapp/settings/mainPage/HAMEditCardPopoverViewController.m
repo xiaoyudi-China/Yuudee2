@@ -47,8 +47,6 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    HAMCard* selectedCard = [config card:[config childCardIDOfCat:parentID atIndex:childIndex]];
-    
     [HAMViewTool setHighLightImage:@"parent_editpop_cancelbtn_down" forButton:cancelButton];
     [HAMViewTool setHighLightImage:@"parent_editpop_confirmbtn_down" forButton:finishButton];
     

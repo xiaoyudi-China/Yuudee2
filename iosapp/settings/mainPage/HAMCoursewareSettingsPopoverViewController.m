@@ -45,7 +45,11 @@
     
     changedLayout = -1;
     
-    [self initTitle];
+    HAMUser* currentCourseware = [coursewareManager currentUser];
+    [self initTitle:currentCourseware.name];
+    
+    int currentLayout = [HAMViewInfo layoutOfXnum:currentCourseware.layoutx ynum:currentCourseware.layouty];
+    [self showCheckedImageAtlayout:currentLayout];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,9 +61,9 @@
 #pragma mark -
 #pragma mark Title
 
--(void)initTitle
+-(void)initTitle:(NSString*)title
 {
-    cousewareTitleLabel.text = [coursewareManager currentUser].name;
+    cousewareTitleLabel.text = title;
 }
 
 #pragma mark -
@@ -107,9 +111,32 @@
     [self showCheckedImageAtlayout:VIEWINFO_LAYOUT_3x3];
 }
 
+#pragma mark -
+#pragma makr Delete Courseware
+
 - (IBAction)removeCoursewareClicked:(UIButton *)sender {
-    [self.popover dismissPopoverAnimated:YES];
+    [[[UIAlertView alloc] initWithTitle:@"删除课件" message:@"确定要删除该课件吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除",nil] show];
 }
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    HAMUser* currentCourseware;
+    switch (buttonIndex) {
+        case 1:
+            currentCourseware = [coursewareManager currentUser];
+            [coursewareManager deleteUser:currentCourseware];
+            
+            [self.popover dismissPopoverAnimated:YES];
+            [mainSettingsViewController viewWillAppear:NO];
+            return;
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark -
+#pragma makr Cancel & Finish
 
 - (IBAction)cancelClicked:(UIButton *)sender {
     [self.popover dismissPopoverAnimated:YES];
@@ -117,23 +144,9 @@
 
 - (IBAction)finishClicked:(UIButton *)sender {
     if (changedLayout != -1) {
-        int xnum, ynum;
-        switch (changedLayout) {
-            case VIEWINFO_LAYOUT_1x1:
-                xnum = 1;
-                ynum = 1;
-                break;
-                
-            case VIEWINFO_LAYOUT_2x2:
-                xnum = 2;
-                ynum = 2;
-                break;
-                
-            case VIEWINFO_LAYOUT_3x3:
-                xnum = 3;
-                ynum = 3;
-                break;
-        }
+        int xnum = [HAMViewInfo xnumOfLayout:changedLayout];
+        int ynum = [HAMViewInfo ynumOfLayout:changedLayout];
+        
         [coursewareManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
         [mainSettingsViewController setLayoutWithxnum:xnum ynum:ynum];
         [mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];

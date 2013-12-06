@@ -14,6 +14,7 @@
 #import "HAMGridCell.h"
 #import "HAMConstants.h"
 #import "HAMGridViewController.h"
+#import "HAMPopoverBackgroundView.h"
 
 @interface HAMCategorySelectorViewController : HAMGridViewController <UICollectionViewDataSource, UICollectionViewDelegate, HAMGridCellDelegate, UIActionSheetDelegate, HAMCategoryEditorViewControllerDelegate>
 {

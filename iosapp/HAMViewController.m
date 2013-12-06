@@ -18,7 +18,12 @@
 @end
 
 @implementation HAMViewController
+
 @synthesize scrollView_;
+
+@synthesize blurBgImageView;
+@synthesize inCatBgImageView;
+@synthesize backButton;
 
 - (void)viewDidLoad{
     activeUsername=@"hamster";
@@ -41,23 +46,45 @@
     
     gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+    
+    [self hideInCat];
 }
 
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
 
+- (void)refreshGridViewForCat:(NSString*)catID
+{
+    currentUUID = catID;
+    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+}
+
+#pragma mark -
+#pragma mark In & out Cat
+
+- (void)showInCat
+{
+    blurBgImageView.hidden = NO;
+    inCatBgImageView.hidden = NO;
+    backButton.hidden = NO;
+}
+
+- (void)hideInCat
+{
+    blurBgImageView.hidden = YES;
+    inCatBgImageView.hidden = YES;
+    backButton.hidden = YES;
+}
+
 #pragma mark -
 #pragma mark Actions
 
 -(IBAction) groupClicked:(id)sender{
-    int index=[sender tag];
-    if (index==-1)
-        currentUUID=config.rootID;
-    else
-        currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
-    
-    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+    int index = [sender tag];
+    NSString* catID = [config childCardIDOfCat:currentUUID atIndex:index];
+    [self refreshGridViewForCat:catID];
+    [self showInCat];
 }
 
 -(IBAction) leafClicked:(id)sender{
@@ -85,8 +112,14 @@
     }
 }
 
+- (IBAction)backButtonClicked:(UIButton *)sender {
+    [self refreshGridViewForCat:config.rootID];
+    [self hideInCat];
+}
+
 #pragma mark -
 #pragma mark Multi Touch
+
 
 - (IBAction)touchDownEnterEditButton:(UIButton *)sender {
     multiTouchCount ++;

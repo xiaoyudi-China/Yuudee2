@@ -113,6 +113,7 @@
     double xSpace =  0;
     if (xnum_ > 1)
         xSpace = (cardZone.size.width - xnum_ * cardWidth) / (xnum_ - 1);
+    
     double ySpace = 0;
     if (ynum_ > 1)
         ySpace = (cardZone.size.height - ynum_ * cardHeight) / (ynum_ - 1);
@@ -132,6 +133,59 @@
 {
     index = index % (xnum_ * ynum_);
     return cardPos[index];
+}
+
+#pragma mark -
+#pragma mark Static Methods
+
++ (int)xnumOfLayout:(int)layout
+{
+    switch (layout) {
+        case VIEWINFO_LAYOUT_1x1:
+            return 1;
+        
+        case VIEWINFO_LAYOUT_2x2:
+            return 2;
+            
+        case VIEWINFO_LAYOUT_3x3:
+            return 3;
+            
+        default:
+            break;
+    }
+    return -1;
+}
+
++ (int)ynumOfLayout:(int)layout
+{
+    switch (layout) {
+        case VIEWINFO_LAYOUT_1x1:
+            return 1;
+            
+        case VIEWINFO_LAYOUT_2x2:
+            return 2;
+            
+        case VIEWINFO_LAYOUT_3x3:
+            return 3;
+            
+        default:
+            break;
+    }
+    return -1;
+}
+
++ (int)layoutOfXnum:(int)xnum ynum:(int)ynum
+{
+    if (xnum == 1 && ynum == 1)
+        return VIEWINFO_LAYOUT_1x1;
+    
+    if (xnum == 2 && ynum == 2)
+        return VIEWINFO_LAYOUT_2x2;
+    
+    if (xnum == 3 && ynum == 3)
+        return VIEWINFO_LAYOUT_3x3;
+
+    return -1;
 }
 
 +(double)maxx

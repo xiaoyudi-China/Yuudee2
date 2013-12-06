@@ -25,6 +25,14 @@
     
     NSString* currentUUID;
 }
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *blurBgImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *inCatBgImageView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+- (IBAction)backButtonClicked:(UIButton *)sender;
+
 - (IBAction)touchDownEnterEditButton:(UIButton *)sender;
 - (IBAction)touchUpEnterEditButton:(UIButton *)sender;
 

@@ -50,11 +50,11 @@
 
 -(void)deleteUser:(HAMUser*)user
 {
-    NSMutableArray* cards=[dbManager cardsOfUser:user.UUID mode:0];
+    /*NSMutableArray* cards=[dbManager cardsOfUser:user.UUID mode:0];
     int i;
     for (i=0; i<[cards count]; i++) {
         [config deleteCard:cards[i]];
-    }
+    }*/
     [dbManager deleteUser:user.UUID];
     currentUser=nil;
 }

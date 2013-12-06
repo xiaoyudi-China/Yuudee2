@@ -43,11 +43,13 @@
 @property double blankBtnHeight;
 @property CGPoint blankBtnOffset;
 
-//-(id)initWithframe:(CGRect)frame xnum:(int)_xnum ynum:(int)_ynum h:(double)_h minspace:(double)_minspace;
 -(id)initWithXnum:(int)xnum ynum:(int)ynum;
 
 -(CGPoint)cardPositionAtIndex:(int)index;
 
++ (int)xnumOfLayout:(int)layout;
++ (int)ynumOfLayout:(int)layout;
++ (int)layoutOfXnum:(int)xnum ynum:(int)ynum;
 +(double)maxx;
 +(double)maxy;
 

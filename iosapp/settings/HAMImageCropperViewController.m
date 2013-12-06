@@ -11,7 +11,7 @@
 @interface HAMImageCropperViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) UIImageView *imageView; // TODO: declare this in interface builder
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -30,15 +30,35 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	if (self.image.imageOrientation != UIImageOrientationRight)
-		self.image = [[UIImage alloc] initWithCGImage:self.image.CGImage scale:1.0 orientation:UIImageOrientationRight];
-	self.imageView = [[UIImageView alloc] initWithFrame:self.scrollView.frame];
-	self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-	self.imageView.image = self.image;
 	
-	[self.scrollView addSubview:self.imageView];
+	if (self.image.size.height < self.image.size.width) {
+		CGSize newSize;
+		newSize.width = self.image.size.width;
+		newSize.height = self.image.size.width * 4 / 3;
+		
+		UIGraphicsBeginImageContext(newSize);
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		UIGraphicsPushContext(context);
+				
+		CGPoint newOrigin;
+		newOrigin.x = 0;
+		newOrigin.y = (newSize.height - self.image.size.height) / 2;
+		
+		[self.image drawInRect:(CGRect){newOrigin, self.image.size}];
+		
+		UIGraphicsPopContext();
+		
+		UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+		
+		self.image = newImage;
+	}
+	
+	self.imageView.image = self.image;
 	self.scrollView.contentSize = self.imageView.frame.size;
 	
+	NSLog(@"image size: %f x %f", self.image.size.width, self.image.size.height);
+	NSLog(@"orientation: %d", self.image.imageOrientation);
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,10 +84,26 @@
 	rect.size.height = SCREEN_WIDTH * 3/4 * scale;
 	
 	CGRect transformedRect;
-	transformedRect.origin.x = rect.origin.y;
-	transformedRect.origin.y = self.image.size.width - (rect.origin.x + rect.size.width);
-	transformedRect.size.width = rect.size.height;
-	transformedRect.size.height = rect.size.width;
+	if (self.image.imageOrientation == UIImageOrientationUp) {
+		transformedRect = rect;
+	}
+	else if (self.image.imageOrientation == UIImageOrientationRight) {
+		transformedRect.origin.x = rect.origin.y;
+		transformedRect.origin.y = self.image.size.width - (rect.origin.x + rect.size.width);
+		transformedRect.size.width = rect.size.height;
+		transformedRect.size.height = rect.size.width;
+	}
+	else if (self.image.imageOrientation == UIImageOrientationDown) {
+		transformedRect.origin.x = self.image.size.width - (rect.origin.x + rect.size.width);
+		transformedRect.origin.y = self.image.size.height - (rect.origin.y + rect.size.height);
+		transformedRect.size = rect.size;
+	}
+	else if (self.image.imageOrientation == UIImageOrientationLeft) {
+		transformedRect.origin.x = self.image.size.width - (rect.origin.y + rect.size.height);
+		transformedRect.origin.y = rect.origin.x;
+		transformedRect.size.width = rect.size.height;
+		transformedRect.size.height = rect.size.width;
+	}
 	
 	CGImageRef imageRef = CGImageCreateWithImageInRect(self.image.CGImage, transformedRect);
 	UIImage *croppedImage = [[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:self.image.imageOrientation];

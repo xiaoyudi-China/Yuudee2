@@ -17,7 +17,6 @@
         // Initialization code
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"HAMGridCell" owner:self options:nil];
         self = [arrayOfViews objectAtIndex:0];
-		
 	}
     return self;
 }

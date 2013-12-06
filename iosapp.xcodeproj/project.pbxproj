@@ -30,6 +30,49 @@
 		667E53BC17A633DC00BBDE35 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 667E53BB17A633DC00BBDE35 /* libsqlite3.dylib */; };
 		667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 667E53BE17A65BA600BBDE35 /* HAMCard.m */; };
 		667E53C217A65C3100BBDE35 /* HAMResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 667E53C117A65C3100BBDE35 /* HAMResource.m */; };
+		6694E5621851CF44008EC01D /* child_inCat_backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */; };
+		6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5601851CF44008EC01D /* child_inCat_blurBG */; };
+		6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5611851CF44008EC01D /* child_inCat_woodBG */; };
+		6694E5681851EACC008EC01D /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6694E5661851EACC008EC01D /* libMobClickLibrary.a */; };
+		6694E5701851EB08008EC01D /* HAMPopoverBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6694E56D1851EB08008EC01D /* HAMPopoverBackgroundView.m */; };
+		6694E5721851EC77008EC01D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6694E5711851EC77008EC01D /* libz.dylib */; };
+		6694E5971851EF3B008EC01D /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5741851EF3B008EC01D /* add.png */; };
+		6694E5981851EF3B008EC01D /* addnew in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5751851EF3B008EC01D /* addnew */; };
+		6694E5991851EF3B008EC01D /* addnewBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5761851EF3B008EC01D /* addnewBG */; };
+		6694E59A1851EF3B008EC01D /* addnewDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5771851EF3B008EC01D /* addnewDOWN */; };
+		6694E59B1851EF3B008EC01D /* album in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5781851EF3B008EC01D /* album */; };
+		6694E59C1851EF3B008EC01D /* albumDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5791851EF3B008EC01D /* albumDOWN */; };
+		6694E59D1851EF3B008EC01D /* back in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57A1851EF3B008EC01D /* back */; };
+		6694E59E1851EF3B008EC01D /* backDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57B1851EF3B008EC01D /* backDOWN */; };
+		6694E59F1851EF3B008EC01D /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57C1851EF3B008EC01D /* background.png */; };
+		6694E5A01851EF3B008EC01D /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57D1851EF3B008EC01D /* bg.png */; };
+		6694E5A11851EF3B008EC01D /* box in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57E1851EF3B008EC01D /* box */; };
+		6694E5A21851EF3B008EC01D /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E57F1851EF3B008EC01D /* box.png */; };
+		6694E5A31851EF3B008EC01D /* camera in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5801851EF3B008EC01D /* camera */; };
+		6694E5A41851EF3B008EC01D /* cameraDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5811851EF3B008EC01D /* cameraDOWN */; };
+		6694E5A51851EF3B008EC01D /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5821851EF3B008EC01D /* card.png */; };
+		6694E5A61851EF3B008EC01D /* cardBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5831851EF3B008EC01D /* cardBG.png */; };
+		6694E5A71851EF3B008EC01D /* category.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5841851EF3B008EC01D /* category.png */; };
+		6694E5A81851EF3B008EC01D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5851851EF3B008EC01D /* check.png */; };
+		6694E5A91851EF3B008EC01D /* checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5861851EF3B008EC01D /* checkedbox.png */; };
+		6694E5AA1851EF3B008EC01D /* choose in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5871851EF3B008EC01D /* choose */; };
+		6694E5AB1851EF3B008EC01D /* classBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5881851EF3B008EC01D /* classBG.png */; };
+		6694E5AC1851EF3B008EC01D /* delete in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5891851EF3B008EC01D /* delete */; };
+		6694E5AD1851EF3B008EC01D /* deleteDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58A1851EF3B008EC01D /* deleteDOWN */; };
+		6694E5AE1851EF3B008EC01D /* editcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58B1851EF3B008EC01D /* editcard.png */; };
+		6694E5AF1851EF3B008EC01D /* logo in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58C1851EF3B008EC01D /* logo */; };
+		6694E5B01851EF3B008EC01D /* name in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58D1851EF3B008EC01D /* name */; };
+		6694E5B11851EF3B008EC01D /* next in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58E1851EF3B008EC01D /* next */; };
+		6694E5B21851EF3B008EC01D /* nextDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58F1851EF3B008EC01D /* nextDOWN */; };
+		6694E5B31851EF3B008EC01D /* play in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5901851EF3B008EC01D /* play */; };
+		6694E5B41851EF3B008EC01D /* playDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5911851EF3B008EC01D /* playDOWN */; };
+		6694E5B51851EF3B008EC01D /* previous in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5921851EF3B008EC01D /* previous */; };
+		6694E5B61851EF3B008EC01D /* previousDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5931851EF3B008EC01D /* previousDOWN */; };
+		6694E5B71851EF3B008EC01D /* record in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5941851EF3B008EC01D /* record */; };
+		6694E5B81851EF3B008EC01D /* recordDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5951851EF3B008EC01D /* recordDOWN */; };
+		6694E5B91851EF3B008EC01D /* sucaiku.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5961851EF3B008EC01D /* sucaiku.png */; };
+		6694E5BB1851EFC3008EC01D /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5BA1851EFC3008EC01D /* background2.png */; };
+		6694E5BD1851F1E7008EC01D /* confirm in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5BC1851F1E7008EC01D /* confirm */; };
 		6697BD96179F6FC2002E37E8 /* HAMStructureEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD94179F6FC2002E37E8 /* HAMStructureEditViewController.m */; };
 		6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9A179F8092002E37E8 /* HAMGridViewTool.m */; };
 		6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9D179F906F002E37E8 /* HAMViewInfo.m */; };
@@ -160,6 +203,51 @@
 		667E53BE17A65BA600BBDE35 /* HAMCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCard.m; path = datastructure/HAMCard.m; sourceTree = "<group>"; };
 		667E53C017A65C3100BBDE35 /* HAMResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMResource.h; path = datastructure/HAMResource.h; sourceTree = "<group>"; };
 		667E53C117A65C3100BBDE35 /* HAMResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMResource.m; path = datastructure/HAMResource.m; sourceTree = "<group>"; };
+		6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child_inCat_backbutton.png; sourceTree = "<group>"; };
+		6694E5601851CF44008EC01D /* child_inCat_blurBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_blurBG; sourceTree = "<group>"; };
+		6694E5611851CF44008EC01D /* child_inCat_woodBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_woodBG; sourceTree = "<group>"; };
+		6694E5661851EACC008EC01D /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		6694E5671851EACC008EC01D /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		6694E56C1851EB08008EC01D /* HAMPopoverBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMPopoverBackgroundView.h; path = settings/HAMPopoverBackgroundView.h; sourceTree = "<group>"; };
+		6694E56D1851EB08008EC01D /* HAMPopoverBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMPopoverBackgroundView.m; path = settings/HAMPopoverBackgroundView.m; sourceTree = "<group>"; };
+		6694E5711851EC77008EC01D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		6694E5741851EF3B008EC01D /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		6694E5751851EF3B008EC01D /* addnew */ = {isa = PBXFileReference; lastKnownFileType = file; path = addnew; sourceTree = "<group>"; };
+		6694E5761851EF3B008EC01D /* addnewBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = addnewBG; sourceTree = "<group>"; };
+		6694E5771851EF3B008EC01D /* addnewDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = addnewDOWN; sourceTree = "<group>"; };
+		6694E5781851EF3B008EC01D /* album */ = {isa = PBXFileReference; lastKnownFileType = file; path = album; sourceTree = "<group>"; };
+		6694E5791851EF3B008EC01D /* albumDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = albumDOWN; sourceTree = "<group>"; };
+		6694E57A1851EF3B008EC01D /* back */ = {isa = PBXFileReference; lastKnownFileType = file; path = back; sourceTree = "<group>"; };
+		6694E57B1851EF3B008EC01D /* backDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = backDOWN; sourceTree = "<group>"; };
+		6694E57C1851EF3B008EC01D /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		6694E57D1851EF3B008EC01D /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		6694E57E1851EF3B008EC01D /* box */ = {isa = PBXFileReference; lastKnownFileType = file; path = box; sourceTree = "<group>"; };
+		6694E57F1851EF3B008EC01D /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
+		6694E5801851EF3B008EC01D /* camera */ = {isa = PBXFileReference; lastKnownFileType = file; path = camera; sourceTree = "<group>"; };
+		6694E5811851EF3B008EC01D /* cameraDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = cameraDOWN; sourceTree = "<group>"; };
+		6694E5821851EF3B008EC01D /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
+		6694E5831851EF3B008EC01D /* cardBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cardBG.png; sourceTree = "<group>"; };
+		6694E5841851EF3B008EC01D /* category.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category.png; sourceTree = "<group>"; };
+		6694E5851851EF3B008EC01D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		6694E5861851EF3B008EC01D /* checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedbox.png; sourceTree = "<group>"; };
+		6694E5871851EF3B008EC01D /* choose */ = {isa = PBXFileReference; lastKnownFileType = file; path = choose; sourceTree = "<group>"; };
+		6694E5881851EF3B008EC01D /* classBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classBG.png; sourceTree = "<group>"; };
+		6694E5891851EF3B008EC01D /* delete */ = {isa = PBXFileReference; lastKnownFileType = file; path = delete; sourceTree = "<group>"; };
+		6694E58A1851EF3B008EC01D /* deleteDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = deleteDOWN; sourceTree = "<group>"; };
+		6694E58B1851EF3B008EC01D /* editcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editcard.png; sourceTree = "<group>"; };
+		6694E58C1851EF3B008EC01D /* logo */ = {isa = PBXFileReference; lastKnownFileType = file; path = logo; sourceTree = "<group>"; };
+		6694E58D1851EF3B008EC01D /* name */ = {isa = PBXFileReference; lastKnownFileType = file; path = name; sourceTree = "<group>"; };
+		6694E58E1851EF3B008EC01D /* next */ = {isa = PBXFileReference; lastKnownFileType = file; path = next; sourceTree = "<group>"; };
+		6694E58F1851EF3B008EC01D /* nextDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = nextDOWN; sourceTree = "<group>"; };
+		6694E5901851EF3B008EC01D /* play */ = {isa = PBXFileReference; lastKnownFileType = file; path = play; sourceTree = "<group>"; };
+		6694E5911851EF3B008EC01D /* playDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = playDOWN; sourceTree = "<group>"; };
+		6694E5921851EF3B008EC01D /* previous */ = {isa = PBXFileReference; lastKnownFileType = file; path = previous; sourceTree = "<group>"; };
+		6694E5931851EF3B008EC01D /* previousDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = previousDOWN; sourceTree = "<group>"; };
+		6694E5941851EF3B008EC01D /* record */ = {isa = PBXFileReference; lastKnownFileType = file; path = record; sourceTree = "<group>"; };
+		6694E5951851EF3B008EC01D /* recordDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = recordDOWN; sourceTree = "<group>"; };
+		6694E5961851EF3B008EC01D /* sucaiku.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sucaiku.png; sourceTree = "<group>"; };
+		6694E5BA1851EFC3008EC01D /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
+		6694E5BC1851F1E7008EC01D /* confirm */ = {isa = PBXFileReference; lastKnownFileType = file; path = confirm; sourceTree = "<group>"; };
 		6697BD93179F6FC2002E37E8 /* HAMStructureEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMStructureEditViewController.h; path = settings/HAMStructureEditViewController.h; sourceTree = "<group>"; };
 		6697BD94179F6FC2002E37E8 /* HAMStructureEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMStructureEditViewController.m; path = settings/HAMStructureEditViewController.m; sourceTree = "<group>"; };
 		6697BD99179F8092002E37E8 /* HAMGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMGridViewTool.h; path = utils/HAMGridViewTool.h; sourceTree = "<group>"; };
@@ -291,6 +379,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6694E5721851EC77008EC01D /* libz.dylib in Frameworks */,
+				6694E5681851EACC008EC01D /* libMobClickLibrary.a in Frameworks */,
 				66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */,
 				667E53BC17A633DC00BBDE35 /* libsqlite3.dylib in Frameworks */,
 				667059241796A46900E3B156 /* AVFoundation.framework in Frameworks */,
@@ -364,6 +454,7 @@
 		66610491178BB04A003AEE3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6694E5711851EC77008EC01D /* libz.dylib */,
 				667E53BB17A633DC00BBDE35 /* libsqlite3.dylib */,
 				66CC961717B4BDE700DB3A57 /* SystemConfiguration.framework */,
 				6612626817AB7B0C0047AA9B /* QuartzCore.framework */,
@@ -419,9 +510,82 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6694E55D1851CF44008EC01D /* child */ = {
+			isa = PBXGroup;
+			children = (
+				6694E55E1851CF44008EC01D /* inCat */,
+			);
+			path = child;
+			sourceTree = "<group>";
+		};
+		6694E55E1851CF44008EC01D /* inCat */ = {
+			isa = PBXGroup;
+			children = (
+				6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */,
+				6694E5601851CF44008EC01D /* child_inCat_blurBG */,
+				6694E5611851CF44008EC01D /* child_inCat_woodBG */,
+			);
+			path = inCat;
+			sourceTree = "<group>";
+		};
+		6694E5651851EACC008EC01D /* umeng */ = {
+			isa = PBXGroup;
+			children = (
+				6694E5661851EACC008EC01D /* libMobClickLibrary.a */,
+				6694E5671851EACC008EC01D /* MobClick.h */,
+			);
+			path = umeng;
+			sourceTree = "<group>";
+		};
+		6694E5731851EF3B008EC01D /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6694E5BC1851F1E7008EC01D /* confirm */,
+				6694E5BA1851EFC3008EC01D /* background2.png */,
+				6694E5741851EF3B008EC01D /* add.png */,
+				6694E5751851EF3B008EC01D /* addnew */,
+				6694E5761851EF3B008EC01D /* addnewBG */,
+				6694E5771851EF3B008EC01D /* addnewDOWN */,
+				6694E5781851EF3B008EC01D /* album */,
+				6694E5791851EF3B008EC01D /* albumDOWN */,
+				6694E57A1851EF3B008EC01D /* back */,
+				6694E57B1851EF3B008EC01D /* backDOWN */,
+				6694E57C1851EF3B008EC01D /* background.png */,
+				6694E57D1851EF3B008EC01D /* bg.png */,
+				6694E57E1851EF3B008EC01D /* box */,
+				6694E57F1851EF3B008EC01D /* box.png */,
+				6694E5801851EF3B008EC01D /* camera */,
+				6694E5811851EF3B008EC01D /* cameraDOWN */,
+				6694E5821851EF3B008EC01D /* card.png */,
+				6694E5831851EF3B008EC01D /* cardBG.png */,
+				6694E5841851EF3B008EC01D /* category.png */,
+				6694E5851851EF3B008EC01D /* check.png */,
+				6694E5861851EF3B008EC01D /* checkedbox.png */,
+				6694E5871851EF3B008EC01D /* choose */,
+				6694E5881851EF3B008EC01D /* classBG.png */,
+				6694E5891851EF3B008EC01D /* delete */,
+				6694E58A1851EF3B008EC01D /* deleteDOWN */,
+				6694E58B1851EF3B008EC01D /* editcard.png */,
+				6694E58C1851EF3B008EC01D /* logo */,
+				6694E58D1851EF3B008EC01D /* name */,
+				6694E58E1851EF3B008EC01D /* next */,
+				6694E58F1851EF3B008EC01D /* nextDOWN */,
+				6694E5901851EF3B008EC01D /* play */,
+				6694E5911851EF3B008EC01D /* playDOWN */,
+				6694E5921851EF3B008EC01D /* previous */,
+				6694E5931851EF3B008EC01D /* previousDOWN */,
+				6694E5941851EF3B008EC01D /* record */,
+				6694E5951851EF3B008EC01D /* recordDOWN */,
+				6694E5961851EF3B008EC01D /* sucaiku.png */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		6697BD98179F6FC7002E37E8 /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				6694E56C1851EB08008EC01D /* HAMPopoverBackgroundView.h */,
+				6694E56D1851EB08008EC01D /* HAMPopoverBackgroundView.m */,
 				66A81FB0184F853900EA6FD6 /* mainPage */,
 				66A81F82184E178600EA6FD6 /* HAMGridViewController.h */,
 				66A81F83184E178600EA6FD6 /* HAMGridViewController.m */,
@@ -592,6 +756,8 @@
 		66DE8E10184BB1F7009AFF39 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				6694E5731851EF3B008EC01D /* lib */,
+				6694E55D1851CF44008EC01D /* child */,
 				66A81F91184E574000EA6FD6 /* parentMain */,
 				66DE8E11184BB1F7009AFF39 /* common */,
 			);
@@ -615,6 +781,7 @@
 		8ECB050C183A499900EA506C /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				6694E5651851EACC008EC01D /* umeng */,
 				8ECB050D183A499900EA506C /* animationLib */,
 			);
 			path = lib;
@@ -694,72 +861,112 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6694E5A11851EF3B008EC01D /* box in Resources */,
+				6694E5991851EF3B008EC01D /* addnewBG in Resources */,
+				6694E59F1851EF3B008EC01D /* background.png in Resources */,
 				66A81FA0184E574000EA6FD6 /* parent_main_addbtn in Resources */,
 				66A81FE01850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png in Resources */,
 				66A81FE41850FDA200EA6FD6 /* parent_settingspop_layout1x1.png in Resources */,
 				6661049D178BB04A003AEE3D /* InfoPlist.strings in Resources */,
+				6694E5A41851EF3B008EC01D /* cameraDOWN in Resources */,
 				66A81FA2184E574000EA6FD6 /* parent_main_blankcard in Resources */,
+				6694E59A1851EF3B008EC01D /* addnewDOWN in Resources */,
 				666104A5178BB04A003AEE3D /* Default.png in Resources */,
 				8E5626151833654900351EA2 /* add.png in Resources */,
 				666104A7178BB04A003AEE3D /* Default@2x.png in Resources */,
+				6694E5AF1851EF3B008EC01D /* logo in Resources */,
+				6694E5A71851EF3B008EC01D /* category.png in Resources */,
+				6694E5BB1851EFC3008EC01D /* background2.png in Resources */,
 				666104A9178BB04A003AEE3D /* Default-568h@2x.png in Resources */,
 				666104AF178BB04A003AEE3D /* HAMViewController_iPhone.xib in Resources */,
 				666104B2178BB04A003AEE3D /* HAMViewController_iPad.xib in Resources */,
+				6694E5621851CF44008EC01D /* child_inCat_backbutton.png in Resources */,
+				6694E59C1851EF3B008EC01D /* albumDOWN in Resources */,
 				66A81FA5184E574000EA6FD6 /* parent_main_endbtn.png in Resources */,
+				6694E5B51851EF3B008EC01D /* previous in Resources */,
 				66A81FD31850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib in Resources */,
+				6694E5AD1851EF3B008EC01D /* deleteDOWN in Resources */,
 				66A81FAF184F260A00EA6FD6 /* parent_main_bg.png in Resources */,
 				66A81FCA184F88A200EA6FD6 /* parent_editpop_editicon.png in Resources */,
 				8EAF0A5B1834771900FE94C6 /* edit.png in Resources */,
 				66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg in Resources */,
 				8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */,
 				6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */,
+				6694E5AB1851EF3B008EC01D /* classBG.png in Resources */,
 				66A81FA3184E574000EA6FD6 /* parent_main_editbtn in Resources */,
 				66A81FAC184E574000EA6FD6 /* parent_main_titlefoldbtn in Resources */,
+				6694E5A91851EF3B008EC01D /* checkedbox.png in Resources */,
 				66A81FC9184F88A200EA6FD6 /* parent_editpop_demo3.png in Resources */,
+				6694E5B31851EF3B008EC01D /* play in Resources */,
 				66A81F81184E174900EA6FD6 /* HAMCategorySelectorViewController.xib in Resources */,
+				6694E5B11851EF3B008EC01D /* next in Resources */,
 				66A81FB5184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib in Resources */,
+				6694E5B01851EF3B008EC01D /* name in Resources */,
 				66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */,
 				66A81FE51850FDA200EA6FD6 /* parent_settingspop_layout2x2.png in Resources */,
 				8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */,
 				66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */,
 				66A81FAB184E574000EA6FD6 /* parent_main_title in Resources */,
 				66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down in Resources */,
+				6694E5AE1851EF3B008EC01D /* editcard.png in Resources */,
 				66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn in Resources */,
 				66A81FE11850FDA200EA6FD6 /* parent_settingspop_checked.png in Resources */,
 				66A81FAD184E574000EA6FD6 /* parent_main_titleunfoldbtn in Resources */,
 				66E66BD317A90A9F00F6177B /* card.png in Resources */,
+				6694E5A61851EF3B008EC01D /* cardBG.png in Resources */,
+				6694E5A01851EF3B008EC01D /* bg.png in Resources */,
 				66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down in Resources */,
 				66E66BD517A90AA200F6177B /* category.png in Resources */,
 				66A81FA7184E574000EA6FD6 /* parent_main_libbtn in Resources */,
+				6694E5A51851EF3B008EC01D /* card.png in Resources */,
 				66A81F89184E178600EA6FD6 /* HAMGridViewController.xib in Resources */,
 				66A81FE31850FDA200EA6FD6 /* parent_settingspop_finishbtn_down in Resources */,
 				66DE8E19184BB1F7009AFF39 /* common_background.png in Resources */,
+				6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */,
 				66A81F8B184E178600EA6FD6 /* HAMImageCropperViewController.xib in Resources */,
+				6694E5A31851EF3B008EC01D /* camera in Resources */,
 				66A81FCB184F88A200EA6FD6 /* parent_editppop_checked.png in Resources */,
 				66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn in Resources */,
 				8E0728731836202B00E538FB /* HAMRecorderViewController.xib in Resources */,
 				66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down in Resources */,
+				6694E5B71851EF3B008EC01D /* record in Resources */,
+				6694E5BD1851F1E7008EC01D /* confirm in Resources */,
 				66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */,
 				66A81FC6184F88A200EA6FD6 /* parent_editpop_confirmbtn_down in Resources */,
 				8ECB051A183A499900EA506C /* QBAnimationSequence-Info.plist in Resources */,
+				6694E5981851EF3B008EC01D /* addnew in Resources */,
+				6694E5A21851EF3B008EC01D /* box.png in Resources */,
+				6694E5B41851EF3B008EC01D /* playDOWN in Resources */,
+				6694E5B61851EF3B008EC01D /* previousDOWN in Resources */,
 				66DE8E1B184BB1F7009AFF39 /* common_card_white.png in Resources */,
 				66DE8E1E184BB1F7009AFF39 /* common_cat_white.png in Resources */,
 				66DE8E1C184BB1F7009AFF39 /* common_card_wood.png in Resources */,
+				6694E5B81851EF3B008EC01D /* recordDOWN in Resources */,
 				8EE7A2E51822361A007356B1 /* HAMCardSelectorViewController.xib in Resources */,
+				6694E59B1851EF3B008EC01D /* album in Resources */,
+				6694E5AA1851EF3B008EC01D /* choose in Resources */,
 				66A81FC4184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png in Resources */,
 				66A81FC2184F88A200EA6FD6 /* parent_editpop_bg in Resources */,
 				66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn in Resources */,
+				6694E59E1851EF3B008EC01D /* backDOWN in Resources */,
+				6694E5971851EF3B008EC01D /* add.png in Resources */,
+				6694E5B21851EF3B008EC01D /* nextDOWN in Resources */,
 				66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */,
 				66DE8E1A184BB1F7009AFF39 /* common_card_bg.png in Resources */,
 				66A81FC7184F88A200EA6FD6 /* parent_editpop_demo1.png in Resources */,
 				6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */,
 				6650B2E117D5D60000770C25 /* icon1.png in Resources */,
 				8E56261218335ADD00351EA2 /* unselected.png in Resources */,
+				6694E5A81851EF3B008EC01D /* check.png in Resources */,
+				6694E59D1851EF3B008EC01D /* back in Resources */,
+				6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */,
 				66A81FC8184F88A200EA6FD6 /* parent_editpop_demo2.png in Resources */,
 				66A81FA6184E574000EA6FD6 /* parent_main_endbtn_down in Resources */,
 				8E56261318335ADD00351EA2 /* selected.png in Resources */,
 				8E07286E183609A100E538FB /* HAMCardEditorViewController.xib in Resources */,
 				66A81FC5184F88A200EA6FD6 /* parent_editpop_confirm in Resources */,
+				6694E5AC1851EF3B008EC01D /* delete in Resources */,
+				6694E5B91851EF3B008EC01D /* sucaiku.png in Resources */,
 				66DE8E1F184BB1F7009AFF39 /* common_cat_wood.png in Resources */,
 				6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */,
 				66A81FE61850FDA200EA6FD6 /* parent_settingspop_layout3x3.png in Resources */,
@@ -775,6 +982,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6661049F178BB04A003AEE3D /* main.m in Sources */,
+				6694E5701851EB08008EC01D /* HAMPopoverBackgroundView.m in Sources */,
 				66A81FB4184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m in Sources */,
 				6632DF5D181AC2AD00A8EA03 /* HAMEditableGridViewTool.m in Sources */,
 				666104A3178BB04A003AEE3D /* HAMAppDelegate.m in Sources */,
@@ -914,6 +1122,10 @@
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/daiyue/代码/droplings/iosapp/iosapp/lib/umeng",
+				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -931,6 +1143,10 @@
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/daiyue/代码/droplings/iosapp/iosapp/lib/umeng",
+				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

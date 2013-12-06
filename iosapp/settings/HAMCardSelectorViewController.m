@@ -12,8 +12,6 @@
 
 @end
 
-CGRect CENTRAL_POINT_RECT;
-
 @implementation HAMCardSelectorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -21,7 +19,6 @@ CGRect CENTRAL_POINT_RECT;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
 		self.selectedCardIDs = [[NSMutableSet alloc] init];
     }
     return self;
@@ -58,11 +55,9 @@ CGRect CENTRAL_POINT_RECT;
 	
 	if (self.cellMode == HAMGridCellModeEdit) {
 		// add a button on the top-right to create new card
-		UIBarButtonItem *createCardButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:@selector(createCardButtonPressed)];
-		self.navigationItem.rightBarButtonItem = createCardButton;
 	}
 	else {
-		self.navigationItem.rightBarButtonItem = nil;
+		self.rightTopButton.hidden = YES;
 	}
 	
 	[self.collectionView reloadData];
@@ -91,14 +86,14 @@ CGRect CENTRAL_POINT_RECT;
 	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
 	cell.frameImageView.image = [UIImage imageNamed:@"cardBG.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"unselected.png"]forState:UIControlStateNormal];
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"box.png"]forState:UIControlStateNormal];
 	else { // Mode edit
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
+		// FIXME: should use the file name offered by XingMei
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"edititem.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
-		// FIXME: not working
-		//if (! card.isRemovable_)
-		//	cell.rightTopButton.hidden = TRUE;
+		if (! card.isRemovable_)
+			cell.rightTopButton.hidden = TRUE;
 	}
 	
 	cell.indexPath = indexPath;
@@ -108,7 +103,8 @@ CGRect CENTRAL_POINT_RECT;
 	return cell;
 }
 
-- (void)createCardButtonPressed {
+// create card
+- (void)rightTopButtonPressed:(id)sender {
 	
 	HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 	cardEditor.cardID = nil;
@@ -120,19 +116,32 @@ CGRect CENTRAL_POINT_RECT;
 	navigator.navigationBarHidden = YES;
 	
 	self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
+	self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 	cardEditor.popover = self.popover;
 
 	[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
 }
 
+// FIXME: conflict with 'rightTopButtonPressed'
 - (void)addCardsButtonPressed {
 	
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
+	
+	// for statistics recording
+	HAMCard *category = [self.config card:self.categoryID];
+	NSInteger index = self.index;
+	
 	// retain the order of selection
 	for (NSString *cardID in [self cardIDs])
-		if ([self.selectedCardIDs containsObject:cardID])
+		if ([self.selectedCardIDs containsObject:cardID]) {
 			[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
+			
+			// trace user events
+			HAMCard *card = [self.config card:cardID];
+			NSDictionary *attrs = [NSDictionary dictionaryWithObjectsAndKeys:card.name, @"卡片名称", category.name, @"分类名称", [NSString stringWithFormat:@"%d", index++], @"添加位置", nil];
+			[MobClick event:@"add_card" attributes:attrs];
+		}
 	
 	// insert all the selected cards
 	[self.config insertChildren:rooms intoCat:self.userID atIndex:self.index];
@@ -151,7 +160,7 @@ CGRect CENTRAL_POINT_RECT;
 			[self.selectedCardIDs removeObject:cardID];
 			
 			gridCell.selected = NO;
-			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"unselected.png"] forState:UIControlStateNormal];
+			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"box.png"] forState:UIControlStateNormal];
 			
 			// remove the button on the right of top bar
 			if (self.selectedCardIDs.count == 0)
@@ -168,7 +177,7 @@ CGRect CENTRAL_POINT_RECT;
 			[self.selectedCardIDs addObject:cardID];
 			
 			gridCell.selected = YES;
-			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"selected.png"] forState:UIControlStateNormal];
+			[gridCell.rightTopButton setImage:[UIImage imageNamed:@"checkedbox.png"] forState:UIControlStateNormal];
 		}
 	}
 	else { // Mode Edit
@@ -182,7 +191,8 @@ CGRect CENTRAL_POINT_RECT;
 		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
 		navigator.navigationBarHidden = YES;
 		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];		
+		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
+		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
 		cardEditor.popover = self.popover;
 
 		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
