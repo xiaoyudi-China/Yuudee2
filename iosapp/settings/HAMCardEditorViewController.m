@@ -138,11 +138,11 @@
 }
 
 - (IBAction)recordButtonTapped:(id)sender {
-	self.recorder.popover = self.popover; // !!!
 	self.recorder.categoryID = self.categoryID;
 	self.recorder.newCategoryID = self.newCategoryID;
 	
-	[self.navigationController pushViewController:self.recorder animated:YES];
+	self.recorder.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self presentViewController:self.recorder animated:YES completion:NULL];
 }
 
 - (IBAction)shootImageButtonPressed:(id)sender {
@@ -197,7 +197,7 @@
 	if (! self.cardID) // cancel card creation
 		[self.config deleteCard:self.tempCard.UUID];
 	
-	[self.popover dismissPopoverAnimated:YES];
+	[self.delegate cardEditorDidCancelEditing:self];
 }
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
@@ -205,6 +205,10 @@
 	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
 	[MobClick event:@"create_card" attributes:attrs]; // trace event
+}
+
+- (void)recorderDidCancelRecording:(HAMRecorderViewController *)recorder {
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)chooseCategoryButtonPressed:(id)sender {
@@ -242,7 +246,6 @@
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
 	[self.config deleteCard:self.cardID];
-	[self.popover dismissPopoverAnimated:YES];
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 

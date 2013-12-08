@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		CENTRAL_POINT_RECT = CGRectMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1, 1);
 	}
     return self;
 }

@@ -15,6 +15,7 @@
 @protocol HAMCategoryEditorViewControllerDelegate <NSObject>
 
 - (void)categoryEditorDidEndEditing: (HAMCategoryEditorViewController*)categoryEditor;
+- (void)categoryEditorDidCancelEditing:(HAMCategoryEditorViewController*)categoryEditor;
 
 @end
 
@@ -22,7 +23,6 @@
 
 @property (strong, nonatomic) NSString *categoryID;
 @property (weak, nonatomic) HAMConfig *config;
-@property (weak, nonatomic) UIPopoverController *popover;
 @property (weak, nonatomic) id<HAMCategoryEditorViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) NSString *tempCategoryName;

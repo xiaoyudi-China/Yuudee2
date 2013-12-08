@@ -14,7 +14,6 @@
 
 @implementation HAMPopoverBackgroundView
 
-// TODO: understand this !!!
 @synthesize arrowDirection  = _arrowDirection;
 @synthesize arrowOffset     = _arrowOffset;
 

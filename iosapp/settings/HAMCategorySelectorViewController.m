@@ -96,8 +96,7 @@
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
 	else { // Mode edit
-		// FIXME: should use the file name offered by XingMei
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"edititem.png"] forState:UIControlStateNormal];
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
 		if (! category.isRemovable_)
@@ -138,12 +137,7 @@
 		categoryEditor.config = self.config;
 		categoryEditor.delegate = self;
 		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
-		categoryEditor.popover = self.popover;
-
-		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
-		
+		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 	else if (buttonIndex == 1) { // create card
 		
@@ -151,20 +145,14 @@
 		cardEditor.cardID = nil;
 		cardEditor.categoryID = UNCATEGORIZED_ID;
 		cardEditor.config = self.config;
-		
-		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
-		navigator.navigationBarHidden = YES; // don't show navigation bar
-		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
-		cardEditor.popover = self.popover;
-		
-		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+		cardEditor.delegate = self;
+				
+		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
 
-- (void)rightTopButtonPressedForCell:(id)cell {
-	HAMGridCell *gridCell = (HAMGridCell*) cell;
+- (void)rightTopButtonPressedForCell:(HAMGridCell*)cell {
+	HAMGridCell *gridCell = cell;
 	
 	if (self.cellMode == HAMGridCellModeAdd) { // Mode Add
 		NSString *categoryID = [self categoryIDs][gridCell.indexPath.row];
@@ -184,16 +172,25 @@
 		categoryEditor.config = self.config;
 		categoryEditor.delegate = self;
 		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:categoryEditor];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
-		categoryEditor.popover = self.popover;
-
-		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 }
 
 - (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.collectionView reloadData];
+}
+
+- (void)categoryEditorDidCancelEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)cardEditorDidCancelEditing:(HAMCardEditorViewController *)cardEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

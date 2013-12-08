@@ -16,7 +16,7 @@
 #import "HAMGridViewController.h"
 #import "HAMPopoverBackgroundView.h"
 
-@interface HAMCategorySelectorViewController : HAMGridViewController <UICollectionViewDataSource, UICollectionViewDelegate, HAMGridCellDelegate, UIActionSheetDelegate, HAMCategoryEditorViewControllerDelegate>
+@interface HAMCategorySelectorViewController : HAMGridViewController <UICollectionViewDataSource, UICollectionViewDelegate, HAMGridCellDelegate, UIActionSheetDelegate, HAMCategoryEditorViewControllerDelegate, HAMCardEditorViewControllerDelegate>
 {
 }
 
@@ -26,7 +26,5 @@
 // other - replace
 @property int index;
 @property (nonatomic, assign) HAMGridCellMode cellMode;
-
-@property (strong, nonatomic) UIPopoverController *popover;
 
 @end

@@ -88,8 +88,7 @@
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"box.png"]forState:UIControlStateNormal];
 	else { // Mode edit
-		// FIXME: should use the file name offered by XingMei
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"edititem.png"] forState:UIControlStateNormal];
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
 		if (! card.isRemovable_)
@@ -112,14 +111,7 @@
 	cardEditor.config = self.config;
 	cardEditor.delegate = self;
 	
-	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
-	navigator.navigationBarHidden = YES;
-	
-	self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
-	self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
-	cardEditor.popover = self.popover;
-
-	[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+	[self presentViewController:cardEditor animated:YES completion:NULL];
 }
 
 // FIXME: conflict with 'rightTopButtonPressed'
@@ -151,8 +143,8 @@
 	[self.navigationController popToViewController:viewsInStack[viewsInStack.count - 3] animated:TRUE];
 }
 
-- (void)rightTopButtonPressedForCell:(id)cell {
-	HAMGridCell *gridCell = (HAMGridCell*) cell;
+- (void)rightTopButtonPressedForCell:(HAMGridCell*)cell {
+	HAMGridCell *gridCell = cell;
 	NSString *cardID = [self cardIDs][gridCell.indexPath.row];
 	
 	if (self.cellMode == HAMGridCellModeAdd) {
@@ -187,20 +179,18 @@
 		cardEditor.categoryID = self.categoryID;
 		cardEditor.config = self.config;
 		cardEditor.delegate = self;
-		
-		UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:cardEditor];
-		navigator.navigationBarHidden = YES;
-		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:navigator];
-		self.popover.popoverBackgroundViewClass = [HAMPopoverBackgroundView class];
-		cardEditor.popover = self.popover;
-
-		[self.popover presentPopoverFromRect:CENTRAL_POINT_RECT inView:self.view permittedArrowDirections:0 animated:YES];
+			
+		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
 
 - (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.collectionView reloadData];
+}
+
+- (void)cardEditorDidCancelEditing:(HAMCardEditorViewController *)cardEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];	
 }
 
 @end

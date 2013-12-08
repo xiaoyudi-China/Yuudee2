@@ -18,6 +18,7 @@
 @protocol HAMCardEditorViewControllerDelegate <NSObject>
 
 - (void)cardEditorDidEndEditing:(HAMCardEditorViewController*)cardEditor;
+- (void)cardEditorDidCancelEditing:(HAMCardEditorViewController*)cardEditor;
 
 @end
 
@@ -29,9 +30,9 @@
 @property (strong, nonatomic, getter = theNewCategoryID) NSString *newCategoryID;
 @property (strong, nonatomic) NSArray *categoryIDs;
 @property (weak, nonatomic) HAMConfig *config;
-@property (weak, nonatomic) UIPopoverController *popover;
 @property (strong, nonatomic) UIPopoverController *popoverForCategories;
 @property (weak, nonatomic) id<HAMCardEditorViewControllerDelegate> delegate;
+@property (strong, nonatomic) UINavigationController *navigator;
 
 @property (strong, nonatomic) HAMCard *tempCard;
 

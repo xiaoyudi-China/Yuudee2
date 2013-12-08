@@ -21,7 +21,6 @@
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, assign) int index;
 @property (nonatomic, assign) HAMGridCellMode cellMode;
-@property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) NSMutableSet *selectedCardIDs;
 
 @end

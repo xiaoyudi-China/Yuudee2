@@ -63,7 +63,7 @@
 		[self.config deleteCard:self.categoryID];
 		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
 		
-		[self.popover dismissPopoverAnimated:YES];
+		[self.delegate categoryEditorDidEndEditing:self];
 	}
 }
 
@@ -96,7 +96,7 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-	[self.popover dismissPopoverAnimated:YES];
+	[self.delegate categoryEditorDidCancelEditing:self];
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
@@ -120,7 +120,6 @@
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
 	
-	[self.popover dismissPopoverAnimated:YES];
 	[self.delegate categoryEditorDidEndEditing:self]; // ask the grid view to refresh
 }
 
