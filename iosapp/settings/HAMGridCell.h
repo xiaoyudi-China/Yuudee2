@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HAMGridCell;
 @protocol HAMGridCellDelegate <NSObject>
 
-// TODO: change the type signature to HAMGridCell
--(void) rightTopButtonPressedForCell: (id) cell;
+-(void) rightTopButtonPressedForCell: (HAMGridCell*) cell;
 
 @end
 

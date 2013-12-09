@@ -30,7 +30,7 @@
 	if (self.categoryID) // editing
 		self.categoryNameField.text = [self.config card:self.categoryID].name;
 	
-	if (self.categoryID == UNCATEGORIZED_ID)
+	if ([self.categoryID isEqualToString:UNCATEGORIZED_ID])
 		self.deleteButton.hidden = YES; // don't allow deletion of the uncategorized
 	else if (self.categoryID == nil) {
 		self.deleteButton.hidden = YES; // don't allow deletion of category being created
@@ -63,7 +63,7 @@
 		[self.config deleteCard:self.categoryID];
 		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
 		
-		[self.popover dismissPopoverAnimated:YES];
+		[self.delegate categoryEditorDidEndEditing:self];
 	}
 }
 
@@ -96,7 +96,7 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-	[self.popover dismissPopoverAnimated:YES];
+	[self.delegate categoryEditorDidCancelEditing:self];
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
@@ -120,7 +120,6 @@
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
 	
-	[self.popover dismissPopoverAnimated:YES];
 	[self.delegate categoryEditorDidEndEditing:self]; // ask the grid view to refresh
 }
 

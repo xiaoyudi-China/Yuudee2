@@ -40,7 +40,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qT1-UU-zIK">
                     <rect key="frame" x="20" y="20" width="192" height="94"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="back">
+                    <state key="normal" image="back.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -50,7 +50,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="btD-o8-mHc">
                     <rect key="frame" x="557" y="20" width="191" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="addnew">
+                    <state key="normal" image="addnew.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -66,8 +66,8 @@
         </view>
     </objects>
     <resources>
-        <image name="addnew" width="382" height="187"/>
-        <image name="back" width="385" height="186"/>
+        <image name="addnew.png" width="382" height="187"/>
+        <image name="back.png" width="385" height="186"/>
         <image name="background2.png" width="1536" height="2048"/>
         <image name="sucaiku.png" width="668" height="187"/>
     </resources>

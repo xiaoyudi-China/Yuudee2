@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "HAMConfig.h"
-#import "HAMConstants.h"
 
 @class HAMRecorderViewController;
 @protocol HAMRecorderViewControllerDelegate <NSObject>
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController*)recorder;
+- (void)recorderDidCancelRecording:(HAMRecorderViewController*)recorder;
 
 @end
 
@@ -23,7 +23,6 @@
 
 @property (weak, nonatomic) HAMConfig *config;
 @property (strong, nonatomic) HAMCard *tempCard; // !!!: don't pass changes back to card editor
-@property (weak, nonatomic) UIPopoverController *popover;
 @property (weak, nonatomic) NSString *categoryID;
 @property (weak, nonatomic, getter = theNewCategoryID) NSString *newCategoryID;
 @property BOOL isNewCard;
@@ -41,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *cardNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *greetingLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *editCardTitleView;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 - (IBAction)finishButtonPressed:(id)sender;
