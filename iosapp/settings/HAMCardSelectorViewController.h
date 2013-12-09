@@ -9,10 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HAMConfig.h"
 #import "HAMGridCell.h"
-#import "HAMConstants.h"
 #import "HAMGridViewController.h"
 #import "HAMCardEditorViewController.h"
-#import "HAMPopoverBackgroundView.h"
 
 @interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 
@@ -21,7 +19,6 @@
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, assign) int index;
 @property (nonatomic, assign) HAMGridCellMode cellMode;
-@property (nonatomic, strong) UIPopoverController *popover;
 @property (nonatomic, strong) NSMutableSet *selectedCardIDs;
 
 @end

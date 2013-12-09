@@ -83,6 +83,8 @@
 	
 	self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
 	self.cardNameLabel.text = self.tempCard.name;
+	if (! self.isNewCard) // edit mode
+		self.editCardTitleView.hidden = NO; // the default state is hidden
 	
 	// fit into the popover
 	self.preferredContentSize = self.view.frame.size;
@@ -95,7 +97,7 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-	[self.navigationController popViewControllerAnimated:YES];
+	[self.delegate recorderDidCancelRecording:self];
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
@@ -157,7 +159,6 @@
 	}
 	
 	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
-	[self.popover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)recordButtonPressed:(id)sender {

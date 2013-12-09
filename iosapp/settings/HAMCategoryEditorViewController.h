@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "HAMConfig.h"
-#import "HAMConstants.h"
 #import "MobClick.h"
 
 @class HAMCategoryEditorViewController;
 @protocol HAMCategoryEditorViewControllerDelegate <NSObject>
 
 - (void)categoryEditorDidEndEditing: (HAMCategoryEditorViewController*)categoryEditor;
+- (void)categoryEditorDidCancelEditing:(HAMCategoryEditorViewController*)categoryEditor;
 
 @end
 
@@ -22,7 +22,6 @@
 
 @property (strong, nonatomic) NSString *categoryID;
 @property (weak, nonatomic) HAMConfig *config;
-@property (weak, nonatomic) UIPopoverController *popover;
 @property (weak, nonatomic) id<HAMCategoryEditorViewControllerDelegate> delegate;
 
 @property (strong, nonatomic) NSString *tempCategoryName;
