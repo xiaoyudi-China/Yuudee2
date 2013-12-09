@@ -77,11 +77,13 @@
 
 - (IBAction)confirmButtonPressed:(id)sender {
 	CGFloat scale = self.image.size.width / self.scrollView.frame.size.width / self.scrollView.zoomScale;
+	CGSize screenSize = [UIScreen mainScreen].bounds.size;
+	
 	CGRect rect;
 	rect.origin.x = self.scrollView.contentOffset.x * scale;
 	rect.origin.y = (self.scrollView.contentOffset.y + self.topCoverView.frame.size.height)* scale;
 	rect.size.width = self.scrollView.frame.size.width * scale;
-	rect.size.height = SCREEN_WIDTH * 3/4 * scale;
+	rect.size.height = screenSize.width * 3/4 * scale;
 	
 	CGRect transformedRect;
 	if (self.image.imageOrientation == UIImageOrientationUp) {

@@ -10,7 +10,6 @@
 #import "HAMRecorderViewController.h"
 #import "HAMCard.h"
 #import "HAMConfig.h"
-#import "HAMConstants.h"
 #import "HAMImageCropperViewController.h"
 #import "MobClick.h"
 

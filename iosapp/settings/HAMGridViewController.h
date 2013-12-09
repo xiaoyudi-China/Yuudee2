@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMConstants.h"
 
 @interface HAMGridViewController : UIViewController 
 

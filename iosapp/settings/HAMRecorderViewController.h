@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "HAMConfig.h"
-#import "HAMConstants.h"
 
 @class HAMRecorderViewController;
 @protocol HAMRecorderViewControllerDelegate <NSObject>
