@@ -296,7 +296,7 @@
 {
     [self openDatabase];
     
-    char* update="INSERT INTO CARD (ID, TYPE, NAME, IMAGE, AUDIO, USER, REMOVABLE) VALUES (?, ?, ?, ?, ?, ?, 0);";
+    char* update="INSERT INTO CARD (ID, TYPE, NAME, IMAGE, AUDIO, USER, REMOVABLE) VALUES (?, ?, ?, ?, ?, ?, ?);";
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(database, update, -1, &stmt, nil)==SQLITE_OK)
     {
