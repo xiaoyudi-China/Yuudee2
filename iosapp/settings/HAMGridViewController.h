@@ -12,8 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *rightTopButton;
+@property (weak, nonatomic) IBOutlet UIButton *bottomButton;
 
 - (IBAction)leftTopButtonPressed:(id)sender;
 - (IBAction)rightTopButtonPressed:(id)sender;
+- (IBAction)bottomButtonPressed:(id)sender;
 
 @end

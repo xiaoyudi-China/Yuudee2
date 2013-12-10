@@ -57,7 +57,7 @@
                     <rect key="frame" x="130" y="347" width="239" height="231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="添加卡片名称" textAlignment="center" minimumFontSize="17" background="name.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入卡片名称" textAlignment="center" minimumFontSize="17" background="name.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
                     <rect key="frame" x="365" y="495" width="252" height="68"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

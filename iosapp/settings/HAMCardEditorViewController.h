@@ -29,9 +29,8 @@
 @property (strong, nonatomic, getter = theNewCategoryID) NSString *newCategoryID;
 @property (strong, nonatomic) NSArray *categoryIDs;
 @property (weak, nonatomic) HAMConfig *config;
-@property (strong, nonatomic) UIPopoverController *popoverForCategories;
 @property (weak, nonatomic) id<HAMCardEditorViewControllerDelegate> delegate;
-@property (strong, nonatomic) UINavigationController *navigator;
+@property (strong, nonatomic) UIPopoverController *categoriesPopover;
 
 @property (strong, nonatomic) HAMCard *tempCard;
 

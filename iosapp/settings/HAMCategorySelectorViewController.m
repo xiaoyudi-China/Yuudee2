@@ -177,6 +177,7 @@
 }
 
 - (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.collectionView reloadData];
 }

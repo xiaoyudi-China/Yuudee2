@@ -43,9 +43,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
-	// fit into the popover
-	self.preferredContentSize = self.view.frame.size;
-		
 	// initialize the temporary card
 	if (self.cardID) { // editing card
 		self.tempCard = [self.config card:self.cardID];
@@ -217,8 +214,8 @@
 	tableViewController.tableView.delegate = self;
 	[tableViewController.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableCell"];
 	
-	 self.popoverForCategories = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
-	[self.popoverForCategories presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	self.categoriesPopover = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+	[self.categoriesPopover presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -242,6 +239,8 @@
 	self.newCategoryID = self.categoryIDs[indexPath.row];
 	HAMCard *category = [self.config card:self.newCategoryID];
 	self.categoryNameLabel.text = category.name;
+	
+	[self.categoriesPopover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
