@@ -56,6 +56,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+	[super viewWillAppear:animated];
+	
 	if (self.index == -1)	// edit mode
 		self.cellMode = HAMGridCellModeEdit;
 	else	// select mode
@@ -94,7 +96,7 @@
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
-		[cell.rightTopButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"+.png"] forState:UIControlStateNormal];
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
@@ -130,6 +132,7 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSLog(@"presenting: %@", self.presentedViewController);
 	if (buttonIndex == 0) { // create category
 		
 		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
@@ -137,6 +140,7 @@
 		categoryEditor.config = self.config;
 		categoryEditor.delegate = self;
 		
+		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 	else if (buttonIndex == 1) { // create card
@@ -146,7 +150,13 @@
 		cardEditor.categoryID = UNCATEGORIZED_ID;
 		cardEditor.config = self.config;
 		cardEditor.delegate = self;
-				
+		
+		// a little bit hack
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+		[cardEditor.view insertSubview:background atIndex:0];
+		
+		cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+		cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
@@ -172,12 +182,12 @@
 		categoryEditor.config = self.config;
 		categoryEditor.delegate = self;
 		
+		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 }
 
 - (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
-	[self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.collectionView reloadData];
 }

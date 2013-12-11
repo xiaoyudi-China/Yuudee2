@@ -56,9 +56,6 @@
 	
 	self.imageView.image = self.image;
 	self.scrollView.contentSize = self.imageView.frame.size;
-	
-	NSLog(@"image size: %f x %f", self.image.size.width, self.image.size.height);
-	NSLog(@"orientation: %d", self.image.imageOrientation);
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,6 +108,7 @@
 	UIImage *croppedImage = [[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:self.image.imageOrientation];
 	[self.delegate imageCropper:self didFinishCroppingWithImage:croppedImage];
 	
+	// FIXME: this method is evil
 	[self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
 

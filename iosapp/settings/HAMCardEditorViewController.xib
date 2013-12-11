@@ -67,10 +67,10 @@
                         <outlet property="delegate" destination="-1" id="TDT-OM-NxC"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-zf-tZ3">
-                    <rect key="frame" x="211" y="586" width="75" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLa-zf-tZ3">
+                    <rect key="frame" x="130" y="328" width="64" height="65"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="删除卡片">
+                    <state key="normal" image="trash.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -141,5 +141,6 @@
         <image name="editcard.png" width="370" height="90"/>
         <image name="name.png" width="480" height="135"/>
         <image name="next.png" width="338" height="178"/>
+        <image name="trash.png" width="128" height="131"/>
     </resources>
 </document>

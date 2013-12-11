@@ -154,7 +154,7 @@
 		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
 		[self.config deleteChildOfCatInLib:self.categoryID atIndex:oldIndex];
 	}
-	
+
 	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
 }
 

@@ -138,7 +138,12 @@
 	self.recorder.categoryID = self.categoryID;
 	self.recorder.newCategoryID = self.newCategoryID;
 	
-	self.recorder.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	// !!!
+	UIView *background = [self.view.subviews[0] snapshotViewAfterScreenUpdates:NO];
+	[self.recorder.view insertSubview:background atIndex:0];
+
+	self.recorder.modalPresentationStyle = UIModalPresentationCurrentContext;
+	self.recorder.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:self.recorder animated:YES completion:NULL];
 }
 
@@ -198,10 +203,10 @@
 }
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
-	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
-	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
 	[MobClick event:@"create_card" attributes:attrs]; // trace event
+	
+	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 
 - (void)recorderDidCancelRecording:(HAMRecorderViewController *)recorder {
@@ -245,6 +250,7 @@
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
 	[self.config deleteCard:self.cardID];
+	
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 

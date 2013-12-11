@@ -34,7 +34,6 @@
 		6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5601851CF44008EC01D /* child_inCat_blurBG */; };
 		6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5611851CF44008EC01D /* child_inCat_woodBG */; };
 		6694E5721851EC77008EC01D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6694E5711851EC77008EC01D /* libz.dylib */; };
-		6694E5971851EF3B008EC01D /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5741851EF3B008EC01D /* add.png */; };
 		6694E5981851EF3B008EC01D /* addnew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5751851EF3B008EC01D /* addnew.png */; };
 		6694E5991851EF3B008EC01D /* addnewBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5761851EF3B008EC01D /* addnewBG.png */; };
 		6694E59A1851EF3B008EC01D /* addnewDOWN.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5771851EF3B008EC01D /* addnewDOWN.png */; };
@@ -156,6 +155,8 @@
 		ABCC8B7E1851F90C00FA6649 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7D1851F90C00FA6649 /* edit.png */; };
 		ABCC8B86185220B700FA6649 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCC8B84185220B700FA6649 /* libMobClickLibrary.a */; };
 		ABDD473C18573DC200B88F74 /* addnewBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDD473B18573DC200B88F74 /* addnewBG2.png */; };
+		ABDD473F18583E4B00B88F74 /* +.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDD473D18583E4B00B88F74 /* +.png */; };
+		ABDD474018583E4B00B88F74 /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = ABDD473E18583E4B00B88F74 /* trash.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -197,7 +198,6 @@
 		6694E5601851CF44008EC01D /* child_inCat_blurBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_blurBG; sourceTree = "<group>"; };
 		6694E5611851CF44008EC01D /* child_inCat_woodBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_woodBG; sourceTree = "<group>"; };
 		6694E5711851EC77008EC01D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		6694E5741851EF3B008EC01D /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
 		6694E5751851EF3B008EC01D /* addnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnew.png; sourceTree = "<group>"; };
 		6694E5761851EF3B008EC01D /* addnewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG.png; sourceTree = "<group>"; };
 		6694E5771851EF3B008EC01D /* addnewDOWN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewDOWN.png; sourceTree = "<group>"; };
@@ -350,6 +350,8 @@
 		ABCC8B84185220B700FA6649 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		ABCC8B85185220B700FA6649 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		ABDD473B18573DC200B88F74 /* addnewBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG2.png; sourceTree = "<group>"; };
+		ABDD473D18583E4B00B88F74 /* +.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "+.png"; sourceTree = "<group>"; };
+		ABDD473E18583E4B00B88F74 /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,7 +505,7 @@
 		6694E5731851EF3B008EC01D /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				6694E5741851EF3B008EC01D /* add.png */,
+				ABDD473D18583E4B00B88F74 /* +.png */,
 				6694E5751851EF3B008EC01D /* addnew.png */,
 				6694E5761851EF3B008EC01D /* addnewBG.png */,
 				ABDD473B18573DC200B88F74 /* addnewBG2.png */,
@@ -540,6 +542,7 @@
 				6694E5941851EF3B008EC01D /* record.png */,
 				6694E5951851EF3B008EC01D /* recordDOWN.png */,
 				6694E5961851EF3B008EC01D /* sucaiku.png */,
+				ABDD473E18583E4B00B88F74 /* trash.png */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -851,11 +854,13 @@
 				66A81FA3184E574000EA6FD6 /* parent_main_editbtn in Resources */,
 				66A81FAC184E574000EA6FD6 /* parent_main_titlefoldbtn in Resources */,
 				6694E5A91851EF3B008EC01D /* checkedbox.png in Resources */,
+				ABDD473F18583E4B00B88F74 /* +.png in Resources */,
 				66A81FC9184F88A200EA6FD6 /* parent_editpop_demo3.png in Resources */,
 				6694E5B31851EF3B008EC01D /* play.png in Resources */,
 				6694E5B11851EF3B008EC01D /* next.png in Resources */,
 				66A81FB5184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib in Resources */,
 				6694E5B01851EF3B008EC01D /* name.png in Resources */,
+				ABDD474018583E4B00B88F74 /* trash.png in Resources */,
 				66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */,
 				66A81FE51850FDA200EA6FD6 /* parent_settingspop_layout2x2.png in Resources */,
 				ABDD473C18573DC200B88F74 /* addnewBG2.png in Resources */,
@@ -900,7 +905,6 @@
 				66A81FC2184F88A200EA6FD6 /* parent_editpop_bg in Resources */,
 				66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn in Resources */,
 				6694E59E1851EF3B008EC01D /* backDOWN.png in Resources */,
-				6694E5971851EF3B008EC01D /* add.png in Resources */,
 				6694E5B21851EF3B008EC01D /* nextDOWN.png in Resources */,
 				66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */,
 				66DE8E1A184BB1F7009AFF39 /* common_card_bg.png in Resources */,

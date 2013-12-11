@@ -45,6 +45,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	
 	// determine which mode we're in
 	self.cellMode = (self.index == -1) ? HAMGridCellModeEdit : HAMGridCellModeAdd;
@@ -111,6 +112,12 @@
 	cardEditor.config = self.config;
 	cardEditor.delegate = self;
 	
+	// !!!
+	UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+	[cardEditor.view insertSubview:background atIndex:NO];
+	
+	cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+	cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:cardEditor animated:YES completion:NULL];
 }
 
@@ -178,18 +185,23 @@
 		cardEditor.config = self.config;
 		cardEditor.delegate = self;
 			
+		// !!!
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+		[cardEditor.view insertSubview:background atIndex:NO];
+		
+		cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+		cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
 
 - (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
-	[self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	[self.collectionView reloadData];
 }
 
 - (void)cardEditorDidCancelEditing:(HAMCardEditorViewController *)cardEditor {
-	[self dismissViewControllerAnimated:YES completion:NULL];	
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
