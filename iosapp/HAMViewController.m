@@ -34,6 +34,8 @@
 {    
     config=[[HAMConfig alloc] initFromDB];
     currentUUID=config.rootID;
+    [self hideInCat];
+    
     if (!config)
         return;
     
@@ -46,8 +48,6 @@
     
     gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
-    
-    [self hideInCat];
 }
 
 - (void)didReceiveMemoryWarning{

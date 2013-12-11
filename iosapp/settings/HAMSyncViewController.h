@@ -17,7 +17,7 @@
 #import "HAMConfig.h"
 #import <Foundation/NSURLError.h>
 
-#define ADDRESS @"115.28.35.182/services/data/app"
+#define ADDRESS @"115.28.35.182:3000/services/data/app"
 #define USERNAME @"public"
 
 @interface HAMSyncViewController : UIViewController

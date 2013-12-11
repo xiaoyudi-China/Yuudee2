@@ -19,11 +19,13 @@
 #import "Reachability.h"
 #import "HAMEditCardPopoverViewController.h"
 #import "HAMCoursewareSettingsPopoverViewController.h"
+#import "HAMAddCardPopoverViewController.h"
+#import "HAMCreateCoursewarePopoverViewController.h"
 #import "HAMPopoverBgView.h"
 
 @class HAMEditableGridViewTool;
 
-@interface HAMStructureEditViewController : UIViewController
+@interface HAMStructureEditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     HAMConfig* config;
     HAMUserManager* coursewareManager;
@@ -33,6 +35,10 @@
     Boolean refreshFlag;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
+@property (weak, nonatomic) IBOutlet UITableView *coursewareTableView;
+@property (weak, nonatomic) IBOutlet UIView *coursewareSelectView;
+@property (weak, nonatomic) IBOutlet UIImageView *inCatWoodImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @property (strong,nonatomic) HAMCategorySelectorViewController *selectorViewController;
 @property (strong,nonatomic) HAMSyncViewController* syncViewController;
@@ -42,19 +48,26 @@
 @property (weak, nonatomic) IBOutlet UIButton *createCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *libButton;
+@property (weak, nonatomic) IBOutlet UIButton *coursewareSelectButton;
 @property (weak, nonatomic) IBOutlet UILabel *coursewareNameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backToRootButton;
 
 @property NSString* currentUUID;
 
 - (void)refreshGridViewAndScrollToFirstPage:(Boolean)scrollToFirstPage;
+- (void)refreshCoursewareSelect;
 - (void)setLayoutWithxnum:(int)xnum ynum:(int)ynum;
 
 - (IBAction)endEditClicked:(UIButton *)sender;
 - (IBAction)newCardClicked:(UIButton *)sender;
 - (IBAction)settingsClicked:(UIButton *)sender;
 - (IBAction)libClicked:(UIButton *)sender;
+- (IBAction)coursewareSelectClicked:(UIButton *)sender;
+- (IBAction)coursewareCreateClicked:(UIButton *)sender;
+- (IBAction)backToRootClicked:(UIButton *)sender;
 
 - (IBAction)syncButtonClicked:(id)sender;
-- (IBAction)changeLayoutClicked:(UIBarButtonItem *)sender;
+
+- (void)enterLibAt:(int)index;
 
 @end

@@ -15,48 +15,64 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_addCard_bg" id="m5h-aT-jbW">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_addCard_bg.png" id="m5h-aT-jbW">
                     <rect key="frame" x="91" y="225" width="585" height="573"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JIc-d3-99I">
                     <rect key="frame" x="154" y="374" width="460" height="103"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" backgroundImage="parent_addCard_paper">
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <inset key="contentEdgeInsets" minX="-146" minY="-9" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="从素材库里添加" backgroundImage="parent_addCard_paper.png">
+                        <color key="titleColor" red="0.3921568627" green="0.27450980390000002" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="addFromLibClicked:" destination="-1" eventType="touchUpInside" id="EeS-0N-cDm"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hEu-CY-2qn">
                     <rect key="frame" x="154" y="505" width="460" height="103"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <inset key="contentEdgeInsets" minX="-171" minY="-9" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="自制一张卡片" backgroundImage="parent_addCard_paper">
+                    <state key="normal" title="自制一张卡片" backgroundImage="parent_addCard_paper.png">
                         <color key="titleColor" red="0.39215686274509803" green="0.27450980392156865" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="createCardClicked:" destination="-1" eventType="touchUpInside" id="faS-1Y-ggb"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="TN8-n3-Z9m">
                     <rect key="frame" x="299" y="639" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="parent_editpop_cancelbtn">
+                    <state key="normal" image="parent_editpop_cancelbtn.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="cancelClicked:" destination="-1" eventType="touchUpInside" id="Nfi-pR-ts6"/>
+                    </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_addCard_createicon" id="ors-pG-OFb">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_addCard_createicon.png" id="ors-pG-OFb">
                     <rect key="frame" x="190" y="538" width="20" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_addCard_libicon.png" id="Uxw-Ha-Gfd">
+                    <rect key="frame" x="190" y="408" width="20" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
         </view>
     </objects>
     <resources>
-        <image name="parent_addCard_bg" width="1170" height="1146"/>
-        <image name="parent_addCard_createicon" width="41" height="50"/>
-        <image name="parent_addCard_paper" width="920" height="206"/>
-        <image name="parent_addCard_paper" width="920" height="206"/>
-        <image name="parent_editpop_cancelbtn" width="338" height="178"/>
+        <image name="parent_addCard_bg.png" width="1170" height="1146"/>
+        <image name="parent_addCard_createicon.png" width="41" height="50"/>
+        <image name="parent_addCard_libicon.png" width="40" height="46"/>
+        <image name="parent_addCard_paper.png" width="920" height="206"/>
+        <image name="parent_editpop_cancelbtn.png" width="1536" height="2048"/>
     </resources>
 </document>

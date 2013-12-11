@@ -10,6 +10,19 @@
 		6612626917AB7B0C0047AA9B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6612626817AB7B0C0047AA9B /* QuartzCore.framework */; };
 		6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6613011A17C1FA8B00903CA8 /* Settings.bundle */; };
 		6632DF5D181AC2AD00A8EA03 /* HAMEditableGridViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */; };
+		664669FA1855D75E006EE478 /* parent_addCard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F61855D75E006EE478 /* parent_addCard_bg.png */; };
+		664669FB1855D75E006EE478 /* parent_addCard_createicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F71855D75E006EE478 /* parent_addCard_createicon.png */; };
+		664669FC1855D75E006EE478 /* parent_addCard_libicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F81855D75E006EE478 /* parent_addCard_libicon.png */; };
+		664669FD1855D75E006EE478 /* parent_addCard_paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F91855D75E006EE478 /* parent_addCard_paper.png */; };
+		66466A0B1855F058006EE478 /* parent_main_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A081855F058006EE478 /* parent_main_title.png */; };
+		66466A0C1855F058006EE478 /* parent_main_titlefoldbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A091855F058006EE478 /* parent_main_titlefoldbtn.png */; };
+		66466A0D1855F058006EE478 /* parent_main_titleunfoldbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A0A1855F058006EE478 /* parent_main_titleunfoldbtn.png */; };
+		66466A121855F1B0006EE478 /* parent_courseselect_addicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A0E1855F1B0006EE478 /* parent_courseselect_addicon.png */; };
+		66466A131855F1B0006EE478 /* parent_courseselect_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A0F1855F1B0006EE478 /* parent_courseselect_bg.png */; };
+		66466A141855F1B0006EE478 /* parent_courseselect_divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A101855F1B0006EE478 /* parent_courseselect_divider.png */; };
+		66466A151855F1B0006EE478 /* parent_courseselect_foreground.png in Resources */ = {isa = PBXBuildFile; fileRef = 66466A111855F1B0006EE478 /* parent_courseselect_foreground.png */; };
+		66466A1918563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66466A1718563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.m */; };
+		66466A1A18563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66466A1818563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib */; };
 		6650B2E117D5D60000770C25 /* icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2E017D5D60000770C25 /* icon1.png */; };
 		6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */ = {isa = PBXBuildFile; fileRef = 6650B2E217D5D60A00770C25 /* icon1_retina.png */; };
 		6653A5A4179E894B00A405B0 /* HAMFileTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6653A5A3179E894B00A405B0 /* HAMFileTools.m */; };
@@ -69,6 +82,8 @@
 		6694E5BB1851EFC3008EC01D /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5BA1851EFC3008EC01D /* background2.png */; };
 		6694E5BD1851F1E7008EC01D /* confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5BC1851F1E7008EC01D /* confirm.png */; };
 		6694E5CF1855C5CF008EC01D /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABCC8B84185220B700FA6649 /* libMobClickLibrary.a */; };
+		6694E5D31855D5E9008EC01D /* HAMAddCardPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6694E5D11855D5E9008EC01D /* HAMAddCardPopoverViewController.m */; };
+		6694E5D41855D5E9008EC01D /* HAMAddCardPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5D21855D5E9008EC01D /* HAMAddCardPopoverViewController.xib */; };
 		6697BD96179F6FC2002E37E8 /* HAMStructureEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD94179F6FC2002E37E8 /* HAMStructureEditViewController.m */; };
 		6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9A179F8092002E37E8 /* HAMGridViewTool.m */; };
 		6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9D179F906F002E37E8 /* HAMViewInfo.m */; };
@@ -90,9 +105,6 @@
 		66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */; };
 		66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */; };
 		66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */; };
-		66A81FAB184E574000EA6FD6 /* parent_main_title in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9D184E574000EA6FD6 /* parent_main_title */; };
-		66A81FAC184E574000EA6FD6 /* parent_main_titlefoldbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9E184E574000EA6FD6 /* parent_main_titlefoldbtn */; };
-		66A81FAD184E574000EA6FD6 /* parent_main_titleunfoldbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9F184E574000EA6FD6 /* parent_main_titleunfoldbtn */; };
 		66A81FAF184F260A00EA6FD6 /* parent_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */; };
 		66A81FB4184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81FB2184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m */; };
 		66A81FB5184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB3184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib */; };
@@ -163,6 +175,20 @@
 		6613011A17C1FA8B00903CA8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6632DF5B181AC2AD00A8EA03 /* HAMEditableGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditableGridViewTool.h; path = utils/HAMEditableGridViewTool.h; sourceTree = "<group>"; };
 		6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditableGridViewTool.m; path = utils/HAMEditableGridViewTool.m; sourceTree = "<group>"; };
+		664669F61855D75E006EE478 /* parent_addCard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_addCard_bg.png; sourceTree = "<group>"; };
+		664669F71855D75E006EE478 /* parent_addCard_createicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_addCard_createicon.png; sourceTree = "<group>"; };
+		664669F81855D75E006EE478 /* parent_addCard_libicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_addCard_libicon.png; sourceTree = "<group>"; };
+		664669F91855D75E006EE478 /* parent_addCard_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_addCard_paper.png; sourceTree = "<group>"; };
+		66466A081855F058006EE478 /* parent_main_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_main_title.png; path = coursewareselector/parent_main_title.png; sourceTree = "<group>"; };
+		66466A091855F058006EE478 /* parent_main_titlefoldbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_main_titlefoldbtn.png; path = coursewareselector/parent_main_titlefoldbtn.png; sourceTree = "<group>"; };
+		66466A0A1855F058006EE478 /* parent_main_titleunfoldbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_main_titleunfoldbtn.png; path = coursewareselector/parent_main_titleunfoldbtn.png; sourceTree = "<group>"; };
+		66466A0E1855F1B0006EE478 /* parent_courseselect_addicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_courseselect_addicon.png; path = coursewareselector/parent_courseselect_addicon.png; sourceTree = "<group>"; };
+		66466A0F1855F1B0006EE478 /* parent_courseselect_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_courseselect_bg.png; path = coursewareselector/parent_courseselect_bg.png; sourceTree = "<group>"; };
+		66466A101855F1B0006EE478 /* parent_courseselect_divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_courseselect_divider.png; path = coursewareselector/parent_courseselect_divider.png; sourceTree = "<group>"; };
+		66466A111855F1B0006EE478 /* parent_courseselect_foreground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = parent_courseselect_foreground.png; path = coursewareselector/parent_courseselect_foreground.png; sourceTree = "<group>"; };
+		66466A1618563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCreateCoursewarePopoverViewController.h; path = settings/mainPage/HAMCreateCoursewarePopoverViewController.h; sourceTree = "<group>"; };
+		66466A1718563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCreateCoursewarePopoverViewController.m; path = settings/mainPage/HAMCreateCoursewarePopoverViewController.m; sourceTree = "<group>"; };
+		66466A1818563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMCreateCoursewarePopoverViewController.xib; path = settings/mainPage/HAMCreateCoursewarePopoverViewController.xib; sourceTree = "<group>"; };
 		6650B2D117D5CB3D00770C25 /* iosapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iosapp.entitlements; sourceTree = "<group>"; };
 		6650B2E017D5D60000770C25 /* icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1.png; path = ../icon1.png; sourceTree = "<group>"; };
 		6650B2E217D5D60A00770C25 /* icon1_retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon1_retina.png; path = ../icon1_retina.png; sourceTree = "<group>"; };
@@ -232,6 +258,9 @@
 		6694E5BA1851EFC3008EC01D /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		6694E5BC1851F1E7008EC01D /* confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm.png; sourceTree = "<group>"; };
 		6694E5CC1855C4AE008EC01D /* iosapp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = iosapp.xcodeproj; sourceTree = "<group>"; };
+		6694E5D01855D5E9008EC01D /* HAMAddCardPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMAddCardPopoverViewController.h; path = settings/mainPage/HAMAddCardPopoverViewController.h; sourceTree = "<group>"; };
+		6694E5D11855D5E9008EC01D /* HAMAddCardPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMAddCardPopoverViewController.m; path = settings/mainPage/HAMAddCardPopoverViewController.m; sourceTree = "<group>"; };
+		6694E5D21855D5E9008EC01D /* HAMAddCardPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMAddCardPopoverViewController.xib; path = settings/mainPage/HAMAddCardPopoverViewController.xib; sourceTree = "<group>"; };
 		6697BD93179F6FC2002E37E8 /* HAMStructureEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMStructureEditViewController.h; path = settings/HAMStructureEditViewController.h; sourceTree = "<group>"; };
 		6697BD94179F6FC2002E37E8 /* HAMStructureEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMStructureEditViewController.m; path = settings/HAMStructureEditViewController.m; sourceTree = "<group>"; };
 		6697BD99179F8092002E37E8 /* HAMGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMGridViewTool.h; path = utils/HAMGridViewTool.h; sourceTree = "<group>"; };
@@ -260,9 +289,6 @@
 		66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_libbtn_down; sourceTree = "<group>"; };
 		66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_settingsbtn; sourceTree = "<group>"; };
 		66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_settingsbtn_down.png; sourceTree = "<group>"; };
-		66A81F9D184E574000EA6FD6 /* parent_main_title */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_title; sourceTree = "<group>"; };
-		66A81F9E184E574000EA6FD6 /* parent_main_titlefoldbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_titlefoldbtn; sourceTree = "<group>"; };
-		66A81F9F184E574000EA6FD6 /* parent_main_titleunfoldbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_titleunfoldbtn; sourceTree = "<group>"; };
 		66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_bg.png; sourceTree = "<group>"; };
 		66A81FB1184F86A700EA6FD6 /* HAMEditCardPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditCardPopoverViewController.h; path = settings/mainPage/HAMEditCardPopoverViewController.h; sourceTree = "<group>"; };
 		66A81FB2184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditCardPopoverViewController.m; path = settings/mainPage/HAMEditCardPopoverViewController.m; sourceTree = "<group>"; };
@@ -393,6 +419,20 @@
 				66D1EDE9182DFDD6008F65E5 /* HAMRoom.m */,
 			);
 			name = datastructure;
+			sourceTree = "<group>";
+		};
+		66466A071855EC70006EE478 /* coursewareSelector */ = {
+			isa = PBXGroup;
+			children = (
+				66466A0E1855F1B0006EE478 /* parent_courseselect_addicon.png */,
+				66466A0F1855F1B0006EE478 /* parent_courseselect_bg.png */,
+				66466A101855F1B0006EE478 /* parent_courseselect_divider.png */,
+				66466A111855F1B0006EE478 /* parent_courseselect_foreground.png */,
+				66466A081855F058006EE478 /* parent_main_title.png */,
+				66466A091855F058006EE478 /* parent_main_titlefoldbtn.png */,
+				66466A0A1855F058006EE478 /* parent_main_titleunfoldbtn.png */,
+			);
+			name = coursewareSelector;
 			sourceTree = "<group>";
 		};
 		6653A5A1179E890E00A405B0 /* utils */ = {
@@ -551,6 +591,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		6694E5D51855D5FD008EC01D /* addCardpop */ = {
+			isa = PBXGroup;
+			children = (
+				664669F61855D75E006EE478 /* parent_addCard_bg.png */,
+				664669F71855D75E006EE478 /* parent_addCard_createicon.png */,
+				664669F81855D75E006EE478 /* parent_addCard_libicon.png */,
+				664669F91855D75E006EE478 /* parent_addCard_paper.png */,
+			);
+			path = addCardpop;
+			sourceTree = "<group>";
+		};
 		6697BD98179F6FC7002E37E8 /* settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -589,6 +640,8 @@
 		66A81F91184E574000EA6FD6 /* parentMain */ = {
 			isa = PBXGroup;
 			children = (
+				66466A071855EC70006EE478 /* coursewareSelector */,
+				6694E5D51855D5FD008EC01D /* addCardpop */,
 				66A81FD41850FDA200EA6FD6 /* settingspop */,
 				66A81FB7184F88A200EA6FD6 /* editpop */,
 				66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */,
@@ -603,9 +656,6 @@
 				66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */,
 				66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */,
 				66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */,
-				66A81F9D184E574000EA6FD6 /* parent_main_title */,
-				66A81F9E184E574000EA6FD6 /* parent_main_titlefoldbtn */,
-				66A81F9F184E574000EA6FD6 /* parent_main_titleunfoldbtn */,
 			);
 			path = parentMain;
 			sourceTree = "<group>";
@@ -613,6 +663,9 @@
 		66A81FB0184F853900EA6FD6 /* mainPage */ = {
 			isa = PBXGroup;
 			children = (
+				6694E5D01855D5E9008EC01D /* HAMAddCardPopoverViewController.h */,
+				6694E5D11855D5E9008EC01D /* HAMAddCardPopoverViewController.m */,
+				6694E5D21855D5E9008EC01D /* HAMAddCardPopoverViewController.xib */,
 				6697BD93179F6FC2002E37E8 /* HAMStructureEditViewController.h */,
 				6697BD94179F6FC2002E37E8 /* HAMStructureEditViewController.m */,
 				6697BDA2179FB33A002E37E8 /* HAMStructureEditView.xib */,
@@ -624,6 +677,9 @@
 				66A81FCF1850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.h */,
 				66A81FD01850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.m */,
 				66A81FD11850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib */,
+				66466A1618563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.h */,
+				66466A1718563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.m */,
+				66466A1818563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib */,
 			);
 			name = mainPage;
 			sourceTree = "<group>";
@@ -842,6 +898,7 @@
 			files = (
 				6694E5991851EF3B008EC01D /* addnewBG.png in Resources */,
 				6694E59F1851EF3B008EC01D /* background.png in Resources */,
+				66466A141855F1B0006EE478 /* parent_courseselect_divider.png in Resources */,
 				66A81FA0184E574000EA6FD6 /* parent_main_addbtn in Resources */,
 				66A81FE01850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png in Resources */,
 				66A81FE41850FDA200EA6FD6 /* parent_settingspop_layout1x1.png in Resources */,
@@ -854,6 +911,7 @@
 				666104A7178BB04A003AEE3D /* Default@2x.png in Resources */,
 				6694E5AF1851EF3B008EC01D /* logo.png in Resources */,
 				6694E5BB1851EFC3008EC01D /* background2.png in Resources */,
+				66466A131855F1B0006EE478 /* parent_courseselect_bg.png in Resources */,
 				666104A9178BB04A003AEE3D /* Default-568h@2x.png in Resources */,
 				666104AF178BB04A003AEE3D /* HAMViewController_iPhone.xib in Resources */,
 				666104B2178BB04A003AEE3D /* HAMViewController_iPad.xib in Resources */,
@@ -864,6 +922,7 @@
 				AB340B4D1852328A0041934E /* addnewBG2.png in Resources */,
 				66A81FD31850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib in Resources */,
 				6694E5AD1851EF3B008EC01D /* deleteDOWN.png in Resources */,
+				66466A0D1855F058006EE478 /* parent_main_titleunfoldbtn.png in Resources */,
 				66A81FAF184F260A00EA6FD6 /* parent_main_bg.png in Resources */,
 				66A81FCA184F88A200EA6FD6 /* parent_editpop_editicon.png in Resources */,
 				66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg in Resources */,
@@ -871,7 +930,7 @@
 				6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */,
 				6694E5AB1851EF3B008EC01D /* classBG.png in Resources */,
 				66A81FA3184E574000EA6FD6 /* parent_main_editbtn in Resources */,
-				66A81FAC184E574000EA6FD6 /* parent_main_titlefoldbtn in Resources */,
+				66466A0B1855F058006EE478 /* parent_main_title.png in Resources */,
 				6694E5A91851EF3B008EC01D /* checkedbox.png in Resources */,
 				66A81FC9184F88A200EA6FD6 /* parent_editpop_demo3.png in Resources */,
 				6694E5B31851EF3B008EC01D /* play.png in Resources */,
@@ -879,15 +938,16 @@
 				66A81FB5184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib in Resources */,
 				6694E5B01851EF3B008EC01D /* name.png in Resources */,
 				66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */,
+				6694E5D41855D5E9008EC01D /* HAMAddCardPopoverViewController.xib in Resources */,
 				66A81FE51850FDA200EA6FD6 /* parent_settingspop_layout2x2.png in Resources */,
 				8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */,
 				66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */,
-				66A81FAB184E574000EA6FD6 /* parent_main_title in Resources */,
+				664669FA1855D75E006EE478 /* parent_addCard_bg.png in Resources */,
 				66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down in Resources */,
+				664669FC1855D75E006EE478 /* parent_addCard_libicon.png in Resources */,
 				6694E5AE1851EF3B008EC01D /* editcard.png in Resources */,
 				66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn in Resources */,
 				66A81FE11850FDA200EA6FD6 /* parent_settingspop_checked.png in Resources */,
-				66A81FAD184E574000EA6FD6 /* parent_main_titleunfoldbtn in Resources */,
 				6694E5A61851EF3B008EC01D /* cardBG.png in Resources */,
 				6694E5A01851EF3B008EC01D /* bg.png in Resources */,
 				66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down in Resources */,
@@ -898,8 +958,10 @@
 				6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */,
 				66A81F8B184E178600EA6FD6 /* HAMImageCropperViewController.xib in Resources */,
 				6694E5A31851EF3B008EC01D /* camera.png in Resources */,
+				66466A0C1855F058006EE478 /* parent_main_titlefoldbtn.png in Resources */,
 				66A81FCB184F88A200EA6FD6 /* parent_editppop_checked.png in Resources */,
 				66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn in Resources */,
+				66466A1A18563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib in Resources */,
 				8E0728731836202B00E538FB /* HAMRecorderViewController.xib in Resources */,
 				66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down in Resources */,
 				6694E5B71851EF3B008EC01D /* record.png in Resources */,
@@ -910,6 +972,8 @@
 				6694E5981851EF3B008EC01D /* addnew.png in Resources */,
 				6694E5A21851EF3B008EC01D /* box.png in Resources */,
 				6694E5B41851EF3B008EC01D /* playDOWN.png in Resources */,
+				66466A151855F1B0006EE478 /* parent_courseselect_foreground.png in Resources */,
+				664669FD1855D75E006EE478 /* parent_addCard_paper.png in Resources */,
 				6694E5B61851EF3B008EC01D /* previousDOWN.png in Resources */,
 				66DE8E1B184BB1F7009AFF39 /* common_card_white.png in Resources */,
 				66DE8E1E184BB1F7009AFF39 /* common_cat_white.png in Resources */,
@@ -917,6 +981,7 @@
 				6694E5B81851EF3B008EC01D /* recordDOWN.png in Resources */,
 				6694E59B1851EF3B008EC01D /* album.png in Resources */,
 				6694E5AA1851EF3B008EC01D /* choose.png in Resources */,
+				66466A121855F1B0006EE478 /* parent_courseselect_addicon.png in Resources */,
 				66A81FC4184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png in Resources */,
 				66A81FC2184F88A200EA6FD6 /* parent_editpop_bg in Resources */,
 				66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn in Resources */,
@@ -929,6 +994,7 @@
 				6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */,
 				6650B2E117D5D60000770C25 /* icon1.png in Resources */,
 				6694E5A81851EF3B008EC01D /* check.png in Resources */,
+				664669FB1855D75E006EE478 /* parent_addCard_createicon.png in Resources */,
 				6694E59D1851EF3B008EC01D /* back.png in Resources */,
 				6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */,
 				66A81FC8184F88A200EA6FD6 /* parent_editpop_demo2.png in Resources */,
@@ -974,6 +1040,7 @@
 				667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */,
 				667E53C217A65C3100BBDE35 /* HAMResource.m in Sources */,
 				66D1EDEA182DFDD6008F65E5 /* HAMRoom.m in Sources */,
+				66466A1918563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.m in Sources */,
 				66AF428117A7979E0053D560 /* HAMTools.m in Sources */,
 				8E0728681835FEA700E538FB /* HAMCategoryEditorViewController.m in Sources */,
 				8E0728721836202B00E538FB /* HAMRecorderViewController.m in Sources */,
@@ -985,6 +1052,7 @@
 				8EB892FC1818F9D4001322F2 /* HAMGridCell.m in Sources */,
 				66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */,
 				66CC303817B8DA3A008078A9 /* HAMUser.m in Sources */,
+				6694E5D31855D5E9008EC01D /* HAMAddCardPopoverViewController.m in Sources */,
 				66A81F88184E178600EA6FD6 /* HAMGridViewController.m in Sources */,
 				8E07286D183609A100E538FB /* HAMCardEditorViewController.m in Sources */,
 				66CC303D17B8FD23008078A9 /* HAMUserManager.m in Sources */,
