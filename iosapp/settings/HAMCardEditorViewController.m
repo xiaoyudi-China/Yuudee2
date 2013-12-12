@@ -43,9 +43,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
-	// fit into the popover
-	self.preferredContentSize = self.view.frame.size;
-		
 	// initialize the temporary card
 	if (self.cardID) { // editing card
 		self.tempCard = [self.config card:self.cardID];
@@ -141,7 +138,12 @@
 	self.recorder.categoryID = self.categoryID;
 	self.recorder.newCategoryID = self.newCategoryID;
 	
-	self.recorder.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	// !!!
+	UIView *background = [self.view.subviews[0] snapshotViewAfterScreenUpdates:NO];
+	[self.recorder.view insertSubview:background atIndex:0];
+
+	self.recorder.modalPresentationStyle = UIModalPresentationCurrentContext;
+	self.recorder.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:self.recorder animated:YES completion:NULL];
 }
 
@@ -201,10 +203,10 @@
 }
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
-	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
-	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
 	[MobClick event:@"create_card" attributes:attrs]; // trace event
+	
+	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 
 - (void)recorderDidCancelRecording:(HAMRecorderViewController *)recorder {
@@ -217,8 +219,8 @@
 	tableViewController.tableView.delegate = self;
 	[tableViewController.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableCell"];
 	
-	 self.popoverForCategories = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
-	[self.popoverForCategories presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	self.categoriesPopover = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+	[self.categoriesPopover presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -242,10 +244,13 @@
 	self.newCategoryID = self.categoryIDs[indexPath.row];
 	HAMCard *category = [self.config card:self.newCategoryID];
 	self.categoryNameLabel.text = category.name;
+	
+	[self.categoriesPopover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
 	[self.config deleteCard:self.cardID];
+	
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 

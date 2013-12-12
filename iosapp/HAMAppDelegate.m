@@ -42,6 +42,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	// use UMeng SDK to collect statistics
+	[MobClick startWithAppkey:@"529d8c2556240b9e4d007957"];
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self turnToChildView];

@@ -62,8 +62,6 @@
 		
 		[self.config deleteCard:self.categoryID];
 		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
-		
-		[self.delegate categoryEditorDidEndEditing:self];
 	}
 }
 

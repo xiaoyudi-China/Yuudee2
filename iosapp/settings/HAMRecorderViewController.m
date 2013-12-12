@@ -85,9 +85,6 @@
 	self.cardNameLabel.text = self.tempCard.name;
 	if (! self.isNewCard) // edit mode
 		self.editCardTitleView.hidden = NO; // the default state is hidden
-	
-	// fit into the popover
-	self.preferredContentSize = self.view.frame.size;
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,7 +154,7 @@
 		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
 		[self.config deleteChildOfCatInLib:self.categoryID atIndex:oldIndex];
 	}
-	
+
 	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
 }
 
