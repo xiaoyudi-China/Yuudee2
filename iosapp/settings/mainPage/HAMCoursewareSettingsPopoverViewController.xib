@@ -122,7 +122,7 @@
         </view>
     </objects>
     <resources>
-        <image name="parent_settingspop_bg" width="1173" height="1562"/>
+        <image name="parent_settingspop_bg" width="1536" height="2048"/>
         <image name="parent_settingspop_cancelbtn" width="338" height="178"/>
         <image name="parent_settingspop_checked.png" width="276" height="383"/>
         <image name="parent_settingspop_finishbtn" width="338" height="178"/>

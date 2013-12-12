@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAMStructureEditViewController.h"
 
 @interface HAMAddCardPopoverViewController : UIViewController
+{}
+
+@property HAMStructureEditViewController* mainSettingsViewController;
+@property UIPopoverController* popover;
+
+@property int cardIndex;
+
+- (IBAction)addFromLibClicked:(UIButton *)sender;
+- (IBAction)createCardClicked:(UIButton *)sender;
+- (IBAction)cancelClicked:(UIButton *)sender;
 
 @end

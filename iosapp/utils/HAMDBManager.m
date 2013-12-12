@@ -641,7 +641,7 @@
 {
     //TODO: default layoutx,layouty
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",3,4);",user.UUID,user.name,user.rootID]];
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\");",user.rootID,user.name]];
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\",1);",user.rootID,user.name]];
 }
 
 -(void)updateUser:(NSString*)userID name:(NSString*)newName

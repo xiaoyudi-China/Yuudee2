@@ -12,12 +12,17 @@
 {
     //NSMutableArray* viewArray;
     UIPopoverController* popover;
+    NSMutableArray* coursewareArray;
 }
 @end
 
 @implementation HAMStructureEditViewController
 
 @synthesize scrollView_;
+@synthesize coursewareTableView;
+@synthesize coursewareSelectView;
+@synthesize inCatWoodImageView;
+@synthesize bgImageView;
 
 @synthesize selectorViewController;
 @synthesize syncViewController;
@@ -28,6 +33,8 @@
 @synthesize settingsButton;
 @synthesize libButton;
 @synthesize coursewareNameLabel;
+@synthesize coursewareSelectButton;
+@synthesize backToRootButton;
 
 @synthesize currentUUID;
 
@@ -44,12 +51,13 @@
     if (!config)
         [self initWithConfig];
     
-    coursewareNameLabel.text = [coursewareManager currentUser].name;
+    [self refreshCoursewareSelect];
     
     if (refreshFlag)
     {
         currentUUID=config.rootID;
         refreshFlag=NO;
+        [self exitCat];
     }
     
     if (currentUUID)
@@ -61,16 +69,15 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
 
-    UIBarButtonItem* userBtn = [[UIBarButtonItem alloc] initWithTitle:@"更换用户" style:UIBarButtonItemStyleBordered target:self action:@selector(userBtnClicked:)];
-    self.navigationItem.rightBarButtonItem = userBtn;
-    
-    self.title=@"词条库设置";
     refreshFlag=YES;
     
     [HAMViewTool setHighLightImage:@"parent_main_endbtn_down.png" forButton:endEditButton];
     [HAMViewTool setHighLightImage:@"parent_main_addbtn_down.png" forButton:createCardButton];
+    createCardButton.hidden = YES;
     [HAMViewTool setHighLightImage:@"parent_main_settingsbtn_down.png" forButton:settingsButton];
     [HAMViewTool setHighLightImage:@"parent_main_libbtn_down.png" forButton:libButton];
+    
+    self.coursewareSelectView.hidden = YES;
 }
 
 -(void)initWithConfig
@@ -94,7 +101,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)presentPopoverWithPopoverViewController:(UIViewController*)popoverViewController
@@ -128,9 +134,7 @@
 #pragma mark Enter Lib
 
 - (IBAction)newCardClicked:(UIButton *)sender {
-    UIAlertView* newNodeAlert=[[UIAlertView alloc] initWithTitle:@"新建" message:@"现在新建一个..." delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"词条",@"分类",nil];
-    newNodeAlert.tag=0;
-    [newNodeAlert show];
+
 }
 
 - (IBAction)libClicked:(UIButton *)sender {
@@ -153,39 +157,6 @@
 
 -(IBAction) editClicked:(id)sender
 {
-    /*UIAlertView* editAlert;
-     selectedTag_ = [sender tag];
-     
-     
-     if (selectedCard.type == CARD_TYPE_CATEGORY) {
-     editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该分类",@"清除该分类",nil];
-     }
-     else{
-     NSString* animation;
-     switch ([config animationOfCat:currentUUID atIndex:selectedTag_]) {
-     case ROOM_ANIMATION_SCALE:
-     animation = @"放大效果";
-     break;
-     
-     case ROOM_ANIMATION_SHAKE:
-     animation = @"摇晃效果";
-     break;
-     
-     case ROOM_ANIMATION_NONE:
-     animation = @"无效果";
-     break;
-     
-     default:
-     animation = @"?";
-     break;
-     }
-     
-     editAlert =[[UIAlertView alloc] initWithTitle:@"更改" message:[[NSString alloc] initWithFormat:@"当前动画效果为：%@",animation] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"编辑该卡片",@"清除该卡片",@"更改动画效果",nil];
-     }
-     
-     editAlert.tag=2;
-     [editAlert show];*/
-    
     HAMEditCardPopoverViewController* editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
     editCardPopover.parentID = currentUUID;
     editCardPopover.childIndex = [sender tag];
@@ -198,16 +169,13 @@
 
 
 #pragma mark -
-#pragma mark Actions
+#pragma mark Card Clicked
 
 -(IBAction) groupClicked:(id)sender{
-    int index=[sender tag];/*
-    if (index==-1)
-        currentUUID=config.rootID;
-    else
-        */
+    int index=[sender tag];
     currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
-
+    
+    [self enterCat];
     [self refreshGridViewAndScrollToFirstPage:YES];
 }
 
@@ -217,115 +185,14 @@
 
 -(IBAction) addClicked:(id)sender
 {
-    [self enterLibAt:[sender tag]];
+    HAMAddCardPopoverViewController* addCardPopover = [[HAMAddCardPopoverViewController alloc] initWithNibName:@"HAMAddCardPopoverViewController" bundle:nil];
+    addCardPopover.mainSettingsViewController = self;
+    
+    [self presentPopoverWithPopoverViewController:addCardPopover];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    /*
-    int xnum=-1,ynum=-1;
-    UIAlertView* changeAnimationAlert;
-    int animation;
-    switch (alertView.tag) {
-        case 0:
-            //newNodeAlert
-            break;
-        
-        case 1:
-            //changeLayoutAlert
-            
-            switch (buttonIndex) {
-                case 1:
-                    //2x2
-                    xnum=2;
-                    ynum=2;
-                    break;
-                case 2:
-                    //2x3
-                    xnum=2;
-                    ynum=3;
-                    break;
-                case 3:
-                    //3x3
-                    xnum=3;
-                    ynum=3;
-                    break;
-                case 4:
-                    //3x4
-                    xnum=3;
-                    ynum=4;
-                    break;
-                    
-                default:
-                    break;
-            }
-            if (xnum!=-1 && ynum!=-1)
-            {
-                [coursewareManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
-                [dragableView setLayoutWithxnum:xnum ynum:ynum];
-                [self refreshGridView];
-            }
-            break;
-            
-        case 2:
-            //editAlert
-            
-            switch (buttonIndex) {
-                case 1:
-                    //edit card here
-                    
-                    break;
-                    
-                case 2:
-                    //delete card here
-                    [config updateRoomOfCat:currentUUID with:nil atIndex:selectedTag_];
-                    [dragableView refreshView:currentUUID scrollToFirstPage:NO];
-                    break;
-                    
-                case 3:
-                    //change animation here
-                    changeAnimationAlert = [[UIAlertView alloc] initWithTitle:@"更改动画效果" message:@"更改为:" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"放大效果",@"摇晃效果",@"无效果",nil];
-                    changeAnimationAlert.tag = 3;
-                    [changeAnimationAlert show];
-                    break;
-                    
-                default:
-                    break;
-            }
-            break;
-            
-        case 3:
-            //changeAnimationAlert
-            switch (buttonIndex) {
-                case 1:
-                    //scale
-                    animation = ROOM_ANIMATION_SCALE;
-                    break;
-                    
-                case 2:
-                    //scale and shake
-                    animation = ROOM_ANIMATION_SHAKE;
-                    break;
-                    
-                case 3:
-                    //none
-                    animation = ROOM_ANIMATION_NONE;
-                    break;
-                    
-                default:
-                    //cancel
-                    animation = -1;
-                    break;
-            }
-            if (animation != -1)
-                [config updateAnimationOfCat:currentUUID with:animation atIndex:selectedTag_];
-            
-            break;
-            
-        default:
-            break;
-    }*/
-    
 }
 
 
@@ -345,24 +212,6 @@
     [self.navigationController pushViewController:syncViewController animated:YES];
 }
 
-- (IBAction)changeLayoutClicked:(UIBarButtonItem *)sender {
-    UIAlertView* changeLayoutAlert=[[UIAlertView alloc] initWithTitle:@"布局" message:@"更改布局为..." delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"2x2",@"2x3",@"3x3",@"3x4",nil];
-    changeLayoutAlert.tag=1;
-    [changeLayoutAlert show];
-}
-
--(IBAction)userBtnClicked:(UIBarButtonItem*)sender
-{
-    if (userViewController==nil)
-    {
-        userViewController=[[HAMUserViewController alloc]initWithNibName:@"HAMUserViewController" bundle:nil];
-        userViewController.userManager=coursewareManager;
-    }
-    refreshFlag=YES;
-    [self.navigationController pushViewController:userViewController animated:YES];
-}
-
-
 #pragma mark -
 #pragma mark Grid View
 
@@ -374,6 +223,88 @@
 - (void)setLayoutWithxnum:(int)xnum ynum:(int)ynum
 {
     [dragableView setLayoutWithxnum:xnum ynum:ynum];
+}
+
+- (void)backToRootClicked:(UIButton *)sender{
+    currentUUID=config.rootID;
+    
+    [self exitCat];
+    
+    [self refreshGridViewAndScrollToFirstPage:YES];
+}
+
+-(void)exitCat{
+    inCatWoodImageView.hidden = YES;
+    backToRootButton.hidden = YES;
+//    bgImageView.image = [UIImage imageNamed:@"parent_main_bg"];
+}
+
+- (void)enterCat{
+    inCatWoodImageView.hidden = NO;
+    backToRootButton.hidden = NO;
+//    bgImageView.image = [UIImage imageNamed:@"child_inCat_blurBG"];
+}
+
+#pragma mark -
+#pragma mark Courseware Select & Create
+
+- (void)refreshCoursewareSelect
+{
+    coursewareNameLabel.text = [coursewareManager currentUser].name;
+    coursewareArray = [coursewareManager userList];
+    [coursewareTableView reloadData];
+}
+
+- (IBAction)coursewareSelectClicked:(UIButton *)sender {
+    if (coursewareSelectView.hidden) {
+        coursewareSelectView.hidden = NO;
+        [coursewareSelectButton setImage:[UIImage imageNamed:@"parent_main_titlefoldbtn.png"] forState:UIControlStateNormal];
+    }
+    else {
+        coursewareSelectView.hidden = YES;
+        [coursewareSelectButton setImage:[UIImage imageNamed:@"parent_main_titleunfoldbtn.png"] forState:UIControlStateNormal];
+    }
+}
+
+-(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return coursewareArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellWithIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellWithIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellWithIdentifier];
+    }
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    [cell.textLabel setTextColor:[UIColor colorWithRed:214.0f/255 green:196.0f/255 blue:177.0f/255 alpha:1]];
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:52.0f/255 green:25.0f/255 blue:12.0f/255 alpha:1];
+    
+    NSUInteger row = [indexPath row];
+    HAMUser* courseware = [coursewareArray objectAtIndex:row];
+    cell.textLabel.text = courseware.name;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HAMUser* courseware =[coursewareArray objectAtIndex:[indexPath row]];
+    [coursewareManager setCurrentUser:courseware];
+    refreshFlag = YES;
+    [self viewWillAppear:YES];
+    [self coursewareSelectClicked:nil];
+}
+
+- (IBAction)coursewareCreateClicked:(UIButton *)sender {
+    HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
+    createCoursewarePopover.mainSettingsViewController = self;
+    createCoursewarePopover.coursewareManager = coursewareManager;
+    
+    [self presentPopoverWithPopoverViewController:createCoursewarePopover];
 }
 
 #pragma mark -
@@ -391,5 +322,6 @@
     
     [self.navigationController pushViewController:selectorViewController animated:YES];
 }
+
 
 @end

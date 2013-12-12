@@ -113,8 +113,9 @@
     //add card view
     UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
-    CGPoint blankBtnOffset = viewInfo.blankBtnOffset;
-    CGRect frame = CGRectMake(cardPosition.x + blankBtnOffset.x, cardPosition.y + blankBtnOffset.y, viewInfo.blankBtnWidth, viewInfo.blankBtnHeight);
+//    CGPoint blankBtnOffset = viewInfo.blankBtnOffset;
+//    CGRect frame = CGRectMake(cardPosition.x + blankBtnOffset.x, cardPosition.y + blankBtnOffset.y, viewInfo.blankBtnWidth, viewInfo.blankBtnHeight);
+    CGRect frame = CGRectMake(cardPosition.x, cardPosition.y, viewInfo.cardWidth, viewInfo.cardHeight);
     
     UIButton* blankButton = [[UIButton alloc] initWithFrame:frame];
     UIImage* bgImage = [UIImage imageNamed:@"parent_main_blankcard.png"];
@@ -125,6 +126,9 @@
     
     [pageView addSubview:blankButton];
     [HAMTools setObject:blankButton toMutableArray:cardViewArray_ atIndex:index];
+    
+    tagOfIndex_[index] = index;
+    positionArray_[index] = blankButton.center;
 }
 
 - (void)addEditButtonAtPos:(int)pos onPage:(int)pageIndex tag:(int)tag

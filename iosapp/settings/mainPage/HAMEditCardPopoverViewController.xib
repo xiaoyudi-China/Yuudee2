@@ -147,7 +147,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
     </objects>
     <resources>
-        <image name="parent_editpop_bg" width="1173" height="1562"/>
+        <image name="parent_editpop_bg" width="1170" height="1146"/>
         <image name="parent_editpop_cancelbtn" width="338" height="178"/>
         <image name="parent_editpop_confirm" width="338" height="178"/>
         <image name="parent_editpop_demo1.png" width="244" height="325"/>
