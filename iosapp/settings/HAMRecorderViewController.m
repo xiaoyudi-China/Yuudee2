@@ -104,16 +104,23 @@
 	NSFileManager *manager = [NSFileManager defaultManager];
 	// copy and then delete the temporary image file
 	BOOL success = YES;
+	NSError *error;
 	// must delete the original file before writing new data to it
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]])
-		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:nil];
-	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:nil];
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]]) {
+		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:&error];
+		NSLog(@"error: %@", error.localizedDescription);
+	}
+	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:&error];
+	NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
+	NSLog(@"error: %@", error.localizedDescription);
 	if (! success) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 		[alert show];
 		return;
 	}
+	// switch from temp path to the real path
 	self.tempCard.image.localPath = self.imagePath;
+	self.tempCard.audio.localPath = self.audioPath;
 	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 		
 	// store audio
@@ -133,6 +140,8 @@
 			return;
 		}
 		
+		// switch from temp path to the real path
+		self.tempCard.image.localPath = self.imagePath;
 		self.tempCard.audio.localPath = self.audioPath;
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
 	}
