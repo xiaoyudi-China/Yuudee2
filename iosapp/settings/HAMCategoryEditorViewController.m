@@ -57,13 +57,15 @@
 	if (buttonIndex == 1) { // confirm deletion
 		// delete all cards under this category
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
-		for (NSString *cardID in cardIDs)
-			[self.config deleteCard:cardID];
+		for (NSUInteger index = 0; index < cardIDs.count; index++) {
+			[self.config deleteChildOfCatInLib:self.categoryID atIndex:index];
+		}
 		
-		[self.config deleteCard:self.categoryID];
+		NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+		NSUInteger catIndex = [catIDs indexOfObject:self.categoryID];
+		[self.config deleteChildOfCatInLib:LIB_ROOT atIndex:catIndex];
+		
 		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
-		
-		[self.delegate categoryEditorDidEndEditing:self];
 	}
 }
 
@@ -115,7 +117,7 @@
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
-		
+
 		NSDictionary *attrs = [NSDictionary dictionaryWithObject:categoryName forKey:@"分类名称"];
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}

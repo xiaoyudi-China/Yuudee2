@@ -45,19 +45,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	
 	// determine which mode we're in
-	if (self.index == -1)
-		self.cellMode = HAMGridCellModeEdit;
-	else
-		self.cellMode = HAMGridCellModeAdd;
-	
+	self.cellMode = (self.index == -1) ? HAMGridCellModeEdit : HAMGridCellModeAdd;
 	
 	if (self.cellMode == HAMGridCellModeEdit) {
-		// add a button on the top-right to create new card
+		[self.rightTopButton setImage:[UIImage imageNamed:@"addnew.png"] forState:UIControlStateNormal];
 	}
 	else {
+		self.bottomButton.hidden = NO;
 		self.rightTopButton.hidden = YES;
+		[self.bottomButton setImage:[UIImage imageNamed:@"confirm.png"] forState:UIControlStateNormal];
+		// must select some cards before conforming
+		self.bottomButton.enabled = NO;
 	}
 	
 	[self.collectionView reloadData];
@@ -102,7 +103,7 @@
 	return cell;
 }
 
-// create card
+// create card or add cards
 - (void)rightTopButtonPressed:(id)sender {
 	
 	HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
@@ -111,11 +112,16 @@
 	cardEditor.config = self.config;
 	cardEditor.delegate = self;
 	
+	// !!!
+	UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+	[cardEditor.view insertSubview:background atIndex:NO];
+	
+	cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+	cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:cardEditor animated:YES completion:NULL];
 }
 
-// FIXME: conflict with 'rightTopButtonPressed'
-- (void)addCardsButtonPressed {
+- (void)bottomButtonPressed:(id)sender {
 	
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
@@ -141,6 +147,7 @@
 	NSArray *viewsInStack = self.navigationController.viewControllers;
 	// pop out two views from the navigation stack, including the current one
 	[self.navigationController popToViewController:viewsInStack[viewsInStack.count - 3] animated:TRUE];
+
 }
 
 - (void)rightTopButtonPressedForCell:(HAMGridCell*)cell {
@@ -156,14 +163,12 @@
 			
 			// remove the button on the right of top bar
 			if (self.selectedCardIDs.count == 0)
-				self.navigationItem.rightBarButtonItem = nil;
+				self.bottomButton.enabled = NO;
 		}
 		else { // unselected
 			// activate the button on the right of top bar
-			if (self.selectedCardIDs.count == 0) {
-				UIBarButtonItem *addCardsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addCardsButtonPressed)];
-				self.navigationItem.rightBarButtonItem = addCardsButton;
-			}
+			if (self.selectedCardIDs.count == 0)
+				self.bottomButton.enabled = YES;
 			
 			NSString *cardID = self.cardIDs[gridCell.indexPath.row];
 			[self.selectedCardIDs addObject:cardID];
@@ -180,6 +185,12 @@
 		cardEditor.config = self.config;
 		cardEditor.delegate = self;
 			
+		// !!!
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+		[cardEditor.view insertSubview:background atIndex:NO];
+		
+		cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+		cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
@@ -190,7 +201,7 @@
 }
 
 - (void)cardEditorDidCancelEditing:(HAMCardEditorViewController *)cardEditor {
-	[self dismissViewControllerAnimated:YES completion:NULL];	
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

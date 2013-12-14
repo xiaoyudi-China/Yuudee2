@@ -12,6 +12,8 @@
 
 @property NSString *imagePath;
 @property NSString *tempImagePath;
+@property NSString *audioPath;
+@property NSString *tempAudioPath;
 
 @end
 
@@ -43,9 +45,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 	
-	// fit into the popover
-	self.preferredContentSize = self.view.frame.size;
-		
 	// initialize the temporary card
 	if (self.cardID) { // editing card
 		self.tempCard = [self.config card:self.cardID];
@@ -59,11 +58,18 @@
 	
 	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
 	self.tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
+	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
+	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
+
+	
 	// update the view accordingly
 	if (self.cardID) { // editing card
 		// copy the existing image file to the temporary
 		NSFileManager *manager = [NSFileManager defaultManager];
-		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
+		NSError *error;
+		NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
+		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:&error];
+		NSLog(@"error: %@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];
@@ -141,7 +147,12 @@
 	self.recorder.categoryID = self.categoryID;
 	self.recorder.newCategoryID = self.newCategoryID;
 	
-	self.recorder.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	// !!!
+	UIView *background = [self.view.subviews[0] snapshotViewAfterScreenUpdates:NO];
+	[self.recorder.view insertSubview:background atIndex:0];
+
+	self.recorder.modalPresentationStyle = UIModalPresentationCurrentContext;
+	self.recorder.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 	[self presentViewController:self.recorder animated:YES completion:NULL];
 }
 
@@ -197,14 +208,26 @@
 	if (! self.cardID) // cancel card creation
 		[self.config deleteCard:self.tempCard.UUID];
 	
+	NSFileManager *manager = [NSFileManager defaultManager];
+	// delete the temporary image file
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempImagePath] error:NULL];
+	// delete the temporary audio file
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:NULL];
+	
+	// FIXME: have to switch these members back, WHY ?!!!
+	self.tempCard.image.localPath = self.imagePath;
+	self.tempCard.audio.localPath = self.audioPath;
+
 	[self.delegate cardEditorDidCancelEditing:self];
 }
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
-	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
-	
 	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
 	[MobClick event:@"create_card" attributes:attrs]; // trace event
+	
+	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 
 - (void)recorderDidCancelRecording:(HAMRecorderViewController *)recorder {
@@ -217,8 +240,8 @@
 	tableViewController.tableView.delegate = self;
 	[tableViewController.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TableCell"];
 	
-	 self.popoverForCategories = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
-	[self.popoverForCategories presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	self.categoriesPopover = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+	[self.categoriesPopover presentPopoverFromRect:self.chooseCategoryButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -242,10 +265,15 @@
 	self.newCategoryID = self.categoryIDs[indexPath.row];
 	HAMCard *category = [self.config card:self.newCategoryID];
 	self.categoryNameLabel.text = category.name;
+	
+	[self.categoriesPopover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
-	[self.config deleteCard:self.cardID];
+	NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
+	NSUInteger cardIndex = [cardIDs indexOfObject:self.cardID];
+	[self.config deleteChildOfCatInLib:self.categoryID atIndex:cardIndex];
+	
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }
 

@@ -42,6 +42,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstStart"]){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstStart"];
         
@@ -169,6 +170,9 @@
         [dbManager runSQL:SQL];
     }
     
+	// use UMeng SDK to collect statistics
+	[MobClick startWithAppkey:@"529d8c2556240b9e4d007957"];
+	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self turnToChildView];

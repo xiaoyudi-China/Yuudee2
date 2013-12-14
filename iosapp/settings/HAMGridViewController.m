@@ -42,4 +42,8 @@
 - (IBAction)rightTopButtonPressed:(id)sender {
 	// to be overridden
 }
+
+- (IBAction)bottomButtonPressed:(id)sender {
+	// to be overridden
+}
 @end
