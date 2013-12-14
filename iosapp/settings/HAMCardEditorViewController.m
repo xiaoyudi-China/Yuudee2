@@ -12,6 +12,8 @@
 
 @property NSString *imagePath;
 @property NSString *tempImagePath;
+@property NSString *audioPath;
+@property NSString *tempAudioPath;
 
 @end
 
@@ -56,11 +58,18 @@
 	
 	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
 	self.tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
+	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
+	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
+
+	
 	// update the view accordingly
 	if (self.cardID) { // editing card
 		// copy the existing image file to the temporary
 		NSFileManager *manager = [NSFileManager defaultManager];
-		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:nil];
+		NSError *error;
+		NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
+		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:&error];
+		NSLog(@"error: %@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];
@@ -199,6 +208,18 @@
 	if (! self.cardID) // cancel card creation
 		[self.config deleteCard:self.tempCard.UUID];
 	
+	NSFileManager *manager = [NSFileManager defaultManager];
+	// delete the temporary image file
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempImagePath] error:NULL];
+	// delete the temporary audio file
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:NULL];
+	
+	// FIXME: have to switch these members back, WHY ?!!!
+	self.tempCard.image.localPath = self.imagePath;
+	self.tempCard.audio.localPath = self.audioPath;
+
 	[self.delegate cardEditorDidCancelEditing:self];
 }
 
@@ -249,7 +270,9 @@
 }
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
-	[self.config deleteCard:self.cardID];
+	NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
+	NSUInteger cardIndex = [cardIDs indexOfObject:self.cardID];
+	[self.config deleteChildOfCatInLib:self.categoryID atIndex:cardIndex];
 	
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 }

@@ -56,6 +56,7 @@
 	
 	self.imageView.image = self.image;
 	self.scrollView.contentSize = self.imageView.frame.size;
+	
 }
 
 - (void)didReceiveMemoryWarning
