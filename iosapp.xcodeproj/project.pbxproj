@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6612626917AB7B0C0047AA9B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6612626817AB7B0C0047AA9B /* QuartzCore.framework */; };
 		6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6613011A17C1FA8B00903CA8 /* Settings.bundle */; };
+		6620B289185CDC74005B168E /* trash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6620B288185CDC74005B168E /* trash.png */; };
 		6632DF5D181AC2AD00A8EA03 /* HAMEditableGridViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */; };
 		664669FA1855D75E006EE478 /* parent_addCard_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F61855D75E006EE478 /* parent_addCard_bg.png */; };
 		664669FB1855D75E006EE478 /* parent_addCard_createicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 664669F71855D75E006EE478 /* parent_addCard_createicon.png */; };
@@ -221,6 +222,7 @@
 /* Begin PBXFileReference section */
 		6612626817AB7B0C0047AA9B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6613011A17C1FA8B00903CA8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		6620B288185CDC74005B168E /* trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash.png; sourceTree = "<group>"; };
 		6632DF5B181AC2AD00A8EA03 /* HAMEditableGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditableGridViewTool.h; path = utils/HAMEditableGridViewTool.h; sourceTree = "<group>"; };
 		6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditableGridViewTool.m; path = utils/HAMEditableGridViewTool.m; sourceTree = "<group>"; };
 		664669F61855D75E006EE478 /* parent_addCard_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_addCard_bg.png; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 		6694E5731851EF3B008EC01D /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				6620B288185CDC74005B168E /* trash.png */,
 				66AFDBDA185C2AE600913F8D /* +.png */,
 				6694E5751851EF3B008EC01D /* addnew.png */,
 				6694E5761851EF3B008EC01D /* addnewBG.png */,
@@ -1228,6 +1231,7 @@
 				6650B2E317D5D60A00770C25 /* icon1_retina.png in Resources */,
 				66466A741859DD67006EE478 /* cat2_card6_p1.jpg in Resources */,
 				66A81FE61850FDA200EA6FD6 /* parent_settingspop_layout3x3.png in Resources */,
+				6620B289185CDC74005B168E /* trash.png in Resources */,
 				66A81FE21850FDA200EA6FD6 /* parent_settingspop_finishbtn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
