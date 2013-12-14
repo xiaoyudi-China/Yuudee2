@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAMDefaultResources.h"
+#import "HAMDBManager.h"
 
 @class HAMStructureEditViewController;
 @class HAMViewController;

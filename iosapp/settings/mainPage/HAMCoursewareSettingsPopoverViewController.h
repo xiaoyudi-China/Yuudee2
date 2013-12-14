@@ -19,12 +19,15 @@
 @property HAMStructureEditViewController* mainSettingsViewController;
 @property UIPopoverController* popover;
 
-@property (weak, nonatomic) IBOutlet UILabel *cousewareTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *coursewareTitleButton;
+@property (weak, nonatomic) IBOutlet UITextField *changeTitleTextField;
 
 @property (weak, nonatomic) IBOutlet UIImageView *layoutCheckedImageView;
 @property (weak, nonatomic) IBOutlet UIButton *layout1x1Button;
 @property (weak, nonatomic) IBOutlet UIButton *layout2x2Button;
 @property (weak, nonatomic) IBOutlet UIButton *layout3x3Button;
+
+- (IBAction)changeTitleClicked:(UIButton *)sender;
 
 - (IBAction)layout1x1Clicked:(UIButton *)sender;
 - (IBAction)layout2x2Clicked:(UIButton *)sender;

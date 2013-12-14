@@ -42,6 +42,133 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstStart"]){
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstStart"];
+        
+        //copy resources
+        NSError* error;
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString* documentsDirectory = [paths objectAtIndex:0];
+        NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+        
+        NSArray* resourcesArray = DEFAULT_RESOURCES_LIST;
+        int i;
+        for (i = 0; i < resourcesArray.count; i++) {
+            NSString* resourceName = [resourcesArray objectAtIndex:i];
+            NSString* srcPath = [resourcePath stringByAppendingPathComponent:resourceName];
+            NSString* destPath = [documentsDirectory stringByAppendingPathComponent:resourceName];
+            
+            if (![fileManager copyItemAtPath:srcPath toPath:destPath error:&error]) {
+                NSAssert(0, @"Failed to copy resource:[%@] with message '%@'",resourceName, [error localizedDescription]);
+            }
+        }
+        
+        //run SQL
+        HAMDBManager* dbManager = [[HAMDBManager alloc] init];
+        NSArray* createTabelSQLArray = DEFAULT_SQL_LIST;
+        
+        //create tables
+        for (i = 0; i < createTabelSQLArray.count; i++) {
+            NSString* SQL = [createTabelSQLArray objectAtIndex:i];
+            [dbManager runSQL:SQL];
+        }
+        
+        //insert resources
+        for (i = 0; i < resourcesArray.count; i++) {
+            NSString* resourceName = [resourcesArray objectAtIndex:i];
+            NSString* SQL = [NSString stringWithFormat:@"insert into resources values('%@','%@')",resourceName, resourceName];
+            [dbManager runSQL:SQL];
+        }
+        
+        //insert users
+        for (i = 1; i <= 3; i++) {
+            NSString* SQL = [NSString stringWithFormat:@"insert into user values('u%d','阶段%d','user_cat%d',%d,%d)",i,i,i,i,i];
+            [dbManager runSQL:SQL];
+            SQL = [NSString stringWithFormat:@"insert into card values('user_cat%d','category','root_category',null,null,null,0)",i];
+            [dbManager runSQL:SQL];
+        }
+        
+        //insert cards
+        NSString* SQL = [NSString stringWithFormat:@"insert into card values('cat1_card1','card','我吃饱了','cat1_card1_p1.jpg','cat1_card1_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat1_card2','card','我不吃了','cat1_card2_p1.jpg','cat1_card2_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card1','card','我看不清楚','cat2_card1_p1.jpg','cat2_card1_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card2','card','太黑了','cat2_card2_p1.jpg','cat2_card2_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card3','card','全身不舒服','cat2_card3_p1.jpg','cat2_card3_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card4','card','太饿了','cat2_card4_p1.jpg','cat2_card4_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card5','card','太渴了','cat2_card5_p1.jpg','cat2_card5_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card6','card','太累了','cat2_card6_p1.jpg','cat2_card6_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card7','card','太冷了','cat2_card7_p1.jpg','cat2_card7_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card8','card','太热了','cat2_card8_p1.jpg','cat2_card8_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2_card9','card','太湿了','cat2_card9_p1.jpg','cat2_card9_s1.mp3','u1',0)"];
+        [dbManager runSQL:SQL];
+        
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat1_card1','user_cat1', 0,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat1_card1','user_cat2', 0,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat1_card2','user_cat2', 1,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card1','user_cat3', 0,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card2','user_cat3', 1,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card3','user_cat3', 2,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card4','user_cat3', 3,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card5','user_cat3', 4,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card6','user_cat3', 5,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card7','user_cat3', 6,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card8','user_cat3', 7,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card9','user_cat3', 8,'scale')"];
+        [dbManager runSQL:SQL];
+        
+        SQL = [NSString stringWithFormat:@"insert into card values('lib_root','category','lib_root',null,null,null,0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat1','category','吃喝','cat1_p1.jpg',null,null,0)"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card values('cat2','category','感觉不舒服','cat2_p1.jpg',null,null,0)"];
+        [dbManager runSQL:SQL];
+        
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat1_card1','cat1', 0,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat1_card2','cat1', 1,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card1','cat2', 0,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card2','cat2', 1,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card3','cat2', 2,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card4','cat2', 3,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card5','cat2', 4,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card6','cat2', 5,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card7','cat2', 6,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card8','cat2', 7,'scale')"];
+        [dbManager runSQL:SQL];
+        SQL = [NSString stringWithFormat:@"insert into card_tree values('cat2_card9','cat2', 8,'scale')"];
+        [dbManager runSQL:SQL];
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self turnToChildView];

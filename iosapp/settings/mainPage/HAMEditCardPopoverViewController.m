@@ -47,8 +47,8 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor clearColor]];
     
-    [HAMViewTool setHighLightImage:@"parent_editpop_cancelbtn_down" forButton:cancelButton];
-    [HAMViewTool setHighLightImage:@"parent_editpop_confirmbtn_down" forButton:finishButton];
+//    [HAMViewTool setHighLightImage:@"parent_editpop_cancelbtn_down" forButton:cancelButton];
+//    [HAMViewTool setHighLightImage:@"parent_editpop_confirmbtn_down" forButton:finishButton];
     
     [self showCheckedMarkAtAnimation:[config animationOfCat:parentID atIndex:childIndex]];
     changedAnimation = -1;

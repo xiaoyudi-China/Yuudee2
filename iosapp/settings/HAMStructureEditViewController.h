@@ -18,6 +18,7 @@
 #import "HAMUserManager.h"
 #import "Reachability.h"
 #import "HAMEditCardPopoverViewController.h"
+#import "HAMEditCatPopoverViewController.h"
 #import "HAMCoursewareSettingsPopoverViewController.h"
 #import "HAMAddCardPopoverViewController.h"
 #import "HAMCreateCoursewarePopoverViewController.h"
@@ -25,7 +26,7 @@
 
 @class HAMEditableGridViewTool;
 
-@interface HAMStructureEditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface HAMStructureEditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     HAMConfig* config;
     HAMUserManager* coursewareManager;

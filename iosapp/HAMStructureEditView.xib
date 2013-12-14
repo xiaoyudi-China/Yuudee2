@@ -138,7 +138,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jim在游乐园" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z0x-fe-QKi">
-                    <rect key="frame" x="251" y="57" width="154" height="33"/>
+                    <rect key="frame" x="251" y="57" width="221" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                     <color key="textColor" red="0.90196078430000004" green="0.86274509799999999" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>

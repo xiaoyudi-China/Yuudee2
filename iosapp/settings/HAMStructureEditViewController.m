@@ -91,11 +91,7 @@
     
     //user
     coursewareManager=config.userManager;
-    HAMUser* currentUser=[coursewareManager currentUser];
-    
-    //grid view
-    HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
-    dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:YES];
+    [self initGridView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,13 +153,34 @@
 
 -(IBAction) editClicked:(id)sender
 {
-    HAMEditCardPopoverViewController* editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
-    editCardPopover.parentID = currentUUID;
-    editCardPopover.childIndex = [sender tag];
-    editCardPopover.config = config;
-    editCardPopover.mainSettingsViewController = self;
+    HAMEditCardPopoverViewController* editCardPopover;
+    HAMEditCatPopoverViewController* editCatPopover;
     
-    [self presentPopoverWithPopoverViewController:editCardPopover];
+    int childIndex = [sender tag];
+    HAMCard* card = [config card:[config childCardIDOfCat:currentUUID atIndex:childIndex]];
+    
+    switch (card.type) {
+        case CARD_TYPE_CARD:
+            editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
+            editCardPopover.parentID = currentUUID;
+            editCardPopover.childIndex = childIndex;
+            editCardPopover.config = config;
+            editCardPopover.mainSettingsViewController = self;
+            
+            [self presentPopoverWithPopoverViewController:editCardPopover];
+            break;
+            
+        case CARD_TYPE_CATEGORY:
+            editCatPopover = [[HAMEditCatPopoverViewController alloc] initWithNibName:@"HAMEditCatPopoverViewController" bundle:nil];
+            editCatPopover.parentID = currentUUID;
+            editCatPopover.childIndex = childIndex;
+            editCatPopover.config = config;
+            editCatPopover.mainSettingsViewController = self;
+            
+            [self presentPopoverWithPopoverViewController:editCatPopover];
+            break;
+    }
+    
 }
 
 
@@ -214,6 +231,15 @@
 
 #pragma mark -
 #pragma mark Grid View
+
+- (void)initGridView
+{
+    HAMUser* currentUser=[coursewareManager currentUser];
+    
+    //grid view
+    HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
+    dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:YES];
+}
 
 - (void)refreshGridViewAndScrollToFirstPage:(Boolean)scrollToFirstPage
 {
@@ -294,17 +320,62 @@
 {
     HAMUser* courseware =[coursewareArray objectAtIndex:[indexPath row]];
     [coursewareManager setCurrentUser:courseware];
+    
+    [self initGridView];
     refreshFlag = YES;
     [self viewWillAppear:YES];
     [self coursewareSelectClicked:nil];
 }
 
+#pragma mark -
+#pragma mark Create Courseware
+
 - (IBAction)coursewareCreateClicked:(UIButton *)sender {
-    HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
+    /*HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
     createCoursewarePopover.mainSettingsViewController = self;
     createCoursewarePopover.coursewareManager = coursewareManager;
     
-    [self presentPopoverWithPopoverViewController:createCoursewarePopover];
+    [self presentPopoverWithPopoverViewController:createCoursewarePopover];*/
+    UIAlertView* createCoursewareAlertView=[[UIAlertView alloc] initWithTitle:@"创建新课件" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"创建",nil];
+    [createCoursewareAlertView show];
+}
+
+- (void)willPresentAlertView:(UIAlertView *)alertView
+{
+    CGRect frame = alertView.frame;
+    frame.origin.y -= 120;
+    frame.size.height += 80;
+    alertView.frame = frame;
+    
+    for( UIView * view in alertView.subviews )
+    {
+        //列举alertView中所有的对象
+        if( ![view isKindOfClass:[UILabel class]] )
+        {
+            //若不UILable则另行处理
+            if (view.tag==1)
+            {
+                //处理第一个按钮，也就是 CancelButton
+                CGRect btnFrame1 =CGRectMake(30, frame.size.height-65, 105, 40);
+                view.frame = btnFrame1;
+                    
+            } else if (view.tag==2){
+                //处理第二个按钮，也就是otherButton
+                CGRect btnFrame2 =CGRectMake(142, frame.size.height-65, 105, 40);
+                view.frame = btnFrame2;
+            }
+        }
+    }
+    
+    NSLog(@"%@",NSStringFromCGRect(alertView.frame));
+        
+    //加入自订的label及UITextFiled
+    UITextField *courseNameTextField = [[UITextField alloc] initWithFrame: CGRectMake( 85, 50,160, 30 )];
+    courseNameTextField.placeholder = @"账号名称";
+    courseNameTextField.borderStyle=UITextBorderStyleRoundedRect;
+        
+    [alertView addSubview:courseNameTextField];
+    
 }
 
 #pragma mark -

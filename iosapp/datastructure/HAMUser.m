@@ -14,6 +14,9 @@
 @synthesize name;
 @synthesize rootID;
 
+@synthesize layoutx;
+@synthesize layouty;
+
 -(id)initWithName:(NSString *)_name
 {
     if (self =[super init])
@@ -23,6 +26,9 @@
         UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
         uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         rootID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        
+        layoutx = USER_DEFAULT_LAYOUTX;
+        layouty = USER_DEFAULT_LAYOUTY;
     }
     return self;
 }
