@@ -183,8 +183,6 @@
     
 }
 
-
-
 #pragma mark -
 #pragma mark Card Clicked
 
@@ -204,6 +202,7 @@
 {
     HAMAddCardPopoverViewController* addCardPopover = [[HAMAddCardPopoverViewController alloc] initWithNibName:@"HAMAddCardPopoverViewController" bundle:nil];
     addCardPopover.mainSettingsViewController = self;
+    addCardPopover.cardIndex = [sender tag];
     
     [self presentPopoverWithPopoverViewController:addCardPopover];
 }
@@ -211,7 +210,6 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 }
-
 
 - (IBAction)syncButtonClicked:(UIBarButtonItem *)sender {
     //check for wifi status
