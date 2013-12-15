@@ -369,6 +369,10 @@
         HAMRoom* room = [self roomOfCat:parentID atIndex:i];
         [self updateRoomOfCat:parentID with:room atIndex:i - 1];
     }
+    
+    //if not last, delete last
+    if (index + 1 < childrenCount)
+        [self updateRoomOfCat:parentID with:nil atIndex:childrenCount - 1];
 }
 
 @end

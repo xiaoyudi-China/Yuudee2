@@ -23,7 +23,8 @@
 @synthesize mainSettingsViewController;
 @synthesize popover;
 
-@synthesize cousewareTitleLabel;
+@synthesize coursewareTitleButton;
+@synthesize changeTitleTextField;
 
 @synthesize layoutCheckedImageView;
 @synthesize layout1x1Button;
@@ -63,7 +64,13 @@
 
 -(void)initTitle:(NSString*)title
 {
-    cousewareTitleLabel.text = title;
+    changeTitleTextField.text = title;
+    changeTitleTextField.hidden = YES;
+    [coursewareTitleButton setTitle:title forState:UIControlStateNormal];
+}
+
+- (IBAction)changeTitleClicked:(UIButton *)sender {
+    changeTitleTextField.hidden = NO;
 }
 
 #pragma mark -
@@ -143,6 +150,8 @@
 }
 
 - (IBAction)finishClicked:(UIButton *)sender {
+    HAMUser* currentCourseware = [coursewareManager currentUser];
+    
     if (changedLayout != -1) {
         int xnum = [HAMViewInfo xnumOfLayout:changedLayout];
         int ynum = [HAMViewInfo ynumOfLayout:changedLayout];
@@ -150,6 +159,11 @@
         [coursewareManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
         [mainSettingsViewController setLayoutWithxnum:xnum ynum:ynum];
         [mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];
+    }
+    
+    if (![currentCourseware.name isEqualToString:changeTitleTextField.text]) {
+        [coursewareManager updateCurrentUserName:[changeTitleTextField.text copy]];
+        [mainSettingsViewController refreshCoursewareSelect];
     }
     
     [self.popover dismissPopoverAnimated:YES];

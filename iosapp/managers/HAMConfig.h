@@ -18,7 +18,7 @@
 #define FLAGNUM 5
 #define NODENUM 66
 
-#define LIB_ROOT @"POETRYIS-WHAT-GETS-LOST-INTRANSLATE."
+#define LIB_ROOT @"lib_root"
 #define UNCATEGORIZED_ID @"UNCATEGORIZED"
 
 @class HAMUserManager;

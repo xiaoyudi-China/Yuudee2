@@ -625,10 +625,12 @@
     NSMutableArray* users=[[NSMutableArray alloc] initWithCapacity:20];
     while(sqlite3_step(statement)==SQLITE_ROW)
     {
-        HAMUser* user=[HAMUser alloc];
-        user.UUID=[self stringAt:0];
-        user.name=[self stringAt:1];
-        user.rootID=[self stringAt:2];
+        HAMUser* user = [HAMUser alloc];
+        user.UUID = [self stringAt:0];
+        user.name = [self stringAt:1];
+        user.rootID = [self stringAt:2];
+        user.layoutx = sqlite3_column_int(statement, 3);
+        user.layouty = sqlite3_column_int(statement, 4);
         
         [users addObject:user];
     }
@@ -640,7 +642,7 @@
 -(void)insertUser:(HAMUser*)user
 {
     //TODO: default layoutx,layouty
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",3,4);",user.UUID,user.name,user.rootID]];
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",\"%d\",\"%d\");",user.UUID,user.name,user.rootID, user.layoutx, user.layouty]];
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\",1);",user.rootID,user.name]];
 }
 

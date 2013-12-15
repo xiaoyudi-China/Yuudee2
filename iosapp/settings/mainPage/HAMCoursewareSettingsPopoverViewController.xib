@@ -7,7 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMCoursewareSettingsPopoverViewController">
             <connections>
-                <outlet property="cousewareTitleLabel" destination="MR8-n3-FVt" id="jzc-Rc-mBE"/>
+                <outlet property="changeTitleTextField" destination="btD-H3-nEx" id="CxY-LS-6b8"/>
+                <outlet property="coursewareTitleButton" destination="dyW-YK-jEo" id="aBJ-L9-Eea"/>
                 <outlet property="layout1x1Button" destination="tPT-X6-KrI" id="pzO-KP-BmR"/>
                 <outlet property="layout2x2Button" destination="uAc-A9-Cz7" id="1aw-rf-SdS"/>
                 <outlet property="layout3x3Button" destination="bb6-nG-R6P" id="BKe-a3-ho4"/>
@@ -22,11 +23,11 @@
             <subviews>
                 <view contentMode="scaleToFill" id="NRb-oI-2uo">
                     <rect key="frame" x="91" y="121" width="586" height="781"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <autoresizingMask key="autoresizingMask"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_settingspop_bg" id="CaF-d0-vJQ">
                             <rect key="frame" x="0.0" y="0.0" width="586" height="781"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2jF-lJ-Sed">
                             <rect key="frame" x="100" y="153" width="52" height="29"/>
@@ -38,13 +39,6 @@
                             <rect key="frame" x="100" y="230" width="100" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标题" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MR8-n3-FVt">
-                            <rect key="frame" x="160" y="153" width="329" height="29"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tPT-X6-KrI">
@@ -113,6 +107,24 @@
                                 <action selector="removeCoursewareClicked:" destination="-1" eventType="touchUpInside" id="zti-Jk-e4K"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dyW-YK-jEo">
+                            <rect key="frame" x="160" y="153" width="329" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <state key="normal" title="Button">
+                                <color key="titleColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="changeTitleClicked:" destination="-1" eventType="touchUpInside" id="Q6f-Bf-Bgn"/>
+                            </connections>
+                        </button>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="btD-H3-nEx">
+                            <rect key="frame" x="160" y="153" width="329" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
