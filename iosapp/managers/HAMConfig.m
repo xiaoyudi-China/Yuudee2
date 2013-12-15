@@ -277,7 +277,7 @@
 
 -(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(int)beginIndex
 {
-    NSMutableArray* children = [self childrenOfCat:parentID];
+    NSMutableArray* children = [[self childrenOfCat:parentID] mutableCopy];
     
     //i - index of children; j - index of newChildren
     int i,j;
