@@ -22,7 +22,7 @@
 @end
 
 
-@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HAMImageCropperViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, HAMRecorderViewControllerDelegate>
+@interface HAMCardEditorViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, HAMImageCropperViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, HAMRecorderViewControllerDelegate, UIActionSheetDelegate>
 
 @property (strong, nonatomic) NSString *cardID;
 @property (strong, nonatomic) NSString *categoryID;

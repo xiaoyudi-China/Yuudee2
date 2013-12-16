@@ -215,6 +215,7 @@
 		8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
 		AB340B4D1852328A0041934E /* addnewBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB340B4C1852328A0041934E /* addnewBG2.png */; };
+		AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB8D6DD3185F0F8300324041 /* createCategory.png */; };
 		ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7B1851F86D00FA6649 /* cancel.png */; };
 		ABCC8B7E1851F90C00FA6649 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7D1851F90C00FA6649 /* edit.png */; };
 /* End PBXBuildFile section */
@@ -473,6 +474,7 @@
 		8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCardSelectorViewController.m; path = settings/HAMCardSelectorViewController.m; sourceTree = "<group>"; };
 		8EE7A2E21822361A007356B1 /* HAMGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridCell.xib; path = settings/HAMGridCell.xib; sourceTree = "<group>"; };
 		AB340B4C1852328A0041934E /* addnewBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG2.png; sourceTree = "<group>"; };
+		AB8D6DD3185F0F8300324041 /* createCategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createCategory.png; sourceTree = "<group>"; };
 		ABCC8B7B1851F86D00FA6649 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		ABCC8B7D1851F90C00FA6649 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		ABCC8B84185220B700FA6649 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
@@ -717,7 +719,6 @@
 		6694E5731851EF3B008EC01D /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				6620B288185CDC74005B168E /* trash.png */,
 				66AFDBDA185C2AE600913F8D /* +.png */,
 				6694E5751851EF3B008EC01D /* addnew.png */,
 				6694E5761851EF3B008EC01D /* addnewBG.png */,
@@ -740,6 +741,7 @@
 				6694E5871851EF3B008EC01D /* choose.png */,
 				6694E5881851EF3B008EC01D /* classBG.png */,
 				6694E5BC1851F1E7008EC01D /* confirm.png */,
+				AB8D6DD3185F0F8300324041 /* createCategory.png */,
 				6694E5891851EF3B008EC01D /* delete.png */,
 				6694E58A1851EF3B008EC01D /* deleteDOWN.png */,
 				ABCC8B7D1851F90C00FA6649 /* edit.png */,
@@ -755,6 +757,7 @@
 				6694E5941851EF3B008EC01D /* record.png */,
 				6694E5951851EF3B008EC01D /* recordDOWN.png */,
 				6694E5961851EF3B008EC01D /* sucaiku.png */,
+				6620B288185CDC74005B168E /* trash.png */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -1141,6 +1144,7 @@
 				6694E5B01851EF3B008EC01D /* name.png in Resources */,
 				66DE8E1D184BB1F7009AFF39 /* common_cat_bg.png in Resources */,
 				6694E5D41855D5E9008EC01D /* HAMAddCardPopoverViewController.xib in Resources */,
+				AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */,
 				66A81FE51850FDA200EA6FD6 /* parent_settingspop_layout2x2.png in Resources */,
 				8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */,
 				66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */,

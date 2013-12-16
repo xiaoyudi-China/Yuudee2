@@ -270,11 +270,19 @@
 }
 
 - (IBAction)deleteCardButtonTapped:(id)sender {
-	NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
-	NSUInteger cardIndex = [cardIDs indexOfObject:self.cardID];
-	[self.config deleteChildOfCatInLib:self.categoryID atIndex:cardIndex];
 	
-	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除卡片？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
+	[actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) { // confirm deletion
+		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
+		NSUInteger cardIndex = [cardIDs indexOfObject:self.cardID];
+		[self.config deleteChildOfCatInLib:self.categoryID atIndex:cardIndex];
+		
+		[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
+	}
 }
 
 @end

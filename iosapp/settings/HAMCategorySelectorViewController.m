@@ -95,6 +95,17 @@
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
+	
+	// show the first card as preview
+	NSString *firstCardID = [[self.config childrenCardIDOfCat:categoryID] firstObject];
+	if (firstCardID) {
+		HAMCard *firstCard = [self.config card:firstCardID];
+		UIImage *image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:firstCard.image.localPath]];
+		cell.contentImageView.image = image;
+	}
+	else
+		cell.contentImageView.image = nil;
+	
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"+.png"] forState:UIControlStateNormal];
 	else { // Mode edit
