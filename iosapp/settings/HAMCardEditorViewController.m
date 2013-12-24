@@ -106,6 +106,11 @@
 	self.recorder.tempCard = self.tempCard;
 	self.recorder.isNewCard = ! self.cardID;
 	self.recorder.delegate = self;
+	
+	// NOTE: this properties may be unintialized
+	self.recorder.addCardOnCreation = self.addCardOnCreation;
+	self.recorder.parentID = self.parentID;
+	self.recorder.index = self.index;
 }
 
 - (void)didReceiveMemoryWarning

@@ -107,7 +107,7 @@
 	return cell;
 }
 
-// create card or add cards
+// create card
 - (void)rightTopButtonPressed:(id)sender {
 	
 	self.cardEditor.cardID = nil;
@@ -119,6 +119,7 @@
 	[self presentViewController:self.cardEditor animated:YES completion:NULL];
 }
 
+// add the selected cards
 - (void)bottomButtonPressed:(id)sender {
 	
 	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged

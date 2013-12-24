@@ -45,6 +45,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *chooseCategoryButton;
 @property (weak, nonatomic) IBOutlet UIImageView *editCardTitleView;
 
+// for use by DayYue, not necessarily initialized
+@property BOOL addCardOnCreation; // supposed to be 0 by default
+@property (strong, nonatomic) NSString *parentID;
+@property int index;
+
 - (IBAction)recordButtonTapped:(id)sender;
 - (IBAction)shootImageButtonPressed:(id)sender;
 - (IBAction)pickImageButtonPressed:(id)sender;
