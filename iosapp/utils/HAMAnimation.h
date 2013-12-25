@@ -15,5 +15,6 @@
 }
 
 + (void)beginAnimation:(int)animationType onCardView:(UIView*)cardView;
++ (Boolean)isRunning;
 
 @end

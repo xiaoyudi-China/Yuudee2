@@ -89,6 +89,11 @@
 
 -(IBAction) leafClicked:(id)sender{
     
+    //return if another card is on display
+    if ([HAMAnimation isRunning]) {
+        return;
+    }
+    
     if (audioPlayer!=nil)
         if ([audioPlayer isPlaying])
         {

@@ -24,9 +24,8 @@
 @synthesize inCatWoodImageView;
 @synthesize bgImageView;
 
-@synthesize selectorViewController;
 @synthesize syncViewController;
-@synthesize userViewController;
+@synthesize selectorViewController;
 
 @synthesize endEditButton;
 @synthesize createCardButton;
@@ -201,8 +200,10 @@
 -(IBAction) addClicked:(id)sender
 {
     HAMAddCardPopoverViewController* addCardPopover = [[HAMAddCardPopoverViewController alloc] initWithNibName:@"HAMAddCardPopoverViewController" bundle:nil];
-    addCardPopover.mainSettingsViewController = self;
-    addCardPopover.cardIndex = [sender tag];
+    addCardPopover.mainSettingsViewController_ = self;
+    addCardPopover.cardIndex_ = [sender tag];
+    addCardPopover.config_ = config;
+    addCardPopover.parentID_ = currentUUID;
     
     [self presentPopoverWithPopoverViewController:addCardPopover];
 }
@@ -329,16 +330,16 @@
 #pragma mark Create Courseware
 
 - (IBAction)coursewareCreateClicked:(UIButton *)sender {
-    /*HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
+    HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
     createCoursewarePopover.mainSettingsViewController = self;
     createCoursewarePopover.coursewareManager = coursewareManager;
     
-    [self presentPopoverWithPopoverViewController:createCoursewarePopover];*/
-    UIAlertView* createCoursewareAlertView=[[UIAlertView alloc] initWithTitle:@"创建新课件" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"创建",nil];
-    [createCoursewareAlertView show];
+    [self presentPopoverWithPopoverViewController:createCoursewarePopover];
+    /*UIAlertView* createCoursewareAlertView=[[UIAlertView alloc] initWithTitle:@"创建新课件" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"创建",nil];
+    [createCoursewareAlertView show];*/
 }
 
-- (void)willPresentAlertView:(UIAlertView *)alertView
+/*- (void)willPresentAlertView:(UIAlertView *)alertView
 {
     CGRect frame = alertView.frame;
     frame.origin.y -= 120;
@@ -374,7 +375,7 @@
         
     [alertView addSubview:courseNameTextField];
     
-}
+}*/
 
 #pragma mark -
 #pragma mark Goto View

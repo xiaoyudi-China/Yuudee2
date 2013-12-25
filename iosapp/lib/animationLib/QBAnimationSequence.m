@@ -15,7 +15,6 @@
 
 @interface QBAnimationSequence ()
 
-@property (nonatomic, assign) BOOL running;
 @property (nonatomic, assign) NSUInteger currentGroup;
 @property (nonatomic, assign) NSUInteger finishedCount;
 
@@ -25,6 +24,8 @@
 @end
 
 @implementation QBAnimationSequence
+
+@synthesize running;
 
 + (instancetype)sequence
 {
@@ -96,6 +97,8 @@
             [self start];
         }
         
+        //TODO: I add the following line. Might cause bug?
+        self.running = NO;
         return;
     }
     

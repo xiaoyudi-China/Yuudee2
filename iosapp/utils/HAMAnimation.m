@@ -14,7 +14,10 @@
 
 #define SCALE_SIZE 500
 
+static QBAnimationSequence *sequence_;
 @implementation HAMAnimation
+{
+}
 
 + (void)beginAnimation:(int)animationType onCardView:(UIView*)cardView
 {
@@ -46,20 +49,18 @@
         cardView.transform = CGAffineTransformRotate(cardView.transform, -M_PI/4);
     }]];
     
-    QBAnimationSequence* sequence;
-    
     switch (animationType) {
         case ROOM_ANIMATION_NONE:
             return;
             
         case ROOM_ANIMATION_SCALE:
-            sequence = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupScaleNom] repeat:NO];
-            [sequence start];
+            sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupScaleNom] repeat:NO];
+            [sequence_ start];
             break;
             
         case ROOM_ANIMATION_SHAKE:
-            sequence = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
-            [sequence start];
+            sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
+            [sequence_ start];
             break;
             
         default:
@@ -90,6 +91,11 @@
     // Finally... add the explicit animation to the layer... the animation automatically starts.
     [highlightLayer addAnimation:pulseAnimation forKey:@"pulse"];
     [highlightLayer addAnimation:translation forKey:@"translation"];*/
+}
+
+//FIXME: not sure should use static or not
++ (Boolean)isRunning{
+    return sequence_.running;
 }
 
 

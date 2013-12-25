@@ -43,7 +43,6 @@
 
 @property (strong,nonatomic) HAMCategorySelectorViewController *selectorViewController;
 @property (strong,nonatomic) HAMSyncViewController* syncViewController;
-@property (strong,nonatomic) HAMUserViewController* userViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *endEditButton;
 @property (weak, nonatomic) IBOutlet UIButton *createCardButton;

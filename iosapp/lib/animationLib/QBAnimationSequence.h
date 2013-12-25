@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, QBAnimationSequenceState) {
 
 @property (nonatomic, copy) NSArray *groups;
 @property (nonatomic, assign) BOOL repeat;
+@property (nonatomic, assign) BOOL running;
 
 + (instancetype)sequence;
 + (instancetype)sequenceWithAnimationGroups:(NSArray *)groups;

@@ -14,9 +14,11 @@
 
 @implementation HAMAddCardPopoverViewController
 
-@synthesize mainSettingsViewController;
+@synthesize mainSettingsViewController_;
 @synthesize popover;
-@synthesize cardIndex;
+@synthesize cardIndex_;
+@synthesize config_;
+@synthesize parentID_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,10 +43,32 @@
 
 - (IBAction)addFromLibClicked:(UIButton *)sender{
     [self.popover dismissPopoverAnimated:YES];
-    [mainSettingsViewController enterLibAt:cardIndex];
+    [mainSettingsViewController_ enterLibAt:cardIndex_];
 }
 
 - (IBAction)createCardClicked:(UIButton *)sender{
+    HAMCardEditorViewController* cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+    //mainSettingsViewController.cardEditorViewController = cardEditor;
+    
+    cardEditor.delegate = nil;
+    cardEditor.addCardOnCreation = YES;
+    cardEditor.parentID = parentID_;
+    cardEditor.index = cardIndex_;
+    cardEditor.config = config_;
+    // the card is not categorized by default
+    cardEditor.categoryID = UNCATEGORIZED_ID;
+    // ‘nil' indicates this is a new card
+    cardEditor.cardID = nil;
+    
+    cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+    cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    // pretend the card editor is floating above the background view
+    UIView *background = [mainSettingsViewController_.view snapshotViewAfterScreenUpdates:NO];
+    [cardEditor.view insertSubview:background atIndex:NO];
+    
+    [mainSettingsViewController_ presentViewController:cardEditor animated:YES completion:NULL];
+    
+    [self.popover dismissPopoverAnimated:YES];
 }
 
 - (IBAction)cancelClicked:(UIButton *)sender{
