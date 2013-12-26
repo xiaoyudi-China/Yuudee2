@@ -50,7 +50,7 @@
     HAMCardEditorViewController* cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
     //mainSettingsViewController.cardEditorViewController = cardEditor;
     
-    cardEditor.delegate = nil;
+    cardEditor.delegate = self; // NOTE!!!
     cardEditor.addCardOnCreation = YES;
     cardEditor.parentID = parentID_;
     cardEditor.index = cardIndex_;
@@ -69,6 +69,14 @@
     [mainSettingsViewController_ presentViewController:cardEditor animated:YES completion:NULL];
     
     [self.popover dismissPopoverAnimated:YES];
+}
+
+- (void)cardEditorDidCancelEditing:(HAMCardEditorViewController *)cardEditor {
+	[mainSettingsViewController_ dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)cardEditorDidEndEditing:(HAMCardEditorViewController *)cardEditor {
+	[mainSettingsViewController_ dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)cancelClicked:(UIButton *)sender{
