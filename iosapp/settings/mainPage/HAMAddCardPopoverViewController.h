@@ -10,7 +10,7 @@
 #import "HAMStructureEditViewController.h"
 #import "HAMCardEditorViewController.h"
 
-@interface HAMAddCardPopoverViewController : UIViewController
+@interface HAMAddCardPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
 {}
 
 @property HAMStructureEditViewController* mainSettingsViewController_;
