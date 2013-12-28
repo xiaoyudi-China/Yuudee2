@@ -67,9 +67,7 @@
 		// copy the existing image file to the temporary
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSError *error;
-		NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
 		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:&error];
-		NSLog(@"error: %@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];
