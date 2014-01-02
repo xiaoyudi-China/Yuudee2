@@ -25,8 +25,5 @@
 @property int index;
 @property HAMGridCellMode cellMode;
 @property (strong, nonatomic) NSArray *categoryIDs;
-@property (strong, nonatomic) HAMCardSelectorViewController *cardSelector;
-@property (strong, nonatomic) HAMCategoryEditorViewController *categoryEditor;
-@property (strong, nonatomic) HAMCardEditorViewController *cardEditor;
 
 @end

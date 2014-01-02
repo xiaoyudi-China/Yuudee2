@@ -47,24 +47,6 @@
 		
 		self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
 	}
-	
-	// to be used for multiple times
-	self.cardSelector = [[HAMCardSelectorViewController alloc] initWithNibName:@"HAMGridViewController" bundle:nil];
-	self.cardSelector.config = self.config;
-	self.cardSelector.userID = self.parentID;
-	self.cardSelector.index = self.index;
-	self.cardSelector.cellMode = self.cellMode;
-	
-	self.categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
-	self.categoryEditor.delegate = self;
-	self.categoryEditor.config = self.config;
-	self.categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-	self.cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
-	self.cardEditor.config = self.config;
-	self.cardEditor.delegate = self;
-	self.cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
-	self.cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -138,9 +120,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *categoryID = [self categoryIDs][indexPath.row];
-	self.cardSelector.categoryID = categoryID;
 	
-	[self.navigationController pushViewController:self.cardSelector animated:YES];
+	HAMCardSelectorViewController *cardSelector = [[HAMCardSelectorViewController alloc] initWithNibName:@"HAMGridViewController" bundle:nil];
+	cardSelector.config = self.config;
+	cardSelector.userID = self.parentID;
+	cardSelector.index = self.index;
+	cardSelector.cellMode = self.cellMode;
+	cardSelector.categoryID = categoryID;
+	
+	[self.navigationController pushViewController:cardSelector animated:YES];
 }
 
 - (void)rightTopButtonPressed:(id)sender {
@@ -150,19 +138,28 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) { // create category
-		self.categoryEditor.categoryID = nil;
-		[self presentViewController:self.categoryEditor animated:YES completion:NULL];
+		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
+		categoryEditor.delegate = self;
+		categoryEditor.config = self.config;
+		categoryEditor.categoryID = nil;
+		
+		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 	else if (buttonIndex == 1) { // create card
-		
-		self.cardEditor.cardID = nil;
-		self.cardEditor.categoryID = UNCATEGORIZED_ID;
+		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+		cardEditor.config = self.config;
+		cardEditor.delegate = self;
+		cardEditor.cardID = nil;
+		cardEditor.categoryID = UNCATEGORIZED_ID;
 		
 		// a little bit hack
 		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
-		[self.cardEditor.view insertSubview:background atIndex:0];
+		[cardEditor.view insertSubview:background atIndex:0];
 		
-		[self presentViewController:self.cardEditor animated:YES completion:NULL];
+		cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+		cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
 
@@ -182,8 +179,13 @@
 		[MobClick event:@"add_category" attributes:attrs];
 	}
 	else { // Mode Edit
-		self.categoryEditor.categoryID = [self categoryIDs][gridCell.indexPath.row];
-		[self presentViewController:self.categoryEditor animated:YES completion:NULL];
+		HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc] initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
+		categoryEditor.delegate = self;
+		categoryEditor.config = self.config;
+		categoryEditor.categoryID = [self categoryIDs][gridCell.indexPath.row];
+		
+		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
 }
 

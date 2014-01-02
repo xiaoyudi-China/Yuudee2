@@ -251,7 +251,7 @@
 -(int)findNearestIndexOfPosition:(CGPoint)newPosition
 {
     double minDist = MAXFLOAT;
-    int nearestIndex, i;
+    int nearestIndex = 0, i;
     int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     
     //search only in the 1st page for every page has the same layout

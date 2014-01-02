@@ -33,14 +33,6 @@
 	
 	self.cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
 	self.selectedCardIDs = [[NSMutableSet alloc] init];
-
-	// to be used for multiple times
-	self.cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
-	self.cardEditor.delegate = self;
-	self.cardEditor.config = self.config;
-	self.cardEditor.categoryID = self.categoryID;
-	self.cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
-	self.cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
@@ -109,14 +101,19 @@
 
 // create card
 - (void)rightTopButtonPressed:(id)sender {
-	
-	self.cardEditor.cardID = nil;
+	HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+	cardEditor.delegate = self;
+	cardEditor.config = self.config;
+	cardEditor.categoryID = self.categoryID;
+	cardEditor.cardID = nil;
 	
 	// !!!
 	UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
-	[self.cardEditor.view insertSubview:background atIndex:NO];
+	[cardEditor.view insertSubview:background atIndex:NO];
 	
-	[self presentViewController:self.cardEditor animated:YES completion:NULL];
+	cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+	cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	[self presentViewController:cardEditor animated:YES completion:NULL];
 }
 
 // add the selected cards
@@ -177,14 +174,19 @@
 		}
 	}
 	else { // Mode Edit
-		
-		self.cardEditor.cardID = cardID;
+		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
+		cardEditor.delegate = self;
+		cardEditor.config = self.config;
+		cardEditor.categoryID = self.categoryID;
+		cardEditor.cardID = cardID;
 			
 		// !!!
 		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
-		[self.cardEditor.view insertSubview:background atIndex:NO];
+		[cardEditor.view insertSubview:background atIndex:NO];
 		
-		[self presentViewController:self.cardEditor animated:YES completion:NULL];
+		cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+		cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		[self presentViewController:cardEditor animated:YES completion:NULL];
 	}
 }
 

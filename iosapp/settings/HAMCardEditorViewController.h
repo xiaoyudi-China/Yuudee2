@@ -40,6 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteCardButton;
 @property (weak, nonatomic) IBOutlet UIButton *recordButton;
 @property (weak, nonatomic) IBOutlet UIButton *shootImageButton;
+@property (weak, nonatomic) IBOutlet UIButton *pickImageButton;
 @property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *chooseCategoryButton;

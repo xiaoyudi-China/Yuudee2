@@ -30,6 +30,7 @@
     {
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+		CFRelease(uuidRef);
     }
     return self;
 }
