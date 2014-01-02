@@ -24,8 +24,11 @@
         name=[[NSString alloc] initWithString:_name];
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
-        uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+		CFRelease(uuidRef);
+        
+		uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         rootID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+		CFRelease(uuidRef);
         
         layoutx = USER_DEFAULT_LAYOUTX;
         layouty = USER_DEFAULT_LAYOUTY;

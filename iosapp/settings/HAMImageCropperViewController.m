@@ -83,11 +83,8 @@
 	rect.size.width = self.scrollView.frame.size.width * scale;
 	rect.size.height = screenSize.width * 3/4 * scale;
 	
-	CGRect transformedRect;
-	if (self.image.imageOrientation == UIImageOrientationUp) {
-		transformedRect = rect;
-	}
-	else if (self.image.imageOrientation == UIImageOrientationRight) {
+	CGRect transformedRect = rect;
+	if (self.image.imageOrientation == UIImageOrientationRight) {
 		transformedRect.origin.x = rect.origin.y;
 		transformedRect.origin.y = self.image.size.width - (rect.origin.x + rect.size.width);
 		transformedRect.size.width = rect.size.height;
@@ -107,6 +104,7 @@
 	
 	CGImageRef imageRef = CGImageCreateWithImageInRect(self.image.CGImage, transformedRect);
 	UIImage *croppedImage = [[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:self.image.imageOrientation];
+	CFRelease(imageRef);
 	[self.delegate imageCropper:self didFinishCroppingWithImage:croppedImage];
 	
 	// FIXME: this method is evil

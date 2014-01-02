@@ -117,6 +117,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	// must end text editing before taking images
+	self.shootImageButton.enabled = self.pickImageButton.enabled = NO;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	self.tempCard.name = nil;
 	
@@ -139,6 +144,9 @@
 	
 	// can save new card now
 	self.recordButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
+	
+	// re-enable taking pictures
+	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
