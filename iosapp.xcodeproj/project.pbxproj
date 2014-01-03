@@ -215,6 +215,7 @@
 		8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
 		AB340B4D1852328A0041934E /* addnewBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB340B4C1852328A0041934E /* addnewBG2.png */; };
+		AB35AEAC187663B400259F37 /* HAMSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB35AEAB187663B400259F37 /* HAMSharedData.m */; };
 		AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB8D6DD3185F0F8300324041 /* createCategory.png */; };
 		ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7B1851F86D00FA6649 /* cancel.png */; };
 		ABCC8B7E1851F90C00FA6649 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7D1851F90C00FA6649 /* edit.png */; };
@@ -474,6 +475,8 @@
 		8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCardSelectorViewController.m; path = settings/HAMCardSelectorViewController.m; sourceTree = "<group>"; };
 		8EE7A2E21822361A007356B1 /* HAMGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridCell.xib; path = settings/HAMGridCell.xib; sourceTree = "<group>"; };
 		AB340B4C1852328A0041934E /* addnewBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG2.png; sourceTree = "<group>"; };
+		AB35AEAA187663B400259F37 /* HAMSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAMSharedData.h; sourceTree = "<group>"; };
+		AB35AEAB187663B400259F37 /* HAMSharedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAMSharedData.m; sourceTree = "<group>"; };
 		AB8D6DD3185F0F8300324041 /* createCategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createCategory.png; sourceTree = "<group>"; };
 		ABCC8B7B1851F86D00FA6649 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		ABCC8B7D1851F90C00FA6649 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
@@ -669,6 +672,8 @@
 				6653A5A1179E890E00A405B0 /* utils */,
 				66CC303917B8FC9B008078A9 /* managers */,
 				6625E0501797E4DE009E1CBB /* datastructure */,
+				AB35AEAA187663B400259F37 /* HAMSharedData.h */,
+				AB35AEAB187663B400259F37 /* HAMSharedData.m */,
 				666104A1178BB04A003AEE3D /* HAMAppDelegate.h */,
 				666104A2178BB04A003AEE3D /* HAMAppDelegate.m */,
 				666104AA178BB04A003AEE3D /* HAMViewController.h */,
@@ -1245,6 +1250,7 @@
 				666104A3178BB04A003AEE3D /* HAMAppDelegate.m in Sources */,
 				666104AC178BB04A003AEE3D /* HAMViewController.m in Sources */,
 				6653A5A4179E894B00A405B0 /* HAMFileTools.m in Sources */,
+				AB35AEAC187663B400259F37 /* HAMSharedData.m in Sources */,
 				6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */,
 				6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */,
 				6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */,
