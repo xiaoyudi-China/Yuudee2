@@ -25,7 +25,7 @@
                     <rect key="frame" x="91" y="121" width="586" height="781"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_settingspop_bg" id="CaF-d0-vJQ">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="parent_settingspop_bg.png" id="CaF-d0-vJQ">
                             <rect key="frame" x="0.0" y="0.0" width="586" height="781"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </imageView>
@@ -74,7 +74,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="owE-DO-m5f">
                             <rect key="frame" x="350" y="630" width="169" height="89"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="parent_settingspop_finishbtn">
+                            <state key="normal" image="parent_settingspop_finishbtn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -84,7 +84,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gxq-kE-2bm">
                             <rect key="frame" x="70" y="630" width="169" height="89"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="parent_settingspop_cancelbtn">
+                            <state key="normal" image="parent_settingspop_cancelbtn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -134,12 +134,12 @@
         </view>
     </objects>
     <resources>
-        <image name="parent_settingspop_bg" width="1536" height="2048"/>
-        <image name="parent_settingspop_cancelbtn" width="338" height="178"/>
-        <image name="parent_settingspop_checked.png" width="276" height="383"/>
-        <image name="parent_settingspop_finishbtn" width="338" height="178"/>
-        <image name="parent_settingspop_layout1x1.png" width="244" height="325"/>
-        <image name="parent_settingspop_layout2x2.png" width="244" height="325"/>
-        <image name="parent_settingspop_layout3x3.png" width="244" height="325"/>
+        <image name="parent_settingspop_bg.png" width="586" height="781"/>
+        <image name="parent_settingspop_cancelbtn.png" width="169" height="89"/>
+        <image name="parent_settingspop_checked.png" width="138" height="191"/>
+        <image name="parent_settingspop_finishbtn.png" width="169" height="89"/>
+        <image name="parent_settingspop_layout1x1.png" width="122" height="162"/>
+        <image name="parent_settingspop_layout2x2.png" width="122" height="162"/>
+        <image name="parent_settingspop_layout3x3.png" width="122" height="162"/>
     </resources>
 </document>
