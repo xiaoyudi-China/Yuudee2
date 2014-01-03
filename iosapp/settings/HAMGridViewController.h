@@ -11,6 +11,7 @@
 @interface HAMGridViewController : UIViewController 
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *leftTopButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightTopButton;
 @property (weak, nonatomic) IBOutlet UIButton *bottomButton;
 

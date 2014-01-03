@@ -157,8 +157,13 @@
     [cardView addSubview:cardWhiteBg];
     
     //draw cardpic
-    UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:picName]];
-    UIImageView* fgView=[[UIImageView alloc] initWithImage:fgImage];
+	NSCache *imageCache = ((HAMSharedData*)[HAMSharedData sharedData]).imageCache;
+	NSString *path = [HAMFileTools filePath:picName];
+	if (! [imageCache objectForKey:path])
+		[imageCache setObject:[UIImage imageWithContentsOfFile:path] forKey:path];
+    UIImage* fgImage = [imageCache objectForKey:path];
+    
+	UIImageView* fgView=[[UIImageView alloc] initWithImage:fgImage];
     CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
     [fgView setFrame:picFrame];
     [cardView addSubview:fgView];

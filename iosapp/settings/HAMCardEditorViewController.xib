@@ -134,16 +134,16 @@
         </view>
     </objects>
     <resources>
-        <image name="addnewBG.png" width="1170" height="1146"/>
-        <image name="album.png" width="246" height="134"/>
-        <image name="camera.png" width="246" height="134"/>
-        <image name="cancel.png" width="338" height="178"/>
-        <image name="cardBG.png" width="1265" height="1224"/>
-        <image name="choose.png" width="496" height="142"/>
-        <image name="defaultImage.png" width="720" height="540"/>
-        <image name="editcard.png" width="370" height="90"/>
-        <image name="name.png" width="480" height="135"/>
-        <image name="next.png" width="338" height="178"/>
-        <image name="trash.png" width="128" height="131"/>
+        <image name="addnewBG.png" width="585" height="573"/>
+        <image name="album.png" width="123" height="67"/>
+        <image name="camera.png" width="123" height="67"/>
+        <image name="cancel.png" width="169" height="89"/>
+        <image name="cardBG.png" width="632" height="612"/>
+        <image name="choose.png" width="248" height="71"/>
+        <image name="defaultImage.png" width="360" height="270"/>
+        <image name="editcard.png" width="185" height="45"/>
+        <image name="name.png" width="240" height="67"/>
+        <image name="next.png" width="169" height="89"/>
+        <image name="trash.png" width="64" height="65"/>
     </resources>
 </document>

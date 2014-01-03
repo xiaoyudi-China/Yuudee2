@@ -11,6 +11,7 @@
 #import "HAMViewInfo.h"
 #import "HAMTools.h"
 #import "HAMConfig.h"
+#import "HAMSharedData.h"
 
 @interface HAMGridViewTool : NSObject <UIScrollViewDelegate> {
     HAMViewInfo* viewInfo;

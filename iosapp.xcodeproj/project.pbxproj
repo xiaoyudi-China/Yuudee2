@@ -94,8 +94,8 @@
 		667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 667E53BE17A65BA600BBDE35 /* HAMCard.m */; };
 		667E53C217A65C3100BBDE35 /* HAMResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 667E53C117A65C3100BBDE35 /* HAMResource.m */; };
 		6694E5621851CF44008EC01D /* child_inCat_backbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */; };
-		6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5601851CF44008EC01D /* child_inCat_blurBG */; };
-		6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5611851CF44008EC01D /* child_inCat_woodBG */; };
+		6694E5631851CF44008EC01D /* child_inCat_blurBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5601851CF44008EC01D /* child_inCat_blurBG.png */; };
+		6694E5641851CF44008EC01D /* child_inCat_woodBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5611851CF44008EC01D /* child_inCat_woodBG.png */; };
 		6694E5721851EC77008EC01D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6694E5711851EC77008EC01D /* libz.dylib */; };
 		6694E5981851EF3B008EC01D /* addnew.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5751851EF3B008EC01D /* addnew.png */; };
 		6694E5991851EF3B008EC01D /* addnewBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5761851EF3B008EC01D /* addnewBG.png */; };
@@ -142,24 +142,24 @@
 		66A81F89184E178600EA6FD6 /* HAMGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F84184E178600EA6FD6 /* HAMGridViewController.xib */; };
 		66A81F8A184E178600EA6FD6 /* HAMImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81F86184E178600EA6FD6 /* HAMImageCropperViewController.m */; };
 		66A81F8B184E178600EA6FD6 /* HAMImageCropperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F87184E178600EA6FD6 /* HAMImageCropperViewController.xib */; };
-		66A81FA0184E574000EA6FD6 /* parent_main_addbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F92184E574000EA6FD6 /* parent_main_addbtn */; };
-		66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F93184E574000EA6FD6 /* parent_main_addbtn_down */; };
-		66A81FA3184E574000EA6FD6 /* parent_main_editbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F95184E574000EA6FD6 /* parent_main_editbtn */; };
-		66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F96184E574000EA6FD6 /* parent_main_editbtn_down */; };
+		66A81FA0184E574000EA6FD6 /* parent_main_addbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F92184E574000EA6FD6 /* parent_main_addbtn.png */; };
+		66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F93184E574000EA6FD6 /* parent_main_addbtn_down.png */; };
+		66A81FA3184E574000EA6FD6 /* parent_main_editbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F95184E574000EA6FD6 /* parent_main_editbtn.png */; };
+		66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F96184E574000EA6FD6 /* parent_main_editbtn_down.png */; };
 		66A81FA5184E574000EA6FD6 /* parent_main_endbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F97184E574000EA6FD6 /* parent_main_endbtn.png */; };
-		66A81FA6184E574000EA6FD6 /* parent_main_endbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F98184E574000EA6FD6 /* parent_main_endbtn_down */; };
-		66A81FA7184E574000EA6FD6 /* parent_main_libbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F99184E574000EA6FD6 /* parent_main_libbtn */; };
-		66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */; };
-		66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */; };
+		66A81FA6184E574000EA6FD6 /* parent_main_endbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F98184E574000EA6FD6 /* parent_main_endbtn_down.png */; };
+		66A81FA7184E574000EA6FD6 /* parent_main_libbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F99184E574000EA6FD6 /* parent_main_libbtn.png */; };
+		66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down.png */; };
+		66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn.png */; };
 		66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */; };
 		66A81FAF184F260A00EA6FD6 /* parent_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */; };
 		66A81FB4184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81FB2184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m */; };
 		66A81FB5184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB3184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib */; };
-		66A81FC2184F88A200EA6FD6 /* parent_editpop_bg in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB8184F88A200EA6FD6 /* parent_editpop_bg */; };
-		66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn */; };
+		66A81FC2184F88A200EA6FD6 /* parent_editpop_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB8184F88A200EA6FD6 /* parent_editpop_bg.png */; };
+		66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn.png */; };
 		66A81FC4184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBA184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png */; };
-		66A81FC5184F88A200EA6FD6 /* parent_editpop_confirm in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm */; };
-		66A81FC6184F88A200EA6FD6 /* parent_editpop_confirmbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down */; };
+		66A81FC5184F88A200EA6FD6 /* parent_editpop_confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm.png */; };
+		66A81FC6184F88A200EA6FD6 /* parent_editpop_confirmbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down.png */; };
 		66A81FC7184F88A200EA6FD6 /* parent_editpop_demo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBD184F88A200EA6FD6 /* parent_editpop_demo1.png */; };
 		66A81FC8184F88A200EA6FD6 /* parent_editpop_demo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBE184F88A200EA6FD6 /* parent_editpop_demo2.png */; };
 		66A81FC9184F88A200EA6FD6 /* parent_editpop_demo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FBF184F88A200EA6FD6 /* parent_editpop_demo3.png */; };
@@ -168,12 +168,12 @@
 		66A81FCE184F995500EA6FD6 /* HAMPopoverBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81FCD184F995500EA6FD6 /* HAMPopoverBgView.m */; };
 		66A81FD21850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81FD01850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.m */; };
 		66A81FD31850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD11850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib */; };
-		66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg */; };
-		66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn */; };
+		66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg.png */; };
+		66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn.png */; };
 		66A81FE01850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD71850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png */; };
 		66A81FE11850FDA200EA6FD6 /* parent_settingspop_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD81850FDA200EA6FD6 /* parent_settingspop_checked.png */; };
-		66A81FE21850FDA200EA6FD6 /* parent_settingspop_finishbtn in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn */; };
-		66A81FE31850FDA200EA6FD6 /* parent_settingspop_finishbtn_down in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down */; };
+		66A81FE21850FDA200EA6FD6 /* parent_settingspop_finishbtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn.png */; };
+		66A81FE31850FDA200EA6FD6 /* parent_settingspop_finishbtn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down.png */; };
 		66A81FE41850FDA200EA6FD6 /* parent_settingspop_layout1x1.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FDB1850FDA200EA6FD6 /* parent_settingspop_layout1x1.png */; };
 		66A81FE51850FDA200EA6FD6 /* parent_settingspop_layout2x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FDC1850FDA200EA6FD6 /* parent_settingspop_layout2x2.png */; };
 		66A81FE61850FDA200EA6FD6 /* parent_settingspop_layout3x3.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A81FDD1850FDA200EA6FD6 /* parent_settingspop_layout3x3.png */; };
@@ -215,6 +215,7 @@
 		8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
 		AB340B4D1852328A0041934E /* addnewBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB340B4C1852328A0041934E /* addnewBG2.png */; };
+		AB35AEAC187663B400259F37 /* HAMSharedData.m in Sources */ = {isa = PBXBuildFile; fileRef = AB35AEAB187663B400259F37 /* HAMSharedData.m */; };
 		AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB8D6DD3185F0F8300324041 /* createCategory.png */; };
 		ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7B1851F86D00FA6649 /* cancel.png */; };
 		ABCC8B7E1851F90C00FA6649 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7D1851F90C00FA6649 /* edit.png */; };
@@ -323,8 +324,8 @@
 		667E53C017A65C3100BBDE35 /* HAMResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMResource.h; path = datastructure/HAMResource.h; sourceTree = "<group>"; };
 		667E53C117A65C3100BBDE35 /* HAMResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMResource.m; path = datastructure/HAMResource.m; sourceTree = "<group>"; };
 		6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child_inCat_backbutton.png; sourceTree = "<group>"; };
-		6694E5601851CF44008EC01D /* child_inCat_blurBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_blurBG; sourceTree = "<group>"; };
-		6694E5611851CF44008EC01D /* child_inCat_woodBG */ = {isa = PBXFileReference; lastKnownFileType = file; path = child_inCat_woodBG; sourceTree = "<group>"; };
+		6694E5601851CF44008EC01D /* child_inCat_blurBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child_inCat_blurBG.png; sourceTree = "<group>"; };
+		6694E5611851CF44008EC01D /* child_inCat_woodBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child_inCat_woodBG.png; sourceTree = "<group>"; };
 		6694E5711851EC77008EC01D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		6694E5751851EF3B008EC01D /* addnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnew.png; sourceTree = "<group>"; };
 		6694E5761851EF3B008EC01D /* addnewBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG.png; sourceTree = "<group>"; };
@@ -377,25 +378,25 @@
 		66A81F85184E178600EA6FD6 /* HAMImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMImageCropperViewController.h; path = settings/HAMImageCropperViewController.h; sourceTree = "<group>"; };
 		66A81F86184E178600EA6FD6 /* HAMImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMImageCropperViewController.m; path = settings/HAMImageCropperViewController.m; sourceTree = "<group>"; };
 		66A81F87184E178600EA6FD6 /* HAMImageCropperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMImageCropperViewController.xib; path = settings/HAMImageCropperViewController.xib; sourceTree = "<group>"; };
-		66A81F92184E574000EA6FD6 /* parent_main_addbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_addbtn; sourceTree = "<group>"; };
-		66A81F93184E574000EA6FD6 /* parent_main_addbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_addbtn_down; sourceTree = "<group>"; };
-		66A81F95184E574000EA6FD6 /* parent_main_editbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_editbtn; sourceTree = "<group>"; };
-		66A81F96184E574000EA6FD6 /* parent_main_editbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_editbtn_down; sourceTree = "<group>"; };
+		66A81F92184E574000EA6FD6 /* parent_main_addbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_addbtn.png; sourceTree = "<group>"; };
+		66A81F93184E574000EA6FD6 /* parent_main_addbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_addbtn_down.png; sourceTree = "<group>"; };
+		66A81F95184E574000EA6FD6 /* parent_main_editbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_editbtn.png; sourceTree = "<group>"; };
+		66A81F96184E574000EA6FD6 /* parent_main_editbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_editbtn_down.png; sourceTree = "<group>"; };
 		66A81F97184E574000EA6FD6 /* parent_main_endbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_endbtn.png; sourceTree = "<group>"; };
-		66A81F98184E574000EA6FD6 /* parent_main_endbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_endbtn_down; sourceTree = "<group>"; };
-		66A81F99184E574000EA6FD6 /* parent_main_libbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_libbtn; sourceTree = "<group>"; };
-		66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_libbtn_down; sourceTree = "<group>"; };
-		66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_main_settingsbtn; sourceTree = "<group>"; };
+		66A81F98184E574000EA6FD6 /* parent_main_endbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_endbtn_down.png; sourceTree = "<group>"; };
+		66A81F99184E574000EA6FD6 /* parent_main_libbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_libbtn.png; sourceTree = "<group>"; };
+		66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_libbtn_down.png; sourceTree = "<group>"; };
+		66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_settingsbtn.png; sourceTree = "<group>"; };
 		66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_settingsbtn_down.png; sourceTree = "<group>"; };
 		66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_main_bg.png; sourceTree = "<group>"; };
 		66A81FB1184F86A700EA6FD6 /* HAMEditCardPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditCardPopoverViewController.h; path = settings/mainPage/HAMEditCardPopoverViewController.h; sourceTree = "<group>"; };
 		66A81FB2184F86A700EA6FD6 /* HAMEditCardPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditCardPopoverViewController.m; path = settings/mainPage/HAMEditCardPopoverViewController.m; sourceTree = "<group>"; };
 		66A81FB3184F86A700EA6FD6 /* HAMEditCardPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMEditCardPopoverViewController.xib; path = settings/mainPage/HAMEditCardPopoverViewController.xib; sourceTree = "<group>"; };
-		66A81FB8184F88A200EA6FD6 /* parent_editpop_bg */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_editpop_bg; sourceTree = "<group>"; };
-		66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_editpop_cancelbtn; sourceTree = "<group>"; };
+		66A81FB8184F88A200EA6FD6 /* parent_editpop_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_bg.png; sourceTree = "<group>"; };
+		66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_cancelbtn.png; sourceTree = "<group>"; };
 		66A81FBA184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_cancelbtn_down.png; sourceTree = "<group>"; };
-		66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_editpop_confirm; sourceTree = "<group>"; };
-		66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_editpop_confirmbtn_down; sourceTree = "<group>"; };
+		66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_confirm.png; sourceTree = "<group>"; };
+		66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_confirmbtn_down.png; sourceTree = "<group>"; };
 		66A81FBD184F88A200EA6FD6 /* parent_editpop_demo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_demo1.png; sourceTree = "<group>"; };
 		66A81FBE184F88A200EA6FD6 /* parent_editpop_demo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_demo2.png; sourceTree = "<group>"; };
 		66A81FBF184F88A200EA6FD6 /* parent_editpop_demo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_editpop_demo3.png; sourceTree = "<group>"; };
@@ -406,12 +407,12 @@
 		66A81FCF1850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCoursewareSettingsPopoverViewController.h; path = settings/mainPage/HAMCoursewareSettingsPopoverViewController.h; sourceTree = "<group>"; };
 		66A81FD01850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCoursewareSettingsPopoverViewController.m; path = settings/mainPage/HAMCoursewareSettingsPopoverViewController.m; sourceTree = "<group>"; };
 		66A81FD11850FB7B00EA6FD6 /* HAMCoursewareSettingsPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMCoursewareSettingsPopoverViewController.xib; path = settings/mainPage/HAMCoursewareSettingsPopoverViewController.xib; sourceTree = "<group>"; };
-		66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_settingspop_bg; sourceTree = "<group>"; };
-		66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_settingspop_cancelbtn; sourceTree = "<group>"; };
+		66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_bg.png; sourceTree = "<group>"; };
+		66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_cancelbtn.png; sourceTree = "<group>"; };
 		66A81FD71850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_cancelbtn_down.png; sourceTree = "<group>"; };
 		66A81FD81850FDA200EA6FD6 /* parent_settingspop_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_checked.png; sourceTree = "<group>"; };
-		66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_settingspop_finishbtn; sourceTree = "<group>"; };
-		66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down */ = {isa = PBXFileReference; lastKnownFileType = file; path = parent_settingspop_finishbtn_down; sourceTree = "<group>"; };
+		66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_finishbtn.png; sourceTree = "<group>"; };
+		66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_finishbtn_down.png; sourceTree = "<group>"; };
 		66A81FDB1850FDA200EA6FD6 /* parent_settingspop_layout1x1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_layout1x1.png; sourceTree = "<group>"; };
 		66A81FDC1850FDA200EA6FD6 /* parent_settingspop_layout2x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_layout2x2.png; sourceTree = "<group>"; };
 		66A81FDD1850FDA200EA6FD6 /* parent_settingspop_layout3x3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = parent_settingspop_layout3x3.png; sourceTree = "<group>"; };
@@ -474,6 +475,8 @@
 		8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCardSelectorViewController.m; path = settings/HAMCardSelectorViewController.m; sourceTree = "<group>"; };
 		8EE7A2E21822361A007356B1 /* HAMGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridCell.xib; path = settings/HAMGridCell.xib; sourceTree = "<group>"; };
 		AB340B4C1852328A0041934E /* addnewBG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addnewBG2.png; sourceTree = "<group>"; };
+		AB35AEAA187663B400259F37 /* HAMSharedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAMSharedData.h; sourceTree = "<group>"; };
+		AB35AEAB187663B400259F37 /* HAMSharedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAMSharedData.m; sourceTree = "<group>"; };
 		AB8D6DD3185F0F8300324041 /* createCategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createCategory.png; sourceTree = "<group>"; };
 		ABCC8B7B1851F86D00FA6649 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		ABCC8B7D1851F90C00FA6649 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
@@ -545,6 +548,7 @@
 				66466A301859DD67006EE478 /* cat2 */,
 			);
 			name = defaultResources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		66466A261859DD67006EE478 /* cat1 */ = {
@@ -668,6 +672,8 @@
 				6653A5A1179E890E00A405B0 /* utils */,
 				66CC303917B8FC9B008078A9 /* managers */,
 				6625E0501797E4DE009E1CBB /* datastructure */,
+				AB35AEAA187663B400259F37 /* HAMSharedData.h */,
+				AB35AEAB187663B400259F37 /* HAMSharedData.m */,
 				666104A1178BB04A003AEE3D /* HAMAppDelegate.h */,
 				666104A2178BB04A003AEE3D /* HAMAppDelegate.m */,
 				666104AA178BB04A003AEE3D /* HAMViewController.h */,
@@ -682,7 +688,6 @@
 		66610499178BB04A003AEE3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				66466A251859DD31006EE478 /* defaultResources */,
 				66DE8E10184BB1F7009AFF39 /* resources */,
 				6661049E178BB04A003AEE3D /* main.m */,
 				6650B2E217D5D60A00770C25 /* icon1_retina.png */,
@@ -710,8 +715,8 @@
 			isa = PBXGroup;
 			children = (
 				6694E55F1851CF44008EC01D /* child_inCat_backbutton.png */,
-				6694E5601851CF44008EC01D /* child_inCat_blurBG */,
-				6694E5611851CF44008EC01D /* child_inCat_woodBG */,
+				6694E5601851CF44008EC01D /* child_inCat_blurBG.png */,
+				6694E5611851CF44008EC01D /* child_inCat_woodBG.png */,
 			);
 			path = inCat;
 			sourceTree = "<group>";
@@ -818,15 +823,15 @@
 				66A81FD41850FDA200EA6FD6 /* settingspop */,
 				66A81FB7184F88A200EA6FD6 /* editpop */,
 				66A81FAE184F260A00EA6FD6 /* parent_main_bg.png */,
-				66A81F92184E574000EA6FD6 /* parent_main_addbtn */,
-				66A81F93184E574000EA6FD6 /* parent_main_addbtn_down */,
-				66A81F95184E574000EA6FD6 /* parent_main_editbtn */,
-				66A81F96184E574000EA6FD6 /* parent_main_editbtn_down */,
+				66A81F92184E574000EA6FD6 /* parent_main_addbtn.png */,
+				66A81F93184E574000EA6FD6 /* parent_main_addbtn_down.png */,
+				66A81F95184E574000EA6FD6 /* parent_main_editbtn.png */,
+				66A81F96184E574000EA6FD6 /* parent_main_editbtn_down.png */,
 				66A81F97184E574000EA6FD6 /* parent_main_endbtn.png */,
-				66A81F98184E574000EA6FD6 /* parent_main_endbtn_down */,
-				66A81F99184E574000EA6FD6 /* parent_main_libbtn */,
-				66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down */,
-				66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn */,
+				66A81F98184E574000EA6FD6 /* parent_main_endbtn_down.png */,
+				66A81F99184E574000EA6FD6 /* parent_main_libbtn.png */,
+				66A81F9A184E574000EA6FD6 /* parent_main_libbtn_down.png */,
+				66A81F9B184E574000EA6FD6 /* parent_main_settingsbtn.png */,
 				66A81F9C184E574000EA6FD6 /* parent_main_settingsbtn_down.png */,
 			);
 			path = parentMain;
@@ -863,11 +868,11 @@
 			isa = PBXGroup;
 			children = (
 				66466A20185865DE006EE478 /* parent_editcat_bg.png */,
-				66A81FB8184F88A200EA6FD6 /* parent_editpop_bg */,
-				66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn */,
+				66A81FB8184F88A200EA6FD6 /* parent_editpop_bg.png */,
+				66A81FB9184F88A200EA6FD6 /* parent_editpop_cancelbtn.png */,
 				66A81FBA184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png */,
-				66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm */,
-				66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down */,
+				66A81FBB184F88A200EA6FD6 /* parent_editpop_confirm.png */,
+				66A81FBC184F88A200EA6FD6 /* parent_editpop_confirmbtn_down.png */,
 				66A81FBD184F88A200EA6FD6 /* parent_editpop_demo1.png */,
 				66A81FBE184F88A200EA6FD6 /* parent_editpop_demo2.png */,
 				66A81FBF184F88A200EA6FD6 /* parent_editpop_demo3.png */,
@@ -880,12 +885,12 @@
 		66A81FD41850FDA200EA6FD6 /* settingspop */ = {
 			isa = PBXGroup;
 			children = (
-				66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg */,
-				66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn */,
+				66A81FD51850FDA200EA6FD6 /* parent_settingspop_bg.png */,
+				66A81FD61850FDA200EA6FD6 /* parent_settingspop_cancelbtn.png */,
 				66A81FD71850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png */,
 				66A81FD81850FDA200EA6FD6 /* parent_settingspop_checked.png */,
-				66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn */,
-				66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down */,
+				66A81FD91850FDA200EA6FD6 /* parent_settingspop_finishbtn.png */,
+				66A81FDA1850FDA200EA6FD6 /* parent_settingspop_finishbtn_down.png */,
 				66A81FDB1850FDA200EA6FD6 /* parent_settingspop_layout1x1.png */,
 				66A81FDC1850FDA200EA6FD6 /* parent_settingspop_layout2x2.png */,
 				66A81FDD1850FDA200EA6FD6 /* parent_settingspop_layout3x3.png */,
@@ -952,6 +957,7 @@
 		66DE8E10184BB1F7009AFF39 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				66466A251859DD31006EE478 /* defaultResources */,
 				6694E5731851EF3B008EC01D /* lib */,
 				6694E55D1851CF44008EC01D /* child */,
 				66A81F91184E574000EA6FD6 /* parentMain */,
@@ -1070,7 +1076,7 @@
 				6694E5991851EF3B008EC01D /* addnewBG.png in Resources */,
 				6694E59F1851EF3B008EC01D /* background.png in Resources */,
 				66466A141855F1B0006EE478 /* parent_courseselect_divider.png in Resources */,
-				66A81FA0184E574000EA6FD6 /* parent_main_addbtn in Resources */,
+				66A81FA0184E574000EA6FD6 /* parent_main_addbtn.png in Resources */,
 				66466A651859DD67006EE478 /* cat2_card2_s1.mp3 in Resources */,
 				66466A5F1859DD67006EE478 /* cat2_card1_3.jpg in Resources */,
 				66A81FE01850FDA200EA6FD6 /* parent_settingspop_cancelbtn_down.png in Resources */,
@@ -1110,14 +1116,14 @@
 				66A81FCA184F88A200EA6FD6 /* parent_editpop_editicon.png in Resources */,
 				66466A21185865DE006EE478 /* parent_editcat_bg.png in Resources */,
 				66466A661859DD67006EE478 /* cat2_card3_2.jpg in Resources */,
-				66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg in Resources */,
+				66A81FDE1850FDA200EA6FD6 /* parent_settingspop_bg.png in Resources */,
 				66466A7C1859DD67006EE478 /* cat2_card8_s1.mp3 in Resources */,
 				66466A6B1859DD67006EE478 /* cat2_card4_3.jpg in Resources */,
 				8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */,
 				66AFDBDB185C2AE600913F8D /* +.png in Resources */,
 				6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */,
 				6694E5AB1851EF3B008EC01D /* classBG.png in Resources */,
-				66A81FA3184E574000EA6FD6 /* parent_main_editbtn in Resources */,
+				66A81FA3184E574000EA6FD6 /* parent_main_editbtn.png in Resources */,
 				66466A6E1859DD67006EE478 /* cat2_card5_2.jpg in Resources */,
 				66466A751859DD67006EE478 /* cat2_card6_s1.mp3 in Resources */,
 				66466A621859DD67006EE478 /* cat2_card2_2.jpg in Resources */,
@@ -1139,40 +1145,40 @@
 				8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */,
 				66A81FAA184E574000EA6FD6 /* parent_main_settingsbtn_down.png in Resources */,
 				664669FA1855D75E006EE478 /* parent_addCard_bg.png in Resources */,
-				66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down in Resources */,
+				66A81FA4184E574000EA6FD6 /* parent_main_editbtn_down.png in Resources */,
 				664669FC1855D75E006EE478 /* parent_addCard_libicon.png in Resources */,
 				6694E5AE1851EF3B008EC01D /* editcard.png in Resources */,
-				66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn in Resources */,
+				66A81FC3184F88A200EA6FD6 /* parent_editpop_cancelbtn.png in Resources */,
 				66A81FE11850FDA200EA6FD6 /* parent_settingspop_checked.png in Resources */,
 				6694E5A61851EF3B008EC01D /* cardBG.png in Resources */,
 				6694E5A01851EF3B008EC01D /* bg.png in Resources */,
 				66466A7B1859DD67006EE478 /* cat2_card8_p1.jpg in Resources */,
-				66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down in Resources */,
-				66A81FA7184E574000EA6FD6 /* parent_main_libbtn in Resources */,
+				66A81FA8184E574000EA6FD6 /* parent_main_libbtn_down.png in Resources */,
+				66A81FA7184E574000EA6FD6 /* parent_main_libbtn.png in Resources */,
 				66A81F89184E178600EA6FD6 /* HAMGridViewController.xib in Resources */,
-				66A81FE31850FDA200EA6FD6 /* parent_settingspop_finishbtn_down in Resources */,
+				66A81FE31850FDA200EA6FD6 /* parent_settingspop_finishbtn_down.png in Resources */,
 				66466A721859DD67006EE478 /* cat2_card6_2.jpg in Resources */,
 				66DE8E19184BB1F7009AFF39 /* common_background.png in Resources */,
 				66466A711859DD67006EE478 /* cat2_card5_s1.mp3 in Resources */,
 				66466A591859DD67006EE478 /* cat1_card2_p1.jpg in Resources */,
 				ABEE9F5D1862E10700781EEA /* defaultImage.png in Resources */,
-				6694E5631851CF44008EC01D /* child_inCat_blurBG in Resources */,
+				6694E5631851CF44008EC01D /* child_inCat_blurBG.png in Resources */,
 				66A81F8B184E178600EA6FD6 /* HAMImageCropperViewController.xib in Resources */,
 				66466A5B1859DD67006EE478 /* cat1_card2_p3.jpg in Resources */,
 				6694E5A31851EF3B008EC01D /* camera.png in Resources */,
 				66466A0C1855F058006EE478 /* parent_main_titlefoldbtn.png in Resources */,
 				66466A1F18586563006EE478 /* HAMEditCatPopoverViewController.xib in Resources */,
 				66A81FCB184F88A200EA6FD6 /* parent_editppop_checked.png in Resources */,
-				66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn in Resources */,
+				66A81FA9184E574000EA6FD6 /* parent_main_settingsbtn.png in Resources */,
 				66466A1A18563ADF006EE478 /* HAMCreateCoursewarePopoverViewController.xib in Resources */,
 				8E0728731836202B00E538FB /* HAMRecorderViewController.xib in Resources */,
-				66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down in Resources */,
+				66A81FA1184E574000EA6FD6 /* parent_main_addbtn_down.png in Resources */,
 				6694E5B71851EF3B008EC01D /* record.png in Resources */,
 				6694E5BD1851F1E7008EC01D /* confirm.png in Resources */,
 				66CC961D17B4BFB900DB3A57 /* HAMSyncViewController.xib in Resources */,
 				66466A561859DD67006EE478 /* cat1_card1_p2.jpg in Resources */,
 				66466A681859DD67006EE478 /* cat2_card3_p1.jpg in Resources */,
-				66A81FC6184F88A200EA6FD6 /* parent_editpop_confirmbtn_down in Resources */,
+				66A81FC6184F88A200EA6FD6 /* parent_editpop_confirmbtn_down.png in Resources */,
 				8ECB051A183A499900EA506C /* QBAnimationSequence-Info.plist in Resources */,
 				6694E5981851EF3B008EC01D /* addnew.png in Resources */,
 				6694E5A21851EF3B008EC01D /* box.png in Resources */,
@@ -1190,8 +1196,8 @@
 				6694E5AA1851EF3B008EC01D /* choose.png in Resources */,
 				66466A121855F1B0006EE478 /* parent_courseselect_addicon.png in Resources */,
 				66A81FC4184F88A200EA6FD6 /* parent_editpop_cancelbtn_down.png in Resources */,
-				66A81FC2184F88A200EA6FD6 /* parent_editpop_bg in Resources */,
-				66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn in Resources */,
+				66A81FC2184F88A200EA6FD6 /* parent_editpop_bg.png in Resources */,
+				66A81FDF1850FDA200EA6FD6 /* parent_settingspop_cancelbtn.png in Resources */,
 				66466A5E1859DD67006EE478 /* cat2_card1_2.jpg in Resources */,
 				6694E59E1851EF3B008EC01D /* backDOWN.png in Resources */,
 				66466A641859DD67006EE478 /* cat2_card2_p1.jpg in Resources */,
@@ -1211,12 +1217,12 @@
 				664669FB1855D75E006EE478 /* parent_addCard_createicon.png in Resources */,
 				6694E59D1851EF3B008EC01D /* back.png in Resources */,
 				66466A731859DD67006EE478 /* cat2_card6_3.jpg in Resources */,
-				6694E5641851CF44008EC01D /* child_inCat_woodBG in Resources */,
+				6694E5641851CF44008EC01D /* child_inCat_woodBG.png in Resources */,
 				66A81FC8184F88A200EA6FD6 /* parent_editpop_demo2.png in Resources */,
 				66466A2318586B0D006EE478 /* parent_main_blankcard.png in Resources */,
-				66A81FA6184E574000EA6FD6 /* parent_main_endbtn_down in Resources */,
+				66A81FA6184E574000EA6FD6 /* parent_main_endbtn_down.png in Resources */,
 				8E07286E183609A100E538FB /* HAMCardEditorViewController.xib in Resources */,
-				66A81FC5184F88A200EA6FD6 /* parent_editpop_confirm in Resources */,
+				66A81FC5184F88A200EA6FD6 /* parent_editpop_confirm.png in Resources */,
 				6694E5AC1851EF3B008EC01D /* delete.png in Resources */,
 				ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */,
 				6694E5B91851EF3B008EC01D /* sucaiku.png in Resources */,
@@ -1227,7 +1233,7 @@
 				66466A741859DD67006EE478 /* cat2_card6_p1.jpg in Resources */,
 				66A81FE61850FDA200EA6FD6 /* parent_settingspop_layout3x3.png in Resources */,
 				6620B289185CDC74005B168E /* trash.png in Resources */,
-				66A81FE21850FDA200EA6FD6 /* parent_settingspop_finishbtn in Resources */,
+				66A81FE21850FDA200EA6FD6 /* parent_settingspop_finishbtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,6 +1250,7 @@
 				666104A3178BB04A003AEE3D /* HAMAppDelegate.m in Sources */,
 				666104AC178BB04A003AEE3D /* HAMViewController.m in Sources */,
 				6653A5A4179E894B00A405B0 /* HAMFileTools.m in Sources */,
+				AB35AEAC187663B400259F37 /* HAMSharedData.m in Sources */,
 				6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */,
 				6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */,
 				6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */,

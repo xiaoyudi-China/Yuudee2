@@ -217,6 +217,7 @@
     if (self.navController!=nil)
         [navController.view removeFromSuperview];
     
+	self.viewController = nil;
     self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
