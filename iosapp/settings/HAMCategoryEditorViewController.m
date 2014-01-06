@@ -27,17 +27,19 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	if (self.categoryID) // editing
-		self.categoryNameField.text = [self.config card:self.categoryID].name;
-	else
-		self.createCategoryTitleView.hidden = NO;
-	
-	if (self.categoryID == nil) {
+	if (! self.categoryID) { // creating new category
 		self.deleteButton.hidden = YES; // don't allow deletion of category being created
-		self.finishButton.enabled = NO;
+		self.finishButton.enabled = NO; // must input category name before finishing
+		self.pickCoverButton.hidden = YES;
+		self.createCategoryTitleView.hidden = NO;
+	}
+	else { // editing
+		self.categoryNameField.text = [self.config card:self.categoryID].name;
+		self.tempCategoryName = self.categoryNameField.text;
 	}
 	
 	self.preferredContentSize = self.view.frame.size;
+	self.categoryCover = [UIImage imageNamed:@"defaultImage.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,27 +104,62 @@
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSData *imageData = UIImageJPEGRepresentation(self.categoryCover, 1.0);
+	
 	if (self.categoryID) { // editing category
 		HAMCard *category = [self.config card:self.categoryID];
-		[self.config updateCard:category name:self.tempCategoryName audio:nil image:nil];
+		
+		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", category.UUID];
+		NSString *filePath = [HAMFileTools filePath:imageName];
+		BOOL success = [fileManager removeItemAtPath:filePath error:NULL]; // remove the old image
+		success &= [imageData writeToFile:filePath atomically:YES]; // save the new image
+		if (! success) {
+			// TODO: error handling
+		}
+		
+		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imageName];
 	}
 	else { // creating category
-		
 		HAMCard *category = [[HAMCard alloc] initNewCard];
 		NSString *categoryName = self.tempCategoryName;
+		
+		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", category.UUID];
+		NSString *filePath = [HAMFileTools filePath:imageName];
+		BOOL success = [imageData writeToFile:filePath atomically:YES];
+		if (! success) {
+			// TODO: error handling
+		}
+		
 		// type 0 indicates a category
-		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil];
-		category.isRemovable_ = YES;
+		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];
+		category.isRemovable_ = YES; // ???: what's this for?
 		
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
 
+		// collect user statistics
 		NSDictionary *attrs = [NSDictionary dictionaryWithObject:categoryName forKey:@"分类名称"];
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
 	
-	[self.delegate categoryEditorDidEndEditing:self]; // ask the grid view to refresh
+	[self.delegate categoryEditorDidEndEditing:self]; // tell the grid view to refresh
+}
+
+- (IBAction)pickCoverButtonPressed:(id)sender {
+	HAMCoverPickerViewController *coverPicker = [[HAMCoverPickerViewController alloc] initWithNibName:@"HAMCoverPickerViewController" bundle:nil];
+	coverPicker.config = self.config;
+	coverPicker.categoryID = self.categoryID;
+	coverPicker.delegate = self;
+	
+	self.popover = [[UIPopoverController alloc] initWithContentViewController:coverPicker];
+	[self.popover presentPopoverFromRect:self.pickCoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+- (void)coverPickerDidPickImage:(UIImage *)image {
+	[self.popover dismissPopoverAnimated:YES];
+	self.categoryCover = image;
 }
 
 @end

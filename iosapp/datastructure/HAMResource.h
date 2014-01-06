@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAMSharedData.h"
 
 @interface HAMResource : NSObject
 {}

@@ -11,6 +11,7 @@
 #import "HAMGridCell.h"
 #import "HAMGridViewController.h"
 #import "HAMCardEditorViewController.h"
+#import "HAMSharedData.h"
 
 @interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 
@@ -21,6 +22,5 @@
 @property (nonatomic, assign) HAMGridCellMode cellMode;
 @property (strong, nonatomic) NSArray *cardIDs;
 @property (nonatomic, strong) NSMutableSet *selectedCardIDs;
-@property (strong, nonatomic) HAMCardEditorViewController *cardEditor;
 
 @end

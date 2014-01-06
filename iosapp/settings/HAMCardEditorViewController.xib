@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
@@ -14,6 +14,7 @@
                 <outlet property="deleteCardButton" destination="DLa-zf-tZ3" id="IWT-es-Uub"/>
                 <outlet property="editCardTitleView" destination="biN-6E-Y8u" id="ht2-rU-D4X"/>
                 <outlet property="imageView" destination="spa-Fx-Q2D" id="SRF-I6-e3l"/>
+                <outlet property="pickImageButton" destination="Bv1-Yw-AeG" id="kTt-Md-16a"/>
                 <outlet property="recordButton" destination="8FH-lh-VwA" id="5LY-LM-N7o"/>
                 <outlet property="shootImageButton" destination="QRT-0m-q3l" id="eu7-mN-aoC"/>
                 <outlet property="view" destination="2" id="3"/>
@@ -133,16 +134,16 @@
         </view>
     </objects>
     <resources>
-        <image name="addnewBG.png" width="1170" height="1146"/>
-        <image name="album.png" width="246" height="134"/>
-        <image name="camera.png" width="246" height="134"/>
-        <image name="cancel.png" width="338" height="178"/>
-        <image name="cardBG.png" width="1265" height="1224"/>
-        <image name="choose.png" width="496" height="142"/>
-        <image name="defaultImage.png" width="720" height="540"/>
-        <image name="editcard.png" width="370" height="90"/>
-        <image name="name.png" width="480" height="135"/>
-        <image name="next.png" width="338" height="178"/>
-        <image name="trash.png" width="128" height="131"/>
+        <image name="addnewBG.png" width="585" height="573"/>
+        <image name="album.png" width="123" height="67"/>
+        <image name="camera.png" width="123" height="67"/>
+        <image name="cancel.png" width="169" height="89"/>
+        <image name="cardBG.png" width="632" height="612"/>
+        <image name="choose.png" width="248" height="71"/>
+        <image name="defaultImage.png" width="360" height="270"/>
+        <image name="editcard.png" width="185" height="45"/>
+        <image name="name.png" width="240" height="67"/>
+        <image name="next.png" width="169" height="89"/>
+        <image name="trash.png" width="64" height="65"/>
     </resources>
 </document>

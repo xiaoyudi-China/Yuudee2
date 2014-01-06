@@ -108,11 +108,8 @@
 	// must delete the original file before writing new data to it
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.imagePath]]) {
 		success = success && [manager removeItemAtPath:[HAMFileTools filePath:self.imagePath] error:&error];
-		NSLog(@"error: %@", error.localizedDescription);
 	}
 	success = success && [manager moveItemAtPath:[HAMFileTools filePath:self.tempImagePath] toPath:[HAMFileTools filePath:self.imagePath] error:&error];
-	NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
-	NSLog(@"error: %@", error.localizedDescription);
 	if (! success) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法保存图片" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 		[alert show];

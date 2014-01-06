@@ -67,9 +67,7 @@
 		// copy the existing image file to the temporary
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSError *error;
-		NSLog(@"temp file exists: %d", [manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]]);
 		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:&error];
-		NSLog(@"error: %@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];
@@ -119,6 +117,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	// must end text editing before taking images
+	self.shootImageButton.enabled = self.pickImageButton.enabled = NO;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	self.tempCard.name = nil;
 	
@@ -141,6 +144,9 @@
 	
 	// can save new card now
 	self.recordButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
+	
+	// re-enable taking pictures
+	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

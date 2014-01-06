@@ -50,15 +50,21 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
+	#pragma clang diagnostic push
+	#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     [handle performSelector:callback withObject:nil withObject:error];
+	#pragma clang diagnostic pop
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
     if ([handle respondsToSelector:callback])
-        [handle performSelector:callback withObject:receivedData withObject:nil];
-    else
+		#pragma clang diagnostic push
+		#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+		[handle performSelector:callback withObject:receivedData withObject:nil];
+		#pragma clang diagnostic pop
+	else
         NSLog(@"error callback!");
 }
 

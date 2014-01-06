@@ -83,11 +83,8 @@
 	rect.size.width = self.scrollView.frame.size.width * scale;
 	rect.size.height = screenSize.width * 3/4 * scale;
 	
-	CGRect transformedRect;
-	if (self.image.imageOrientation == UIImageOrientationUp) {
-		transformedRect = rect;
-	}
-	else if (self.image.imageOrientation == UIImageOrientationRight) {
+	CGRect transformedRect = rect;
+	if (self.image.imageOrientation == UIImageOrientationRight) {
 		transformedRect.origin.x = rect.origin.y;
 		transformedRect.origin.y = self.image.size.width - (rect.origin.x + rect.size.width);
 		transformedRect.size.width = rect.size.height;
@@ -107,8 +104,17 @@
 	
 	CGImageRef imageRef = CGImageCreateWithImageInRect(self.image.CGImage, transformedRect);
 	UIImage *croppedImage = [[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:self.image.imageOrientation];
-	[self.delegate imageCropper:self didFinishCroppingWithImage:croppedImage];
+	CFRelease(imageRef);
 	
+	// resize the image to make it smaller
+	CGSize newSize = CGSizeMake(480, 360);
+	UIGraphicsBeginImageContext(newSize);
+	[croppedImage drawInRect:CGRectMake(0.0, 0.0, newSize.width, newSize.height)];
+	UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	// NOTE: return the resized image
+	[self.delegate imageCropper:self didFinishCroppingWithImage:resizedImage];
 	// FIXME: this method is evil
 	[self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }

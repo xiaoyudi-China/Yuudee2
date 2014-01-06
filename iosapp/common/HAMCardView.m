@@ -32,6 +32,7 @@
         return nil;
     }
     
+    /*
     //draw cardwhite
     CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
     UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
@@ -42,6 +43,51 @@
     UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
     cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
     CGRect picFrame = CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
+    [cardImageView_ setFrame:picFrame];
+    [self addSubview:cardImageView_];
+    
+    //draw cardbg
+    UIImage* bgImage=nil;
+    switch (card.type) {
+        case CARD_TYPE_CATEGORY:
+            bgImage =[UIImage imageNamed:@"common_cat_bg.png"];
+            break;
+            
+        case CARD_TYPE_CARD:
+            bgImage =[UIImage imageNamed:@"common_card_bg.png"];
+            break;
+            
+        default:
+            break;
+    }
+    UIImageView* bgView=[[UIImageView alloc] initWithImage:bgImage];
+    [bgView setFrame:CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight)];
+    [self addSubview:bgView];
+    
+    //draw cardwood
+    UIImageView* cardWoodBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_wood.png"]];
+    [cardWoodBg setFrame:localFrame];
+    [self addSubview:cardWoodBg];*/
+    
+    //draw cardwhite
+    CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
+    UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
+    [cardWhiteBg setFrame:localFrame];
+    [self addSubview:cardWhiteBg];
+    
+    //draw cardpic
+	UIImage* fgImage = nil;
+    NSString* picName = card_.image.UUID;
+	if (picName) { // NOTE: picName may be 'nil'
+		NSCache *imageCache = ((HAMSharedData*)[HAMSharedData sharedData]).imageCache;
+		NSString *path = [HAMFileTools filePath:picName];
+		if (! [imageCache objectForKey:path])
+			[imageCache setObject:[UIImage imageWithContentsOfFile:path] forKey:path];
+		fgImage = [imageCache objectForKey:path];
+	}
+    
+	cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
+    CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
     [cardImageView_ setFrame:picFrame];
     [self addSubview:cardImageView_];
     
