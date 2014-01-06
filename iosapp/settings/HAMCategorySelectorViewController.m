@@ -60,6 +60,7 @@
 	
 	if (self.cellMode == HAMGridCellModeEdit) {
 		self.title = @"编辑卡片/分类";
+		self.rightTopButton.hidden = NO;
 	}
 	else {
 		self.title = @"选择分类";
@@ -90,17 +91,8 @@
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
-	
-	// show the first card as preview
-	NSString *firstCardID = [[self.config childrenCardIDOfCat:categoryID] firstObject];
-	if (firstCardID) {
-		HAMCard *firstCard = [self.config card:firstCardID];
-		UIImage *image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:firstCard.image.localPath]];
-		cell.contentImageView.image = image;
-	}
-	else
-		cell.contentImageView.image = [UIImage imageNamed:@"defaultImage.png"];
-	
+	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:category.image.localPath]];
+		
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"+.png"] forState:UIControlStateNormal];
 	else { // Mode edit
@@ -143,6 +135,10 @@
 		categoryEditor.config = self.config;
 		categoryEditor.categoryID = nil;
 		
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+		[categoryEditor.view insertSubview:background atIndex:0];
+		
+		categoryEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
 		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
@@ -184,6 +180,10 @@
 		categoryEditor.config = self.config;
 		categoryEditor.categoryID = [self categoryIDs][gridCell.indexPath.row];
 		
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+		[categoryEditor.view insertSubview:background atIndex:0];
+		
+		categoryEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
 		categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 		[self presentViewController:categoryEditor animated:YES completion:NULL];
 	}
