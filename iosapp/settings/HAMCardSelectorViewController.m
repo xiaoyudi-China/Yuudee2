@@ -80,7 +80,12 @@
 	HAMCard *card = [self.config card:[self cardIDs][indexPath.row]];
 	cell.textLabel.text = card.name;
 	
-	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
+	NSCache *imageCache = ((HAMSharedData*)[HAMSharedData sharedData]).imageCache;
+	NSString *path = [HAMFileTools filePath:card.image.localPath];
+	if (! [imageCache objectForKey:path])
+		[imageCache setObject:[UIImage imageWithContentsOfFile:path] forKey:path];
+	cell.contentImageView.image = [imageCache objectForKey:path];
+	
 	cell.frameImageView.image = [UIImage imageNamed:@"cardBG.png"];
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"box.png"]forState:UIControlStateNormal];

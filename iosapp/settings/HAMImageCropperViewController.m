@@ -105,8 +105,16 @@
 	CGImageRef imageRef = CGImageCreateWithImageInRect(self.image.CGImage, transformedRect);
 	UIImage *croppedImage = [[UIImage alloc] initWithCGImage:imageRef scale:1.0 orientation:self.image.imageOrientation];
 	CFRelease(imageRef);
-	[self.delegate imageCropper:self didFinishCroppingWithImage:croppedImage];
 	
+	// resize the image to make it smaller
+	CGSize newSize = CGSizeMake(480, 360);
+	UIGraphicsBeginImageContext(newSize);
+	[croppedImage drawInRect:CGRectMake(0.0, 0.0, newSize.width, newSize.height)];
+	UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	// NOTE: return the resized image
+	[self.delegate imageCropper:self didFinishCroppingWithImage:resizedImage];
 	// FIXME: this method is evil
 	[self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }

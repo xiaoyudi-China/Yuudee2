@@ -11,6 +11,7 @@
 #import "HAMGridCell.h"
 #import "HAMGridViewController.h"
 #import "HAMCardEditorViewController.h"
+#import "HAMSharedData.h"
 
 @interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 

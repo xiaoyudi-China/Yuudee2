@@ -212,32 +212,23 @@
 
 -(void)turnToChildView
 {
-    if (self.structureEditViewController!=nil)
-        [structureEditViewController.view removeFromSuperview];
-    if (self.navController!=nil)
-        [navController.view removeFromSuperview];
-    
-	self.viewController = nil;
-    self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+	if (! self.viewController) { // the first time to be shown
+		self.viewController = [[HAMViewController alloc] initWithNibName:@"HAMViewController_iPad" bundle:nil];
+		self.window.rootViewController = self.viewController;
+		[self.window makeKeyAndVisible];
+	}
+    else
+		[self.viewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(void)turnToParentView
 {
-    if (self.viewController!=nil)
-        [[self viewController].view removeFromSuperview];
-    
-    if (!structureEditViewController)
-        structureEditViewController=[[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
-    
-    if (!navController)
-    {
-        navController=[[UINavigationController alloc] initWithRootViewController:structureEditViewController];
-        navController.navigationBarHidden = YES;
-    }
-    
-    [self.window addSubview:navController.view];
+	HAMStructureEditViewController *parentViewController = [[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
+	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:parentViewController];
+	navigator.navigationBarHidden = YES;
+	
+	parentViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	[self.viewController presentViewController:navigator animated:YES completion:NULL];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
