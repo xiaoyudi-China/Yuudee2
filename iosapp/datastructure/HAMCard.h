@@ -21,6 +21,7 @@
 @property int type;
 @property NSString* name;
 @property HAMResource* image;
+@property int imageNum_;
 @property HAMResource* audio;
 @property Boolean isRemovable_;
 

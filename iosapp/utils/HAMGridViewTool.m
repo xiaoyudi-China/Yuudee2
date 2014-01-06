@@ -116,7 +116,7 @@
     viewInfo = [[HAMViewInfo alloc] initWithXnum:_xnum ynum:_ynum];
 }
 
-- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
+- (UIButton*)addCardViewOfCard:(HAMCard*)card atPosIndex:(int)index onPage:(int)pageIndex tag:(int)tag
 {
     if (pageIndex > pageViews_.count) {
         return nil;
@@ -126,8 +126,8 @@
     UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
     CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
     
-    CGRect frame = CGRectMake(cardPosition.x, cardPosition.y, viewInfo.cardWidth, viewInfo.cardHeight);
-    UIView* cardView = [[UIView alloc] initWithFrame:frame];
+    
+    UIView* cardView = [[HAMCardView alloc] initAtPosition:cardPosition withViewInfo:viewInfo card:card];
     [pageView addSubview:cardView];
     if (tag!=-1)
         [HAMTools setObject:cardView toMutableArray:cardViewArray_ atIndex:tag];
@@ -139,6 +139,17 @@
     button.frame = CGRectMake(offset, offset, viewInfo.cardWidth - 2 * offset, viewInfo.cardHeight - 2 * offset);
 //    button.backgroundColor = [UIColor redColor];
     button.tag = tag;
+    SEL action;
+    switch (card.type) {
+        case CARD_TYPE_CARD:
+            action = @selector(leafClicked:);
+            break;
+            
+        case CARD_TYPE_CATEGORY:
+            action = @selector(groupClicked:);
+            break;
+    }
+    
     [button addTarget:viewController_ action:action forControlEvents:UIControlEventTouchUpInside];
     
     CALayer * buttonLayer = [button layer];
@@ -149,55 +160,14 @@
     
     [cardView addSubview:button];
     
-    
-    //draw cardwhite
-    CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
-    UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
-    [cardWhiteBg setFrame:localFrame];
-    [cardView addSubview:cardWhiteBg];
-    
-    //draw cardpic
-    UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:picName]];
-    UIImageView* fgView=[[UIImageView alloc] initWithImage:fgImage];
-    CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
-    [fgView setFrame:picFrame];
-    [cardView addSubview:fgView];
-    
-    //draw cardbg
-    UIImage* bgImage=nil;
-    switch (bgType) {
-        case CARD_TYPE_CATEGORY:
-            bgImage =[UIImage imageNamed:@"common_cat_bg.png"];
-            break;
-            
-        case CARD_TYPE_CARD:
-            bgImage =[UIImage imageNamed:@"common_card_bg.png"];
-            break;
-            
-        default:
-            break;
-    }
-    UIImageView* bgView=[[UIImageView alloc] initWithImage:bgImage];
-    [bgView setFrame:CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight)];
-    [cardView addSubview:bgView];
-    
-    //draw cardwood
-    UIImageView* cardWoodBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_wood.png"]];
-    [cardWoodBg setFrame:localFrame];
-    [cardView addSubview:cardWoodBg];
-    
     return button;
 }
 
 -(void)addCardAtPosIndex:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index
 {
     HAMCard* card=[config card:cardID];
-    NSString* imagePath=[[card image] localPath];
     
-    if ([card type]==1)
-        [self addButtonAtPosIndex:index onPage:pageIndex picName:imagePath action:@selector(leafClicked:) tag:index bgType:1];
-    else
-        [self addButtonAtPosIndex:index onPage:pageIndex picName:imagePath action:@selector(groupClicked:) tag:index bgType:0];
+    [self addCardViewOfCard:card atPosIndex:index onPage:pageIndex tag:index];
     
     [self addLabelAtPosIndex:index onPage:pageIndex text:[card name] color:[UIColor colorWithRed:100.0/255.0 green:60.0/255.0 blue:20.0/255.0 alpha:1] type:card.type tag:index];
 }

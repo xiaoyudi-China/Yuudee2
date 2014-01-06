@@ -12,6 +12,7 @@
 @interface HAMViewController ()
 {
     int multiTouchCount;
+    HAMAnimation* animation;
 }
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
@@ -90,8 +91,10 @@
 -(IBAction) leafClicked:(id)sender{
     
     //return if another card is on display
-    if ([HAMAnimation isRunning]) {
-        return;
+    if (animation != nil) {
+        if ([animation isRunning]) {
+            return;
+        }
     }
     
     if (audioPlayer!=nil)
@@ -103,12 +106,16 @@
     int index = [sender tag];
     HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
     
-    UIView* cardView = [[gridViewTool cardViewArray_] objectAtIndex:index];
-    [HAMAnimation beginAnimation:room.animation_ onCardView:cardView];
-    
+    HAMCardView* cardView = [[gridViewTool cardViewArray_] objectAtIndex:index];
     HAMCard* card = [config card:room.cardID_];
-    NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
     
+    if (animation == nil) {
+        animation = [[HAMAnimation alloc] init];
+    }
+    [animation setCard:card andCardView:cardView];
+    [animation beginAnimation:room.animation_];
+    
+    NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
     if (musicPath){
         NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
         audioPlayer = [[AVAudioPlayer alloc]  initWithContentsOfURL:musicURL  error:nil];

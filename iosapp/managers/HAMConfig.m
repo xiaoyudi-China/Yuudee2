@@ -80,10 +80,10 @@
 {
 	// the equivalence check should be done by the caller, not here
     //if (![name isEqualToString:card.name])
+    //TODO: update name every time. should fix this.
     {
         card.name=name;
         [dbManager updateCard:card.UUID name:name];
-        //[self setDirtyWithType:card.type];
     }
     
     if (audio)
@@ -109,6 +109,7 @@
     card.UUID = UUID;
     card.name = name;
     card.type = type;
+    card.imageNum_ = 1;
     card.isRemovable_ = YES;
     
     if (audio)
@@ -125,7 +126,7 @@
         [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
     }
     
-    [dbManager insertCard:card user:[userManager currentUser].UUID];
+    [dbManager insertCard:card];
     
     [cards setObject:card forKey:card.UUID];
 }

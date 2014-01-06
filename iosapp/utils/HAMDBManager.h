@@ -30,11 +30,11 @@
 //table CARD
 -(HAMCard*)card:(NSString*)UUID;
 //-(NSMutableArray*)allCards:(int)mode user:(NSString*)userID;
--(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode;
+//-(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode;
 -(void)updateCard:(NSString*)UUID name:(NSString*)name;
 -(void)updateCard:(NSString*)UUID audio:(NSString*)audio;
 -(void)updateCard:(NSString*)UUID image:(NSString*)image;
--(void)insertCard:(HAMCard*)card user:(NSString*)user;
+-(void)insertCard:(HAMCard*)card;
 -(void)deleteCardWithID:(NSString*)UUID;
 
 //table CARD_TREE

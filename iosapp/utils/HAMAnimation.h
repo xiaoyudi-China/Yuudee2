@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "HAMRoom.h"
+#import "HAMCardView.h"
+#import "HAMCard.h"
 
 @interface HAMAnimation : NSObject
 {
     
 }
 
-+ (void)beginAnimation:(int)animationType onCardView:(UIView*)cardView;
-+ (Boolean)isRunning;
+- (void)setCard:(HAMCard*)card andCardView:(HAMCardView*)cardView;
+
+- (void)beginAnimation:(int)animationType;
+- (Boolean)isRunning;
 
 @end

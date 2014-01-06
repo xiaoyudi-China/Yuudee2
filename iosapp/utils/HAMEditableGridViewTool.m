@@ -82,12 +82,12 @@
     onEdgeCounter_ = 0;
 }
 
-- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType
+- (UIButton*)addCardViewOfCard:(HAMCard *)card atPosIndex:(int)index onPage:(int)pageIndex tag:(int)tag
 {
 //    int btnsPerPage = viewInfo.xnum * viewInfo.ynum;
 //    int index = i * j + btnsPerPage * pageIndex;
     
-    UIButton* button = [super addButtonAtPosIndex:index onPage:pageIndex picName:picName action:action tag:tag bgType:bgType];
+    UIButton* button = [super addCardViewOfCard:card atPosIndex:index onPage:pageIndex tag:tag];
     if (tag == -1)
         return button;
     

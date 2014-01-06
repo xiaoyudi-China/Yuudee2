@@ -154,7 +154,8 @@
     NSString* imageID,* audioID;
     imageID=[self stringAt:3];
     audioID=[self stringAt:4];
-    int isRemovable = sqlite3_column_int(statement, 6);
+    card.imageNum_ = sqlite3_column_int(statement, 5);
+    card.isRemovable_ = sqlite3_column_int(statement, 6);
     
     [self closeDatabase];
     
@@ -162,8 +163,6 @@
         card.image=[self resource:imageID];
     if (audioID)
         card.audio=[self resource:audioID];
-    
-    card.isRemovable_ = isRemovable;
     
     return card;
 }
@@ -213,7 +212,7 @@
     return cards;
 }*/
 
--(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode
+/*-(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode
 {
     NSString* whereClause;
     switch (mode) {
@@ -245,7 +244,7 @@
     
     [self closeDatabase];
     return cards;
-}
+}*/
 
 -(void)updateCard:(NSString*)UUID name:(NSString*)name
 {
@@ -292,7 +291,7 @@
     [self closeDatabase];
 }
 
--(void)insertCard:(HAMCard*)card user:(NSString *)user
+-(void)insertCard:(HAMCard*)card
 {
     [self openDatabase];
     
@@ -321,7 +320,7 @@
         sqlite3_bind_text(stmt, 3, [card.name UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 4, [card.image.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 5, [card.audio.UUID UTF8String], -1, NULL);
-        sqlite3_bind_text(stmt, 6, [user UTF8String], -1, NULL);
+        sqlite3_bind_int(stmt, 6, card.imageNum_);
         sqlite3_bind_int(stmt, 7, card.isRemovable_);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)

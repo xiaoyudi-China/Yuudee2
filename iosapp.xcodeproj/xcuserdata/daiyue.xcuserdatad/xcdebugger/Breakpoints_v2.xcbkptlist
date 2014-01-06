@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "407686067.971402"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-insertChildren:intoCat:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/HAMViewController.m"
-            timestampString = "408016331.792289"
+            timestampString = "409820332.695949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/HAMViewController.m"
-            timestampString = "408016331.792289"
+            timestampString = "409820332.695949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "407008475.202998"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-childrenCardIDOfCat:"
             landmarkType = "5">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMDBManager.m"
-            timestampString = "407008475.202998"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "-childrenOf:"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMDBManager.m"
-            timestampString = "407008524.295557"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "-card:"
             landmarkType = "5">
          </BreakpointContent>
@@ -383,7 +383,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "-addButtonAtPosIndex:onPage:picName:action:tag:bgType:"
+            landmarkName = "-addCardViewOfCard:atPosIndex:onPage:tag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMGridViewTool.m"
-            timestampString = "407671510.820375"
+            timestampString = "409756522.465276"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "-addCardAtPosIndex:onPage:cardID:index:"
             landmarkType = "5">
          </BreakpointContent>
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
             endingLineNumber = "91"
-            landmarkName = "-addButtonAtPosIndex:onPage:picName:action:tag:bgType:"
+            landmarkName = "-addCardViewOfCard:atPosIndex:onPage:tag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMDBManager.m"
-            timestampString = "408027599.083971"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-card:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/utils/HAMDBManager.m"
-            timestampString = "408027610.637687"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "-insertCard:user:"
             landmarkType = "5">
          </BreakpointContent>
@@ -717,7 +717,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
             endingLineNumber = "98"
-            landmarkName = "-addButtonAtPosIndex:onPage:picName:action:tag:bgType:"
+            landmarkName = "-addCardViewOfCard:atPosIndex:onPage:tag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -888,11 +888,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "408738359.526592"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "354"
+            endingLineNumber = "354"
             landmarkName = "-deleteChildOfCatInLib:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -904,11 +904,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "408795231.103626"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "-updateRoomOfCat:with:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -920,11 +920,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "408795232.562312"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-updateRoomOfCat:with:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -936,11 +936,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/managers/HAMConfig.m"
-            timestampString = "408795327.529803"
+            timestampString = "409753673.397037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
             landmarkName = "-insertChildren:intoCat:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -968,12 +968,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/HAMViewController.m"
-            timestampString = "409687382.901767"
+            timestampString = "409820332.695949"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-leafClicked:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosapp/utils/HAMAnimation.m"
+            timestampString = "410722236.648918"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-changeGifPic"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HAMAnimation changeGifPic]"
+                  moduleName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;"
+                  urlString = "file://localhost/Users/daiyue/%E4%BB%A3%E7%A0%81/droplings/iosapp/iosapp/utils/HAMAnimation.m"
+                  timestampString = "409820849.697973"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HAMAnimation changeGifPic]"
+                  moduleName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;"
+                  urlString = "file://localhost/Users/daiyue/%E4%BB%A3%E7%A0%81/droplings/iosapp/iosapp/utils/HAMAnimation.m"
+                  timestampString = "409820849.699196"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
+                  offsetFromSymbolStart = "140">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosapp/utils/HAMAnimation.m"
+            timestampString = "409821387.962337"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-playGif"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosapp/utils/HAMAnimation.m"
+            timestampString = "410722236.648918"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-changeGifPic"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iosapp/common/HAMCardView.m"
+            timestampString = "410721295.206456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "-changeCardImageToPicNum:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

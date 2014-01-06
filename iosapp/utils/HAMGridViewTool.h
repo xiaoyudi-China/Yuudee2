@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 #import "HAMViewInfo.h"
+#import "HAMCardView.h"
 #import "HAMTools.h"
 #import "HAMConfig.h"
 
@@ -34,7 +35,7 @@
 -(void)setLayoutWithxnum:(int)_xnum ynum:(int)_ynum;
 
 //for sub class
-- (UIButton*)addButtonAtPosIndex:(int)index onPage:(int)pageIndex picName:(NSString*)picName action:(SEL)action tag:(int)tag bgType:(int)bgType;
+- (UIButton*)addCardViewOfCard:(HAMCard*)card atPosIndex:(int)index onPage:(int)pageIndex tag:(int)tag;
 - (void)addLabelAtPosIndex:(int)index onPage:(int)pageIndex text:(NSString*)text color:(UIColor*)color type:(int)cardType tag:(int)tag;
 - (void)addCardAtPosIndex:(int)pos onPage:(int)pageIndex cardID:(NSString*)cardID index:(int)index;
 
