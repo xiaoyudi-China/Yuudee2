@@ -213,6 +213,7 @@
 	if (self.tempCard.name)
 		self.recordButton.enabled = YES;
 
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {

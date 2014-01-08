@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	[(UICollectionView*)self.view registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ImageCell"];
+	[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"ImageCell"];
 	self.preferredContentSize = self.view.frame.size;
 	
 	self.images = [[NSMutableArray alloc] init];
@@ -39,6 +39,7 @@
 		UIImage *image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
 		[self.images addObject:image];
 	}
+	
 }
 
 - (void)didReceiveMemoryWarning
