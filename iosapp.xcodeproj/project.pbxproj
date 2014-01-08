@@ -789,9 +789,6 @@
 		6697BD98179F6FC7002E37E8 /* settings */ = {
 			isa = PBXGroup;
 			children = (
-				66D60169187B2351002DFAFB /* HAMCoverPickerViewController.h */,
-				66D6016A187B2351002DFAFB /* HAMCoverPickerViewController.m */,
-				66D6016B187B2351002DFAFB /* HAMCoverPickerViewController.xib */,
 				66AF427C17A7681E0053D560 /* h */,
 				66A81FB0184F853900EA6FD6 /* mainPage */,
 				66A81F82184E178600EA6FD6 /* HAMGridViewController.h */,
@@ -814,6 +811,9 @@
 				8E0728651835FEA700E538FB /* HAMCategoryEditorViewController.h */,
 				8E0728661835FEA700E538FB /* HAMCategoryEditorViewController.m */,
 				8E0728671835FEA700E538FB /* HAMCategoryEditorViewController.xib */,
+				66D60169187B2351002DFAFB /* HAMCoverPickerViewController.h */,
+				66D6016A187B2351002DFAFB /* HAMCoverPickerViewController.m */,
+				66D6016B187B2351002DFAFB /* HAMCoverPickerViewController.xib */,
 				8E07286A183609A100E538FB /* HAMCardEditorViewController.h */,
 				8E07286B183609A100E538FB /* HAMCardEditorViewController.m */,
 				8E07286C183609A100E538FB /* HAMCardEditorViewController.xib */,
