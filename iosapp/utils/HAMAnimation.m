@@ -11,8 +11,10 @@
 #import "QBAnimationSequence.h"
 #import "QBAnimationGroup.h"
 #import "QBAnimationItem.h"
+#import "HAMCardView.h"
 
 #define SCALE_SIZE 500
+@class HAMCardView;
 
 @implementation HAMAnimation
 {
@@ -25,6 +27,8 @@
     HAMCard* card_;
     HAMCardView* cardView_;
 }
+
+@synthesize gifDelegate_;
 
 - (void)setCard:(HAMCard*)card andCardView:(HAMCardView*)cardView{
     card_ = card;
@@ -45,7 +49,7 @@
         cardView_.transform = CGAffineTransformMakeScale(scale, scale);
     }]];
     QBAnimationGroup *groupScaleNom = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:1.0 delay:card_.imageNum_ options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        [self playGif];
+        [self playGifOnCardView];
         cardView_.transform = CGAffineTransformMakeScale(1, 1);
         cardView_.frame = originFrame;
     }]];
@@ -64,7 +68,7 @@
     
     switch (animationType) {
         case ROOM_ANIMATION_NONE:
-            [self playGif];
+            [self playGifOnCardView];
             return;
             
         case ROOM_ANIMATION_SCALE:
@@ -106,16 +110,22 @@
      [highlightLayer addAnimation:translation forKey:@"translation"];*/
 }
 
-- (void)playGif{
+- (void)playGifOnCardView{
     if (card_.imageNum_ <= 1) {
         return;
     }
     
-    gifCurrentNum_ = 1;
-    gifTotalNum_ = card_.imageNum_;
+    gifDelegate_ = cardView_;
+    
+    [self playGifWithTimeInterval:1.0f totalPicNum:card_.imageNum_];
+}
 
+- (void)playGifWithTimeInterval:(double)interval totalPicNum:(int)totalnum{
+    gifCurrentNum_ = 1;
+    gifTotalNum_ = totalnum;
+    
     if (gifTimer_ == nil) {
-        gifTimer_ = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeGifPic) userInfo:nil repeats:YES];
+        gifTimer_ = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(changeGifPic) userInfo:nil repeats:YES];
         [gifTimer_ setFireDate:[NSDate distantFuture]];
     }
     [gifTimer_ setFireDate:[NSDate date]];
@@ -125,7 +135,7 @@
     
     if (++gifCurrentNum_ > gifTotalNum_){
         [gifTimer_ setFireDate:[NSDate distantFuture]];
-        [cardView_ changeCardImageToPicNum:1];
+        [gifDelegate_ endGif];
         return;
     }
     
@@ -133,7 +143,7 @@
         return;
     }
     
-    [cardView_ changeCardImageToPicNum:gifCurrentNum_];
+    [gifDelegate_ changeGifImageToPicNum:gifCurrentNum_];
 }
 
 - (Boolean)isRunning{

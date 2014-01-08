@@ -70,11 +70,10 @@
 
     refreshFlag=YES;
     
-    [HAMViewTool setHighLightImage:@"parent_main_endbtn_down.png" forButton:endEditButton];
-    [HAMViewTool setHighLightImage:@"parent_main_addbtn_down.png" forButton:createCardButton];
+//    [HAMViewTool setHighLightImage:@"parent_main_endbtn_down.png" forButton:endEditButton];
+//    [HAMViewTool setHighLightImage:@"parent_main_addbtn_down.png" forButton:createCardButton];
     createCardButton.hidden = YES;
-    [HAMViewTool setHighLightImage:@"parent_main_settingsbtn_down.png" forButton:settingsButton];
-    [HAMViewTool setHighLightImage:@"parent_main_libbtn_down.png" forButton:libButton];
+//    [HAMViewTool setHighLightImage:@"parent_main_settingsbtn_down.png" forButton:settingsButton];
     
     self.coursewareSelectView.hidden = YES;
 }
@@ -161,20 +160,20 @@
     switch (card.type) {
         case CARD_TYPE_CARD:
             editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
-            editCardPopover.parentID = currentUUID;
-            editCardPopover.childIndex = childIndex;
-            editCardPopover.config = config;
-            editCardPopover.mainSettingsViewController = self;
+            editCardPopover.parentID_ = currentUUID;
+            editCardPopover.childIndex_ = childIndex;
+            editCardPopover.config_ = config;
+            editCardPopover.mainSettingsViewController_ = self;
             
             [self presentPopoverWithPopoverViewController:editCardPopover];
             break;
             
         case CARD_TYPE_CATEGORY:
             editCatPopover = [[HAMEditCatPopoverViewController alloc] initWithNibName:@"HAMEditCatPopoverViewController" bundle:nil];
-            editCatPopover.parentID = currentUUID;
-            editCatPopover.childIndex = childIndex;
-            editCatPopover.config = config;
-            editCatPopover.mainSettingsViewController = self;
+            editCatPopover.parentID_ = currentUUID;
+            editCatPopover.childIndex_ = childIndex;
+            editCatPopover.config_ = config;
+            editCatPopover.mainSettingsViewController_ = self;
             
             [self presentPopoverWithPopoverViewController:editCatPopover];
             break;
@@ -194,7 +193,7 @@
 }
 
 -(IBAction) leafClicked:(id)sender{
-    [HAMViewTool showAlert:@"长按可以进入替换。"];
+//    [HAMViewTool showAlert:@"长按可以进入替换。"];
 }
 
 -(IBAction) addClicked:(id)sender
@@ -326,56 +325,13 @@
     [self coursewareSelectClicked:nil];
 }
 
-#pragma mark -
-#pragma mark Create Courseware
-
 - (IBAction)coursewareCreateClicked:(UIButton *)sender {
     HAMCreateCoursewarePopoverViewController* createCoursewarePopover = [[HAMCreateCoursewarePopoverViewController alloc] initWithNibName:@"HAMCreateCoursewarePopoverViewController" bundle:nil];
     createCoursewarePopover.mainSettingsViewController = self;
     createCoursewarePopover.coursewareManager = coursewareManager;
     
     [self presentPopoverWithPopoverViewController:createCoursewarePopover];
-    /*UIAlertView* createCoursewareAlertView=[[UIAlertView alloc] initWithTitle:@"创建新课件" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"创建",nil];
-    [createCoursewareAlertView show];*/
 }
-
-/*- (void)willPresentAlertView:(UIAlertView *)alertView
-{
-    CGRect frame = alertView.frame;
-    frame.origin.y -= 120;
-    frame.size.height += 80;
-    alertView.frame = frame;
-    
-    for( UIView * view in alertView.subviews )
-    {
-        //列举alertView中所有的对象
-        if( ![view isKindOfClass:[UILabel class]] )
-        {
-            //若不UILable则另行处理
-            if (view.tag==1)
-            {
-                //处理第一个按钮，也就是 CancelButton
-                CGRect btnFrame1 =CGRectMake(30, frame.size.height-65, 105, 40);
-                view.frame = btnFrame1;
-                    
-            } else if (view.tag==2){
-                //处理第二个按钮，也就是otherButton
-                CGRect btnFrame2 =CGRectMake(142, frame.size.height-65, 105, 40);
-                view.frame = btnFrame2;
-            }
-        }
-    }
-    
-    NSLog(@"%@",NSStringFromCGRect(alertView.frame));
-        
-    //加入自订的label及UITextFiled
-    UITextField *courseNameTextField = [[UITextField alloc] initWithFrame: CGRectMake( 85, 50,160, 30 )];
-    courseNameTextField.placeholder = @"账号名称";
-    courseNameTextField.borderStyle=UITextBorderStyleRoundedRect;
-        
-    [alertView addSubview:courseNameTextField];
-    
-}*/
 
 #pragma mark -
 #pragma mark Goto View

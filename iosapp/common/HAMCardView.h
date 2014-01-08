@@ -10,12 +10,13 @@
 #import "HAMViewInfo.h"
 #import "HAMCard.h"
 #import "HAMFileTools.h"
+#import "HAMAnimation.h"
 
-@interface HAMCardView : UIView
+@class HAMAnimation;
+
+@interface HAMCardView : UIView<HAMGifAnimationDelegate>
 {}
 
 - (id)initAtPosition:(CGPoint)position withViewInfo:(HAMViewInfo*)viewInfo card:(HAMCard*)card;
-//- (void)changeCardImagePathToPath:(NSString*)newImagePath;
-- (void)changeCardImageToPicNum:(int)picNum;
 
 @end

@@ -13,7 +13,7 @@
 #import "HAMUserManager.h"
 #import "HAMAnimation.h"
 
-@interface HAMViewController : UIViewController <AVAudioPlayerDelegate>
+@interface HAMViewController : UIViewController <AVAudioPlayerDelegate,HAMGifAnimationDelegate>
 {
     NSString* activeUsername;
     
@@ -26,6 +26,9 @@
     NSString* currentUUID;
 }
 
+@property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView2;
+@property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView3;
 
 @property (weak, nonatomic) IBOutlet UIImageView *blurBgImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *inCatBgImageView;

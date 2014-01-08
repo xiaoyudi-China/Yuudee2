@@ -22,6 +22,10 @@
 
 @synthesize scrollView_;
 
+@synthesize pressHintImageView1;
+@synthesize pressHintImageView2;
+@synthesize pressHintImageView3;
+
 @synthesize blurBgImageView;
 @synthesize inCatBgImageView;
 @synthesize backButton;
@@ -49,6 +53,16 @@
     
     gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    pressHintImageView1.hidden = false;
+    pressHintImageView2.hidden = false;
+    pressHintImageView3.hidden = false;
+    
+    HAMAnimation* gifAnimation = [[HAMAnimation alloc] init];
+    gifAnimation.gifDelegate_ = self;
+    [gifAnimation playGifWithTimeInterval:0.1f totalPicNum:8];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -144,6 +158,20 @@
 
 - (IBAction)touchUpEnterEditButton:(UIButton *)sender {
     multiTouchCount --;
+}
+
+- (void)changeGifImageToPicNum:(int)picNum{
+    NSString* hintPicName = [[NSString alloc] initWithFormat:@"child_presshint_p%d.png",picNum];
+    UIImage* image = [UIImage imageNamed:hintPicName];
+    pressHintImageView1.image = image;
+    pressHintImageView2.image = image;
+    pressHintImageView3.image = image;
+}
+
+- (void)endGif{
+    pressHintImageView1.hidden = true;
+    pressHintImageView2.hidden = true;
+    pressHintImageView3.hidden = true;
 }
 
 

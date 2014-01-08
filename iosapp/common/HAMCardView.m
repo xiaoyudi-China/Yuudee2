@@ -122,20 +122,18 @@
     [cardImageView_ setImage:cardImage];
 }
 
-- (void)changeCardImageToPicNum:(int)picNum{
+#pragma mark -
+#pragma mark Gif Delegate
+
+- (void)changeGifImageToPicNum:(int)picNum{
     NSString* picName = card_.image.UUID;
     NSString* targetPic = [picName substringToIndex:[picName rangeOfString:@"p"].location];
     targetPic = [NSString stringWithFormat:@"%@p%d.jpg",targetPic,picNum];
     [self changeCardImagePathToPath:targetPic];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
+- (void)endGif{
+    [self changeGifImageToPicNum:1];
 }
-*/
 
 @end

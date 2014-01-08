@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "HAMStructureEditViewController.h"
 
-@interface HAMEditCatPopoverViewController : UIViewController
+@interface HAMEditCatPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
 {}
 
-@property HAMStructureEditViewController* mainSettingsViewController;
-@property HAMConfig* config;
-@property NSString* parentID;
-@property int childIndex;
+@property HAMStructureEditViewController* mainSettingsViewController_;
+@property HAMConfig* config_;
+@property NSString* parentID_;
+@property int childIndex_;
 @property UIPopoverController* popover;
 
 - (IBAction)editInLibClicked:(UIButton *)sender;
