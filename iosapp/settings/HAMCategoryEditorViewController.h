@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HAMConfig.h"
 #import "HAMCoverPickerViewController.h"
+#import "HAMImageCropperViewController.h"
 #import "MobClick.h"
 
 @class HAMCategoryEditorViewController;
@@ -19,13 +20,13 @@
 
 @end
 
-@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, HAMCoverPickerDelegate>
+@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, HAMCoverPickerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HAMImageCropperViewControllerDelegate>
 
 @property (strong, nonatomic) NSString *categoryID;
 @property (weak, nonatomic) HAMConfig *config;
 @property (weak, nonatomic) id<HAMCategoryEditorViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) UIImage *categoryCover;
+@property (weak, nonatomic) IBOutlet UIImageView *categoryCoverView;
 @property (strong, nonatomic) NSString *tempCategoryName;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;

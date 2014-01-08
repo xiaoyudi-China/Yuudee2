@@ -22,5 +22,6 @@
 @property (weak, nonatomic) NSString *categoryID;
 @property (strong, nonatomic) NSMutableArray *images;
 @property (weak, nonatomic) id<HAMCoverPickerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

@@ -39,7 +39,7 @@
 	}
 	
 	self.preferredContentSize = self.view.frame.size;
-	self.categoryCover = [UIImage imageNamed:@"defaultImage.png"];
+	self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,7 +105,7 @@
 
 - (IBAction)finishButtonPressed:(id)sender {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSData *imageData = UIImageJPEGRepresentation(self.categoryCover, 1.0);
+	NSData *imageData = UIImageJPEGRepresentation(self.categoryCoverView.image, 1.0);
 	
 	if (self.categoryID) { // editing category
 		HAMCard *category = [self.config card:self.categoryID];
@@ -148,18 +148,47 @@
 }
 
 - (IBAction)pickCoverButtonPressed:(id)sender {
-	HAMCoverPickerViewController *coverPicker = [[HAMCoverPickerViewController alloc] initWithNibName:@"HAMCoverPickerViewController" bundle:nil];
-	coverPicker.config = self.config;
-	coverPicker.categoryID = self.categoryID;
-	coverPicker.delegate = self;
-	
-	self.popover = [[UIPopoverController alloc] initWithContentViewController:coverPicker];
-	[self.popover presentPopoverFromRect:self.pickCoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"卡片", nil];
+	[actionSheet showFromRect:self.pickCoverButton.frame inView:self.view animated:YES];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == 0) {
+		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+		imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+		imagePicker.delegate = self;
+		
+		[self presentViewController:imagePicker animated:YES completion:NULL];
+	}
+	else if (buttonIndex == 1) {
+		HAMCoverPickerViewController *coverPicker = [[HAMCoverPickerViewController alloc] initWithNibName:@"HAMCoverPickerViewController" bundle:nil];
+		coverPicker.config = self.config;
+		coverPicker.categoryID = self.categoryID;
+		coverPicker.delegate = self;
+		
+		self.popover = [[UIPopoverController alloc] initWithContentViewController:coverPicker];
+		[self.popover presentPopoverFromRect:self.pickCoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+	}
 }
 
 - (void)coverPickerDidPickImage:(UIImage *)image {
 	[self.popover dismissPopoverAnimated:YES];
-	self.categoryCover = image;
+	self.categoryCoverView.image = image;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+	
+	UIImage *tempImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+	HAMImageCropperViewController *imageCropper = [[HAMImageCropperViewController alloc] initWithNibName:@"HAMImageCropperViewController" bundle:nil];
+	imageCropper.image = tempImage;
+	imageCropper.delegate = self;
+	
+	[picker pushViewController:imageCropper animated:YES];
+}
+
+- (void)imageCropper:(HAMImageCropperViewController *)imageCropper didFinishCroppingWithImage:(UIImage *)croppedImage {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+	self.categoryCoverView.image = croppedImage;
 }
 
 @end

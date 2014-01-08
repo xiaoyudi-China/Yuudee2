@@ -115,8 +115,6 @@
 	
 	// NOTE: return the resized image
 	[self.delegate imageCropper:self didFinishCroppingWithImage:resizedImage];
-	// FIXME: this method is evil
-	[self.navigationController dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end
