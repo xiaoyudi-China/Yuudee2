@@ -92,9 +92,13 @@
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
 	cell.contentImageView.image = [HAMSharedData imageNamed:category.image.localPath];
+	if (! cell.contentImageView.image) // this category has no cover image
+		cell.contentImageView.image = [UIImage imageNamed:@"defaultImage.png"];
 		
-	if (self.cellMode == HAMGridCellModeAdd)
+	if (self.cellMode == HAMGridCellModeAdd) {
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"+.png"] forState:UIControlStateNormal];
+		cell.rightTopButton.hidden = NO;
+	}
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		// don't allow editing system-provided categories or cards

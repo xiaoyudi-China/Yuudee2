@@ -32,14 +32,16 @@
 		self.finishButton.enabled = NO; // must input category name before finishing
 		self.pickCoverButton.hidden = YES;
 		self.createCategoryTitleView.hidden = NO;
+		self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
 	else { // editing
 		self.categoryNameField.text = [self.config card:self.categoryID].name;
 		self.tempCategoryName = self.categoryNameField.text;
+		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", self.categoryID];
+		self.categoryCoverView.image = [HAMSharedData imageNamed:imageName];
 	}
 	
 	self.preferredContentSize = self.view.frame.size;
-	self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 }
 
 - (void)didReceiveMemoryWarning

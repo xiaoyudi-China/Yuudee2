@@ -74,7 +74,7 @@
 		}
 		
 		self.tempCard.image.localPath = self.tempImagePath; // point to the temporary file
-		self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+		self.imageView.image = [HAMSharedData imageNamed:self.tempImagePath];
 		
 		self.editCardTitleView.hidden = NO; // default state is hidden
 	}
