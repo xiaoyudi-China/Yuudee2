@@ -72,21 +72,8 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	self.tempCategoryName = nil;
-	
-	if (! self.categoryID) { // creating category
-		if (! [textField.text isEqualToString:@""])
-			self.tempCategoryName = textField.text;
-	}
-	else { // editting category
-		NSString *oldCategoryName = [self.config card:self.categoryID].name;
-		if ([textField.text isEqualToString:@""])
-			textField.text = oldCategoryName;
-		else if (! [textField.text isEqualToString:oldCategoryName])
-			self.tempCategoryName = textField.text;
-	}
-	
-	self.finishButton.enabled = self.tempCategoryName ? YES : NO;
+	self.tempCategoryName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	self.finishButton.enabled = self.tempCategoryName.length ? YES : NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -117,6 +104,8 @@
 		if (! success) {
 			// TODO: error handling
 		}
+		// update the image cache
+		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
 		
 		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imageName];
 	}
@@ -130,6 +119,8 @@
 		if (! success) {
 			// TODO: error handling
 		}
+		// update the image cache
+		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
 		
 		// type 0 indicates a category
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];

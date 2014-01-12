@@ -91,16 +91,14 @@
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
-	cell.contentImageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:category.image.localPath]];
+	cell.contentImageView.image = [HAMSharedData imageNamed:category.image.localPath];
 		
 	if (self.cellMode == HAMGridCellModeAdd)
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"+.png"] forState:UIControlStateNormal];
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
-		
 		// don't allow editing system-provided categories or cards
-		if (! category.isRemovable_)
-			cell.rightTopButton.hidden = TRUE;
+		cell.rightTopButton.hidden = ! category.isRemovable_;
 	}
 		
 	cell.indexPath = indexPath;
