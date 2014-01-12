@@ -74,7 +74,7 @@
 		}
 		
 		self.tempCard.image.localPath = self.tempImagePath; // point to the temporary file
-		self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+		self.imageView.image = [HAMSharedData imageNamed:self.tempImagePath];
 		
 		self.editCardTitleView.hidden = NO; // default state is hidden
 	}
@@ -96,7 +96,7 @@
 	self.categoryNameLabel.text = category.name;
 	self.newCategoryID = self.categoryID;
 	
-	self.cardNameLabel.text = self.tempCard.name;
+	self.cardNameField.text = self.cardNameLabel.text = self.tempCard.name;
 	
 	// initialize the recorder
 	self.recorder = [[HAMRecorderViewController alloc] initWithNibName:@"HAMRecorderViewController" bundle:nil];
@@ -123,27 +123,12 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	self.tempCard.name = nil;
 	
-	if (! self.cardID) { // creating card
-		if (! [textField.text isEqualToString:@""]) {
-			self.tempCard.name = textField.text;
-		}
-	}
-	else { // editing card
-		NSString *oldCardName = [self.config card:self.cardID].name;
-		if ([textField.text isEqualToString:@""])
-			textField.text = oldCardName;
-		else if (! [textField.text isEqualToString:oldCardName]) {
-			self.tempCard.name = textField.text;
-		}
-	}
-	
-	// update the card name if it's changed
-	self.cardNameLabel.text = self.tempCard.name ? self.tempCard.name : self.cardNameLabel.text;
+	self.tempCard.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	self.cardNameLabel.text = self.tempCard.name;
 	
 	// can save new card now
-	self.recordButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
+	self.recordButton.enabled = (self.tempCard.name.length && self.tempCard.image) ? YES : NO;
 	
 	// re-enable taking pictures
 	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
@@ -199,6 +184,7 @@
 	
 	// save the image to a temporary file
 	BOOL success = [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImagePath] atomically:YES];
+	
 	if (!success) { // something wrong
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法选取图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
 		[alert show];

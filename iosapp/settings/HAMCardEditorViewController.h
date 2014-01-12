@@ -11,6 +11,7 @@
 #import "HAMCard.h"
 #import "HAMConfig.h"
 #import "HAMImageCropperViewController.h"
+#import "HAMSharedData.h"
 #import "MobClick.h"
 
 @class HAMCardEditorViewController;
