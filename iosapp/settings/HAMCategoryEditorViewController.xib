@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="categoryCoverView" destination="IMP-0A-ReI" id="zUL-sZ-dCr"/>
                 <outlet property="categoryNameField" destination="6FZ-bI-Xrv" id="Vn9-6W-PAC"/>
+                <outlet property="categoryNameLabel" destination="1oI-6t-vx6" id="O1h-gj-axQ"/>
                 <outlet property="createCategoryTitleView" destination="0ww-11-YYQ" id="lrZ-FS-kJT"/>
                 <outlet property="deleteButton" destination="dpq-P9-wYt" id="mKE-tY-egH"/>
                 <outlet property="finishButton" destination="ayE-ed-QYj" id="GqT-cr-NGj"/>
@@ -21,12 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addnewBG2.png" translatesAutoresizingMaskIntoConstraints="NO" id="eC0-He-8Ox">
-                    <rect key="frame" x="91" y="273" width="587" height="477"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="catEditBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="eC0-He-8Ox">
+                    <rect key="frame" x="91" y="225" width="585" height="573"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入分类名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6FZ-bI-Xrv">
-                    <rect key="frame" x="186" y="428" width="396" height="30"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入分类名称" textAlignment="center" minimumFontSize="17" background="nameEditField.png" translatesAutoresizingMaskIntoConstraints="NO" id="6FZ-bI-Xrv">
+                    <rect key="frame" x="365" y="495" width="240" height="67"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -34,19 +35,8 @@
                         <outlet property="delegate" destination="-1" id="wmi-Ve-ulL"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpq-P9-wYt">
-                    <rect key="frame" x="186" y="497" width="60" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="删除分类">
-                        <color key="titleColor" red="1" green="0.034445875799999998" blue="0.034954538639999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="deleteButtonPressed:" destination="-1" eventType="touchUpInside" id="SkG-rf-xMR"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbE-Kr-AuV">
-                    <rect key="frame" x="143" y="610" width="169" height="89"/>
+                    <rect key="frame" x="149" y="652" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="cancel.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,7 +46,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayE-ed-QYj">
-                    <rect key="frame" x="456" y="610" width="169" height="89"/>
+                    <rect key="frame" x="450" y="652" width="169" height="89"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="confirm.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,13 +56,13 @@
                     </connections>
                 </button>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="createCategory.png" translatesAutoresizingMaskIntoConstraints="NO" id="0ww-11-YYQ">
-                    <rect key="frame" x="294" y="312" width="185" height="45"/>
+                    <rect key="frame" x="293" y="265" width="185" height="45"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSx-wx-GMg">
-                    <rect key="frame" x="522" y="497" width="60" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSx-wx-GMg">
+                    <rect key="frame" x="361" y="390" width="248" height="71"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="选择封面">
+                    <state key="normal" image="pickCatCover.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -80,19 +70,52 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="IMP-0A-ReI">
-                    <rect key="frame" x="506" y="404" width="92" height="69"/>
+                    <rect key="frame" x="158" y="361" width="183" height="140"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="catBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="m1V-Nd-nSc">
+                    <rect key="frame" x="130" y="347" width="239" height="231"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpq-P9-wYt">
+                    <rect key="frame" x="130" y="328" width="64" height="65"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="删除分类" image="trash.png">
+                        <color key="titleColor" red="1" green="0.034445875799999998" blue="0.034954538639999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="deleteButtonPressed:" destination="-1" eventType="touchUpInside" id="SkG-rf-xMR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择一张卡片作为分类封面：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vy-7e-wQH">
+                    <rect key="frame" x="365" y="361" width="240" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="分类名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1oI-6t-vx6">
+                    <rect key="frame" x="159" y="504" width="180" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="addnewBG2.png" width="587" height="477"/>
         <image name="cancel.png" width="169" height="89"/>
+        <image name="catBG.png" width="632" height="612"/>
+        <image name="catEditBG.png" width="1170" height="1146"/>
         <image name="confirm.png" width="169" height="89"/>
         <image name="createCategory.png" width="185" height="45"/>
         <image name="defaultImage.png" width="360" height="270"/>
+        <image name="nameEditField.png" width="240" height="67"/>
+        <image name="pickCatCover.png" width="496" height="142"/>
+        <image name="trash.png" width="64" height="65"/>
     </resources>
 </document>
