@@ -10,6 +10,8 @@
 
 @implementation HAMSharedData
 
+static BOOL MultiResolution = NO; // temporarily used for debugging
+
 + (id)sharedData {
 	static HAMSharedData *theSharedData = nil;
 	if (! theSharedData)
@@ -19,7 +21,14 @@
 }
 
 + (UIImage*)imageNamed:(NSString *)imageName {
-	NSString *path = [HAMFileTools filePath:imageName];
+	NSArray *tokens = [imageName componentsSeparatedByString:@"."];
+	if (tokens.count != 2) // the image name is invalid
+		return nil;
+	NSString *fileName = imageName;
+	if (MultiResolution && [UIScreen mainScreen].scale > 1.0) // using retina display
+		fileName = [@[tokens[0], @"@2x.", tokens[1]] componentsJoinedByString:@""];
+	
+	NSString *path = [HAMFileTools filePath:fileName];
 	NSCache *imageCache = ((HAMSharedData*)[self sharedData]).imageCache;
 	if (! [imageCache objectForKey:path]) {
 		UIImage *image = [UIImage imageWithContentsOfFile:path];
@@ -32,7 +41,14 @@
 }
 
 + (void)updateImageNamed:(NSString*)imageName withImage:(UIImage*)image {
-	NSString *path = [HAMFileTools filePath:imageName];
+	NSArray *tokens = [imageName componentsSeparatedByString:@"."];
+	if (tokens.count != 2) // the image name is invalid
+		return;
+	NSString *fileName = imageName;
+	if (MultiResolution && [UIScreen mainScreen].scale > 1.0) // using retina display
+		fileName = [@[tokens[0], @"@2x.", tokens[1]] componentsJoinedByString:@""];
+	
+	NSString *path = [HAMFileTools filePath:fileName];
 	NSCache *imageCache = ((HAMSharedData*)[self sharedData]).imageCache;
 	[imageCache setObject:image forKey:path];
 }
