@@ -90,7 +90,7 @@
   	HAMCard *category = [self.config card:categoryID]; // only display categories
 	
     cell.textLabel.text = category.name;
-	cell.frameImageView.image = [UIImage imageNamed:@"classBG.png"];
+	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
 	cell.contentImageView.image = [HAMSharedData imageNamed:category.image.localPath];
 	if (! cell.contentImageView.image) // this category has no cover image
 		cell.contentImageView.image = [UIImage imageNamed:@"defaultImage.png"];
