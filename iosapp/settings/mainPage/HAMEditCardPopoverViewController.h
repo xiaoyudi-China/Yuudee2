@@ -13,7 +13,7 @@
 
 @class HAMStructureEditViewController;
 
-@interface HAMEditCardPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
+@interface HAMEditCardPopoverViewController : UIViewController<HAMCategoryEditorViewControllerDelegate>
 {
 
 }

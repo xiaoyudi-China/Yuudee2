@@ -10,10 +10,10 @@
 
 @interface HAMCardEditorViewController ()
 
-@property NSString *imagePath;
-@property NSString *tempImagePath;
-@property NSString *audioPath;
-@property NSString *tempAudioPath;
+@property NSString *imageName;
+@property NSString *tempImageName;
+@property NSString *audioName;
+@property NSString *tempAudioName;
 
 @end
 
@@ -56,10 +56,10 @@
 		self.tempCard.isRemovable_ = YES;
 	}
 	
-	self.imagePath = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
-	self.tempImagePath = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
-	self.audioPath = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
-	self.tempAudioPath = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
+	self.imageName = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
+	self.tempImageName = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
+	self.audioName = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
+	self.tempAudioName = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
 
 	
 	// update the view accordingly
@@ -67,14 +67,17 @@
 		// copy the existing image file to the temporary
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSError *error;
-		BOOL success = [manager copyItemAtPath:[HAMFileTools filePath:self.imagePath] toPath:[HAMFileTools filePath:self.tempImagePath] error:&error];
+		NSString *imagePath = [HAMFileTools filePath:self.imageName];
+		NSString *tempImagePath = [HAMFileTools filePath:self.tempImageName];
+		BOOL success = [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error];
+		NSLog(@"%@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];
 		}
 		
-		self.tempCard.image.localPath = self.tempImagePath; // point to the temporary file
-		self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+		self.tempCard.image.localPath = self.tempImageName; // point to the temporary file
+		self.imageView.image = [HAMSharedData imageNamed:self.tempImageName];
 		
 		self.editCardTitleView.hidden = NO; // default state is hidden
 	}
@@ -96,7 +99,7 @@
 	self.categoryNameLabel.text = category.name;
 	self.newCategoryID = self.categoryID;
 	
-	self.cardNameLabel.text = self.tempCard.name;
+	self.cardNameField.text = self.cardNameLabel.text = self.tempCard.name;
 	
 	// initialize the recorder
 	self.recorder = [[HAMRecorderViewController alloc] initWithNibName:@"HAMRecorderViewController" bundle:nil];
@@ -123,27 +126,12 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	self.tempCard.name = nil;
 	
-	if (! self.cardID) { // creating card
-		if (! [textField.text isEqualToString:@""]) {
-			self.tempCard.name = textField.text;
-		}
-	}
-	else { // editing card
-		NSString *oldCardName = [self.config card:self.cardID].name;
-		if ([textField.text isEqualToString:@""])
-			textField.text = oldCardName;
-		else if (! [textField.text isEqualToString:oldCardName]) {
-			self.tempCard.name = textField.text;
-		}
-	}
-	
-	// update the card name if it's changed
-	self.cardNameLabel.text = self.tempCard.name ? self.tempCard.name : self.cardNameLabel.text;
+	self.tempCard.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	self.cardNameLabel.text = self.tempCard.name;
 	
 	// can save new card now
-	self.recordButton.enabled = (self.tempCard.name && self.tempCard.image) ? YES : NO;
+	self.recordButton.enabled = (self.tempCard.name.length && self.tempCard.image) ? YES : NO;
 	
 	// re-enable taking pictures
 	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
@@ -198,7 +186,8 @@
 	self.imageView.image = croppedImage; // update the displaying
 	
 	// save the image to a temporary file
-	BOOL success = [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImagePath] atomically:YES];
+	BOOL success = [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImageName] atomically:YES];
+	
 	if (!success) { // something wrong
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法选取图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
 		[alert show];
@@ -206,7 +195,7 @@
 	}
 	else {
 		if (! self.tempCard.image)
-			self.tempCard.image = [[HAMResource alloc] initWithPath:self.tempImagePath];
+			self.tempCard.image = [[HAMResource alloc] initWithPath:self.tempImageName];
 	}
 	
 	// can save new card now
@@ -222,15 +211,15 @@
 	
 	NSFileManager *manager = [NSFileManager defaultManager];
 	// delete the temporary image file
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImagePath]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempImagePath] error:NULL];
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImageName]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempImageName] error:NULL];
 	// delete the temporary audio file
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioPath]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioPath] error:NULL];
+	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioName]])
+		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioName] error:NULL];
 	
 	// FIXME: have to switch these members back, WHY ?!!!
-	self.tempCard.image.localPath = self.imagePath;
-	self.tempCard.audio.localPath = self.audioPath;
+	self.tempCard.image.localPath = self.imageName;
+	self.tempCard.audio.localPath = self.audioName;
 
 	[self.delegate cardEditorDidCancelEditing:self];
 }

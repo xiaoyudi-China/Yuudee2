@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad{
     activeUsername=@"hamster";
-    multiTouchCount = 0;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -57,6 +56,8 @@
     gridViewTool = [[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
     inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:config delegate:self edit:NO];
+    
+    multiTouchCount = 0;
 }
 
 -(void)viewDidAppear:(BOOL)animated{

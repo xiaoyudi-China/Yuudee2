@@ -59,7 +59,7 @@
                     <rect key="frame" x="130" y="347" width="239" height="231"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入卡片名称" textAlignment="center" minimumFontSize="17" background="name.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入卡片名称" textAlignment="center" minimumFontSize="17" background="nameEditField.png" translatesAutoresizingMaskIntoConstraints="NO" id="nXK-oz-J15">
                     <rect key="frame" x="365" y="495" width="252" height="68"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -99,8 +99,8 @@
                         <action selector="pickImageButtonPressed:" destination="-1" eventType="touchUpInside" id="xUd-tU-1i4"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我想..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3W-lb-hOa">
-                    <rect key="frame" x="159" y="518" width="180" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="卡片名称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3W-lb-hOa">
+                    <rect key="frame" x="159" y="518" width="180" height="27"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
@@ -142,7 +142,7 @@
         <image name="choose.png" width="248" height="71"/>
         <image name="defaultImage.png" width="360" height="270"/>
         <image name="editcard.png" width="185" height="45"/>
-        <image name="name.png" width="240" height="67"/>
+        <image name="nameEditField.png" width="240" height="67"/>
         <image name="next.png" width="169" height="89"/>
         <image name="trash.png" width="64" height="65"/>
     </resources>

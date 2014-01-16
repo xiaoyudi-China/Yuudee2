@@ -68,12 +68,10 @@
 		6694E5A81851EF3B008EC01D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5851851EF3B008EC01D /* check.png */; };
 		6694E5A91851EF3B008EC01D /* checkedbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5861851EF3B008EC01D /* checkedbox.png */; };
 		6694E5AA1851EF3B008EC01D /* choose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5871851EF3B008EC01D /* choose.png */; };
-		6694E5AB1851EF3B008EC01D /* classBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5881851EF3B008EC01D /* classBG.png */; };
 		6694E5AC1851EF3B008EC01D /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5891851EF3B008EC01D /* delete.png */; };
 		6694E5AD1851EF3B008EC01D /* deleteDOWN.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58A1851EF3B008EC01D /* deleteDOWN.png */; };
 		6694E5AE1851EF3B008EC01D /* editcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58B1851EF3B008EC01D /* editcard.png */; };
 		6694E5AF1851EF3B008EC01D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58C1851EF3B008EC01D /* logo.png */; };
-		6694E5B01851EF3B008EC01D /* name.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58D1851EF3B008EC01D /* name.png */; };
 		6694E5B11851EF3B008EC01D /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58E1851EF3B008EC01D /* next.png */; };
 		6694E5B21851EF3B008EC01D /* nextDOWN.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E58F1851EF3B008EC01D /* nextDOWN.png */; };
 		6694E5B31851EF3B008EC01D /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 6694E5901851EF3B008EC01D /* play.png */; };
@@ -1624,6 +1622,14 @@
 		66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E66BD617A9168D00F6177B /* CoreAudio.framework */; };
 		66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F9754717B799A300F94CAF /* HAMUserViewController.m */; };
 		66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F9754817B799A300F94CAF /* HAMUserViewController.xib */; };
+		66FDE7EA1887EC63003E4025 /* cancel in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E21887EC63003E4025 /* cancel */; };
+		66FDE7EB1887EC63003E4025 /* catBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E31887EC63003E4025 /* catBG.png */; };
+		66FDE7EC1887EC63003E4025 /* catEditBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E41887EC63003E4025 /* catEditBG.png */; };
+		66FDE7ED1887EC63003E4025 /* confirm in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E51887EC63003E4025 /* confirm */; };
+		66FDE7EE1887EC63003E4025 /* confirmDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E61887EC63003E4025 /* confirmDOWN */; };
+		66FDE7EF1887EC63003E4025 /* name in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E71887EC63003E4025 /* name */; };
+		66FDE7F01887EC63003E4025 /* nameEditField.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E81887EC63003E4025 /* nameEditField.png */; };
+		66FDE7F11887EC63003E4025 /* pickCatCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E91887EC63003E4025 /* pickCatCover.png */; };
 		8E0728681835FEA700E538FB /* HAMCategoryEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0728661835FEA700E538FB /* HAMCategoryEditorViewController.m */; };
 		8E0728691835FEA700E538FB /* HAMCategoryEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E0728671835FEA700E538FB /* HAMCategoryEditorViewController.xib */; };
 		8E07286D183609A100E538FB /* HAMCardEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E07286B183609A100E538FB /* HAMCardEditorViewController.m */; };
@@ -1723,12 +1729,10 @@
 		6694E5851851EF3B008EC01D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		6694E5861851EF3B008EC01D /* checkedbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkedbox.png; sourceTree = "<group>"; };
 		6694E5871851EF3B008EC01D /* choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = choose.png; sourceTree = "<group>"; };
-		6694E5881851EF3B008EC01D /* classBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classBG.png; sourceTree = "<group>"; };
 		6694E5891851EF3B008EC01D /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		6694E58A1851EF3B008EC01D /* deleteDOWN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteDOWN.png; sourceTree = "<group>"; };
 		6694E58B1851EF3B008EC01D /* editcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editcard.png; sourceTree = "<group>"; };
 		6694E58C1851EF3B008EC01D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		6694E58D1851EF3B008EC01D /* name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = name.png; sourceTree = "<group>"; };
 		6694E58E1851EF3B008EC01D /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		6694E58F1851EF3B008EC01D /* nextDOWN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextDOWN.png; sourceTree = "<group>"; };
 		6694E5901851EF3B008EC01D /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -3302,6 +3306,14 @@
 		66F9754617B799A300F94CAF /* HAMUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMUserViewController.h; path = settings/HAMUserViewController.h; sourceTree = "<group>"; };
 		66F9754717B799A300F94CAF /* HAMUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMUserViewController.m; path = settings/HAMUserViewController.m; sourceTree = "<group>"; };
 		66F9754817B799A300F94CAF /* HAMUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMUserViewController.xib; path = settings/HAMUserViewController.xib; sourceTree = "<group>"; };
+		66FDE7E21887EC63003E4025 /* cancel */ = {isa = PBXFileReference; lastKnownFileType = file; path = cancel; sourceTree = "<group>"; };
+		66FDE7E31887EC63003E4025 /* catBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catBG.png; sourceTree = "<group>"; };
+		66FDE7E41887EC63003E4025 /* catEditBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catEditBG.png; sourceTree = "<group>"; };
+		66FDE7E51887EC63003E4025 /* confirm */ = {isa = PBXFileReference; lastKnownFileType = file; path = confirm; sourceTree = "<group>"; };
+		66FDE7E61887EC63003E4025 /* confirmDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = confirmDOWN; sourceTree = "<group>"; };
+		66FDE7E71887EC63003E4025 /* name */ = {isa = PBXFileReference; lastKnownFileType = file; path = name; sourceTree = "<group>"; };
+		66FDE7E81887EC63003E4025 /* nameEditField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nameEditField.png; sourceTree = "<group>"; };
+		66FDE7E91887EC63003E4025 /* pickCatCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickCatCover.png; sourceTree = "<group>"; };
 		8E0728651835FEA700E538FB /* HAMCategoryEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCategoryEditorViewController.h; path = settings/HAMCategoryEditorViewController.h; sourceTree = "<group>"; };
 		8E0728661835FEA700E538FB /* HAMCategoryEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCategoryEditorViewController.m; path = settings/HAMCategoryEditorViewController.m; sourceTree = "<group>"; };
 		8E0728671835FEA700E538FB /* HAMCategoryEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMCategoryEditorViewController.xib; path = settings/HAMCategoryEditorViewController.xib; sourceTree = "<group>"; };
@@ -3554,6 +3566,14 @@
 		6694E5731851EF3B008EC01D /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				66FDE7E21887EC63003E4025 /* cancel */,
+				66FDE7E31887EC63003E4025 /* catBG.png */,
+				66FDE7E41887EC63003E4025 /* catEditBG.png */,
+				66FDE7E51887EC63003E4025 /* confirm */,
+				66FDE7E61887EC63003E4025 /* confirmDOWN */,
+				66FDE7E71887EC63003E4025 /* name */,
+				66FDE7E81887EC63003E4025 /* nameEditField.png */,
+				66FDE7E91887EC63003E4025 /* pickCatCover.png */,
 				66AFDBDA185C2AE600913F8D /* +.png */,
 				6694E5751851EF3B008EC01D /* addnew.png */,
 				6694E5761851EF3B008EC01D /* addnewBG.png */,
@@ -3574,7 +3594,6 @@
 				6694E5851851EF3B008EC01D /* check.png */,
 				6694E5861851EF3B008EC01D /* checkedbox.png */,
 				6694E5871851EF3B008EC01D /* choose.png */,
-				6694E5881851EF3B008EC01D /* classBG.png */,
 				6694E5BC1851F1E7008EC01D /* confirm.png */,
 				AB8D6DD3185F0F8300324041 /* createCategory.png */,
 				ABEE9F5C1862E10700781EEA /* defaultImage.png */,
@@ -3583,7 +3602,6 @@
 				ABCC8B7D1851F90C00FA6649 /* edit.png */,
 				6694E58B1851EF3B008EC01D /* editcard.png */,
 				6694E58C1851EF3B008EC01D /* logo.png */,
-				6694E58D1851EF3B008EC01D /* name.png */,
 				6694E58E1851EF3B008EC01D /* next.png */,
 				6694E58F1851EF3B008EC01D /* nextDOWN.png */,
 				6694E5901851EF3B008EC01D /* play.png */,
@@ -5636,6 +5654,7 @@
 				66C4E427187DDBD200190B93 /* cat7_card2_p1.jpg in Resources */,
 				66C4E512187DDBD200190B93 /* cat10_card9_p1@2x.jpg in Resources */,
 				66C4E347187DDBD200190B93 /* cat2_card6_p1.jpg in Resources */,
+				66FDE7EE1887EC63003E4025 /* confirmDOWN in Resources */,
 				66C4E6CD187DDBD200190B93 /* cat21_card7_p3.jpg in Resources */,
 				66C4E644187DDBD200190B93 /* cat19_card6_p2@2x.jpg in Resources */,
 				66C4E700187DDBD200190B93 /* cat22_card3_p3@2x.jpg in Resources */,
@@ -5771,6 +5790,7 @@
 				6694E5A41851EF3B008EC01D /* cameraDOWN.png in Resources */,
 				66C4E83F187DDBD200190B93 /* cat31_card5_p3.jpg in Resources */,
 				66C4E520187DDBD200190B93 /* cat11_card3_p1@2x.jpg in Resources */,
+				66FDE7EC1887EC63003E4025 /* catEditBG.png in Resources */,
 				66C4DD0C187D980700190B93 /* child_presshint_p6.png in Resources */,
 				66C4E4C0187DDBD200190B93 /* cat8_card8_p3@2x.jpg in Resources */,
 				66C4E878187DDBD200190B93 /* cat32_card24_p1@2x.jpg in Resources */,
@@ -5950,6 +5970,7 @@
 				66C4E52A187DDBD200190B93 /* cat11_card4_p3@2x.jpg in Resources */,
 				66C4E4FF187DDBD200190B93 /* cat10_card11_p1.jpg in Resources */,
 				66C4E77B187DDBD200190B93 /* cat25_card9_p1.jpg in Resources */,
+				66FDE7EB1887EC63003E4025 /* catBG.png in Resources */,
 				66C4E65F187DDBD200190B93 /* cat20_card2_p3.jpg in Resources */,
 				66C4E4DE187DDBD200190B93 /* cat9_card4_p3@2x.jpg in Resources */,
 				66C4E3B4187DDBD200190B93 /* cat5_card7_p1@2x.jpg in Resources */,
@@ -6071,6 +6092,7 @@
 				66C4E514187DDBD200190B93 /* cat11_card1_p1@2x.jpg in Resources */,
 				66C4E3F6187DDBD200190B93 /* cat6_p1@2x.jpg in Resources */,
 				66C4E862187DDBD200190B93 /* cat32_card13_p1@2x.jpg in Resources */,
+				66FDE7F11887EC63003E4025 /* pickCatCover.png in Resources */,
 				66C4E36A187DDBD200190B93 /* cat3_card14_p1@2x.jpg in Resources */,
 				66466A21185865DE006EE478 /* parent_editcat_bg.png in Resources */,
 				66C4E614187DDBD200190B93 /* cat18_card4_p2@2x.jpg in Resources */,
@@ -6138,7 +6160,6 @@
 				66C4E857187DDBD200190B93 /* cat31_card9_p3.jpg in Resources */,
 				66C4E6CA187DDBD200190B93 /* cat21_card7_p1@2x.jpg in Resources */,
 				66C4E57C187DDBD200190B93 /* cat15_card11_p2@2x.jpg in Resources */,
-				6694E5AB1851EF3B008EC01D /* classBG.png in Resources */,
 				66C4E83E187DDBD200190B93 /* cat31_card5_p2@2x.jpg in Resources */,
 				66C4E44E187DDBD200190B93 /* cat7_card8_p1@2x.jpg in Resources */,
 				66C4E557187DDBD200190B93 /* cat13_card7_p1.jpg in Resources */,
@@ -6228,6 +6249,7 @@
 				66C4E4B8187DDBD200190B93 /* cat8_card7_p2@2x.jpg in Resources */,
 				66C4E648187DDBD200190B93 /* cat19_p1@2x.jpg in Resources */,
 				66C4E328187DDBD200190B93 /* cat2_card15_p3@2x.jpg in Resources */,
+				66FDE7EA1887EC63003E4025 /* cancel in Resources */,
 				66C4E474187DDBD200190B93 /* cat8_card15_p1@2x.jpg in Resources */,
 				66C4E886187DDBD200190B93 /* cat32_card6_p1@2x.jpg in Resources */,
 				66C4E79F187DDBD200190B93 /* cat27_card1_p1.jpg in Resources */,
@@ -6258,7 +6280,6 @@
 				66C4E68C187DDBD200190B93 /* cat20_p1@2x.jpg in Resources */,
 				66C4E450187DDBD200190B93 /* cat7_card8_p2@2x.jpg in Resources */,
 				66C4E589187DDBD200190B93 /* cat15_card1_p3.jpg in Resources */,
-				6694E5B01851EF3B008EC01D /* name.png in Resources */,
 				66C4E5C5187DDBD200190B93 /* cat16_card2_p2.jpg in Resources */,
 				66C4E534187DDBD200190B93 /* cat12_card1_p1@2x.jpg in Resources */,
 				66C4E6CF187DDBD200190B93 /* cat21_card8_p1.jpg in Resources */,
@@ -6745,6 +6766,7 @@
 				66C4E4AD187DDBD200190B93 /* cat8_card5_p3.jpg in Resources */,
 				6694E5B61851EF3B008EC01D /* previousDOWN.png in Resources */,
 				66C4E7A4187DDBD200190B93 /* cat27_card3_p1@2x.jpg in Resources */,
+				66FDE7ED1887EC63003E4025 /* confirm in Resources */,
 				66C4E68F187DDBD200190B93 /* cat21_card10_p2.jpg in Resources */,
 				66C4E7E8187DDBD200190B93 /* cat29_card3_p3@2x.jpg in Resources */,
 				66C4E383187DDBD200190B93 /* cat4_card1_p2.jpg in Resources */,
@@ -6756,6 +6778,7 @@
 				66C4E430187DDBD200190B93 /* cat7_card3_p2@2x.jpg in Resources */,
 				66C4E728187DDBD200190B93 /* cat23_card1_p1@2x.jpg in Resources */,
 				66C4E399187DDBD200190B93 /* cat4_p1.jpg in Resources */,
+				66FDE7F01887EC63003E4025 /* nameEditField.png in Resources */,
 				66C4E640187DDBD200190B93 /* cat19_card5_p3@2x.jpg in Resources */,
 				66C4E61F187DDBD200190B93 /* cat18_card6_p2.jpg in Resources */,
 				66C4E804187DDBD200190B93 /* cat30_card2_p1@2x.jpg in Resources */,
@@ -7033,6 +7056,7 @@
 				66C4E73F187DDBD200190B93 /* cat24_card2_p3.jpg in Resources */,
 				66C4E790187DDBD200190B93 /* cat26_card4_p1@2x.jpg in Resources */,
 				6613011B17C1FA8B00903CA8 /* Settings.bundle in Resources */,
+				66FDE7EF1887EC63003E4025 /* name in Resources */,
 				66C4E5AD187DDBD200190B93 /* cat15_card7_p3.jpg in Resources */,
 				66C4E33D187DDBD200190B93 /* cat2_card4_p2.jpg in Resources */,
 				66C4E704187DDBD200190B93 /* cat22_card4_p2@2x.jpg in Resources */,

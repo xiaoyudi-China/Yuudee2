@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HAMFileTools.h"
 
 @interface HAMSharedData : NSObject
 
 @property (strong, nonatomic) NSCache *imageCache;
 
 + (id)sharedData;
++ (UIImage*)imageNamed:(NSString*)imageName;
++ (void)updateImageNamed:(NSString*)imageName withImage:(UIImage*)image;
 
 @end

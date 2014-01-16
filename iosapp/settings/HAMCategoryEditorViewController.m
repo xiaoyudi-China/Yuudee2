@@ -30,16 +30,20 @@
 	if (! self.categoryID) { // creating new category
 		self.deleteButton.hidden = YES; // don't allow deletion of category being created
 		self.finishButton.enabled = NO; // must input category name before finishing
-		self.pickCoverButton.hidden = YES;
+		self.pickCoverButton.enabled = NO;
 		self.createCategoryTitleView.hidden = NO;
+		self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
 	else { // editing
 		self.categoryNameField.text = [self.config card:self.categoryID].name;
 		self.tempCategoryName = self.categoryNameField.text;
+		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", self.categoryID];
+		self.categoryCoverView.image = [HAMSharedData imageNamed:imageName];
+		if (! self.categoryCoverView.image) // if there's no image, just display the xiaoyudi logo
+			self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
-	
+	self.categoryNameLabel.text = self.categoryNameField.text;
 	self.preferredContentSize = self.view.frame.size;
-	self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,21 +76,8 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	self.tempCategoryName = nil;
-	
-	if (! self.categoryID) { // creating category
-		if (! [textField.text isEqualToString:@""])
-			self.tempCategoryName = textField.text;
-	}
-	else { // editting category
-		NSString *oldCategoryName = [self.config card:self.categoryID].name;
-		if ([textField.text isEqualToString:@""])
-			textField.text = oldCategoryName;
-		else if (! [textField.text isEqualToString:oldCategoryName])
-			self.tempCategoryName = textField.text;
-	}
-	
-	self.finishButton.enabled = self.tempCategoryName ? YES : NO;
+	self.categoryNameLabel.text = self.tempCategoryName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	self.finishButton.enabled = self.tempCategoryName.length ? YES : NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -117,6 +108,8 @@
 		if (! success) {
 			// TODO: error handling
 		}
+		// update the image cache
+		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
 		
 		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imageName];
 	}
@@ -130,6 +123,8 @@
 		if (! success) {
 			// TODO: error handling
 		}
+		// update the image cache
+		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
 		
 		// type 0 indicates a category
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];
@@ -148,47 +143,18 @@
 }
 
 - (IBAction)pickCoverButtonPressed:(id)sender {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"卡片", nil];
-	[actionSheet showFromRect:self.pickCoverButton.frame inView:self.view animated:YES];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) {
-		UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-		imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-		imagePicker.delegate = self;
-		
-		[self presentViewController:imagePicker animated:YES completion:NULL];
-	}
-	else if (buttonIndex == 1) {
-		HAMCoverPickerViewController *coverPicker = [[HAMCoverPickerViewController alloc] initWithNibName:@"HAMCoverPickerViewController" bundle:nil];
-		coverPicker.config = self.config;
-		coverPicker.categoryID = self.categoryID;
-		coverPicker.delegate = self;
-		
-		self.popover = [[UIPopoverController alloc] initWithContentViewController:coverPicker];
-		[self.popover presentPopoverFromRect:self.pickCoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-	}
+	HAMCoverPickerViewController *coverPicker = [[HAMCoverPickerViewController alloc] initWithNibName:@"HAMCoverPickerViewController" bundle:nil];
+	coverPicker.config = self.config;
+	coverPicker.categoryID = self.categoryID;
+	coverPicker.delegate = self;
+	
+	self.popover = [[UIPopoverController alloc] initWithContentViewController:coverPicker];
+	[self.popover presentPopoverFromRect:self.pickCoverButton.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (void)coverPickerDidPickImage:(UIImage *)image {
 	[self.popover dismissPopoverAnimated:YES];
 	self.categoryCoverView.image = image;
-}
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-	
-	UIImage *tempImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-	HAMImageCropperViewController *imageCropper = [[HAMImageCropperViewController alloc] initWithNibName:@"HAMImageCropperViewController" bundle:nil];
-	imageCropper.image = tempImage;
-	imageCropper.delegate = self;
-	
-	[picker pushViewController:imageCropper animated:YES];
-}
-
-- (void)imageCropper:(HAMImageCropperViewController *)imageCropper didFinishCroppingWithImage:(UIImage *)croppedImage {
-	[self dismissViewControllerAnimated:YES completion:NULL];
-	self.categoryCoverView.image = croppedImage;
 }
 
 @end

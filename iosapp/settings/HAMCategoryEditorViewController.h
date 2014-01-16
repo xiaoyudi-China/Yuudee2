@@ -20,7 +20,7 @@
 
 @end
 
-@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, HAMCoverPickerDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, HAMImageCropperViewControllerDelegate>
+@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, HAMCoverPickerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSString *categoryID;
 @property (weak, nonatomic) HAMConfig *config;
@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UITextField *categoryNameField;
+@property (weak, nonatomic) IBOutlet UILabel *categoryNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *createCategoryTitleView;
 @property (weak, nonatomic) IBOutlet UIButton *pickCoverButton;
 @property (strong, nonatomic) UIPopoverController *popover;
