@@ -70,7 +70,7 @@
 		NSString *imagePath = [HAMFileTools filePath:self.imageName];
 		NSString *tempImagePath = [HAMFileTools filePath:self.tempImageName];
 		BOOL success = [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error];
-		NSLog(@"%@", error.localizedDescription);
+		//NSLog(@"%@", error.localizedDescription);
 		if (! success) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
 			[alert show];

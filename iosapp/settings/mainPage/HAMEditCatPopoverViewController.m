@@ -61,23 +61,23 @@
     categoryEditor.config = self.config_;
     categoryEditor.categoryID = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
     
-    UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+    UIView *background = [mainSettingsViewController_.view snapshotViewAfterScreenUpdates:NO];
     [categoryEditor.view insertSubview:background atIndex:0];
     
     categoryEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
     categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:categoryEditor animated:YES completion:NULL];
-    
-    [self.popover dismissPopoverAnimated:YES];
+    [mainSettingsViewController_ presentViewController:categoryEditor animated:YES completion:NULL];
+	
+	[self.popover dismissPopoverAnimated:NO];
 }
 
 - (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[mainSettingsViewController_ dismissViewControllerAnimated:YES completion:NULL];
 	// update your grid view if needed
 }
 
 - (void)categoryEditorDidCancelEditing:(HAMCategoryEditorViewController *)categoryEditor {
-	[self dismissViewControllerAnimated:YES completion:NULL];
+	[mainSettingsViewController_ dismissViewControllerAnimated:YES completion:NULL];
 }
 
 
