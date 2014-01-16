@@ -81,8 +81,9 @@
 	if (picName) { // NOTE: picName may be 'nil'
 		NSCache *imageCache = ((HAMSharedData*)[HAMSharedData sharedData]).imageCache;
 		NSString *path = [HAMFileTools filePath:picName];
-		if (! [imageCache objectForKey:path])
-			[imageCache setObject:[UIImage imageWithContentsOfFile:path] forKey:path];
+        UIImage* value = [UIImage imageWithContentsOfFile:path];
+		if (! [imageCache objectForKey:path] && value != nil)
+			[imageCache setObject:value forKey:path];
 		fgImage = [imageCache objectForKey:path];
 	}
     

@@ -35,6 +35,17 @@
     cardView_ = cardView;
 }
 
+- (void)moveView:(UIView*)view toPosition:(CGPoint)position{
+    QBAnimationGroup *groupMove = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        CGRect frame = view.frame;
+        frame.origin = position;
+        view.frame = frame;
+    }]];
+    
+    sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupMove] repeat:NO];
+    [sequence_ start];
+}
+
 - (void)beginAnimation:(int)animationType{
     
     UIView* superView = cardView_.superview;

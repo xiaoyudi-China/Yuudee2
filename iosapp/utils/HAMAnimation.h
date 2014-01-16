@@ -28,6 +28,7 @@
 
 - (void)setCard:(HAMCard*)card andCardView:(HAMCardView*)cardView;
 
+- (void)moveView:(UIView*)view toPosition:(CGPoint)position;
 - (void)beginAnimation:(int)animationType;
 - (Boolean)isRunning;
 

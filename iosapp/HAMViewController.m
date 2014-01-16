@@ -8,14 +8,15 @@
 
 #import "HAMViewController.h"
 #import "HAMFileTools.h"
+#import "HAMChildInCatViewController.h"
 
 @interface HAMViewController ()
 {
     int multiTouchCount;
     HAMAnimation* animation;
+    HAMAnimation* catAnimation;
 }
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
 @end
 
 @implementation HAMViewController
@@ -26,9 +27,11 @@
 @synthesize pressHintImageView2;
 @synthesize pressHintImageView3;
 
+@synthesize inCatView;
 @synthesize blurBgImageView;
 @synthesize inCatBgImageView;
 @synthesize backButton;
+@synthesize inCatScrollView;
 
 - (void)viewDidLoad{
     activeUsername=@"hamster";
@@ -39,7 +42,6 @@
 {    
     config=[[HAMConfig alloc] initFromDB];
     currentUUID=config.rootID;
-    [self hideInCat];
     
     if (!config)
         return;
@@ -51,14 +53,16 @@
     
     HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
     
-    gridViewTool=[[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
+    gridViewTool = [[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
     [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+    inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:config delegate:self edit:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     pressHintImageView1.hidden = false;
     pressHintImageView2.hidden = false;
     pressHintImageView3.hidden = false;
+    blurBgImageView.hidden = true;
     
     HAMAnimation* gifAnimation = [[HAMAnimation alloc] init];
     gifAnimation.gifDelegate_ = self;
@@ -69,38 +73,46 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)refreshGridViewForCat:(NSString*)catID
-{
-    currentUUID = catID;
-    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
-}
-
 #pragma mark -
 #pragma mark In & out Cat
 
-- (void)showInCat
+- (void)refreshGridViewForCat:(NSString*)catID
 {
-    blurBgImageView.hidden = NO;
-    inCatBgImageView.hidden = NO;
-    backButton.hidden = NO;
+    currentUUID = catID;
+    [inCatGridViewTool refreshView:currentUUID scrollToFirstPage:YES];
 }
 
-- (void)hideInCat
-{
-    blurBgImageView.hidden = YES;
-    inCatBgImageView.hidden = YES;
-    backButton.hidden = YES;
+- (IBAction)backButtonClicked:(UIButton *)sender {
+    currentUUID = config.rootID;
+    [catAnimation moveView:inCatView toPosition:CGPointMake(768, 0)];
+}
+
+-(IBAction) groupClicked:(id)sender{
+    NSString* catID = [config childCardIDOfCat:currentUUID atIndex:[sender tag]];
+    [self refreshGridViewForCat:catID];
+    
+    if (catAnimation == nil) {
+        catAnimation = [[HAMAnimation alloc] init];
+    }
+    
+    [catAnimation moveView:inCatView toPosition:CGPointMake(-117, 0)];
+    /*
+     if (inCatViewController_ == nil){
+     inCatViewController_ = [[HAMChildInCatViewController alloc] initWithNibName:@"HAMChildInCatViewController" bundle:nil];
+     }
+     
+     //    UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:inCatViewController_];
+     //	navigator.navigationBarHidden = YES;
+     NSLog(@"%@",self.navigationController);
+     
+     //	inCatViewController_.modalPresentationStyle = UIModalPresentationCurrentContext;
+     //	inCatViewController_.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+     //	[self presentViewController:navigator animated:YES completion:NULL];
+     [self.navigationController pushViewController:inCatViewController_ animated:YES];*/
 }
 
 #pragma mark -
-#pragma mark Actions
-
--(IBAction) groupClicked:(id)sender{
-    int index = [sender tag];
-    NSString* catID = [config childCardIDOfCat:currentUUID atIndex:index];
-    [self refreshGridViewForCat:catID];
-    [self showInCat];
-}
+#pragma mark Card Actions
 
 -(IBAction) leafClicked:(id)sender{
     
@@ -136,11 +148,6 @@
         [audioPlayer setDelegate:self];
         [audioPlayer play];
     }
-}
-
-- (IBAction)backButtonClicked:(UIButton *)sender {
-    [self refreshGridViewForCat:config.rootID];
-    [self hideInCat];
 }
 
 #pragma mark -

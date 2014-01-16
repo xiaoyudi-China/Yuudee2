@@ -9,5 +9,11 @@
 #import "HAMViewController.h"
 
 @interface HAMChildInCatViewController : HAMViewController
+{
+}
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
+
+- (IBAction)backButtonClicked:(UIButton *)sender;
 
 @end

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMDefaultResources.h"
 #import "HAMDBManager.h"
 
 @class HAMStructureEditViewController;
 @class HAMViewController;
 @class HAMSettingsViewController;
+@class HAMInitViewController;
 
 @interface HAMAppDelegate : UIResponder <UIApplicationDelegate>
 {

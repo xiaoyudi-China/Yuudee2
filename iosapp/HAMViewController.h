@@ -20,6 +20,7 @@
     AVAudioPlayer *audioPlayer;
     
     HAMGridViewTool* gridViewTool;
+    HAMGridViewTool* inCatGridViewTool;
     HAMConfig* config;
     HAMUserManager* userManager;
     
@@ -30,9 +31,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView2;
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView3;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
+
+@property (weak, nonatomic) IBOutlet UIView *inCatView;
 @property (weak, nonatomic) IBOutlet UIImageView *blurBgImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *inCatBgImageView;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIScrollView *inCatScrollView;
 
 - (IBAction)backButtonClicked:(UIButton *)sender;
 
