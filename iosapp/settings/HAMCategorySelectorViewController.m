@@ -167,7 +167,7 @@
 	if (self.cellMode == HAMGridCellModeAdd) { // Mode Add
 		NSString *categoryID = [self categoryIDs][gridCell.indexPath.row];
 		
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:categoryID animation:[self.config animationOfCat:self.parentID atIndex:self.index]]; // keep the animation unchanged
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:categoryID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:self.parentID with:room atIndex:self.index];
 		[self.navigationController popViewControllerAnimated:TRUE];
 		
