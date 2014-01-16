@@ -9,6 +9,9 @@
 #import "HAMEditCatPopoverViewController.h"
 
 @interface HAMEditCatPopoverViewController ()
+{
+    NSString* catID_;
+}
 
 @end
 
@@ -19,6 +22,7 @@
 @synthesize parentID_;
 @synthesize childIndex_;
 @synthesize popover;
+@synthesize editInLibButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +36,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    catID_ = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
+    HAMCard* cat = [config_ card:catID_];
+    editInLibButton.enabled = cat.isRemovable_;
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,28 +51,31 @@
 }
 
 - (IBAction)editInLibClicked:(UIButton *)sender {
-    HAMCardEditorViewController* cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
-    //mainSettingsViewController.cardEditorViewController = cardEditor;
+    HAMCategoryEditorViewController *categoryEditor = [[HAMCategoryEditorViewController alloc]
+                                                       initWithNibName:@"HAMCategoryEditorViewController" bundle:nil];
+    categoryEditor.delegate = self;
+    categoryEditor.config = self.config_;
+    categoryEditor.categoryID = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
     
-    cardEditor.delegate = self; // NOTE!!!
-    cardEditor.addCardOnCreation = YES;
-    cardEditor.parentID = parentID_;
-    cardEditor.index = childIndex_;
-    cardEditor.config = config_;
-    // the card is not categorized by default
-    cardEditor.categoryID = UNCATEGORIZED_ID;
-    cardEditor.cardID = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
+    UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
+    [categoryEditor.view insertSubview:background atIndex:0];
     
-    cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
-    cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    // pretend the card editor is floating above the background view
-    UIView *background = [mainSettingsViewController_.view snapshotViewAfterScreenUpdates:NO];
-    [cardEditor.view insertSubview:background atIndex:NO];
-    
-    [mainSettingsViewController_ presentViewController:cardEditor animated:YES completion:NULL];
+    categoryEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
+    categoryEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:categoryEditor animated:YES completion:NULL];
     
     [self.popover dismissPopoverAnimated:YES];
 }
+
+- (void)categoryEditorDidEndEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+	// update your grid view if needed
+}
+
+- (void)categoryEditorDidCancelEditing:(HAMCategoryEditorViewController *)categoryEditor {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 - (IBAction)removeCatClicked:(UIButton *)sender {
     [config_ updateRoomOfCat:parentID_ with:nil atIndex:childIndex_];

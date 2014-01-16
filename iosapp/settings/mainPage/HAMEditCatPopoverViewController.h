@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HAMStructureEditViewController.h"
 
-@interface HAMEditCatPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
+@interface HAMEditCatPopoverViewController : UIViewController<HAMCategoryEditorViewControllerDelegate>
 {}
 
 @property HAMStructureEditViewController* mainSettingsViewController_;
@@ -17,10 +17,10 @@
 @property NSString* parentID_;
 @property int childIndex_;
 @property UIPopoverController* popover;
+@property (weak, nonatomic) IBOutlet UIButton *editInLibButton;
 
 - (IBAction)editInLibClicked:(UIButton *)sender;
 - (IBAction)removeCatClicked:(UIButton *)sender;
 - (IBAction)cancelClicked:(UIButton *)sender;
-
 
 @end
