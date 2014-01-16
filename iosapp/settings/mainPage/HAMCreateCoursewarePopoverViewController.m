@@ -58,7 +58,7 @@
 }
 
 - (IBAction)cancelCreateCourseware:(UIButton *)sender {
-    
+    [popover dismissPopoverAnimated:YES];
 }
 
 @end

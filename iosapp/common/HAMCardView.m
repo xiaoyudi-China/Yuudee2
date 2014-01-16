@@ -88,7 +88,7 @@
 	}
     
 	cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
-    CGRect picFrame=CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
+    CGRect picFrame = CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
     [cardImageView_ setFrame:picFrame];
     [self addSubview:cardImageView_];
     

@@ -13,6 +13,7 @@
 @interface HAMViewController ()
 {
     int multiTouchCount;
+    Boolean multiTouchOn[4];
     HAMAnimation* animation;
     HAMAnimation* catAnimation;
 }
@@ -59,6 +60,10 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    for (int i = 0; i < 4; i++) {
+        multiTouchOn[i] = NO;
+    }
+    
     pressHintImageView1.hidden = false;
     pressHintImageView2.hidden = false;
     pressHintImageView3.hidden = false;
@@ -67,6 +72,8 @@
     HAMAnimation* gifAnimation = [[HAMAnimation alloc] init];
     gifAnimation.gifDelegate_ = self;
     [gifAnimation playGifWithTimeInterval:0.1f totalPicNum:8];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning{
@@ -155,7 +162,12 @@
 
 
 - (IBAction)touchDownEnterEditButton:(UIButton *)sender {
+    if (multiTouchOn[sender.tag] == YES) {
+        return;
+    }
+    
     multiTouchCount ++;
+    multiTouchOn[sender.tag] = YES;
     
     if (multiTouchCount >= 2) {
         HAMAppDelegate* delegate = [UIApplication sharedApplication].delegate;
@@ -164,6 +176,7 @@
 }
 
 - (IBAction)touchUpEnterEditButton:(UIButton *)sender {
+    multiTouchOn[sender.tag] = NO;
     multiTouchCount --;
 }
 

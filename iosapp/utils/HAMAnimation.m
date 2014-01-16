@@ -83,12 +83,20 @@
             return;
             
         case ROOM_ANIMATION_SCALE:
+            if (scale < 1) {
+                [self playGifOnCardView];
+                break;
+            }
             sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupScaleNom] repeat:NO];
             [sequence_ start];
             break;
             
         case ROOM_ANIMATION_SHAKE:
-            sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
+            if (scale < 1) {
+                sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
+            }
+            else
+                sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupScaleBig, groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
             [sequence_ start];
             break;
             
