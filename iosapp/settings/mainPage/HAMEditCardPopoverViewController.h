@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *animationNoneButton;
 @property (weak, nonatomic) IBOutlet UIButton *animationScaleButton;
 @property (weak, nonatomic) IBOutlet UIButton *animationShakeButton;
+@property (weak, nonatomic) IBOutlet UIButton *editInLibButton;
 
 - (IBAction)editInLibClicked:(UIButton *)sender;
 - (IBAction)animationSetToNoClicked:(UIButton *)sender;

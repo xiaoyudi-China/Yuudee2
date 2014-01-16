@@ -12,6 +12,7 @@
                 <outlet property="animationScaleButton" destination="7ns-QY-jDx" id="qQS-wW-xro"/>
                 <outlet property="animationShakeButton" destination="Tkw-nH-VUl" id="hq7-kS-pm9"/>
                 <outlet property="cancelButton" destination="Zbr-Qk-hTP" id="W4b-0T-QG9"/>
+                <outlet property="editInLibButton" destination="JHu-Nz-RYj" id="fCi-lb-43x"/>
                 <outlet property="finishButton" destination="3VJ-AA-j2n" id="gK5-KG-MUM"/>
                 <outlet property="view" destination="o6p-UE-6Cv" id="OO5-tn-V0A"/>
             </connections>

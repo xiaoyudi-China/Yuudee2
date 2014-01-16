@@ -170,7 +170,7 @@
     multiTouchCount ++;
     multiTouchOn[sender.tag] = YES;
     
-    if (multiTouchCount >= 2) {
+    if (multiTouchCount >= 3) {
         HAMAppDelegate* delegate = [UIApplication sharedApplication].delegate;
         [delegate turnToParentView];
     }

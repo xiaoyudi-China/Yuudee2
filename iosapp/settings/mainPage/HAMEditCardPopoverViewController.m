@@ -13,6 +13,7 @@
 @interface HAMEditCardPopoverViewController ()
 {
     int changedAnimation;
+    NSString* cardID_;
 }
 
 @end
@@ -25,6 +26,7 @@
 @synthesize childIndex_;
 @synthesize popover;
 
+@synthesize editInLibButton;
 @synthesize cancelButton;
 @synthesize finishButton;
 
@@ -52,6 +54,14 @@
     
     [self showCheckedMarkAtAnimation:[config_ animationOfCat:parentID_ atIndex:childIndex_]];
     changedAnimation = -1;
+    
+    cardID_ = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
+    HAMCard* card = [config_ card:cardID_];
+    if (!card.isRemovable_)
+    {
+        editInLibButton.enabled = false;
+        [editInLibButton setTitle:@"(不能编辑系统自带卡片)" forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning

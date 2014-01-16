@@ -1334,11 +1334,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iosapp/settings/mainPage/HAMEditCatPopoverViewController.m"
-            timestampString = "411563609.755383"
+            timestampString = "411564063.380096"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-editInLibClicked:"
             landmarkType = "5">
          </BreakpointContent>
