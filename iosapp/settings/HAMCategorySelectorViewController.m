@@ -68,6 +68,7 @@
 	}
 	
 	// !!!
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
 	[self.collectionView reloadData];
 }
 
