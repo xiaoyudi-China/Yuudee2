@@ -88,15 +88,15 @@
                         <action selector="touchUpEnterEditButton:" destination="-1" eventType="touchUpInside" id="HGb-Rk-deu"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="OI4-o9-osP">
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="OI4-o9-osP">
                     <rect key="frame" x="0.0" y="0.0" width="178" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="7EN-XX-kCX">
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="7EN-XX-kCX">
                     <rect key="frame" x="590" y="0.0" width="178" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="1NZ-LS-073">
+                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_presshint_p1.png" id="1NZ-LS-073">
                     <rect key="frame" x="590" y="924" width="178" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>

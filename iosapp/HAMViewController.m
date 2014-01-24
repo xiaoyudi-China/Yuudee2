@@ -92,12 +92,14 @@
 
 - (IBAction)backButtonClicked:(UIButton *)sender {
     currentUUID = config.rootID;
+    blurBgImageView.hidden = true;
     [catAnimation moveView:inCatView toPosition:CGPointMake(768, 0)];
 }
 
 -(IBAction) groupClicked:(id)sender{
     NSString* catID = [config childCardIDOfCat:currentUUID atIndex:[sender tag]];
     [self refreshGridViewForCat:catID];
+    blurBgImageView.hidden = false;
     
     if (catAnimation == nil) {
         catAnimation = [[HAMAnimation alloc] init];

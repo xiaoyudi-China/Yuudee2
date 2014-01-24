@@ -138,7 +138,7 @@
 }
 
 - (void)endGif{
-    [self changeGifImageToPicNum:1];
+    //[self changeGifImageToPicNum:1];
 }
 
 @end

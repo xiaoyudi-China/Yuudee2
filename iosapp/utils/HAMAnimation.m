@@ -140,7 +140,7 @@
 }
 
 - (void)playGifWithTimeInterval:(double)interval totalPicNum:(int)totalnum{
-    gifCurrentNum_ = 1;
+    gifCurrentNum_ = 0;
     gifTotalNum_ = totalnum;
     
     if (gifTimer_ == nil) {
@@ -155,10 +155,6 @@
     if (++gifCurrentNum_ > gifTotalNum_){
         [gifTimer_ setFireDate:[NSDate distantFuture]];
         [gifDelegate_ endGif];
-        return;
-    }
-    
-    if (gifCurrentNum_ == 1) {
         return;
     }
     
