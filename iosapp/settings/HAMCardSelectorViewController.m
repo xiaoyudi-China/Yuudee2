@@ -89,8 +89,7 @@
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
-		if (! card.isRemovable_)
-			cell.rightTopButton.hidden = TRUE;
+		cell.rightTopButton.hidden = ! card.isRemovable_;
 	}
 	
 	if ([self.selectedCardIDs containsObject:card.UUID]) // this card is already selected
