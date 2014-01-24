@@ -89,9 +89,11 @@
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
-		if (! card.isRemovable_)
-			cell.rightTopButton.hidden = TRUE;
+		cell.rightTopButton.hidden = ! card.isRemovable_;
 	}
+	
+	if ([self.selectedCardIDs containsObject:card.UUID]) // this card is already selected
+		[cell.rightTopButton setImage:[UIImage imageNamed:@"checkedbox.png"] forState:UIControlStateNormal];
 	
 	cell.indexPath = indexPath;
 	cell.selected = NO;
@@ -120,7 +122,7 @@
 // add the selected cards
 - (void)bottomButtonPressed:(id)sender {
 	
-	int animation = [self.config animationOfCat:self.userID atIndex:self.index]; // keep the animation unchanged
+	int animation = ROOM_ANIMATION_NONE; // no animation by default
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
 	
 	// for statistics recording

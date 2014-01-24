@@ -78,7 +78,7 @@
     //mainSettingsViewController.cardEditorViewController = cardEditor;
     
     cardEditor.delegate = self; // NOTE!!!
-    cardEditor.addCardOnCreation = YES;
+    cardEditor.addCardOnCreation = NO;
     cardEditor.parentID = parentID_;
     cardEditor.index = childIndex_;
     cardEditor.config = config_;

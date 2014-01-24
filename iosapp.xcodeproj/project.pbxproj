@@ -2394,12 +2394,9 @@
 		66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F9754717B799A300F94CAF /* HAMUserViewController.m */; };
 		66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F9754817B799A300F94CAF /* HAMUserViewController.xib */; };
 		66FD0AC71892FD15003E4025 /* droplings.db in Resources */ = {isa = PBXBuildFile; fileRef = 66FD0AC61892FD14003E4025 /* droplings.db */; };
-		66FDE7EA1887EC63003E4025 /* cancel in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E21887EC63003E4025 /* cancel */; };
 		66FDE7EB1887EC63003E4025 /* catBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E31887EC63003E4025 /* catBG.png */; };
 		66FDE7EC1887EC63003E4025 /* catEditBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E41887EC63003E4025 /* catEditBG.png */; };
-		66FDE7ED1887EC63003E4025 /* confirm in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E51887EC63003E4025 /* confirm */; };
 		66FDE7EE1887EC63003E4025 /* confirmDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E61887EC63003E4025 /* confirmDOWN */; };
-		66FDE7EF1887EC63003E4025 /* name in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E71887EC63003E4025 /* name */; };
 		66FDE7F01887EC63003E4025 /* nameEditField.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E81887EC63003E4025 /* nameEditField.png */; };
 		66FDE7F11887EC63003E4025 /* pickCatCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E91887EC63003E4025 /* pickCatCover.png */; };
 		8E0728681835FEA700E538FB /* HAMCategoryEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0728661835FEA700E538FB /* HAMCategoryEditorViewController.m */; };
@@ -4850,12 +4847,9 @@
 		66F9754717B799A300F94CAF /* HAMUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMUserViewController.m; path = settings/HAMUserViewController.m; sourceTree = "<group>"; };
 		66F9754817B799A300F94CAF /* HAMUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMUserViewController.xib; path = settings/HAMUserViewController.xib; sourceTree = "<group>"; };
 		66FD0AC61892FD14003E4025 /* droplings.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = droplings.db; path = resources/defaultResources/droplings.db; sourceTree = "<group>"; };
-		66FDE7E21887EC63003E4025 /* cancel */ = {isa = PBXFileReference; lastKnownFileType = file; path = cancel; sourceTree = "<group>"; };
 		66FDE7E31887EC63003E4025 /* catBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catBG.png; sourceTree = "<group>"; };
 		66FDE7E41887EC63003E4025 /* catEditBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catEditBG.png; sourceTree = "<group>"; };
-		66FDE7E51887EC63003E4025 /* confirm */ = {isa = PBXFileReference; lastKnownFileType = file; path = confirm; sourceTree = "<group>"; };
 		66FDE7E61887EC63003E4025 /* confirmDOWN */ = {isa = PBXFileReference; lastKnownFileType = file; path = confirmDOWN; sourceTree = "<group>"; };
-		66FDE7E71887EC63003E4025 /* name */ = {isa = PBXFileReference; lastKnownFileType = file; path = name; sourceTree = "<group>"; };
 		66FDE7E81887EC63003E4025 /* nameEditField.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nameEditField.png; sourceTree = "<group>"; };
 		66FDE7E91887EC63003E4025 /* pickCatCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickCatCover.png; sourceTree = "<group>"; };
 		8E0728651835FEA700E538FB /* HAMCategoryEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCategoryEditorViewController.h; path = settings/HAMCategoryEditorViewController.h; sourceTree = "<group>"; };
@@ -5123,12 +5117,9 @@
 		6694E5731851EF3B008EC01D /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				66FDE7E21887EC63003E4025 /* cancel */,
 				66FDE7E31887EC63003E4025 /* catBG.png */,
 				66FDE7E41887EC63003E4025 /* catEditBG.png */,
-				66FDE7E51887EC63003E4025 /* confirm */,
 				66FDE7E61887EC63003E4025 /* confirmDOWN */,
-				66FDE7E71887EC63003E4025 /* name */,
 				66FDE7E81887EC63003E4025 /* nameEditField.png */,
 				66FDE7E91887EC63003E4025 /* pickCatCover.png */,
 				66AFDBDA185C2AE600913F8D /* +.png */,
@@ -8926,7 +8917,6 @@
 				66E1D6DB189305E500A58FC5 /* cat27_card6_p1@2x.jpg in Resources */,
 				66E1D5DF189305E500A58FC5 /* cat22_card2_p3@2x.jpg in Resources */,
 				66E1D742189305E500A58FC5 /* cat30_card1_p2.jpg in Resources */,
-				66FDE7EA1887EC63003E4025 /* cancel in Resources */,
 				66E1D4E2189305E500A58FC5 /* cat19_card4_s1.mp3 in Resources */,
 				66E1D308189305E400A58FC5 /* cat10_card3_p1.jpg in Resources */,
 				66E1D3BD189305E400A58FC5 /* cat14_card8_s1.mp3 in Resources */,
@@ -9621,7 +9611,6 @@
 				66E1D8B4189305E500A58FC5 /* cat41_card3_p1.jpg in Resources */,
 				66E1D815189305E500A58FC5 /* cat32_card6_p1.jpg in Resources */,
 				66E1D08D189305E400A58FC5 /* cat2_card14_p1@2x.jpg in Resources */,
-				66FDE7ED1887EC63003E4025 /* confirm in Resources */,
 				66E1D172189305E400A58FC5 /* cat6_card13_s1.mp3 in Resources */,
 				66E1D861189305E500A58FC5 /* cat36_card3_s1.mp3 in Resources */,
 				66E1D42F189305E400A58FC5 /* cat16_card13_p1@2x.jpg in Resources */,
@@ -10071,7 +10060,6 @@
 				66E1D55E189305E500A58FC5 /* cat21_card14_p1.jpg in Resources */,
 				66E1D74C189305E500A58FC5 /* cat30_card2_p3@2x.jpg in Resources */,
 				66E1D8DF189305E500A58FC5 /* cat43_p1.jpg in Resources */,
-				66FDE7EF1887EC63003E4025 /* name in Resources */,
 				66E1D3E0189305E400A58FC5 /* cat15_card2_p1@2x.jpg in Resources */,
 				66E1D446189305E400A58FC5 /* cat16_card3_p2@2x.jpg in Resources */,
 				66E1D55D189305E500A58FC5 /* cat21_card13_s1.mp3 in Resources */,
