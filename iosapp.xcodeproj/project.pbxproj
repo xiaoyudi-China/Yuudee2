@@ -2393,7 +2393,6 @@
 		66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E66BD617A9168D00F6177B /* CoreAudio.framework */; };
 		66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F9754717B799A300F94CAF /* HAMUserViewController.m */; };
 		66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F9754817B799A300F94CAF /* HAMUserViewController.xib */; };
-		66FD0AC71892FD15003E4025 /* droplings.db in Resources */ = {isa = PBXBuildFile; fileRef = 66FD0AC61892FD14003E4025 /* droplings.db */; };
 		66FDE7EB1887EC63003E4025 /* catBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E31887EC63003E4025 /* catBG.png */; };
 		66FDE7EC1887EC63003E4025 /* catEditBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E41887EC63003E4025 /* catEditBG.png */; };
 		66FDE7EE1887EC63003E4025 /* confirmDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E61887EC63003E4025 /* confirmDOWN */; };
@@ -2414,6 +2413,7 @@
 		8ECB051C183A499900EA506C /* RotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB0517183A499900EA506C /* RotateAnimation.m */; };
 		8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
+		AB12AA7E18A354E500215E4F /* droplings.db in Resources */ = {isa = PBXBuildFile; fileRef = 66FD0AC61892FD14003E4025 /* droplings.db */; };
 		AB340B4D1852328A0041934E /* addnewBG2.png in Resources */ = {isa = PBXBuildFile; fileRef = AB340B4C1852328A0041934E /* addnewBG2.png */; };
 		AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB8D6DD3185F0F8300324041 /* createCategory.png */; };
 		ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7B1851F86D00FA6649 /* cancel.png */; };
@@ -8086,6 +8086,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB12AA7E18A354E500215E4F /* droplings.db in Resources */,
 				66E1D607189305E500A58FC5 /* cat22_card8_p2@2x.jpg in Resources */,
 				66E1D128189305E400A58FC5 /* cat5_card10_p1.jpg in Resources */,
 				66E1D8D0189305E500A58FC5 /* cat43_card1_p1.jpg in Resources */,
@@ -9441,7 +9442,6 @@
 				66E1D7E1189305E500A58FC5 /* cat32_card14_s1.mp3 in Resources */,
 				66E1D46F189305E400A58FC5 /* cat16_card9_p2.jpg in Resources */,
 				6694E5BD1851F1E7008EC01D /* confirm.png in Resources */,
-				66FD0AC71892FD15003E4025 /* droplings.db in Resources */,
 				66E1D65E189305E500A58FC5 /* cat24_card6_p2.jpg in Resources */,
 				66E1D1B0189305E400A58FC5 /* cat6_card8_p3@2x.jpg in Resources */,
 				66E1D09E189305E400A58FC5 /* cat2_card1_p3.jpg in Resources */,

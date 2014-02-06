@@ -38,7 +38,6 @@
 		HAMCard *category = [[HAMCard alloc] initWithID:UNCATEGORIZED_ID];
 		NSString *categoryName = @"未分类";
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:nil]; // type 0 indicates a category
-		category.isRemovable_ = NO;
 		
 		// insert the new category in to library
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
@@ -89,6 +88,10 @@
 
 	NSString *categoryID = [self categoryIDs][indexPath.row];
   	HAMCard *category = [self.config card:categoryID]; // only display categories
+	
+	// FIXME
+	if ([category.UUID isEqualToString:UNCATEGORIZED_ID])
+		category.isRemovable_ = NO;
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
