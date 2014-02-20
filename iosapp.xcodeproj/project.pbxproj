@@ -8060,7 +8060,7 @@
 				ORGANIZATIONNAME = Droplings;
 				TargetAttributes = {
 					6661048E178BB04A003AEE3D = {
-						DevelopmentTeam = ZPE72C64SR;
+						DevelopmentTeam = TFNQFC3DB5;
 					};
 				};
 			};
@@ -10599,7 +10599,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/lib/umeng,
@@ -10607,6 +10607,7 @@
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -10621,7 +10622,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/lib/umeng,
@@ -10629,6 +10630,7 @@
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

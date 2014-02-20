@@ -161,10 +161,14 @@
 	else if (! [self.newCategoryID isEqualToString:self.categoryID]) { // category is changed
 		// add the card to the new category
 		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
-		
+				
 		// remove the card from the old category
 		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
-		[self.config deleteChildOfCatInLib:self.categoryID atIndex:oldIndex];
+		NSUInteger numOldCards = [self.config childrenOfCat:self.categoryID].count;
+		for (NSUInteger index = oldIndex; index < numOldCards; index++) {
+			HAMRoom *nextRoom = [self.config roomOfCat:self.categoryID atIndex:index + 1]; // supposed to be nil when exceeding boundary
+			[self.config updateRoomOfCat:self.categoryID with:nextRoom atIndex:index];
+		}
 	}
 
 	// add the card immediately
