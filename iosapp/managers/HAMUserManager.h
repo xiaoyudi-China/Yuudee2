@@ -10,6 +10,11 @@
 #import "HAMDBManager.h"
 #import "HAMConfig.h"
 
+#define HAMUser_NewUser         @"HAMUser_NewUser"
+#define HAMUser_UpdateUser      @"HAMUser_UpdateUser"
+#define HAMUser_UpdateLayout    @"HAMUser_UpdateLayout"
+#define HAMUser_DeleteUser      @"HAMUser_DeleteUser"
+
 @class HAMConfig;
 
 @interface HAMUserManager : NSObject

@@ -349,5 +349,80 @@
     [self.navigationController pushViewController:selectorViewController animated:YES];
 }
 
+#pragma mark -
+#pragma mark Notification
+- (void)newCoursewareNotification:(NSNotification*)notification
+{
+    NSString *userUUID = [notification object];
+    coursewareArray = [coursewareManager userList];
+    [coursewareTableView reloadData];
+    for (NSUInteger itemCount = 0; itemCount < [coursewareArray count]; itemCount--) {
+        NSUInteger index = [coursewareArray count] - itemCount - 1; // 倒序，加快速度
+        HAMUser *courseware = coursewareArray[index];
+        if ([courseware.UUID isEqualToString:userUUID]) {
+            [coursewareManager setCurrentUser:courseware];
+            
+            [self initGridView];
+            refreshFlag = YES;
+            [self viewWillAppear:YES];
+            [self coursewareSelectClicked:coursewareSelectButton];
+            [coursewareTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES];
+            break;
+        }
+    }
+}
 
+- (void)updateCoursewareNotification:(NSNotification*)notification
+{
+    NSString *userUUID = [notification object];
+    HAMUser *courseware = [coursewareManager currentUser];
+    if ([courseware.UUID isEqualToString:userUUID]) {
+        coursewareNameLabel.text = courseware.name;
+        for (NSUInteger index = 0; index < [coursewareArray count]; index++) {
+            HAMUser *theCourseware = [coursewareArray objectAtIndex:index];
+            if ([theCourseware.UUID isEqualToString:courseware.UUID]) {
+                theCourseware.name = courseware.name;
+                NSIndexPath  *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
+                NSArray      *indexArray=[NSArray  arrayWithObject:indexPath];
+                [coursewareTableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
+                break;
+            }
+        }
+    }
+}
+
+- (void)updateCoursewareLayoutNotification:(NSNotification*)notification
+{
+    NSString *userUUID = [notification object];
+    HAMUser *courseware = [coursewareManager currentUser];
+    if ([courseware.UUID isEqualToString:userUUID]) {
+        [self setLayoutWithxnum:courseware.layoutx ynum:courseware.layouty];
+        [self refreshGridViewAndScrollToFirstPage:YES];
+    }
+}
+
+- (void)deleteCoursewareNotification:(NSNotification*)notification
+{
+    NSString *userUUID = [notification object];
+    for (NSUInteger index = 0; index < [coursewareArray count]; index++) {
+        HAMUser *theCourseware = [coursewareArray objectAtIndex:index];
+        if ([theCourseware.UUID isEqualToString:userUUID]) {
+            NSInteger lastIndex = index - 1;
+            lastIndex = lastIndex >= 0 ? lastIndex : NSNotFound;
+            if (lastIndex != NSNotFound) {
+                HAMUser *theLastCourseware = [coursewareArray objectAtIndex:lastIndex];
+                [coursewareManager setCurrentUser:theLastCourseware];
+            } else {
+                coursewareNameLabel.text = nil;
+                [coursewareManager setCurrentUser:nil];
+            }
+            
+            [self initGridView];
+            refreshFlag = YES;
+            [self viewWillAppear:YES];
+            
+            break;
+        }
+    }
+}
 @end
