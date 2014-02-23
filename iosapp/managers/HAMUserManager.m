@@ -33,12 +33,14 @@
 {
     HAMUser* newUser=[[HAMUser alloc] initWithName:username];
     [dbManager insertUser:newUser];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_NewUser object:newUser.UUID];
 }
 
 -(void)updateCurrentUserName:(NSString*)newName
 {
     [dbManager updateUser:currentUser.UUID name:newName];
-    currentUser=nil;
+    currentUser.name = newName;
+    [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_UpdateUser object:currentUser.UUID];
 }
 
 -(void)updateCurrentUserLayoutxnum:(int)xnum ynum:(int)ynum
@@ -46,6 +48,7 @@
     currentUser.layoutx=xnum;
     currentUser.layouty=ynum;
     [dbManager updateUserLayoutWithID:currentUser.UUID xnum:xnum ynum:ynum];
+    [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_UpdateLayout object:currentUser.UUID];
 }
 
 -(void)deleteUser:(HAMUser*)user
@@ -55,8 +58,10 @@
     for (i=0; i<[cards count]; i++) {
         [config deleteCard:cards[i]];
     }*/
+    NSString *userUUID = [NSString stringWithString:user.UUID];
     [dbManager deleteUser:user.UUID];
     currentUser=nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_DeleteUser object:userUUID];
 }
 
 #pragma mark -
