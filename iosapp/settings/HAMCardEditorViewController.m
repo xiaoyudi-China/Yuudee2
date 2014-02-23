@@ -169,7 +169,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	
-	UIImage *tempImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+	UIImage *tempImage = info[UIImagePickerControllerOriginalImage];
 	HAMImageCropperViewController *imageCropper = [[HAMImageCropperViewController alloc] initWithNibName:@"HAMImageCropperViewController" bundle:nil];
 	imageCropper.image = tempImage;
 	imageCropper.delegate = self;
@@ -224,7 +224,7 @@
 }
 
 - (void)recorderDidEndRecording:(HAMRecorderViewController *)recorder {
-	NSDictionary *attrs = [NSDictionary dictionaryWithObject:self.tempCard.name forKey:@"卡片名称"];
+	NSDictionary *attrs = @{@"卡片名称": self.tempCard.name};
 	[MobClick event:@"create_card" attributes:attrs]; // trace event
 	
 	[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh

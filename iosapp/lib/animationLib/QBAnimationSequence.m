@@ -102,10 +102,10 @@
         return;
     }
     
-    QBAnimationGroup *group = (QBAnimationGroup *)[self.groups objectAtIndex:self.currentGroup];
+    QBAnimationGroup *group = (QBAnimationGroup *)(self.groups)[self.currentGroup];
     
     for (NSInteger i = 0; i < group.items.count; i++) {
-        QBAnimationItem *item = (QBAnimationItem *)[group.items objectAtIndex:i];
+        QBAnimationItem *item = (QBAnimationItem *)(group.items)[i];
         
         if (group.waitUntilDone) {
             [UIView animateWithDuration:item.duration delay:item.delay options:item.options animations:item.animations completion:^(BOOL finished) {
@@ -132,7 +132,7 @@
 {
     self.finishedCount++;
     
-    QBAnimationGroup *group = (QBAnimationGroup *)[self.groups objectAtIndex:self.currentGroup];
+    QBAnimationGroup *group = (QBAnimationGroup *)(self.groups)[self.currentGroup];
     
     if (self.finishedCount == group.items.count) {
         self.finishedCount = 0;

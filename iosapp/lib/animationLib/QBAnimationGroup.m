@@ -31,7 +31,7 @@
 
 - (instancetype)initWithItem:(QBAnimationItem *)item
 {
-    return [self initWithItems:[NSArray arrayWithObject:item]];
+    return [self initWithItems:@[item]];
 }
 
 - (instancetype)initWithItems:(NSArray *)items

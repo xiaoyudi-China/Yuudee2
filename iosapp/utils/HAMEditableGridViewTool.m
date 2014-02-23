@@ -93,7 +93,7 @@
     
 //    [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
     
-    UIView* cardView = [cardViewArray_ objectAtIndex:tag];
+    UIView* cardView = cardViewArray_[tag];
     positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
     
@@ -111,7 +111,7 @@
 - (void)addBlankButtonAtPos:(int)pos onPage:(int)pageIndex index:(int)index
 {
     //add card view
-    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    UIView* pageView = pageViews_[pageIndex];
     CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
 //    CGPoint blankBtnOffset = viewInfo.blankBtnOffset;
 //    CGRect frame = CGRectMake(cardPosition.x + blankBtnOffset.x, cardPosition.y + blankBtnOffset.y, viewInfo.blankBtnWidth, viewInfo.blankBtnHeight);
@@ -156,7 +156,7 @@
     [downButtonLayer setBorderWidth:1.0];
     [downButtonLayer setBorderColor:[[UIColor grayColor] CGColor]];*/
     
-    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    UIView* pageView = pageViews_[pageIndex];
     [pageView addSubview:editButton];
     [editButtonArray_ addObject:editButton];
 }
@@ -186,7 +186,7 @@
 -(void)moveCardView:(UIView*)targetView toIndex:(int)index animated:(Boolean)animated{
     int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
     int onPagenum = index / cardsPerPage;
-    UIView* superView = [pageViews_ objectAtIndex:onPagenum];
+    UIView* superView = pageViews_[onPagenum];
     
     if (targetView.superview != superView) {
         [targetView removeFromSuperview];
@@ -200,7 +200,7 @@
 {
     CGRect cardFrame = cardView.frame;
     //[cardView removeFromSuperview];
-    UIView* pageView = [pageViews_ objectAtIndex:pagenum];
+    UIView* pageView = pageViews_[pagenum];
     [pageView addSubview:cardView];
     cardView.frame = cardFrame;
 }
@@ -220,7 +220,7 @@
 
 -(int)judgeOutsidePageAtView:(UIView*)cardView{
     CGRect cardFrame = cardView.frame;
-    UIView* pageView = [pageViews_ objectAtIndex:currentPage_];
+    UIView* pageView = pageViews_[currentPage_];
     CGRect pageFrame = pageView.frame;
     
     if(cardFrame.origin.x < 0)
@@ -270,7 +270,7 @@
 {
     if (editButtonArray_){
         for (int i = 0; i<[editButtonArray_ count]; i++) {
-            [[editButtonArray_ objectAtIndex:i] removeFromSuperview];
+            [editButtonArray_[i] removeFromSuperview];
         }
         editButtonArray_ = nil;
     }
@@ -278,7 +278,7 @@
     UIView* buttonView = recognizer.view;
     int tag = buttonView.tag;
     
-    UIView* cardView = [cardViewArray_ objectAtIndex:tag];
+    UIView* cardView = cardViewArray_[tag];
     [cardView.superview bringSubviewToFront:cardView];
     
     //judge if outside
@@ -332,7 +332,7 @@
     int inc = currentIndex > nearestIndex ? 1 : -1;
     for (i = nearestIndex; i != currentIndex; i += inc) {
         int targetTag = tagOfIndex_[i];
-        UIView* targetView = [cardViewArray_ objectAtIndex:targetTag];
+        UIView* targetView = cardViewArray_[targetTag];
         if (isBlankAtTag_[targetTag]){
             //[self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
             [self moveCardView:targetView toIndex:currentIndex animated:NO];
@@ -375,7 +375,7 @@
             NSObject* child;
             if (targetTag < [children count])
             {
-                child = [children objectAtIndex:targetTag];
+                child = children[targetTag];
                 if (child == [NSNull null]) {
                     child = nil;
                 }

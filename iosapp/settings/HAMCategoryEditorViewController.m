@@ -136,7 +136,7 @@
 		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
 
 		// collect user statistics
-		NSDictionary *attrs = [NSDictionary dictionaryWithObject:categoryName forKey:@"分类名称"];
+		NSDictionary *attrs = @{@"分类名称": categoryName};
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
 	

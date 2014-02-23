@@ -101,7 +101,7 @@
 {
     char* text=(char*)sqlite3_column_text(statement, column);
     if (text)
-        return [NSString stringWithUTF8String:text];
+        return @(text);
     else
         return nil;
 }

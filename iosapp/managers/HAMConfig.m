@@ -67,12 +67,12 @@
 
 -(HAMCard*)card:(NSString*)UUID
 {
-    HAMCard* card=[cards objectForKey:UUID];
+    HAMCard* card=cards[UUID];
     if (card)
         return card;
     
     card=[dbManager card:UUID];
-    [cards setObject:card forKey:UUID];
+    cards[UUID] = card;
     return card;
 }
 
@@ -128,7 +128,7 @@
     
     [dbManager insertCard:card];
     
-    [cards setObject:card forKey:card.UUID];
+    cards[card.UUID] = card;
 }
 
 -(void)deleteCard:(NSString*)UUID
@@ -170,7 +170,7 @@
     if ([children count] <= index)
         return nil;
     
-    NSObject* room = [children objectAtIndex:index];
+    NSObject* room = children[index];
     if (room == [NSNull null])
         return nil;
     
@@ -180,11 +180,11 @@
 //returns the children room array of parentID
 -(NSMutableArray*)childrenOfCat:(NSString*)parentID
 {
-    NSMutableArray* children = [cardTree objectForKey:parentID];
+    NSMutableArray* children = cardTree[parentID];
     if (!children)
     {
         children = [dbManager childrenOf:parentID];
-        [cardTree setObject:children forKey:parentID];
+        cardTree[parentID] = children;
     }
     return children;
 }
@@ -195,7 +195,7 @@
     
     NSMutableArray* cardIDArray = [NSMutableArray arrayWithCapacity: children.count];
     for (int i = 0; i < children.count; i++) {
-        NSObject* room = [children objectAtIndex:i];
+        NSObject* room = children[i];
         if (room != [NSNull null]) {
             [HAMTools setObject:((HAMRoom*)room).cardID_ toMutableArray:cardIDArray atIndex:i];
         }
@@ -271,7 +271,7 @@
     if (children.count <= index)
         return;
     
-    HAMRoom* room = [children objectAtIndex:index];
+    HAMRoom* room = children[index];
     room.animation_ = animation;
     [dbManager updateAnimationOfCat:parentID toAnimation:animation atIndex:index];
 }
@@ -284,8 +284,8 @@
     int i,j;
     Boolean conflictFlag = NO;
     for (i = beginIndex, j = 0; i < children.count && j < newChildren.count; i++, j++) {
-        HAMRoom* newRoom = [newChildren objectAtIndex:j];
-        if ([children objectAtIndex:i] == [NSNull null])
+        HAMRoom* newRoom = newChildren[j];
+        if (children[i] == [NSNull null])
             [children setObject:newRoom atIndexedSubscript:i];
         else
         {
@@ -294,14 +294,14 @@
         }
     }
     for (; j < newChildren.count; i++, j++) {
-        HAMRoom* newRoom = [newChildren objectAtIndex:j];
+        HAMRoom* newRoom = newChildren[j];
         [HAMTools setObject:newRoom toMutableArray:children atIndex:i];
     }
     
     int endIndex = conflictFlag ? children.count - 1 : beginIndex + newChildren.count - 1;
     for (i = beginIndex; i <= endIndex; i++)
     {
-        [self updateRoomOfCat:parentID with:[children objectAtIndex:i] atIndex:i];
+        [self updateRoomOfCat:parentID with:children[i] atIndex:i];
     }
 }
 
@@ -338,7 +338,7 @@
         NSArray* children = [self childrenCardIDOfCat:cardID];
         int i;
         for (i = 0; i < children.count; i++) {
-            NSObject* childID = [children objectAtIndex:i];
+            NSObject* childID = children[i];
             if (childID != [NSNull null]) {
                 [self deleteCardInLib:cardID];
             }
@@ -361,7 +361,7 @@
         return;
     }
     
-    NSString* childID = [children objectAtIndex:index];
+    NSString* childID = children[index];
     [self deleteCardInLib:childID];
     
     //move following cards forward

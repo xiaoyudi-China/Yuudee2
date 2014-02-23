@@ -309,14 +309,14 @@
     cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:52.0f/255 green:25.0f/255 blue:12.0f/255 alpha:1];
     
     NSUInteger row = [indexPath row];
-    HAMUser* courseware = [coursewareArray objectAtIndex:row];
+    HAMUser* courseware = coursewareArray[row];
     cell.textLabel.text = courseware.name;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HAMUser* courseware =[coursewareArray objectAtIndex:[indexPath row]];
+    HAMUser* courseware =coursewareArray[[indexPath row]];
     [coursewareManager setCurrentUser:courseware];
     
     [self initGridView];

@@ -76,7 +76,7 @@
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    HAMUser* user=[userlist objectAtIndex:row];
+    HAMUser* user=userlist[row];
     return user.name;
 }
 
@@ -115,7 +115,7 @@
 
 - (IBAction)setCurrentButtonClicked:(UIButton *)sender {
     int row = [userPickerView selectedRowInComponent:0];
-    HAMUser* user=[userlist objectAtIndex:row];
+    HAMUser* user=userlist[row];
     [userManager setCurrentUser:user];
     
     currentUserLabel.text=[userManager currentUser].name;
@@ -127,7 +127,7 @@
         case 1:{
             //delete user
             int row = [userPickerView selectedRowInComponent:0];
-            HAMUser* user=[userlist objectAtIndex:row];
+            HAMUser* user=userlist[row];
             
             [userManager deleteUser:user];
             [self updateView];

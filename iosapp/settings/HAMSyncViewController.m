@@ -197,15 +197,15 @@
         return;
     }
     //get resourceid list
-    NSArray* resources=[manifest objectForKey:@"resources"];
+    NSArray* resources=manifest[@"resources"];
     int i;
     idList=[NSMutableArray arrayWithCapacity:[resources count]];
     NSDictionary* resource;
     int totalResourceNum=[resources count];
     for (i=0;i<totalResourceNum;i++)
     {
-        resource=[resources objectAtIndex:i];
-        [idList addObject:[resource objectForKey:@"id"]];
+        resource=resources[i];
+        [idList addObject:resource[@"id"]];
     }
     currentResourceNum=0;
     [self viewUpdate:1];

@@ -7,6 +7,7 @@
 //
 
 #import "HAMSharedData.h"
+#import <malloc/malloc.h>
 
 @implementation HAMSharedData
 
@@ -56,6 +57,7 @@ static BOOL MultiResolution = NO; // temporarily used for debugging
 - (id)init {
 	if (self = [super init]) {
 		self.imageCache = [[NSCache alloc] init];
+		self.imageCache.countLimit = 50; // TODO: this value could be further tuned
 	}
 	
 	return self;

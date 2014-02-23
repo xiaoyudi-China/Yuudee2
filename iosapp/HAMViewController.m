@@ -142,7 +142,7 @@
     int index = [sender tag];
     HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
     
-    HAMCardView* cardView = [[gridViewTool cardViewArray_] objectAtIndex:index];
+    HAMCardView* cardView = [gridViewTool cardViewArray_][index];
     HAMCard* card = [config card:room.cardID_];
     
     if (animation == nil) {

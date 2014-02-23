@@ -123,7 +123,7 @@
     }
     
     //add card view
-    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    UIView* pageView = pageViews_[pageIndex];
     CGPoint cardPosition = [viewInfo cardPositionAtIndex:index];
     
     
@@ -140,16 +140,11 @@
 //    button.backgroundColor = [UIColor redColor];
     button.tag = tag;
     SEL action;
-    switch (card.type) {
-        case CARD_TYPE_CARD:
-            action = @selector(leafClicked:);
-            break;
-            
-        case CARD_TYPE_CATEGORY:
-            action = @selector(groupClicked:);
-            break;
-    }
-    
+	if (card.type == CARD_TYPE_CARD)
+		action = @selector(leafClicked:);
+	else // card.type == CARD_TYPE_CATEGORY
+		action = @selector(groupClicked:);
+
     [button addTarget:viewController_ action:action forControlEvents:UIControlEventTouchUpInside];
     
     CALayer * buttonLayer = [button layer];
@@ -177,7 +172,7 @@
     if (pageIndex > pageViews_.count) {
         return;
     }
-    UIView* pageView = [pageViews_ objectAtIndex:pageIndex];
+    UIView* pageView = pageViews_[pageIndex];
     
     double posY;
     switch (cardType) {
@@ -202,7 +197,7 @@
     labelView.userInteractionEnabled = NO;
     
     if (tag >=0 && [cardViewArray_ count] > tag)
-        [[cardViewArray_ objectAtIndex:tag] addSubview:labelView];
+        [cardViewArray_[tag] addSubview:labelView];
     else
     {
         [pageView addSubview:labelView];

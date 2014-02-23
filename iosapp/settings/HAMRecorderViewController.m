@@ -60,9 +60,9 @@
 	}
 		
 	NSMutableDictionary* recordSettings = [[NSMutableDictionary alloc] init];
-	[recordSettings setValue :[NSNumber numberWithInt:kAudioFormatAppleIMA4] forKey:AVFormatIDKey];
-	[recordSettings setValue:[NSNumber numberWithFloat:44110] forKey:AVSampleRateKey];
-	[recordSettings setValue:[NSNumber numberWithInt:2] forKey:AVNumberOfChannelsKey];
+	[recordSettings setValue :@(kAudioFormatAppleIMA4) forKey:AVFormatIDKey];
+	[recordSettings setValue:@44110.0f forKey:AVSampleRateKey];
+	[recordSettings setValue:@2 forKey:AVNumberOfChannelsKey];
 	
 	// save audio to the temporary file (the return value will be nil on failure)
 	if (! (self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[HAMFileTools fileURL:self.tempAudioName] settings:recordSettings error:&error]) )

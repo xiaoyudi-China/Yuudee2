@@ -18,7 +18,7 @@
     HAMUser* currentUser;
 }
 
-@property HAMConfig* config;
+@property (weak, nonatomic) HAMConfig* config;
 
 //user
 -(NSMutableArray*)userList;
