@@ -53,7 +53,7 @@
     }
     
     [coursewareManager newUser:name];
-    [mainSettingsViewController refreshCoursewareSelect];
+    //[mainSettingsViewController refreshCoursewareSelect];
     [popover dismissPopoverAnimated:YES];
 }
 

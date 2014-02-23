@@ -157,8 +157,8 @@
         int ynum = [HAMViewInfo ynumOfLayout:changedLayout];
         
         [coursewareManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
-        [mainSettingsViewController setLayoutWithxnum:xnum ynum:ynum];
-        [mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];
+        //[mainSettingsViewController setLayoutWithxnum:xnum ynum:ynum];
+        //[mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];
     }
     
     if (![currentCourseware.name isEqualToString:changeTitleTextField.text]) {
