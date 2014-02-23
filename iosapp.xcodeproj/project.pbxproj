@@ -8060,7 +8060,7 @@
 				ORGANIZATIONNAME = Droplings;
 				TargetAttributes = {
 					6661048E178BB04A003AEE3D = {
-						DevelopmentTeam = ZPE72C64SR;
+						DevelopmentTeam = TFNQFC3DB5;
 					};
 				};
 			};
@@ -10601,9 +10601,8 @@
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/lib/umeng,
-					"/Users/daiyue/代码/droplings/iosapp/iosapp/lib/umeng",
+					./iosapp/lib/animationLib,
+					./iosapp/lib/umeng,
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
@@ -10623,9 +10622,8 @@
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/Users/lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/lib/umeng,
-					"/Users/daiyue/代码/droplings/iosapp/iosapp/lib/umeng",
+					./iosapp/lib/animationLib,
+					./iosapp/lib/umeng,
 				);
 				PRODUCT_NAME = "小雨滴儿童版";
 				PROVISIONING_PROFILE = "";
