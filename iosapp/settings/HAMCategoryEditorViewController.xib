@@ -110,7 +110,7 @@
     <resources>
         <image name="cancel.png" width="169" height="89"/>
         <image name="catBG.png" width="632" height="612"/>
-        <image name="catEditBG.png" width="1170" height="1146"/>
+        <image name="catEditBG.png" width="585" height="573"/>
         <image name="confirm.png" width="169" height="89"/>
         <image name="createCategory.png" width="185" height="45"/>
         <image name="defaultImage.png" width="360" height="270"/>

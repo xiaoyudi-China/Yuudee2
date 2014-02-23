@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[HAMRecorderViewController viewDidLoad]:HAMRecorderViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tempCard.UUID">
+            </PersistentString>
+            <PersistentString
+               value = "self.tempAudioName">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMRecorderViewController finishButtonPressed:]:HAMRecorderViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tempAudioName">
+            </PersistentString>
+            <PersistentString
+               value = "self.config">
+            </PersistentString>
+            <PersistentString
+               value = "self.audioName">
+            </PersistentString>
+            <PersistentString
+               value = "self.tempCard.audio.localPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.config">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

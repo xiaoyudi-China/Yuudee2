@@ -103,11 +103,12 @@
 		
 		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", category.UUID];
 		NSString *filePath = [HAMFileTools filePath:imageName];
-		BOOL success = [fileManager removeItemAtPath:filePath error:NULL]; // remove the old image
-		success &= [imageData writeToFile:filePath atomically:YES]; // save the new image
-		if (! success) {
-			// TODO: error handling
-		}
+		NSError *error;
+		if (! [fileManager removeItemAtPath:filePath error:&error]) // remove the old image
+			NSLog(@"%@", error.localizedDescription);
+		if (! [imageData writeToFile:filePath atomically:YES]) // save the new image
+			NSLog(@"failed to save image file");
+		
 		// update the image cache
 		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
 		

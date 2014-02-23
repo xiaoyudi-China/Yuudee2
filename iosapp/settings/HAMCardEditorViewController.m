@@ -69,13 +69,9 @@
 		NSError *error;
 		NSString *imagePath = [HAMFileTools filePath:self.imageName];
 		NSString *tempImagePath = [HAMFileTools filePath:self.tempImageName];
-		BOOL success = [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error];
-		//NSLog(@"%@", error.localizedDescription);
-		if (! success) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"无法访问图片文件" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:nil];
-			[alert show];
-		}
-		
+		if (! [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error])
+			NSLog(@"%@", error.localizedDescription);
+				
 		self.tempCard.image.localPath = self.tempImageName; // point to the temporary file
 		self.imageView.image = [HAMSharedData imageNamed:self.tempImageName];
 		
@@ -210,12 +206,15 @@
 		[self.config deleteCard:self.tempCard.UUID];
 	
 	NSFileManager *manager = [NSFileManager defaultManager];
+	NSError *error;
 	// delete the temporary image file
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImageName]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempImageName] error:NULL];
+		if (! [manager removeItemAtPath:[HAMFileTools filePath:self.tempImageName] error:&error])
+			NSLog(@"%@", error.localizedDescription);
 	// delete the temporary audio file
 	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioName]])
-		[manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioName] error:NULL];
+		if (! [manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioName] error:&error])
+			NSLog(@"%@", error.localizedDescription);
 	
 	// FIXME: have to switch these members back, WHY ?!!!
 	self.tempCard.image.localPath = self.imageName;
