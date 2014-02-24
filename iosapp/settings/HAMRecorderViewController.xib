@@ -10,6 +10,7 @@
                 <outlet property="cancelButton" destination="kgm-Yf-Iin" id="AUl-3X-Fdl"/>
                 <outlet property="cardNameLabel" destination="DoT-DC-x81" id="zRS-rM-NFI"/>
                 <outlet property="deleteButton" destination="JNw-sY-KPF" id="bkF-PF-FjB"/>
+                <outlet property="editCardTitleView" destination="rgr-sk-M1e" id="386-0l-uit"/>
                 <outlet property="finishButton" destination="nT0-mz-exe" id="UQV-oS-Kcb"/>
                 <outlet property="greetingLabel" destination="NwQ-Wz-RRV" id="lZt-Gy-C1B"/>
                 <outlet property="imageView" destination="op5-i8-FUz" id="XRt-tM-lZg"/>
@@ -110,6 +111,10 @@
                     <color key="textColor" red="0.39215686274509803" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="rgr-sk-M1e">
+                    <rect key="frame" x="292" y="261" width="185" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -122,6 +127,7 @@
         <image name="confirm.png" width="169" height="89"/>
         <image name="defaultImage.png" width="360" height="270"/>
         <image name="delete.png" width="123" height="67"/>
+        <image name="editcard.png" width="185" height="45"/>
         <image name="play.png" width="123" height="64"/>
         <image name="previous.png" width="169" height="89"/>
         <image name="record.png" width="123" height="68"/>
