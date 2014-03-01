@@ -14,6 +14,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.config">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMStructureEditViewController aboutButtonPressed:]:HAMStructureEditViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "introPage.view.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[HAMRecorderViewController finishButtonPressed:]:HAMRecorderViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -27,14 +43,6 @@
             </PersistentString>
             <PersistentString
                value = "self.tempCard.audio.localPath">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.config">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

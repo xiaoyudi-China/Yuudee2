@@ -28,7 +28,6 @@
 @synthesize selectorViewController;
 
 @synthesize endEditButton;
-@synthesize createCardButton;
 @synthesize settingsButton;
 @synthesize libButton;
 @synthesize coursewareNameLabel;
@@ -47,14 +46,14 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if (!config)
+    if (! self.config)
         [self initWithConfig];
     
     [self refreshCoursewareSelect];
     
     if (refreshFlag)
     {
-        currentUUID=config.rootID;
+        currentUUID= self.config.rootID;
         refreshFlag=NO;
         [self exitCat];
     }
@@ -72,23 +71,24 @@
     
 //    [HAMViewTool setHighLightImage:@"parent_main_endbtn_down.png" forButton:endEditButton];
 //    [HAMViewTool setHighLightImage:@"parent_main_addbtn_down.png" forButton:createCardButton];
-    createCardButton.hidden = YES;
+//    createCardButton.hidden = YES;
 //    [HAMViewTool setHighLightImage:@"parent_main_settingsbtn_down.png" forButton:settingsButton];
     
     self.coursewareSelectView.hidden = YES;
+	self.aboutOptionsView.hidden = YES;
 }
 
 -(void)initWithConfig
 {
-    config=[[HAMConfig alloc] initFromDB];
-    if(!config)
+    self.config=[[HAMConfig alloc] initFromDB];
+    if(! self.config)
     {
         [self syncButtonClicked:nil];
         return;
     }
     
     //user
-    coursewareManager=config.userManager;
+    coursewareManager= self.config.userManager;
     [self initGridView];
 }
 
@@ -127,10 +127,6 @@
 #pragma mark -
 #pragma mark Enter Lib
 
-- (IBAction)newCardClicked:(UIButton *)sender {
-
-}
-
 - (IBAction)libClicked:(UIButton *)sender {
     [self enterLibAt:-1];
 }
@@ -149,66 +145,8 @@
 #pragma mark -
 #pragma mark Edit
 
--(IBAction) editClicked:(id)sender
-{
-    HAMEditCardPopoverViewController* editCardPopover;
-    HAMEditCatPopoverViewController* editCatPopover;
-    
-    int childIndex = [sender tag];
-    HAMCard* card = [config card:[config childCardIDOfCat:currentUUID atIndex:childIndex]];
-    
-    switch (card.type) {
-        case CARD_TYPE_CARD:
-            editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
-            editCardPopover.parentID_ = currentUUID;
-            editCardPopover.childIndex_ = childIndex;
-            editCardPopover.config_ = config;
-            editCardPopover.mainSettingsViewController_ = self;
-            
-            [self presentPopoverWithPopoverViewController:editCardPopover];
-            break;
-            
-        case CARD_TYPE_CATEGORY:
-            editCatPopover = [[HAMEditCatPopoverViewController alloc] initWithNibName:@"HAMEditCatPopoverViewController" bundle:nil];
-            editCatPopover.parentID_ = currentUUID;
-            editCatPopover.childIndex_ = childIndex;
-            editCatPopover.config_ = config;
-            editCatPopover.mainSettingsViewController_ = self;
-            
-            [self presentPopoverWithPopoverViewController:editCatPopover];
-            break;
-    }
-    
-}
 
-#pragma mark -
-#pragma mark Card Clicked
-
--(IBAction) groupClicked:(id)sender{
-    int index=[sender tag];
-    currentUUID=[config childCardIDOfCat:currentUUID atIndex:index];
-    
-    [self enterCat];
-    [self refreshGridViewAndScrollToFirstPage:YES];
-}
-
--(IBAction) leafClicked:(id)sender{
-//    [HAMViewTool showAlert:@"长按可以进入替换。"];
-}
-
--(IBAction) addClicked:(id)sender
-{
-    HAMAddCardPopoverViewController* addCardPopover = [[HAMAddCardPopoverViewController alloc] initWithNibName:@"HAMAddCardPopoverViewController" bundle:nil];
-    addCardPopover.mainSettingsViewController_ = self;
-    addCardPopover.cardIndex_ = [sender tag];
-    addCardPopover.config_ = config;
-    addCardPopover.parentID_ = currentUUID;
-    
-    [self presentPopoverWithPopoverViewController:addCardPopover];
-}
-
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 }
 
 - (IBAction)syncButtonClicked:(UIBarButtonItem *)sender {
@@ -222,7 +160,7 @@
     {
         syncViewController=[[HAMSyncViewController alloc]initWithNibName:@"HAMSyncViewController" bundle:nil];
     }
-    syncViewController.config=config;
+    syncViewController.config= self.config;
     refreshFlag=YES;
     [self.navigationController pushViewController:syncViewController animated:YES];
 }
@@ -236,7 +174,7 @@
     
     //grid view
     HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
-    dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:YES];
+    dragableView=[[HAMEditableGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:self.config delegate:self edit:YES];
 }
 
 - (void)refreshGridViewAndScrollToFirstPage:(Boolean)scrollToFirstPage
@@ -250,7 +188,7 @@
 }
 
 - (void)backToRootClicked:(UIButton *)sender{
-    currentUUID=config.rootID;
+    currentUUID= self.config.rootID;
     
     [self exitCat];
     
@@ -333,6 +271,79 @@
     [self presentPopoverWithPopoverViewController:createCoursewarePopover];
 }
 
+- (IBAction)aboutButtonPressed:(id)sender {
+	self.aboutOptionsView.hidden = ! self.aboutOptionsView.hidden; // reverse its state
+}
+
+- (void) displayIntro:(HAMIntroType)type {
+	HAMIntroViewController *introPage = [[HAMIntroViewController alloc] init];
+	introPage.modalPresentationStyle = UIModalPresentationFullScreen;
+	introPage.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	introPage.delegate = self;
+	introPage.type = type;
+	
+	UIView *background = [self.view snapshotViewAfterScreenUpdates:YES];
+	[introPage.view insertSubview:background atIndex:0];
+	[self presentViewController:introPage animated:YES completion:NULL];
+
+}
+
+- (IBAction)productInfoButtonPressed:(id)sender {
+	[self displayIntro:HAMIntroTypeProductInfo];
+}
+
+- (IBAction)trainGuideButtonPressed:(id)sender {
+	[self displayIntro:HAMIntroTypeTrainGuide];
+}
+
+// TODO: not tested yet
+- (IBAction)feedbackButtonPressed:(id)sender {
+	NSString *appID = @"794832934";
+	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]];
+	[[UIApplication sharedApplication] openURL:url];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo {
+	// Nothing to do, just ensure this method is called
+}
+
+- (void)exportCards { // FIXME: some cards seem to be not exported
+	NSMutableArray *allCardIDs = [[NSMutableArray alloc] init];
+	NSArray *allCategoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	for (NSString *categoryID in allCategoryIDs) {
+		NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
+		[allCardIDs addObjectsFromArray:cardIDs];
+	}
+	
+	NSUInteger cardCount = 0;
+	for (NSString *cardID in allCardIDs) {
+		cardCount ++;
+		// update the progress view
+		float progress = (float)cardCount / allCardIDs.count;
+		[self performSelectorOnMainThread:@selector(updateExportProgress:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:NO];
+		
+		HAMCard *card = [self.config card:cardID];
+		UIImage *image = [HAMSharedData imageNamed:card.image.localPath];
+		UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+	}
+	
+	UIAlertView *alertView;
+	alertView = [[UIAlertView alloc] initWithTitle:@"素材库已导出" message:nil delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
+	[alertView show];
+}
+
+- (void)updateExportProgress:(NSNumber*)progress {
+	[self.exportProgressView setProgress:progress.floatValue animated:YES];
+}
+
+- (IBAction)exportCardsButtonPressed:(id)sender {
+	[self performSelectorInBackground:@selector(exportCards) withObject:nil];
+}
+
+- (void)quitIntro:(HAMIntroViewController *)introPage {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 #pragma mark -
 #pragma mark Goto View
 
@@ -342,7 +353,7 @@
     {
         selectorViewController=[[HAMCategorySelectorViewController alloc]initWithNibName:@"HAMGridViewController" bundle:nil];
     }
-    selectorViewController.config=config;
+    selectorViewController.config = self.config;
     selectorViewController.parentID=currentUUID;
     selectorViewController.index=index;
     

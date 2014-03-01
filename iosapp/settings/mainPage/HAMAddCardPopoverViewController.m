@@ -64,7 +64,7 @@
     cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     // pretend the card editor is floating above the background view
     UIView *background = [mainSettingsViewController_.view snapshotViewAfterScreenUpdates:NO];
-    [cardEditor.view insertSubview:background atIndex:NO];
+    [cardEditor.view insertSubview:background atIndex:0];
     
     [mainSettingsViewController_ presentViewController:cardEditor animated:YES completion:NULL];
     

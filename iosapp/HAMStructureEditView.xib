@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMStructureEditViewController">
             <connections>
+                <outlet property="aboutOptionsView" destination="Um3-JP-Wnf" id="04G-rS-Y2T"/>
                 <outlet property="backToRootButton" destination="do5-m0-B6I" id="1dY-qA-EZj"/>
                 <outlet property="bgImageView" destination="Dq9-dJ-ge0" id="Rfo-Yd-iYM"/>
                 <outlet property="coursewareNameLabel" destination="z0x-fe-QKi" id="KAa-sS-syr"/>
                 <outlet property="coursewareSelectButton" destination="ww5-L3-lTP" id="hPf-rL-S2Z"/>
                 <outlet property="coursewareSelectView" destination="7rK-F2-Rs9" id="7pq-Yz-s09"/>
                 <outlet property="coursewareTableView" destination="yTr-WA-YlQ" id="Get-Ax-fNT"/>
-                <outlet property="createCardButton" destination="yBf-Cb-woR" id="hdA-27-xhW"/>
                 <outlet property="endEditButton" destination="apJ-kf-hvL" id="bnI-KK-GUz"/>
+                <outlet property="exportProgressView" destination="nej-4W-Q7t" id="igq-1n-OfR"/>
                 <outlet property="inCatWoodImageView" destination="9Cm-H5-BDQ" id="n8V-Gx-Jdw"/>
                 <outlet property="libButton" destination="auh-TJ-qu9" id="u0h-Rj-7cZ"/>
                 <outlet property="scrollView_" destination="z0S-Kq-ejc" id="4mG-zo-uMz"/>
@@ -32,13 +33,97 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_inCat_woodBG.png" id="9Cm-H5-BDQ">
-                    <rect key="frame" x="-117" y="174" width="885" height="811"/>
+                    <rect key="frame" x="-117" y="174" width="885" height="789"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="z0S-Kq-ejc">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
+                <view contentMode="scaleToFill" id="Um3-JP-Wnf">
+                    <rect key="frame" x="30" y="668" width="128" height="281"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutOptions" id="WkR-B7-fuq">
+                            <rect key="frame" x="0.0" y="0.0" width="128" height="281"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Psg-dS-yoA">
+                            <rect key="frame" x="20" y="31" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="产品介绍">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="productInfoButtonPressed:" destination="-1" eventType="touchUpInside" id="XOF-kW-V37"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ONJ-OO-9qO">
+                            <rect key="frame" x="20" y="91" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="训练简介">
+                                <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="trainGuideButtonPressed:" destination="-1" eventType="touchUpInside" id="Dzk-90-nNq"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iDM-Iy-lSN">
+                            <rect key="frame" x="20" y="148" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="反馈意见">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="feedbackButtonPressed:" destination="-1" eventType="touchUpInside" id="BAJ-cW-AMY"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AhW-h8-dxB">
+                            <rect key="frame" x="20" y="206" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <state key="normal" title="导出素材库">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="exportCardsButtonPressed:" destination="-1" eventType="touchUpInside" id="6XI-l7-yps"/>
+                            </connections>
+                        </button>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="nej-4W-Q7t">
+                            <rect key="frame" x="20" y="249" width="88" height="2"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </progressView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rSz-bl-fWi">
+                    <rect key="frame" x="20" y="930" width="149" height="94"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="aboutButton">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="aboutButtonPressed:" destination="-1" eventType="touchUpInside" id="Fcs-rf-1om"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZQw-qt-OlQ">
+                    <rect key="frame" x="599" y="930" width="149" height="94"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="parent_main_settingsbtn.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="settingsClicked:" destination="-1" eventType="touchUpInside" id="jfB-on-bi6"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="apJ-kf-hvL">
                     <rect key="frame" x="0.0" y="30" width="207" height="94"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -106,26 +191,6 @@
                     <rect key="frame" x="217" y="30" width="334" height="93"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yBf-Cb-woR">
-                    <rect key="frame" x="13" y="920" width="149" height="94"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="parent_main_addbtn.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="newCardClicked:" destination="-1" eventType="touchUpInside" id="zfx-6l-eJT"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZQw-qt-OlQ">
-                    <rect key="frame" x="609" y="920" width="149" height="96"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="parent_main_settingsbtn.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="settingsClicked:" destination="-1" eventType="touchUpInside" id="jfB-on-bi6"/>
-                    </connections>
-                </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jim在游乐园" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="z0x-fe-QKi">
                     <rect key="frame" x="251" y="57" width="221" height="33"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -184,12 +249,13 @@
         </button>
     </objects>
     <resources>
+        <image name="aboutButton" width="149" height="93"/>
+        <image name="aboutOptions" width="128" height="281"/>
         <image name="child_inCat_backbutton.png" width="161" height="123"/>
         <image name="child_inCat_woodBG.png" width="885" height="810"/>
         <image name="parent_courseselect_addicon.png" width="29" height="34"/>
         <image name="parent_courseselect_bg.png" width="358" height="447"/>
         <image name="parent_courseselect_foreground.png" width="358" height="447"/>
-        <image name="parent_main_addbtn.png" width="149" height="93"/>
         <image name="parent_main_bg.png" width="768" height="1024"/>
         <image name="parent_main_endbtn.png" width="207" height="93"/>
         <image name="parent_main_libbtn.png" width="385" height="186"/>

@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMIntroViewController">
+            <connections>
+                <outlet property="backgroundImageView" destination="AoI-ax-9S6" id="Ppy-kN-qtl"/>
+                <outlet property="productInfoTextView" destination="Ehm-67-a59" id="e1s-W3-qOi"/>
+                <outlet property="trainGuideTextView" destination="sNy-t5-1H2" id="7ss-k8-3r7"/>
+                <outlet property="view" destination="2" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="productInfoPage" translatesAutoresizingMaskIntoConstraints="NO" id="AoI-ax-9S6">
+                    <rect key="frame" x="91" y="121" width="587" height="781"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sNy-t5-1H2">
+                    <rect key="frame" x="178" y="268" width="413" height="487"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <attributedString key="attributedText">
+                        <fragment content="自闭症儿童的三大障碍被定义为：社会交流障碍，语言交流障碍和刻板行为。其中的核心障碍是社会交流障碍，但是从自闭症儿童的教育来看，更多家长关注的仍然是：">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="孩子怎样才能说话？">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“  ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴希望能够成为自闭症家长和特教老师进行语言教学和辅助沟通的工具。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="但是教自闭症孩子说话，与教普通孩子是由显著区别的。目前被广为接受的">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="ABA">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">行为训练方法，理论基础源于美国行为主义心理学家斯金纳的操作性条件作用（反射）原理。斯金纳认为，个体会出现各种行为，当某一行为受到强化，这一行为出现的概率就会增高。比如孩子做了正确的行为，就应该给孩子激励，表扬，这样的强化作用就促成孩子正确的行为更经常的出现。</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="在著述">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="语言行为（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="verbal behavior)&quot;">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="当中，斯金纳把语言操作分成了">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="仿说（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="ECHOIC">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="），">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="要求（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="MAND)">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="，命名（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="TACT">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="），互动式语言（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="INTRAVERBAL)">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="等类型。小雨滴的素材库中，有">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="32">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="个分类，共">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="344">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="张卡片，可以帮助老师和家长组织这四个语言操作的教学。如果这些素材仍然不能满足需要，教育者可以通过自定义卡片的方式制作更多素材。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="下面简单的描述一下这种语言操作的教学要点和小雨滴素材库中相应的材料。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="要求（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="MAND">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="是语言操作训练中最容易上手也最基础的一个部分。要求的目的是让一个需求获得满足，任何的要求都有一个自发的动机作为前提，所以是最容易激发主动性的语言操作。大多数情况下，孩子的要求可以直接及时的给予强化，因此训练的效果也较为显著。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">最初训练时，通常采用食品作为强化物。比如孩子要求薯片，教育者应及时提供薯片以强化这种行为。当然为了保持孩子提要求的动机，通过小雨滴进行语言行为教学要把薯片掰的足够小。要求的训练不仅是针对现实的，有视觉提示的食品，还可以有更高级的形式。要求不在现场的食品就是一种更高级形式，假设每天下课都会给孩子吃薯片，突然有一天停止给薯片，而孩子可以提出</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" “">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="要薯片">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="的话，这就是思维和语言能力的一种进步。进一步的要求还可以要求不在现场的人（妈妈去哪了？），或者要求某个事物更多的信息（杯子里的是什么呢？），就具有了建立有效社交沟通的基础能力。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="在小雨滴素材库中，我想吃，我想喝，我想去，我想玩，自理等分类都是典型用于要求教学的。特别要注意的是对于强化物的选择和及时强化。如果没有强化，即使孩子能够">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="说">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="这句话，也不能有效理解语句的意思，从而无法在恰当的场景中使用习得的语言。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="我们建议对于年龄小或者能力还比较弱的孩子，先采用一屏只出现一张卡片的形式来进行教学。等到学生的能力强了，再过渡到每屏">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="4">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="张，或者">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="12">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="张卡片的设置。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="命名（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="TACT">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" 是指当我们看到，听到，摸到，闻到，尝到或者感受到某个东西的时候，可以为通过语言为这个事物贴上一个标签。命名是认知和建立概念的前提。学习认知不仅要求孩子学会物品名称，更重要的，要能够对物品进行分类，以及根据物品的特征，功能和分类来进行辨识。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴素材库中，水果，动物，交通工具，穿着等分类适合命名的教学。痒痒，身体也适合命名的教学。而疼，痒痒，感觉不舒服，心情等是更高级的命名教学素材。在进行命名教学时，物品本身不能作为强化物，否则就会和要求混淆。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="仿说（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="ECHOIC">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="） ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="即教孩子模仿你或其他人说的话，是语言训练的基础。在进行仿说的时候，不需要提供实物和图片。主要是让孩子听，然后模仿发出声音。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴素材库中的字母，颜色，水果等都比较适合仿说教学。如果孩子还没有发展出发声能力的，就可以利用小雨滴的语音功能，将软件作为一个辅助沟通工具（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="AAC">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">.
+
+
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="互动式语言（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="INTRAVERBAL">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue-Bold"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="HelveticaNeue-Bold"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="互动式语言是关于回答问题和提问的能力。互动式语言经常是从天空开始练起的，比如先说一句早上听到公鸡叫，下一次说得时候，只说早上听到公鸡">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="__, ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">把最后一个字留给孩子说，当孩子掌握了以后，把两个字留给孩子，以此类推。当孩子可以说出完整句子以后，提问，早上听到什么叫啊？启发回答：公鸡。提问：什么时候听到公鸡叫？启发回答：早上。然后启发完整回答：早上听到公鸡叫。互动式语言的教学需要在一定程度的命名词汇基础上，比如公鸡，早上，叫，听到这些词汇都需要掌握，否则孩子只是学会了背诵这句话，而不能理解句子代表的意义。就不可能在真实场景中运用</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="--">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="说出这句话。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴素材库中的礼貌，提问，回答，交流，感情表达等素材都适合互动式语言的教学。特别要注意的是，要确保孩子能正确理解句子中词汇的意义，才是真正的学会了这些语言。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">
+
+ http://en.wikipedia.org/wiki/Verbal_Behavior</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                </textView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ehm-67-a59">
+                    <rect key="frame" x="178" y="268" width="413" height="487"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <attributedString key="attributedText">
+                        <fragment content="小雨滴是帮助患有自闭症以及其他沟通障碍的儿童学习语言、沟通、社交、及认知的辅助教学工具，也是帮助具有一定认知能力但尚不能正常发声的儿童表达需求的辅助沟通工具，类似于">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="会说话的">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" PECS”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴拥有一个非常丰富的原创素材库，包括了">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" 400">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="多个配有语音的图片及部分动画，涵盖认知（动物、水果、交通工具等）、需求（吃、喝、身体状况等）、情感表达等">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" 32">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="个分类，还包括">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="10">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="余个社交故事（上课如何做、在饭店如何做等），从多方面来培养孩子的交流能力、行为的过程逻辑和因果关系。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴配合应用行为分析（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ABA">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）和语言行为（">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="VB">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="）等教育方法的使用。语言行为原理把语言操作分成了要求、仿说、命名、互动式语言等类型。根据研究，">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="要求">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="在各种语言操作中最基础，也最方便从日常生活中找到其操作动机。比如">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="我想吃">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="、">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="我想喝">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="这些要求，可以从自然生理需求和食物的实际提示两方面构建动机，这类语言操作的结果带来动机的直接满足，对于训练和激发主动性语言具有更好的效果。小雨滴中约有一半的素材可用于">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="“">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="要求">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="”">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="训练。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+CgoKA
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="每个孩子都与众不同。为此，小雨滴设有儿童和培训者两套界面。在培训者界面下，培训者（通常是家长或老师）可以根据孩子的精细动作和认知水平，选择屏幕布局为">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" 1x1">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="，">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="2x2 ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="，和">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="3 x3">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content">三种；根据孩子的不同学习阶段，从素材库中提取不同的卡片和分类；根据孩子特有的需求，在屏幕上显示孩子最需要学习或沟通的语句；如素材库中的材料不够，培训者可以很方便地自定义新素材；小雨滴还可根据不同的儿童或者不同的场景设置并保存相应的课件，培训者可以在不同课件之间快速切换，因此为培养多个学生的特教老师提供很大方便。</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="小雨滴由北京大学、北京生命科学研究所、应用汇、清华大学美术学院、">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" Inway Design">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="及星星雨自闭症教育研究所六家国内顶尖机构联合开发。">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cgo
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="搜索关键词：">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Medium"/>
+                                <font key="NSOriginalFont" size="17" name="STHeitiSC-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment>
+                            <string key="content" base64-UTF8="YES">
+Cg
+</string>
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="特殊教育">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="语言训练">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ABA VB ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="自闭症">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="孤独症">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="阿斯博格症">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content=" ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="发育障碍">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="   ">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="辅助沟通">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="STHeitiSC-Light"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                        <fragment content="  Autism Asperger Syndrome AAC">
+                            <attributes>
+                                <color key="NSColor" red="0.3921568627" green="0.23529411759999999" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DSb-D6-dIe">
+                    <rect key="frame" x="521" y="782" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="返回">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="quitButtonPressed:" destination="-1" eventType="touchUpInside" id="8rq-pJ-dk6"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="productInfoPage" width="586" height="781"/>
+    </resources>
+</document>
