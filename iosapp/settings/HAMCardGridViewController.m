@@ -6,13 +6,13 @@
 //  Copyright (c) 2013年 Droplings. All rights reserved.
 //
 
-#import "HAMCardSelectorViewController.h"
+#import "HAMCardGridViewController.h"
 
-@interface HAMCardSelectorViewController ()
+@interface HAMCardGridViewController ()
 
 @end
 
-@implementation HAMCardSelectorViewController
+@implementation HAMCardGridViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

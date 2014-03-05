@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "HAMViewTool.h"
 #import "HAMConfig.h"
-#import "HAMCardSelectorViewController.h"
+#import "HAMCardGridViewController.h"
 #import "HAMCategoryEditorViewController.h"
 #import "HAMGridCell.h"
 #import "HAMGridViewController.h"
 
-@interface HAMCategorySelectorViewController : HAMGridViewController <UICollectionViewDataSource, UICollectionViewDelegate, HAMGridCellDelegate, UIActionSheetDelegate, HAMCategoryEditorViewControllerDelegate, HAMCardEditorViewControllerDelegate>
+@interface HAMCategoryGridViewController : HAMGridViewController <UICollectionViewDataSource, UICollectionViewDelegate, HAMGridCellDelegate, UIActionSheetDelegate, HAMCategoryEditorViewControllerDelegate, HAMCardEditorViewControllerDelegate>
 {
 }
 

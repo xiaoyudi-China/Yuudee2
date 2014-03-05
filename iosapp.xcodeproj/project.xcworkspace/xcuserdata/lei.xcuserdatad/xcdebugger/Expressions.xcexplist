@@ -3,6 +3,22 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[HAMCollectionViewLayout collectionViewContentSize]:HAMCollectionViewLayout.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self.collectionView numberOfItemsInSection:0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCardGridViewController collectionView:numberOfItemsInSection:]:HAMCardGridViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.cardIDs.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[HAMRecorderViewController viewDidLoad]:HAMRecorderViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -10,22 +26,6 @@
             </PersistentString>
             <PersistentString
                value = "self.tempAudioName">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.config">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HAMStructureEditViewController aboutButtonPressed:]:HAMStructureEditViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "introPage.view.bounds">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -43,6 +43,55 @@
             </PersistentString>
             <PersistentString
                value = "self.tempCard.audio.localPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMStructureEditViewController aboutButtonPressed:]:HAMStructureEditViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "introPage.view.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.config">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCollectionViewLayout layoutAttributesForElementsInRect:]:HAMCollectionViewLayout.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "attribute.frame.origin">
+            </PersistentString>
+            <PersistentString
+               value = "self.attributes">
+            </PersistentString>
+            <PersistentString
+               value = "ny">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCategoryGridViewController collectionView:cellForItemAtIndexPath:]:HAMCategoryGridViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCollectionViewLayout prepareLayout]:HAMCollectionViewLayout.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "attribute.frame">
+            </PersistentString>
+            <PersistentString
+               value = "attribute.bounds">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -145,6 +145,63 @@
 #pragma mark -
 #pragma mark Edit
 
+-(void) editClicked:(id)sender
+{
+    HAMEditCardPopoverViewController* editCardPopover;
+    HAMEditCatPopoverViewController* editCatPopover;
+    
+    int childIndex = [sender tag];
+    HAMCard* card = [self.config card:[self.config childCardIDOfCat:currentUUID atIndex:childIndex]];
+    
+    switch (card.type) {
+        case CARD_TYPE_CARD:
+            editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
+            editCardPopover.parentID_ = currentUUID;
+            editCardPopover.childIndex_ = childIndex;
+            editCardPopover.config_ = self.config;
+            editCardPopover.mainSettingsViewController_ = self;
+            
+            [self presentPopoverWithPopoverViewController:editCardPopover];
+            break;
+            
+        case CARD_TYPE_CATEGORY:
+            editCatPopover = [[HAMEditCatPopoverViewController alloc] initWithNibName:@"HAMEditCatPopoverViewController" bundle:nil];
+            editCatPopover.parentID_ = currentUUID;
+            editCatPopover.childIndex_ = childIndex;
+            editCatPopover.config_ = self.config;
+            editCatPopover.mainSettingsViewController_ = self;
+            
+            [self presentPopoverWithPopoverViewController:editCatPopover];
+            break;
+    }
+    
+}
+
+#pragma mark -
+#pragma mark Card Clicked
+
+-(void) groupClicked:(id)sender{
+    int index=[sender tag];
+    currentUUID=[self.config childCardIDOfCat:currentUUID atIndex:index];
+    
+    [self enterCat];
+    [self refreshGridViewAndScrollToFirstPage:YES];
+}
+
+-(void) addClicked:(id)sender
+{
+    HAMAddCardPopoverViewController* addCardPopover = [[HAMAddCardPopoverViewController alloc] initWithNibName:@"HAMAddCardPopoverViewController" bundle:nil];
+    addCardPopover.mainSettingsViewController_ = self;
+    addCardPopover.cardIndex_ = [sender tag];
+    addCardPopover.config_ = self.config;
+    addCardPopover.parentID_ = currentUUID;
+    
+    [self presentPopoverWithPopoverViewController:addCardPopover];
+}
+
+#pragma mark -
+#pragma mark Edit
+
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
 }
@@ -351,7 +408,7 @@
 {
     if (selectorViewController==nil)
     {
-        selectorViewController=[[HAMCategorySelectorViewController alloc]initWithNibName:@"HAMGridViewController" bundle:nil];
+        selectorViewController=[[HAMCategoryGridViewController alloc]initWithNibName:@"HAMGridViewController" bundle:nil];
     }
     selectorViewController.config = self.config;
     selectorViewController.parentID=currentUUID;

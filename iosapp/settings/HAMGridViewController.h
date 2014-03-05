@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HAMCollectionViewLayout.h"
 
 @interface HAMGridViewController : UIViewController 
 

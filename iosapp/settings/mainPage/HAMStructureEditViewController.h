@@ -11,9 +11,8 @@
 #import "HAMViewTool.h"
 #import "HAMEditableGridViewTool.h"
 #import "HAMFileTools.h"
-#import "HAMCategorySelectorViewController.h"
+#import "HAMCategoryGridViewController.h"
 #import "HAMSyncViewController.h"
-#import "HAMUserViewController.h"
 #import "HAMConfig.h"
 #import "HAMUserManager.h"
 #import "Reachability.h"
@@ -44,7 +43,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *inCatWoodImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
-@property (strong,nonatomic) HAMCategorySelectorViewController *selectorViewController;
+@property (strong,nonatomic) HAMCategoryGridViewController *selectorViewController;
 @property (strong,nonatomic) HAMSyncViewController* syncViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *endEditButton;

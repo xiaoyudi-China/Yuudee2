@@ -88,7 +88,7 @@
 		6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9D179F906F002E37E8 /* HAMViewInfo.m */; };
 		6697BDA3179FB33A002E37E8 /* HAMStructureEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6697BDA2179FB33A002E37E8 /* HAMStructureEditView.xib */; };
 		6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BDA5179FB65E002E37E8 /* HAMViewTool.m */; };
-		66A81F80184E174900EA6FD6 /* HAMCategorySelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81F7E184E174900EA6FD6 /* HAMCategorySelectorViewController.m */; };
+		66A81F80184E174900EA6FD6 /* HAMCategoryGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81F7E184E174900EA6FD6 /* HAMCategoryGridViewController.m */; };
 		66A81F88184E178600EA6FD6 /* HAMGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81F83184E178600EA6FD6 /* HAMGridViewController.m */; };
 		66A81F89184E178600EA6FD6 /* HAMGridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A81F84184E178600EA6FD6 /* HAMGridViewController.xib */; };
 		66A81F8A184E178600EA6FD6 /* HAMImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A81F86184E178600EA6FD6 /* HAMImageCropperViewController.m */; };
@@ -2389,8 +2389,6 @@
 		66E1D8F41893068D00A58FC5 /* cat27_card9_p1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66E1D8F21893068D00A58FC5 /* cat27_card9_p1.jpg */; };
 		66E1D8F51893068D00A58FC5 /* cat27_card9_p1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66E1D8F31893068D00A58FC5 /* cat27_card9_p1@2x.jpg */; };
 		66E66BD717A9168E00F6177B /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66E66BD617A9168D00F6177B /* CoreAudio.framework */; };
-		66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F9754717B799A300F94CAF /* HAMUserViewController.m */; };
-		66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F9754817B799A300F94CAF /* HAMUserViewController.xib */; };
 		66FDE7EB1887EC63003E4025 /* catBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E31887EC63003E4025 /* catBG.png */; };
 		66FDE7EC1887EC63003E4025 /* catEditBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E41887EC63003E4025 /* catEditBG.png */; };
 		66FDE7EE1887EC63003E4025 /* confirmDOWN in Resources */ = {isa = PBXBuildFile; fileRef = 66FDE7E61887EC63003E4025 /* confirmDOWN */; };
@@ -2409,7 +2407,7 @@
 		8ECB051A183A499900EA506C /* QBAnimationSequence-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ECB0512183A499900EA506C /* QBAnimationSequence-Info.plist */; };
 		8ECB051B183A499900EA506C /* QBAnimationSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB0515183A499900EA506C /* QBAnimationSequence.m */; };
 		8ECB051C183A499900EA506C /* RotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ECB0517183A499900EA506C /* RotateAnimation.m */; };
-		8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */; };
+		8EE7A2E41822361A007356B1 /* HAMCardGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE7A2DE1822361A007356B1 /* HAMCardGridViewController.m */; };
 		8EE7A2E71822361A007356B1 /* HAMGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8EE7A2E21822361A007356B1 /* HAMGridCell.xib */; };
 		AB05674418C05C5E005C62F2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB05674218C05C5E005C62F2 /* libMobClickLibrary.a */; };
 		AB05674718C09DBA005C62F2 /* aboutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB05674518C09DBA005C62F2 /* aboutButton.png */; };
@@ -2427,6 +2425,7 @@
 		AB8D6DD4185F0F8300324041 /* createCategory.png in Resources */ = {isa = PBXBuildFile; fileRef = AB8D6DD3185F0F8300324041 /* createCategory.png */; };
 		ABCC8B7C1851F86D00FA6649 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7B1851F86D00FA6649 /* cancel.png */; };
 		ABCC8B7E1851F90C00FA6649 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = ABCC8B7D1851F90C00FA6649 /* edit.png */; };
+		ABE51C7F18C70F4A00A06B39 /* HAMCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE51C7E18C70F4A00A06B39 /* HAMCollectionViewLayout.m */; };
 		ABEE9F5D1862E10700781EEA /* defaultImage.png in Resources */ = {isa = PBXBuildFile; fileRef = ABEE9F5C1862E10700781EEA /* defaultImage.png */; };
 /* End PBXBuildFile section */
 
@@ -2531,8 +2530,8 @@
 		6697BDA2179FB33A002E37E8 /* HAMStructureEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HAMStructureEditView.xib; sourceTree = "<group>"; };
 		6697BDA4179FB65E002E37E8 /* HAMViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMViewTool.h; path = utils/HAMViewTool.h; sourceTree = "<group>"; };
 		6697BDA5179FB65E002E37E8 /* HAMViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMViewTool.m; path = utils/HAMViewTool.m; sourceTree = "<group>"; };
-		66A81F7D184E174900EA6FD6 /* HAMCategorySelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCategorySelectorViewController.h; path = settings/HAMCategorySelectorViewController.h; sourceTree = "<group>"; };
-		66A81F7E184E174900EA6FD6 /* HAMCategorySelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCategorySelectorViewController.m; path = settings/HAMCategorySelectorViewController.m; sourceTree = "<group>"; };
+		66A81F7D184E174900EA6FD6 /* HAMCategoryGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCategoryGridViewController.h; path = settings/HAMCategoryGridViewController.h; sourceTree = "<group>"; };
+		66A81F7E184E174900EA6FD6 /* HAMCategoryGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCategoryGridViewController.m; path = settings/HAMCategoryGridViewController.m; sourceTree = "<group>"; };
 		66A81F82184E178600EA6FD6 /* HAMGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMGridViewController.h; path = settings/HAMGridViewController.h; sourceTree = "<group>"; };
 		66A81F83184E178600EA6FD6 /* HAMGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMGridViewController.m; path = settings/HAMGridViewController.m; sourceTree = "<group>"; };
 		66A81F84184E178600EA6FD6 /* HAMGridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridViewController.xib; path = settings/HAMGridViewController.xib; sourceTree = "<group>"; };
@@ -4852,8 +4851,6 @@
 		66E1D8F31893068D00A58FC5 /* cat27_card9_p1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cat27_card9_p1@2x.jpg"; sourceTree = "<group>"; };
 		66E66BD617A9168D00F6177B /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		66F9754617B799A300F94CAF /* HAMUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMUserViewController.h; path = settings/HAMUserViewController.h; sourceTree = "<group>"; };
-		66F9754717B799A300F94CAF /* HAMUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMUserViewController.m; path = settings/HAMUserViewController.m; sourceTree = "<group>"; };
-		66F9754817B799A300F94CAF /* HAMUserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMUserViewController.xib; path = settings/HAMUserViewController.xib; sourceTree = "<group>"; };
 		66FD0AC61892FD14003E4025 /* droplings.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = droplings.db; path = resources/defaultResources/droplings.db; sourceTree = "<group>"; };
 		66FDE7E31887EC63003E4025 /* catBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catBG.png; sourceTree = "<group>"; };
 		66FDE7E41887EC63003E4025 /* catEditBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catEditBG.png; sourceTree = "<group>"; };
@@ -4883,8 +4880,8 @@
 		8ECB0515183A499900EA506C /* QBAnimationSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBAnimationSequence.m; sourceTree = "<group>"; };
 		8ECB0516183A499900EA506C /* RotateAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotateAnimation.h; sourceTree = "<group>"; };
 		8ECB0517183A499900EA506C /* RotateAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotateAnimation.m; sourceTree = "<group>"; };
-		8EE7A2DD1822361A007356B1 /* HAMCardSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCardSelectorViewController.h; path = settings/HAMCardSelectorViewController.h; sourceTree = "<group>"; };
-		8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCardSelectorViewController.m; path = settings/HAMCardSelectorViewController.m; sourceTree = "<group>"; };
+		8EE7A2DD1822361A007356B1 /* HAMCardGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCardGridViewController.h; path = settings/HAMCardGridViewController.h; sourceTree = "<group>"; };
+		8EE7A2DE1822361A007356B1 /* HAMCardGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCardGridViewController.m; path = settings/HAMCardGridViewController.m; sourceTree = "<group>"; };
 		8EE7A2E21822361A007356B1 /* HAMGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMGridCell.xib; path = settings/HAMGridCell.xib; sourceTree = "<group>"; };
 		AB05674218C05C5E005C62F2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		AB05674318C05C5E005C62F2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
@@ -4905,6 +4902,8 @@
 		AB8D6DD3185F0F8300324041 /* createCategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createCategory.png; sourceTree = "<group>"; };
 		ABCC8B7B1851F86D00FA6649 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		ABCC8B7D1851F90C00FA6649 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		ABE51C7D18C70F4A00A06B39 /* HAMCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMCollectionViewLayout.h; path = settings/HAMCollectionViewLayout.h; sourceTree = "<group>"; };
+		ABE51C7E18C70F4A00A06B39 /* HAMCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMCollectionViewLayout.m; path = settings/HAMCollectionViewLayout.m; sourceTree = "<group>"; };
 		ABEE9F5C1862E10700781EEA /* defaultImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultImage.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5074,6 +5073,7 @@
 				6691D3DB18864460009A8E2E /* system */,
 				66C4DD14187DB59400190B93 /* child */,
 				66D6011F186C5B2C002DFAFB /* common */,
+				AB05674918C0A153005C62F2 /* library */,
 				6697BD98179F6FC7002E37E8 /* settings */,
 				6653A5A1179E890E00A405B0 /* utils */,
 				66CC303917B8FC9B008078A9 /* managers */,
@@ -5199,7 +5199,6 @@
 		6697BD98179F6FC7002E37E8 /* settings */ = {
 			isa = PBXGroup;
 			children = (
-				AB05674918C0A153005C62F2 /* library */,
 				66AFDBD7185C2AAA00913F8D /* HAMStructureEditViewController.h */,
 				66AFDBD8185C2AAA00913F8D /* HAMStructureEditViewController.m */,
 				6697BDA2179FB33A002E37E8 /* HAMStructureEditView.xib */,
@@ -8016,15 +8015,15 @@
 				66A81F82184E178600EA6FD6 /* HAMGridViewController.h */,
 				66A81F83184E178600EA6FD6 /* HAMGridViewController.m */,
 				66A81F84184E178600EA6FD6 /* HAMGridViewController.xib */,
+				ABE51C7D18C70F4A00A06B39 /* HAMCollectionViewLayout.h */,
+				ABE51C7E18C70F4A00A06B39 /* HAMCollectionViewLayout.m */,
 				66A81F85184E178600EA6FD6 /* HAMImageCropperViewController.h */,
 				66A81F86184E178600EA6FD6 /* HAMImageCropperViewController.m */,
 				66A81F87184E178600EA6FD6 /* HAMImageCropperViewController.xib */,
-				8EE7A2DD1822361A007356B1 /* HAMCardSelectorViewController.h */,
-				8EE7A2DE1822361A007356B1 /* HAMCardSelectorViewController.m */,
-				66A81F7D184E174900EA6FD6 /* HAMCategorySelectorViewController.h */,
-				66A81F7E184E174900EA6FD6 /* HAMCategorySelectorViewController.m */,
-				66F9754717B799A300F94CAF /* HAMUserViewController.m */,
-				66F9754817B799A300F94CAF /* HAMUserViewController.xib */,
+				8EE7A2DD1822361A007356B1 /* HAMCardGridViewController.h */,
+				8EE7A2DE1822361A007356B1 /* HAMCardGridViewController.m */,
+				66A81F7D184E174900EA6FD6 /* HAMCategoryGridViewController.h */,
+				66A81F7E184E174900EA6FD6 /* HAMCategoryGridViewController.m */,
 				66CC961A17B4BFB900DB3A57 /* HAMSyncViewController.m */,
 				66CC961B17B4BFB900DB3A57 /* HAMSyncViewController.xib */,
 				8EB892FA1818F9D4001322F2 /* HAMGridCell.h */,
@@ -9982,7 +9981,6 @@
 				66E1D615189305E500A58FC5 /* cat23_card1_p1@2x.jpg in Resources */,
 				66E1D263189305E400A58FC5 /* cat8_card16_p3@2x.jpg in Resources */,
 				66E1D73E189305E500A58FC5 /* cat29_p1.jpg in Resources */,
-				66F9754A17B799A300F94CAF /* HAMUserViewController.xib in Resources */,
 				66E1D774189305E500A58FC5 /* cat30_card8_p2@2x.jpg in Resources */,
 				66E1D1C8189305E400A58FC5 /* cat7_card11_s1.mp3 in Resources */,
 				66DE8E1A184BB1F7009AFF39 /* common_card_bg.png in Resources */,
@@ -10501,9 +10499,9 @@
 				66A81F8A184E178600EA6FD6 /* HAMImageCropperViewController.m in Sources */,
 				AB05674D18C0A40C005C62F2 /* HAMIntroViewController.m in Sources */,
 				66D7E6BF17A0D19B00CB122D /* HAMConfig.m in Sources */,
-				8EE7A2E41822361A007356B1 /* HAMCardSelectorViewController.m in Sources */,
+				8EE7A2E41822361A007356B1 /* HAMCardGridViewController.m in Sources */,
 				8ECB0519183A499900EA506C /* QBAnimationItem.m in Sources */,
-				66A81F80184E174900EA6FD6 /* HAMCategorySelectorViewController.m in Sources */,
+				66A81F80184E174900EA6FD6 /* HAMCategoryGridViewController.m in Sources */,
 				667E53BA17A6319A00BBDE35 /* HAMDBManager.m in Sources */,
 				6691D3D918864455009A8E2E /* HAMInitViewController.m in Sources */,
 				667E53BF17A65BA600BBDE35 /* HAMCard.m in Sources */,
@@ -10516,13 +10514,13 @@
 				8E0728721836202B00E538FB /* HAMRecorderViewController.m in Sources */,
 				66CC961C17B4BFB900DB3A57 /* HAMSyncViewController.m in Sources */,
 				66CC962017B4C30400DB3A57 /* Reachability.m in Sources */,
+				ABE51C7F18C70F4A00A06B39 /* HAMCollectionViewLayout.m in Sources */,
 				66CC962317B4E7AD00DB3A57 /* HAMWebTool.m in Sources */,
 				8ECB051B183A499900EA506C /* QBAnimationSequence.m in Sources */,
 				66D60122186C5D65002DFAFB /* HAMCardView.m in Sources */,
 				66466A1E18586563006EE478 /* HAMEditCatPopoverViewController.m in Sources */,
 				8ECB051C183A499900EA506C /* RotateAnimation.m in Sources */,
 				8EB892FC1818F9D4001322F2 /* HAMGridCell.m in Sources */,
-				66F9754917B799A300F94CAF /* HAMUserViewController.m in Sources */,
 				66CC303817B8DA3A008078A9 /* HAMUser.m in Sources */,
 				6694E5D31855D5E9008EC01D /* HAMAddCardPopoverViewController.m in Sources */,
 				66D6016C187B2351002DFAFB /* HAMCoverPickerViewController.m in Sources */,

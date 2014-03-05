@@ -13,7 +13,7 @@
 #import "HAMCardEditorViewController.h"
 #import "HAMSharedData.h"
 
-@interface HAMCardSelectorViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
+@interface HAMCardGridViewController : HAMGridViewController <UICollectionViewDataSource, HAMGridCellDelegate, HAMCardEditorViewControllerDelegate>
 
 @property (nonatomic, strong) NSString *categoryID;
 @property (nonatomic, weak) HAMConfig *config;

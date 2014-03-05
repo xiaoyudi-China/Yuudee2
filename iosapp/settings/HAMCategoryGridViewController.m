@@ -6,14 +6,14 @@
 //  Copyright (c) 2013年 Droplings. All rights reserved.
 //
 
-#import "HAMCategorySelectorViewController.h"
+#import "HAMCategoryGridViewController.h"
 
 
-@interface HAMCategorySelectorViewController ()
+@interface HAMCategoryGridViewController ()
 
 @end
 
-@implementation HAMCategorySelectorViewController
+@implementation HAMCategoryGridViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -119,7 +119,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *categoryID = [self categoryIDs][indexPath.row];
 	
-	HAMCardSelectorViewController *cardSelector = [[HAMCardSelectorViewController alloc] initWithNibName:@"HAMGridViewController" bundle:nil];
+	HAMCardGridViewController *cardSelector = [[HAMCardGridViewController alloc] initWithNibName:@"HAMGridViewController" bundle:nil];
 	cardSelector.config = self.config;
 	cardSelector.userID = self.parentID;
 	cardSelector.index = self.index;
