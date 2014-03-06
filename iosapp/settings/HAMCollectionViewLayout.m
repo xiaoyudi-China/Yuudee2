@@ -15,6 +15,7 @@ static const NSInteger NUM_COLS = 3;
 
 - (id)init {
 	if (self = [super init]) {
+		// TODO: avoid using magic numbers
 		self.numItems = [self.collectionView numberOfItemsInSection:0];
 		self.itemSize = CGSizeMake(239, 231);
 		self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -26,7 +27,7 @@ static const NSInteger NUM_COLS = 3;
 	return self;
 }
 
-// TODO: avoid using magic numbers
+// position the items like the springboard
 - (void)prepareLayout {
 	self.attributes = [[NSMutableArray alloc] initWithCapacity:self.numItems];
 	for (NSInteger index = 0; index < self.numItems; index++) {

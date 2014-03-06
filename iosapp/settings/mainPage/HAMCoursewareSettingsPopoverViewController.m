@@ -46,11 +46,13 @@
     
     changedLayout = -1;
     
-    HAMUser* currentCourseware = [coursewareManager currentUser];
-    [self initTitle:currentCourseware.name];
+    self.currentCourseware = [coursewareManager currentUser];
+    [self initTitle:self.currentCourseware.name];
     
-    int currentLayout = [HAMViewInfo layoutOfXnum:currentCourseware.layoutx ynum:currentCourseware.layouty];
+    int currentLayout = [HAMViewInfo layoutOfXnum:self.currentCourseware.layoutx ynum:self.currentCourseware.layouty];
     [self showCheckedImageAtlayout:currentLayout];
+	
+	self.muteSwitch.on = self.currentCourseware.mute;
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,11 +129,10 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    HAMUser* currentCourseware;
     switch (buttonIndex) {
         case 1:
-            currentCourseware = [coursewareManager currentUser];
-            [coursewareManager deleteUser:currentCourseware];
+            self.currentCourseware = [coursewareManager currentUser];
+            [coursewareManager deleteUser:self.currentCourseware];
             
             [self.popover dismissPopoverAnimated:YES];
             [mainSettingsViewController viewWillAppear:NO];
@@ -150,7 +151,6 @@
 }
 
 - (IBAction)finishClicked:(UIButton *)sender {
-    HAMUser* currentCourseware = [coursewareManager currentUser];
     
     if (changedLayout != -1) {
         int xnum = [HAMViewInfo xnumOfLayout:changedLayout];
@@ -161,11 +161,16 @@
         //[mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];
     }
     
-    if (![currentCourseware.name isEqualToString:changeTitleTextField.text]) {
+    if (![self.currentCourseware.name isEqualToString:changeTitleTextField.text]) {
         [coursewareManager updateCurrentUserName:[changeTitleTextField.text copy]];
         [mainSettingsViewController refreshCoursewareSelect];
     }
     
     [self.popover dismissPopoverAnimated:YES];
 }
+
+- (IBAction)muteStateChanged:(id)sender {
+	self.currentCourseware.mute = self.muteSwitch.on;
+}
+
 @end

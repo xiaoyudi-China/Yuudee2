@@ -18,6 +18,7 @@
 @property NSString* UUID;
 @property NSString* name;
 @property NSString* rootID;
+@property BOOL mute;
 
 @property int layoutx;
 @property int layouty;

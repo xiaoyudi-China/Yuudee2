@@ -10,28 +10,23 @@
 
 @implementation HAMUser
 
-@synthesize UUID;
-@synthesize name;
-@synthesize rootID;
-
-@synthesize layoutx;
-@synthesize layouty;
-
--(id)initWithName:(NSString *)_name
+-(id)initWithName:(NSString *)name
 {
     if (self =[super init])
     {
-        name=[[NSString alloc] initWithString:_name];
+        self.name = [[NSString alloc] initWithString:name];
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        self.UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
 		CFRelease(uuidRef);
         
 		uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        rootID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        self.rootID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
 		CFRelease(uuidRef);
         
-        layoutx = USER_DEFAULT_LAYOUTX;
-        layouty = USER_DEFAULT_LAYOUTY;
+        self.layoutx = USER_DEFAULT_LAYOUTX;
+        self.layouty = USER_DEFAULT_LAYOUTY;
+		
+		self.mute = NO;
     }
     return self;
 }

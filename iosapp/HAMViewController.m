@@ -96,7 +96,7 @@
     [catAnimation moveView:inCatView toPosition:CGPointMake(768, 0)];
 }
 
--(IBAction) groupClicked:(id)sender{
+-(void) groupClicked:(id)sender{
     NSString* catID = [config childCardIDOfCat:currentUUID atIndex:[sender tag]];
     [self refreshGridViewForCat:catID];
     blurBgImageView.hidden = false;
@@ -124,7 +124,7 @@
 #pragma mark -
 #pragma mark Card Actions
 
--(IBAction) leafClicked:(id)sender{
+-(void) leafClicked:(id)sender{
     
     //return if another card is on display
     if (animation != nil) {

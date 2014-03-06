@@ -13,6 +13,7 @@
                 <outlet property="layout2x2Button" destination="uAc-A9-Cz7" id="1aw-rf-SdS"/>
                 <outlet property="layout3x3Button" destination="bb6-nG-R6P" id="BKe-a3-ho4"/>
                 <outlet property="layoutCheckedImageView" destination="1A6-ed-eIh" id="PH6-4t-Axe"/>
+                <outlet property="muteSwitch" destination="T8Z-42-lU9" id="spz-bC-w1B"/>
                 <outlet property="view" destination="2" id="Xuc-fh-axU"/>
             </connections>
         </placeholder>
@@ -96,11 +97,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="avA-Yn-fhx">
-                            <rect key="frame" x="-165" y="534" width="650" height="60"/>
+                            <rect key="frame" x="88" y="534" width="151" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <state key="normal" title="删除该课件">
-                                <color key="titleColor" red="0.56470588239999997" green="0.56470588239999997" blue="0.56470588239999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="1" green="0.034445875799999998" blue="0.034954538639999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -125,6 +126,19 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="T8Z-42-lU9">
+                            <rect key="frame" x="442" y="548" width="51" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="muteStateChanged:" destination="-1" eventType="valueChanged" id="oUO-8o-AEy"/>
+                            </connections>
+                        </switch>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="静音" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xfz-zQ-7hS">
+                            <rect key="frame" x="392" y="553" width="42" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>

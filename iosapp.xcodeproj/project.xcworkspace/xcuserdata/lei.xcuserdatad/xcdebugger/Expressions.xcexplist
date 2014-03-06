@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[HAMViewController leafClicked:]:HAMViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "config.rootID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[HAMCollectionViewLayout collectionViewContentSize]:HAMCollectionViewLayout.m">
          <PersistentStrings>
             <PersistentString
@@ -66,13 +74,13 @@
          contextName = "-[HAMCollectionViewLayout layoutAttributesForElementsInRect:]:HAMCollectionViewLayout.m">
          <PersistentStrings>
             <PersistentString
-               value = "attribute.frame.origin">
+               value = "ny">
             </PersistentString>
             <PersistentString
                value = "self.attributes">
             </PersistentString>
             <PersistentString
-               value = "ny">
+               value = "attribute.frame.origin">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
