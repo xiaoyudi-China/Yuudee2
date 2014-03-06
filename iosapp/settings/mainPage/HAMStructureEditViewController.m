@@ -14,6 +14,10 @@
     UIPopoverController* popover;
     NSMutableArray* coursewareArray;
 }
+- (void)newCoursewareNotification:(NSNotification*)notification;
+- (void)updateCoursewareNotification:(NSNotification*)notification;
+- (void)updateCoursewareLayoutNotification:(NSNotification*)notification;
+- (void)deleteCoursewareNotification:(NSNotification*)notification;
 @end
 
 @implementation HAMStructureEditViewController
@@ -76,6 +80,16 @@
     
     self.coursewareSelectView.hidden = YES;
 	self.aboutOptionsView.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCoursewareNotification:) name:HAMUser_NewUser object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareNotification:) name:HAMUser_UpdateUser object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareLayoutNotification:) name:HAMUser_UpdateLayout object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteCoursewareNotification) name:HAMUser_DeleteUser object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)initWithConfig
