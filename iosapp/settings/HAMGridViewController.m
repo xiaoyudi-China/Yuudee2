@@ -29,7 +29,17 @@
     // Do any additional setup after loading the view from its nib.
 	[self.leftTopButton setImage:[UIImage imageNamed:@"backDOWN.png"] forState:UIControlStateHighlighted];
 	[self.rightTopButton setImage:[UIImage imageNamed:@"addnewDOWN.png"] forState:UIControlStateHighlighted];
-	self.collectionView.collectionViewLayout = [[HAMCollectionViewLayout alloc] init];
+	
+	// FIXME
+	//HAMCollectionViewLayout *layout = [[HAMCollectionViewLayout alloc] init];
+	UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+	layout.itemSize = CGSizeMake(239, 231);
+	layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+	layout.sectionInset = UIEdgeInsetsMake(0, 9, 0, 8);
+	layout.minimumLineSpacing = 17;
+	layout.minimumInteritemSpacing = 0;
+	
+	self.collectionView.collectionViewLayout = layout;
 }
 
 - (void)didReceiveMemoryWarning

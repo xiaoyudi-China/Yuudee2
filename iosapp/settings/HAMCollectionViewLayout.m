@@ -17,11 +17,6 @@ static const NSInteger NUM_COLS = 3;
 	if (self = [super init]) {
 		// TODO: avoid using magic numbers
 		self.numItems = [self.collectionView numberOfItemsInSection:0];
-		self.itemSize = CGSizeMake(239, 231);
-		self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-		self.sectionInset = UIEdgeInsetsMake(0, 9, 0, 8);
-		self.minimumLineSpacing = 17;
-		self.minimumInteritemSpacing = 0;
 	}
 	
 	return self;

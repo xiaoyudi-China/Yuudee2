@@ -80,7 +80,7 @@
     
     self.coursewareSelectView.hidden = YES;
 	self.aboutOptionsView.hidden = YES;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCoursewareNotification:) name:HAMUser_NewUser object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareNotification:) name:HAMUser_UpdateUser object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareLayoutNotification:) name:HAMUser_UpdateLayout object:nil];
@@ -90,6 +90,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+ 
 }
 
 -(void)initWithConfig
@@ -391,7 +392,7 @@
 		cardCount ++;
 		// update the progress view
 		float progress = (float)cardCount / allCardIDs.count;
-		[self performSelectorOnMainThread:@selector(updateExportProgress:) withObject:[NSNumber numberWithFloat:progress] waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(updateExportProgress:) withObject:@(progress) waitUntilDone:NO];
 		
 		HAMCard *card = [self.config card:cardID];
 		UIImage *image = [HAMSharedData imageNamed:card.image.localPath];
@@ -461,11 +462,11 @@
     if ([courseware.UUID isEqualToString:userUUID]) {
         coursewareNameLabel.text = courseware.name;
         for (NSUInteger index = 0; index < [coursewareArray count]; index++) {
-            HAMUser *theCourseware = [coursewareArray objectAtIndex:index];
+            HAMUser *theCourseware = coursewareArray[index];
             if ([theCourseware.UUID isEqualToString:courseware.UUID]) {
                 theCourseware.name = courseware.name;
                 NSIndexPath  *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
-                NSArray      *indexArray=[NSArray  arrayWithObject:indexPath];
+                NSArray      *indexArray=@[indexPath];
                 [coursewareTableView reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationAutomatic];
                 break;
             }
@@ -487,12 +488,12 @@
 {
     NSString *userUUID = [notification object];
     for (NSUInteger index = 0; index < [coursewareArray count]; index++) {
-        HAMUser *theCourseware = [coursewareArray objectAtIndex:index];
+        HAMUser *theCourseware = coursewareArray[index];
         if ([theCourseware.UUID isEqualToString:userUUID]) {
             NSInteger lastIndex = index - 1;
             lastIndex = lastIndex >= 0 ? lastIndex : NSNotFound;
             if (lastIndex != NSNotFound) {
-                HAMUser *theLastCourseware = [coursewareArray objectAtIndex:lastIndex];
+                HAMUser *theLastCourseware = coursewareArray[lastIndex];
                 [coursewareManager setCurrentUser:theLastCourseware];
             } else {
                 coursewareNameLabel.text = nil;
