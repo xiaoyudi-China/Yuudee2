@@ -13,19 +13,16 @@
 #import "HAMUserManager.h"
 #import "HAMAnimation.h"
 
-@interface HAMViewController : UIViewController <AVAudioPlayerDelegate,HAMGifAnimationDelegate>
-{
-    NSString* activeUsername;
-    
-    AVAudioPlayer *audioPlayer;
-    
-    HAMGridViewTool* gridViewTool;
-    HAMGridViewTool* inCatGridViewTool;
-    HAMConfig* config;
-    HAMUserManager* userManager;
-    
-    NSString* currentUUID;
+@interface HAMViewController : UIViewController <AVAudioPlayerDelegate,HAMGifAnimationDelegate> {
 }
+
+@property (strong, nonatomic) NSString *activeUserName;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) HAMGridViewTool* gridViewTool;
+@property (strong, nonatomic) HAMGridViewTool* inCatGridViewTool;
+@property (strong, nonatomic) HAMConfig* config;
+@property (strong, nonatomic) HAMUserManager* userManager;
+@property (strong, nonatomic) NSString* currentUUID;
 
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView2;

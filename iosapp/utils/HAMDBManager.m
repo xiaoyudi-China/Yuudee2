@@ -167,85 +167,6 @@
     return card;
 }
 
-/*-(NSMutableArray*)allCards:(int)mode user:(NSString*)userID
-{
-    [self openDatabase];
-    
-    NSMutableArray* cards=[NSMutableArray arrayWithCapacity:100];
-    
-    NSString* query;
-    switch (mode) {
-        case 0:
-            query=[[NSString alloc] initWithFormat: @"SELECT ID,NAME FROM CARD WHERE TYPE='card' OR USER='%@'",userID];
-            break;
-        
-        case 1:
-            query=@"SELECT ID,NAME FROM CARD WHERE TYPE='card'";
-            break;
-            
-        case 2:
-            query=[[NSString alloc] initWithFormat:@"SELECT ID,NAME FROM CARD WHERE TYPE='category' AND USER='%@'",userID];
-            break;
-            
-        default:
-            query=nil;
-            break;
-    }
-    
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
-    {
-        NSAssert(0,@"Fail to select!");
-        [self closeDatabase];
-        return nil;
-    }
-    
-    while(sqlite3_step(statement)==SQLITE_ROW)
-    {
-        HAMCard* card=[HAMCard alloc];
-        card.UUID=[self stringAt:0];
-        card.name=[self stringAt:1];
-        [cards addObject:card];
-    }
-    
-    [self closeDatabase];
-    return cards;
-}*/
-
-/*-(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode
-{
-    NSString* whereClause;
-    switch (mode) {
-        case 0:
-            whereClause=[[NSString alloc] initWithFormat: @"USER = '%@'",userID];
-            break;
-            
-        case 1:
-            whereClause=[[NSString alloc] initWithFormat: @"USER = '%@' AND TYPE='card'",userID];
-            break;
-            
-        case 2:
-            whereClause=[[NSString alloc] initWithFormat: @"USER = '%@' AND TYPE='category'",userID];
-            break;
-            
-        default:
-            whereClause=nil;
-            break;
-    }
-    [self prepareSelect:@"ID,NAME" from:@"CARD" where:whereClause];
-    
-    NSMutableArray* cards=[[NSMutableArray alloc] initWithCapacity:20];
-    while (sqlite3_step(statement)==SQLITE_ROW) {
-        HAMCard* card=[HAMCard alloc];
-        card.UUID=[self stringAt:0];
-        card.name=[self stringAt:1];
-        [cards addObject:card];
-    }
-    
-    [self closeDatabase];
-    return cards;
-}*/
-
 -(void)updateCard:(NSString*)UUID name:(NSString*)name
 {
     [self openDatabase];
@@ -605,6 +526,7 @@
         user.rootID=[self stringAt:2];
         user.layoutx=sqlite3_column_int(statement, 3);
         user.layouty=sqlite3_column_int(statement, 4);
+		user.mute = sqlite3_column_int(statement, 5);
     }
     
     [self closeDatabase];
@@ -641,7 +563,7 @@
 -(void)insertUser:(HAMUser*)user
 {
     //TODO: default layoutx,layouty
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES(\"%@\",\"%@\",\"%@\",\"%d\",\"%d\");",user.UUID,user.name,user.rootID, user.layoutx, user.layouty]];
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES('%@', '%@', '%@', %d, %d, %d);",user.UUID,user.name,user.rootID, user.layoutx, user.layouty, user.mute]];
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\",1);",user.rootID,user.name]];
 }
 
@@ -653,6 +575,10 @@
 -(void)updateUserLayoutWithID:(NSString*)userID xnum:(int)xnum ynum:(int)ynum
 {
     [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE USER SET LAYOUTX = %d, LAYOUTY = %d WHERE ID = '%@'",xnum,ynum,userID]];
+}
+
+- (void)updateUser:(NSString*)userID withMuteState:(BOOL)mute {
+	[self runSQL:[NSString stringWithFormat:@"UPDATE USER SET mute = %d WHERE id = '%@'", mute, userID]];
 }
 
 -(void)deleteUser:(NSString*)userID

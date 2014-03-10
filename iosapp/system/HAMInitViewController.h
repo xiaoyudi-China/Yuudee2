@@ -16,4 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 
+@property NSInteger copiedResourcesCount;
+@property NSInteger totalResourcesCount;
+
 @end

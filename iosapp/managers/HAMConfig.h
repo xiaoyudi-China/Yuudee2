@@ -19,7 +19,7 @@
 #define NODENUM 66
 
 #define LIB_ROOT @"lib_root"
-#define UNCATEGORIZED_ID @"UNCATEGORIZED"
+#define UNCATEGORIZED_ID @"uncategorized"
 
 @class HAMUserManager;
 

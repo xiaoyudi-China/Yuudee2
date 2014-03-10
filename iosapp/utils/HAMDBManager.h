@@ -56,6 +56,7 @@
 -(void)insertUser:(HAMUser*)user;
 -(void)updateUser:(NSString*)userID name:(NSString*)newName;
 -(void)updateUserLayoutWithID:(NSString*)userID xnum:(int)xnum ynum:(int)ynum;
+- (void)updateUser:(NSString*)userID withMuteState:(BOOL)mute;
 -(void)deleteUser:(NSString*)userID;
 
 @end

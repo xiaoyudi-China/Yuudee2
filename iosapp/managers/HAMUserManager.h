@@ -31,6 +31,7 @@
 -(void)newUser:(NSString*)username;
 -(void)updateCurrentUserName:(NSString*)newName;
 -(void)updateCurrentUserLayoutxnum:(int)xnum ynum:(int)ynum;
+-(void)updateCurrentUserMuteState:(BOOL)mute;
 -(void)deleteUser:(HAMUser*)user;
 
 //current user

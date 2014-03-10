@@ -51,6 +51,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_UpdateLayout object:currentUser.UUID];
 }
 
+- (void)updateCurrentUserMuteState:(BOOL)mute {
+	currentUser.mute = mute;
+	[dbManager updateUser:currentUser.UUID withMuteState:mute];
+	[[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_UpdateUser object:currentUser.UUID];
+}
+
 -(void)deleteUser:(HAMUser*)user
 {
     /*NSMutableArray* cards=[dbManager cardsOfUser:user.UUID mode:0];

@@ -3,10 +3,60 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[HAMViewController leafClicked:]:HAMViewController.m">
+         contextName = "-[HAMCategoryGridViewController viewWillAppear:]:HAMCategoryGridViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "config.rootID">
+               value = "self.categoryIDs">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMRecorderViewController finishButtonPressed:]:HAMRecorderViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tempAudioName">
+            </PersistentString>
+            <PersistentString
+               value = "self.config">
+            </PersistentString>
+            <PersistentString
+               value = "self.audioName">
+            </PersistentString>
+            <PersistentString
+               value = "self.tempCard.audio.localPath">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCollectionViewLayout prepareLayout]:HAMCollectionViewLayout.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "attribute.frame">
+            </PersistentString>
+            <PersistentString
+               value = "attribute.bounds">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCoursewareSettingsPopoverViewController viewWillAppear:]:HAMCoursewareSettingsPopoverViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.currentCourseware.mute">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMCollectionViewLayout layoutAttributesForElementsInRect:]:HAMCollectionViewLayout.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "attribute.frame.origin">
+            </PersistentString>
+            <PersistentString
+               value = "self.attributes">
+            </PersistentString>
+            <PersistentString
+               value = "ny">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -38,19 +88,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[HAMRecorderViewController finishButtonPressed:]:HAMRecorderViewController.m">
+         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
          <PersistentStrings>
-            <PersistentString
-               value = "self.tempAudioName">
-            </PersistentString>
             <PersistentString
                value = "self.config">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HAMViewController leafClicked:]:HAMViewController.m">
+         <PersistentStrings>
             <PersistentString
-               value = "self.audioName">
+               value = "config.rootID">
             </PersistentString>
             <PersistentString
-               value = "self.tempCard.audio.localPath">
+               value = "currentUUID">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -63,43 +115,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[HAMCardSelectorViewController viewDidLoad]:HAMCardSelectorViewController.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.config">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HAMCollectionViewLayout layoutAttributesForElementsInRect:]:HAMCollectionViewLayout.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "ny">
-            </PersistentString>
-            <PersistentString
-               value = "self.attributes">
-            </PersistentString>
-            <PersistentString
-               value = "attribute.frame.origin">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[HAMCategoryGridViewController collectionView:cellForItemAtIndexPath:]:HAMCategoryGridViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "indexPath.row">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[HAMCollectionViewLayout prepareLayout]:HAMCollectionViewLayout.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "attribute.frame">
-            </PersistentString>
-            <PersistentString
-               value = "attribute.bounds">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

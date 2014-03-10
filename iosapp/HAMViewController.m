@@ -35,27 +35,27 @@
 @synthesize inCatScrollView;
 
 - (void)viewDidLoad{
-    activeUsername=@"hamster";
+    self.activeUserName=@"hamster";
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {    
-    config=[[HAMConfig alloc] initFromDB];
-    currentUUID=config.rootID;
+    self.config = [[HAMConfig alloc] initFromDB];
+    self.currentUUID = self.config.rootID;
     
-    if (!config)
+    if (! self.config)
         return;
     
-    userManager=[HAMUserManager new];
-    userManager.config=config;
+    self.userManager = [HAMUserManager new];
+    self.userManager.config = self.config;
     
-    HAMUser* currentUser=userManager.currentUser;
+    HAMUser* currentUser = self.userManager.currentUser;
     
     HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
     
-    gridViewTool = [[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:config delegate:self edit:NO];
-    [gridViewTool refreshView:currentUUID scrollToFirstPage:YES];
-    inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:config delegate:self edit:NO];
+    self.gridViewTool = [[HAMGridViewTool alloc] initWithView:scrollView_ viewInfo:viewInfo config:self.config delegate:self edit:NO];
+    [self.gridViewTool refreshView:self.currentUUID scrollToFirstPage:YES];
+    self.inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:self.config delegate:self edit:NO];
     
     multiTouchCount = 0;
 }
@@ -86,18 +86,18 @@
 
 - (void)refreshGridViewForCat:(NSString*)catID
 {
-    currentUUID = catID;
-    [inCatGridViewTool refreshView:currentUUID scrollToFirstPage:YES];
+    self.currentUUID = catID;
+    [self.inCatGridViewTool refreshView:self.currentUUID scrollToFirstPage:YES];
 }
 
 - (IBAction)backButtonClicked:(UIButton *)sender {
-    currentUUID = config.rootID;
+    self.currentUUID = self.config.rootID;
     blurBgImageView.hidden = true;
     [catAnimation moveView:inCatView toPosition:CGPointMake(768, 0)];
 }
 
 -(void) groupClicked:(id)sender{
-    NSString* catID = [config childCardIDOfCat:currentUUID atIndex:[sender tag]];
+    NSString* catID = [self.config childCardIDOfCat:self.currentUUID atIndex:[sender tag]];
     [self refreshGridViewForCat:catID];
     blurBgImageView.hidden = false;
     
@@ -133,17 +133,17 @@
         }
     }
     
-    if (audioPlayer!=nil)
-        if ([audioPlayer isPlaying])
+    if (self.audioPlayer)
+        if ([self.audioPlayer isPlaying])
         {
             return;
         }
     
     int index = [sender tag];
-    HAMRoom* room = [config roomOfCat:currentUUID atIndex:index];
+    HAMRoom* room = [self.config roomOfCat:self.currentUUID atIndex:index];
     
-    HAMCardView* cardView = [gridViewTool cardViewArray_][index];
-    HAMCard* card = [config card:room.cardID_];
+    HAMCardView* cardView = [self.gridViewTool cardViewArray_][index];
+    HAMCard* card = [self.config card:room.cardID_];
     
     if (animation == nil) {
         animation = [[HAMAnimation alloc] init];
@@ -151,13 +151,16 @@
     [animation setCard:card andCardView:cardView];
     [animation beginAnimation:room.animation_];
     
-    NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
-    if (musicPath){
-        NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
-        audioPlayer = [[AVAudioPlayer alloc]  initWithContentsOfURL:musicURL  error:nil];
-        [audioPlayer setDelegate:self];
-        [audioPlayer play];
-    }
+	HAMUser *currentUser = [self.userManager currentUser];
+	if (! currentUser.mute) {
+		NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
+		if (musicPath){
+			NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
+			self.audioPlayer = [[AVAudioPlayer alloc]  initWithContentsOfURL:musicURL  error:nil];
+			[self.audioPlayer setDelegate:self];
+			[self.audioPlayer play];
+		}
+	}
 }
 
 #pragma mark -
