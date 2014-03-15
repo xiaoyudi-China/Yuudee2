@@ -50,7 +50,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [self turnToChildView];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstStart"]){
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]){
         [self turnToInitView];
     }
 

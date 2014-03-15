@@ -14,7 +14,7 @@
 #import "HAMUser.h"
 #import "HAMRoom.h"
 
-#define DBNAME @"droplings.db"
+#define DBNAME @"app_data.db"
 
 @interface HAMDBManager : NSObject
 {

@@ -48,8 +48,8 @@
 
 - (void)viewUpdate{
     [progressView setProgress:(self.copiedResourcesCount + 0.0f) / self.totalResourcesCount];
-    [copiedCountLabel setText:[NSString stringWithFormat:@"%d", self.copiedResourcesCount]];
-    [totalCountLabel setText:[NSString stringWithFormat:@"%d", self.totalResourcesCount]];
+    [copiedCountLabel setText:[@(self.copiedResourcesCount) stringValue]];
+    [totalCountLabel setText:[@(self.totalResourcesCount) stringValue]];
 }
 
 - (void)copyResources
@@ -71,7 +71,7 @@
 	}
 	
 	self.totalResourcesCount = resourcesArray.count;
-	NSInteger count = 0;
+	NSInteger count = 1;
 	for (NSString *resourceName in resourcesArray) {
 		self.copiedResourcesCount = count++;
 		[self performSelectorOnMainThread:@selector(viewUpdate) withObject:nil waitUntilDone:YES];
@@ -84,8 +84,9 @@
 		}
 	}
     
-
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstStart"];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	
     HAMAppDelegate* delegate = [UIApplication sharedApplication].delegate;
     [delegate turnToChildView];
 }
