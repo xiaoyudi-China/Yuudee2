@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     catID_ = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
     HAMCard* cat = [config_ card:catID_];
-    if (!cat.isRemovable_)
+    if (!cat.isRemovable)
     {
         editInLibButton.enabled = false;
         [editInLibButton setTitle:@"(不能编辑系统自带分类)" forState:UIControlStateNormal];

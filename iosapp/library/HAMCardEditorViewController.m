@@ -53,7 +53,7 @@
 		self.tempCard = [[HAMCard alloc] initNewCard]; // get a UUID
 		[self.config newCardWithID:self.tempCard.UUID name:nil type:1 audio:nil image:nil]; // type 1 indicates a card
 		self.tempCard.type = 1; // this statement can be removed
-		self.tempCard.isRemovable_ = YES;
+		self.tempCard.isRemovable = YES;
 	}
 	
 	self.imageName = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
@@ -269,7 +269,7 @@
 	[self.categoriesPopover dismissPopoverAnimated:YES];
 }
 
-- (IBAction)deleteCardButtonTapped:(id)sender {
+- (IBAction)deleteCardButtonPressed:(id)sender {
 	
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除卡片？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
 	[actionSheet showInView:self.view];

@@ -57,7 +57,7 @@
     
     cardID_ = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
     HAMCard* card = [config_ card:cardID_];
-    if (!card.isRemovable_)
+    if (!card.isRemovable)
     {
         editInLibButton.enabled = false;
         [editInLibButton setTitle:@"(不能编辑系统自带卡片)" forState:UIControlStateNormal];

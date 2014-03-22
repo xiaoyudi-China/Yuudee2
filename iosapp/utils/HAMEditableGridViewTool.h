@@ -7,11 +7,11 @@
 //
 
 #import "HAMGridViewTool.h"
-#import "HAMStructureEditViewController.h"
+#import "HAMSettingsViewController.h"
 
 #define EDITVIEW_MAX_CARD_NUM 1000
 
-@class HAMStructureEditViewController;
+@class HAMSettingsViewController;
 
 @interface HAMEditableGridViewTool : HAMGridViewTool
 {

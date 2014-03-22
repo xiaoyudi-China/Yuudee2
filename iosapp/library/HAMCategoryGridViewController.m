@@ -78,7 +78,7 @@
 	
 	// FIXME
 	if ([category.UUID isEqualToString:UNCATEGORIZED_ID])
-		category.isRemovable_ = NO;
+		category.isRemovable = NO;
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
@@ -93,7 +93,7 @@
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		// don't allow editing system-provided categories or cards
-		cell.rightTopButton.hidden = ! category.isRemovable_;
+		cell.rightTopButton.hidden = ! category.isRemovable;
 	}
 		
 	cell.indexPath = indexPath;

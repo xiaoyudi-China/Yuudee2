@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HAMDBManager.h"
 
-@class HAMStructureEditViewController;
-@class HAMViewController;
 @class HAMSettingsViewController;
+@class HAMViewController;
 @class HAMInitViewController;
 
 @interface HAMAppDelegate : UIResponder <UIApplicationDelegate>
@@ -22,7 +21,7 @@
 @property (strong, nonatomic) UINavigationController *navController;
 
 @property (strong, nonatomic) HAMViewController *viewController;
-@property (strong, nonatomic) HAMStructureEditViewController *structureEditViewController;
+@property (strong, nonatomic) HAMSettingsViewController *structureEditViewController;
 //@property Boolean urlFlag;
 
 -(void)turnToChildView;

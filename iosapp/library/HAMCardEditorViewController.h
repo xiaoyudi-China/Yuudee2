@@ -55,7 +55,7 @@
 - (IBAction)recordButtonTapped:(id)sender;
 - (IBAction)shootImageButtonPressed:(id)sender;
 - (IBAction)pickImageButtonPressed:(id)sender;
-- (IBAction)deleteCardButtonTapped:(id)sender;
+- (IBAction)deleteCardButtonPressed:(id)sender;
 - (IBAction)cancelButtonTapped:(id)sender;
 - (IBAction)chooseCategoryButtonPressed:(id)sender;
 

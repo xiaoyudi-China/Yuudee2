@@ -110,7 +110,7 @@
     card.name = name;
     card.type = type;
     card.imageNum_ = 1;
-    card.isRemovable_ = YES;
+    card.isRemovable = YES;
     
     if (audio)
     {

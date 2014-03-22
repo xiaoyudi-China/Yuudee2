@@ -155,7 +155,7 @@
     imageID=[self stringAt:3];
     audioID=[self stringAt:4];
     card.imageNum_ = sqlite3_column_int(statement, 5);
-    card.isRemovable_ = sqlite3_column_int(statement, 6);
+    card.isRemovable = sqlite3_column_int(statement, 6);
     
     [self closeDatabase];
     
@@ -242,7 +242,7 @@
         sqlite3_bind_text(stmt, 4, [card.image.UUID UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 5, [card.audio.UUID UTF8String], -1, NULL);
         sqlite3_bind_int(stmt, 6, card.imageNum_);
-        sqlite3_bind_int(stmt, 7, card.isRemovable_);
+        sqlite3_bind_int(stmt, 7, card.isRemovable);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)
         NSAssert(0, @"Error inserting into card");

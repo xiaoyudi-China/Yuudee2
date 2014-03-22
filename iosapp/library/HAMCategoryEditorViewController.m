@@ -129,7 +129,7 @@
 		
 		// type 0 indicates a category
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];
-		category.isRemovable_ = YES; // ???: what's this for?
+		category.isRemovable = YES; // ???: what's this for?
 		
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];

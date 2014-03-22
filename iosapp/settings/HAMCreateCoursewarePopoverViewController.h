@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMStructureEditViewController.h"
+#import "HAMSettingsViewController.h"
 #import "HAMUser.h"
 
 @interface HAMCreateCoursewarePopoverViewController : UIViewController
@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *coursewareNameTextField;
 
-@property HAMStructureEditViewController* mainSettingsViewController;
+@property HAMSettingsViewController* mainSettingsViewController;
 @property UIPopoverController* popover;
 @property HAMUserManager* coursewareManager;
 

@@ -9,16 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "HAMViewTool.h"
 #import "HAMConfig.h"
-#import "HAMStructureEditViewController.h"
+#import "HAMSettingsViewController.h"
 
-@class HAMStructureEditViewController;
+@class HAMSettingsViewController;
 
 @interface HAMEditCardPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
 {
 
 }
 
-@property HAMStructureEditViewController* mainSettingsViewController_;
+@property HAMSettingsViewController* mainSettingsViewController_;
 @property HAMConfig* config_;
 @property NSString* parentID_;
 @property int childIndex_;

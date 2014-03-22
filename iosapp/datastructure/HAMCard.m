@@ -16,7 +16,7 @@
 @synthesize image;
 @synthesize audio;
 @synthesize imageNum_;
-@synthesize isRemovable_;
+@synthesize isRemovable;
 
 -(id)initWithID:(NSString *)_UUID
 {

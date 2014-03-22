@@ -9,7 +9,6 @@
 #import "HAMAppDelegate.h"
 #import "HAMViewController.h"
 #import "HAMSettingsViewController.h"
-#import "HAMStructureEditViewController.h"
 #import "HAMInitViewController.h"
 
 @implementation HAMAppDelegate
@@ -100,7 +99,7 @@
 
 -(void)turnToParentView
 {
-	HAMStructureEditViewController *parentViewController = [[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
+	HAMSettingsViewController *parentViewController = [[HAMSettingsViewController alloc] initWithNibName:@"HAMStructureEditViewController" bundle:nil];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:parentViewController];
 	navigator.navigationBarHidden = YES;
 	

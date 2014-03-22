@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HAMUserManager.h"
 #import "HAMViewInfo.h"
-#import "HAMStructureEditViewController.h"
+#import "HAMSettingsViewController.h"
 
 @interface HAMCoursewareSettingsPopoverViewController : UIViewController
 {
 }
 
 @property HAMUserManager* coursewareManager;
-@property HAMStructureEditViewController* mainSettingsViewController;
+@property HAMSettingsViewController* mainSettingsViewController;
 @property UIPopoverController* popover;
 @property (strong, nonatomic) HAMUser *currentCourseware;
 

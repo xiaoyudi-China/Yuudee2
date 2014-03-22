@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6661048E178BB04A003AEE3D"
-               BuildableName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;.app"
+               BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;&#x513f;&#x7ae5;&#x7248;.app"
                BlueprintName = "iosapp"
                ReferencedContainer = "container:iosapp.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
-            BuildableName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;.app"
+            BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;&#x513f;&#x7ae5;&#x7248;.app"
             BlueprintName = "iosapp"
             ReferencedContainer = "container:iosapp.xcodeproj">
          </BuildableReference>
@@ -52,12 +52,17 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
-            BuildableName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;.app"
+            BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;&#x513f;&#x7ae5;&#x7248;.app"
             BlueprintName = "iosapp"
             ReferencedContainer = "container:iosapp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -70,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
-            BuildableName = "&#23567;&#38632;&#28404;&#20799;&#31461;&#29256;.app"
+            BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;&#x513f;&#x7ae5;&#x7248;.app"
             BlueprintName = "iosapp"
             ReferencedContainer = "container:iosapp.xcodeproj">
          </BuildableReference>

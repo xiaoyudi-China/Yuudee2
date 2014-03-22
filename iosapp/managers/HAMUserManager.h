@@ -19,20 +19,23 @@
 
 @interface HAMUserManager : NSObject
 {
-    HAMDBManager* dbManager;
     HAMUser* currentUser;
 }
 
 @property (weak, nonatomic) HAMConfig* config;
+@property (strong, nonatomic) HAMDBManager *dbManager;
 
 //user
 -(NSMutableArray*)userList;
 
 -(void)newUser:(NSString*)username;
 -(void)updateCurrentUserName:(NSString*)newName;
--(void)updateCurrentUserLayoutxnum:(int)xnum ynum:(int)ynum;
+-(void)updateCurrentUserLayoutxnum:(int)x ynum:(int)y;
 -(void)updateCurrentUserMuteState:(BOOL)mute;
 -(void)deleteUser:(HAMUser*)user;
+
+- (void)updateUser:(HAMUser*)user withLayoutxnum:(NSInteger)xnum ynum:(NSInteger)ynum;
+- (void)updateUser:(HAMUser*)user withMuteState:(BOOL)mute;
 
 //current user
 -(HAMUser*)setCurrentUser:(HAMUser*)user;

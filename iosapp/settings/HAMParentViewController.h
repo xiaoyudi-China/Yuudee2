@@ -12,7 +12,6 @@
 #import "HAMEditableGridViewTool.h"
 #import "HAMFileTools.h"
 #import "HAMCategoryGridViewController.h"
-#import "HAMSyncViewController.h"
 #import "HAMConfig.h"
 #import "HAMUserManager.h"
 #import "Reachability.h"
@@ -26,25 +25,23 @@
 
 @class HAMEditableGridViewTool;
 
-@interface HAMStructureEditViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate, HAMIntroViewControllerDelegate>
-{
-    HAMUserManager* coursewareManager;
-    
+@interface HAMParentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate, HAMIntroViewControllerDelegate, UIActionSheetDelegate>
+{    
     HAMEditableGridViewTool* dragableView;
     
     Boolean refreshFlag;
 }
 
 @property (strong, nonatomic) HAMConfig *config;
+@property (strong, nonatomic) HAMUserManager *coursewareManager;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView_;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITableView *coursewareTableView;
 @property (weak, nonatomic) IBOutlet UIView *coursewareSelectView;
 @property (weak, nonatomic) IBOutlet UIImageView *inCatWoodImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
 
 @property (strong,nonatomic) HAMCategoryGridViewController *selectorViewController;
-@property (strong,nonatomic) HAMSyncViewController* syncViewController;
 
 @property (weak, nonatomic) IBOutlet UIButton *endEditButton;
 @property (weak, nonatomic) IBOutlet UIButton *settingsButton;
@@ -52,7 +49,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *coursewareSelectButton;
 @property (weak, nonatomic) IBOutlet UILabel *coursewareNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backToRootButton;
-@property (weak, nonatomic) IBOutlet UIView *aboutOptionsView;
+@property (weak, nonatomic) IBOutlet UIView *aboutMenuView;
 @property (weak, nonatomic) IBOutlet UIProgressView *exportProgressView;
 
 @property NSString* currentUUID;
@@ -67,12 +64,12 @@
 - (IBAction)coursewareSelectClicked:(UIButton *)sender;
 - (IBAction)coursewareCreateClicked:(UIButton *)sender;
 - (IBAction)backToRootClicked:(UIButton *)sender;
-- (IBAction)syncButtonClicked:(id)sender;
 - (IBAction)aboutButtonPressed:(id)sender;
 - (IBAction)productInfoButtonPressed:(id)sender;
 - (IBAction)trainGuideButtonPressed:(id)sender;
 - (IBAction)feedbackButtonPressed:(id)sender;
 - (IBAction)exportCardsButtonPressed:(id)sender;
+- (IBAction)resetButtonPressed:(id)sender;
 
 - (void)enterLibAt:(int)index;
 

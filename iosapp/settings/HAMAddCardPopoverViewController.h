@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMStructureEditViewController.h"
+#import "HAMSettingsViewController.h"
 #import "HAMCardEditorViewController.h"
 
 @interface HAMAddCardPopoverViewController : UIViewController<HAMCardEditorViewControllerDelegate>
 {}
 
-@property HAMStructureEditViewController* mainSettingsViewController_;
+@property HAMSettingsViewController* mainSettingsViewController_;
 @property UIPopoverController* popover;
 
 @property HAMConfig* config_;

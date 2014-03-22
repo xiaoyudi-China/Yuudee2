@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMStructureEditViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HAMSettingsViewController">
             <connections>
-                <outlet property="aboutOptionsView" destination="Um3-JP-Wnf" id="04G-rS-Y2T"/>
+                <outlet property="aboutMenuView" destination="Um3-JP-Wnf" id="K8d-hU-TIr"/>
                 <outlet property="backToRootButton" destination="do5-m0-B6I" id="1dY-qA-EZj"/>
                 <outlet property="bgImageView" destination="Dq9-dJ-ge0" id="Rfo-Yd-iYM"/>
                 <outlet property="coursewareNameLabel" destination="z0x-fe-QKi" id="KAa-sS-syr"/>
@@ -18,7 +18,7 @@
                 <outlet property="exportProgressView" destination="nej-4W-Q7t" id="igq-1n-OfR"/>
                 <outlet property="inCatWoodImageView" destination="9Cm-H5-BDQ" id="n8V-Gx-Jdw"/>
                 <outlet property="libButton" destination="auh-TJ-qu9" id="u0h-Rj-7cZ"/>
-                <outlet property="scrollView_" destination="z0S-Kq-ejc" id="4mG-zo-uMz"/>
+                <outlet property="scrollView" destination="z0S-Kq-ejc" id="k2E-Bo-rEx"/>
                 <outlet property="settingsButton" destination="ZQw-qt-OlQ" id="MdH-94-Om6"/>
                 <outlet property="view" destination="1" id="10"/>
             </connections>
@@ -41,11 +41,11 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </scrollView>
                 <view contentMode="scaleToFill" id="Um3-JP-Wnf">
-                    <rect key="frame" x="30" y="668" width="128" height="281"/>
+                    <rect key="frame" x="30" y="618" width="128" height="371"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutOptions" id="WkR-B7-fuq">
-                            <rect key="frame" x="0.0" y="0.0" width="128" height="281"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutMenu.png" id="WkR-B7-fuq">
+                            <rect key="frame" x="0.0" y="0.0" width="128" height="371"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Psg-dS-yoA">
@@ -101,13 +101,25 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </progressView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tvk-MP-F8N">
+                            <rect key="frame" x="20" y="264" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <state key="normal" title="重置卡片">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="resetButtonPressed:" destination="-1" eventType="touchUpInside" id="ltd-RP-Vua"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rSz-bl-fWi">
                     <rect key="frame" x="20" y="930" width="149" height="94"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="aboutButton">
+                    <state key="normal" image="aboutButton.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -220,37 +232,11 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
         </view>
-        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="3">
-            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-            <items>
-                <barButtonItem title="新建词条/分类" width="180" id="4"/>
-                <barButtonItem title="改变布局" width="180" id="19"/>
-                <barButtonItem title="编辑词条/分类" width="180" id="8"/>
-                <barButtonItem title="进行网络同步" width="180" id="17">
-                    <connections>
-                        <action selector="syncButtonClicked:" destination="-1" id="18"/>
-                    </connections>
-                </barButtonItem>
-            </items>
-        </toolbar>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GmP-bq-sP3">
-            <rect key="frame" x="0.0" y="0.0" width="117" height="42"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" red="0.59999999999999998" green="0.16862745100000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-            <state key="normal" title="Button">
-                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-            </state>
-            <connections>
-                <action selector="syncButtonClicked:" destination="-1" eventType="touchUpInside" id="eiA-ei-nx4"/>
-            </connections>
-        </button>
     </objects>
     <resources>
-        <image name="aboutButton" width="149" height="93"/>
-        <image name="aboutOptions" width="128" height="281"/>
+        <image name="aboutButton.png" width="149" height="94"/>
+        <image name="aboutMenu.png" width="128" height="371"/>
         <image name="child_inCat_backbutton.png" width="161" height="123"/>
         <image name="child_inCat_woodBG.png" width="885" height="810"/>
         <image name="parent_courseselect_addicon.png" width="29" height="34"/>

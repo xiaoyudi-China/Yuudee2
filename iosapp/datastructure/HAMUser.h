@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define USER_DEFAULT_LAYOUTX 2
-#define USER_DEFAULT_LAYOUTY 2
+#define USER_DEFAULT_LAYOUTX 3
+#define USER_DEFAULT_LAYOUTY 3
 
 @interface HAMUser : NSObject
 {
