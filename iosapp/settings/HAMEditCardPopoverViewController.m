@@ -23,7 +23,6 @@
 @synthesize mainSettingsViewController_;
 @synthesize config_;
 @synthesize parentID_;
-@synthesize childIndex_;
 @synthesize popover;
 
 @synthesize editInLibButton;
@@ -52,10 +51,10 @@
 //    [HAMViewTool setHighLightImage:@"parent_editpop_cancelbtn_down" forButton:cancelButton];
 //    [HAMViewTool setHighLightImage:@"parent_editpop_confirmbtn_down" forButton:finishButton];
     
-    [self showCheckedMarkAtAnimation:[config_ animationOfCat:parentID_ atIndex:childIndex_]];
+    [self showCheckedMarkAtAnimation:[config_ animationOfCat:parentID_ atIndex:self.childIndex_]];
     changedAnimation = -1;
     
-    cardID_ = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
+    cardID_ = [config_ childCardIDOfCat:parentID_ atIndex:self.childIndex_];
     HAMCard* card = [config_ card:cardID_];
     if (!card.isRemovable)
     {
@@ -80,11 +79,11 @@
     cardEditor.delegate = self; // NOTE!!!
     cardEditor.addCardOnCreation = NO;
     cardEditor.parentID = parentID_;
-    cardEditor.index = childIndex_;
+    cardEditor.index = self.childIndex_;
     cardEditor.config = config_;
     // the card is not categorized by default
     cardEditor.categoryID = UNCATEGORIZED_ID;
-    cardEditor.cardID = [config_ childCardIDOfCat:parentID_ atIndex:childIndex_];
+    cardEditor.cardID = [config_ childCardIDOfCat:parentID_ atIndex:self.childIndex_];
     
     cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
     cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -147,7 +146,7 @@
 #pragma mark Remove Card
 
 - (IBAction)removeCardClicked:(UIButton *)sender {
-    [config_ updateRoomOfCat:parentID_ with:nil atIndex:childIndex_];
+    [config_ updateRoomOfCat:parentID_ with:nil atIndex:self.childIndex_];
     [mainSettingsViewController_ refreshGridViewAndScrollToFirstPage:NO];
 
     [self.popover dismissPopoverAnimated:YES];
@@ -162,7 +161,7 @@
 
 - (IBAction)finishClicked:(UIButton *)sender {
     if (changedAnimation != -1)
-        [config_ updateAnimationOfCat:parentID_ with:changedAnimation atIndex:childIndex_];
+        [config_ updateAnimationOfCat:parentID_ with:changedAnimation atIndex:self.childIndex_];
     
     [self.popover dismissPopoverAnimated:YES];
 }

@@ -22,7 +22,7 @@
 @property NSString* parentID;
 // 1	 - edit
 // other - replace
-@property int index;
+@property NSInteger index;
 @property HAMGridCellMode cellMode;
 @property (strong, nonatomic) NSArray *categoryIDs;
 

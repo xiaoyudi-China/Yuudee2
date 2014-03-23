@@ -63,7 +63,7 @@
 	if (buttonIndex == 1) { // confirm deletion
 		// delete all cards under this category
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
-		for (NSUInteger index = 0; index < cardIDs.count; index++) {
+		for (NSInteger index = 0; index < cardIDs.count; index++) {
 			[self.config deleteChildOfCatInLib:self.categoryID atIndex:index];
 		}
 		

@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString *categoryID;
 @property (nonatomic, weak) HAMConfig *config;
 @property (nonatomic, strong) NSString *userID;
-@property (nonatomic, assign) int index;
+@property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) HAMGridCellMode cellMode;
 @property (strong, nonatomic) NSArray *cardIDs;
 @property (nonatomic, strong) NSMutableSet *selectedCardIDs;

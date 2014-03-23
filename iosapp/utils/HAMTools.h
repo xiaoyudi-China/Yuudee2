@@ -11,7 +11,7 @@
 @interface HAMTools : NSObject
 {}
 
-+(void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(int)pos;
++(void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(NSInteger)pos;
 
 +(NSDictionary*)jsonFromData:(NSData*)data;
 

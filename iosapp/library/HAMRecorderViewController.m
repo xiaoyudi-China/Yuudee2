@@ -151,8 +151,8 @@
 				
 		// remove the card from the old category
 		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.UUID];
-		NSUInteger numOldCards = [self.config childrenOfCat:self.categoryID].count;
-		for (NSUInteger index = oldIndex; index < numOldCards; index++) {
+		NSInteger numOldCards = [self.config childrenOfCat:self.categoryID].count;
+		for (NSInteger index = oldIndex; index < numOldCards; index++) {
 			HAMRoom *nextRoom = [self.config roomOfCat:self.categoryID atIndex:index + 1]; // supposed to be nil when exceeding boundary
 			[self.config updateRoomOfCat:self.categoryID with:nextRoom atIndex:index];
 		}

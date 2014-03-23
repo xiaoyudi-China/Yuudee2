@@ -18,7 +18,7 @@
 
 @property HAMConfig* config_;
 @property NSString* parentID_;
-@property int cardIndex_;
+@property NSInteger cardIndex_;
 
 - (IBAction)addFromLibClicked:(UIButton *)sender;
 - (IBAction)createCardClicked:(UIButton *)sender;

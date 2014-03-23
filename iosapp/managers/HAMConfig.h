@@ -43,17 +43,17 @@
 
 -(NSMutableArray*)childrenOfCat:(NSString*)parentID;
 -(NSMutableArray*)childrenCardIDOfCat:(NSString*)parentID;
--(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(int)index;
--(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(int)index;
--(int)animationOfCat:(NSString*)parentID atIndex:(int)index;
+-(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(NSInteger)index;
+-(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(NSInteger)index;
+-(int)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index;
 
--(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index;
--(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(int)index;
+-(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
+-(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(NSInteger)index;
 -(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image;
 
--(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(int)beginIndex;
+-(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(NSInteger)beginIndex;
 -(void)deleteCard:(NSString*)UUID;
 
--(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(int)index;
+-(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(NSInteger)index;
 @end

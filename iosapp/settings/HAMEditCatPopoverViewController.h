@@ -15,7 +15,7 @@
 @property HAMSettingsViewController* mainSettingsViewController_;
 @property HAMConfig* config_;
 @property NSString* parentID_;
-@property int childIndex_;
+@property NSInteger childIndex_;
 @property UIPopoverController* popover;
 @property (weak, nonatomic) IBOutlet UIButton *editInLibButton;
 

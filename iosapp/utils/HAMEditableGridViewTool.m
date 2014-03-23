@@ -183,9 +183,9 @@
     }
 }
 
--(void)moveCardView:(UIView*)targetView toIndex:(int)index animated:(Boolean)animated{
+-(void)moveCardView:(UIView*)targetView toIndex:(NSInteger)index animated:(Boolean)animated{
     int cardsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
-    int onPagenum = index / cardsPerPage;
+    NSInteger onPagenum = index / cardsPerPage;
     UIView* superView = pageViews_[onPagenum];
     
     if (targetView.superview != superView) {
@@ -276,7 +276,7 @@
     }
     
     UIView* buttonView = recognizer.view;
-    int tag = buttonView.tag;
+    NSInteger tag = buttonView.tag;
     
     UIView* cardView = cardViewArray_[tag];
     [cardView.superview bringSubviewToFront:cardView];
@@ -306,8 +306,8 @@
     [self moveCardView:cardView toPosition:newPosition animated:NO];
         
     //get current index
-    int currentIndex = 0;
-    int i, cardnum = [cardViewArray_ count];
+    NSInteger currentIndex = 0;
+    NSInteger i, cardnum = [cardViewArray_ count];
     
     for (i = 0; i < cardnum; i++) {
         if (tagOfIndex_[i] == tag){
@@ -321,7 +321,7 @@
     int nearestIndex = [self findNearestIndexOfPosition:newPosition] + cardsPerPage * currentPage_;
     
     //move other cards
-    int newTagOfIndex[EDITVIEW_MAX_CARD_NUM];
+    NSInteger newTagOfIndex[EDITVIEW_MAX_CARD_NUM];
     for (i=0; i<cardnum; i++){
         newTagOfIndex[i] = tagOfIndex_[i];
     }
@@ -331,7 +331,7 @@
     //sequential move solution:
     int inc = currentIndex > nearestIndex ? 1 : -1;
     for (i = nearestIndex; i != currentIndex; i += inc) {
-        int targetTag = tagOfIndex_[i];
+        NSInteger targetTag = tagOfIndex_[i];
         UIView* targetView = cardViewArray_[targetTag];
         if (isBlankAtTag_[targetTag]){
             //[self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
@@ -369,7 +369,7 @@
         NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
         NSLog(@"handlePan - Got old children:%f",[NSDate timeIntervalSinceReferenceDate]);
         for (i=0; i<cardnum; i++) {
-            int targetTag = tagOfIndex_[i];
+            NSInteger targetTag = tagOfIndex_[i];
             if (tagOfIndex_[i] == i)
                 continue;
             NSObject* child;

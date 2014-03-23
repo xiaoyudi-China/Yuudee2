@@ -54,7 +54,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:HAMUser_UpdateLayout object:currentUser.UUID];
 }
 
-- (void)updateUser:(HAMUser *)user withLayoutxnum:(NSInteger)x ynum:(NSInteger)y {
+- (void)updateUser:(HAMUser *)user withLayoutxnum:(int)x ynum:(int)y {
 	[self.dbManager updateUserLayoutWithID:user.UUID xnum:x ynum:y];
 }
 

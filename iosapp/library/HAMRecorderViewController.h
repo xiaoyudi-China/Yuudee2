@@ -45,7 +45,7 @@
 // for use by Day Yue, not necessarily initialized
 @property BOOL addCardOnCreation;
 @property (strong, nonatomic) NSString *parentID;
-@property int index;
+@property NSInteger index;
 
 
 - (IBAction)cancelButtonPressed:(id)sender;

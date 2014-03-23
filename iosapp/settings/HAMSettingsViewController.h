@@ -72,6 +72,6 @@
 - (IBAction)exportCardsButtonPressed:(id)sender;
 - (IBAction)resetButtonPressed:(id)sender;
 
-- (void)enterLibAt:(int)index;
+- (void)enterLibAt:(NSInteger)index;
 
 @end

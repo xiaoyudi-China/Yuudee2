@@ -139,7 +139,7 @@
             return;
         }
     
-    int index = [sender tag];
+    NSInteger index = [sender tag];
     HAMRoom* room = [self.config roomOfCat:self.currentUUID atIndex:index];
     
     HAMCardView* cardView = [self.gridViewTool cardViewArray_][index];

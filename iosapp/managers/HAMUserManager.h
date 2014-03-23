@@ -34,7 +34,7 @@
 -(void)updateCurrentUserMuteState:(BOOL)mute;
 -(void)deleteUser:(HAMUser*)user;
 
-- (void)updateUser:(HAMUser*)user withLayoutxnum:(NSInteger)xnum ynum:(NSInteger)ynum;
+- (void)updateUser:(HAMUser*)user withLayoutxnum:(int)xnum ynum:(int)ynum;
 - (void)updateUser:(HAMUser*)user withMuteState:(BOOL)mute;
 
 //current user

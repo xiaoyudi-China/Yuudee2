@@ -152,7 +152,7 @@
     HAMEditCardPopoverViewController* editCardPopover;
     HAMEditCatPopoverViewController* editCatPopover;
     
-    int childIndex = [sender tag];
+    NSInteger childIndex = [sender tag];
     HAMCard* card = [self.config card:[self.config childCardIDOfCat:self.currentUUID atIndex:childIndex]];
     
     switch (card.type) {
@@ -183,7 +183,7 @@
 #pragma mark Card Clicked
 
 -(void) groupClicked:(id)sender{
-    int index=[sender tag];
+    NSInteger index=[sender tag];
     self.currentUUID = [self.config childCardIDOfCat:self.currentUUID atIndex:index];
     
     [self enterCat];
@@ -273,7 +273,7 @@
     }
 }
 
--(int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.coursewareArray.count;
 }
@@ -434,7 +434,7 @@
 #pragma mark -
 #pragma mark Goto View
 
--(void)enterLibAt:(int)index
+-(void)enterLibAt:(NSInteger)index
 {
     if (! self.selectorViewController)
     {

@@ -39,10 +39,10 @@
 
 //table CARD_TREE
 -(NSMutableArray*)childrenOf:(NSString*)parentID;
--(void)deleteChildOfCat:(NSString*)parentID atIndex:(int)index;
+-(void)deleteChildOfCat:(NSString*)parentID atIndex:(NSInteger)index;
 -(void)deleteCardFromTree:(NSString*)UUID;
--(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index;
--(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(int)index;
+-(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(NSInteger)index;
 //-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex;
 //-(Boolean)ifCat:(NSString*)parentID hasChildAt:(int)pos;
 

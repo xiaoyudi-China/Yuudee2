@@ -10,10 +10,9 @@
 
 @implementation HAMTools
 
-+(void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(int)pos
++(void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(NSInteger)pos
 {
-    int i;
-    for (i=[array count];i<pos;i++)
+    for (NSInteger i=[array count];i<pos;i++)
         [array addObject:[NSNull null]];
     [array setObject:object atIndexedSubscript:pos];
 }

@@ -318,12 +318,12 @@
 
 }*/
 
--(void)deleteChildOfCat:(NSString *)parentID atIndex:(int)index
+-(void)deleteChildOfCat:(NSString *)parentID atIndex:(NSInteger)index
 {
     [self openDatabase];
     char *errorMsg;
     
-    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%d",parentID,index];
+    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%ld",parentID,index];
     if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errorMsg)!=SQLITE_OK)
     {
         NSLog( @"Fail to delete from card_tree!");
@@ -349,7 +349,7 @@
     [self closeDatabase];
 }
 
--(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(int)index
+-(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index
 {
     [self openDatabase];
     
@@ -370,7 +370,8 @@
     {
         sqlite3_bind_text(statement, 1, [newRoom.cardID_ UTF8String], -1, NULL);
         sqlite3_bind_text(statement, 2, [parentID UTF8String], -1, NULL);
-        sqlite3_bind_int(statement, 3, index);
+        //sqlite3_bind_int(statement, 3, index);
+		sqlite3_bind_int64(statement, 3, index);
         
         NSString* animation;
         switch (newRoom.animation_) {
@@ -423,7 +424,7 @@
     [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET POSITION = %d WHERE CHILD = '%@' AND PARENT = '%@'",newIndex, childID, parentID]];
 }*/
 
--(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(int)index
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(NSInteger)index
 {
     NSString* animationString;
     switch (animation) {
@@ -443,7 +444,7 @@
             animationString = @"?";
             break;
     }
-    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %d", animationString, parentID, index]];
+    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %ld", animationString, parentID, index]];
 }
 
 #pragma mark -
