@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6661048E178BB04A003AEE3D"
                BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;.app"
-               BlueprintName = "iosapp"
-               ReferencedContainer = "container:iosapp.xcodeproj">
+               BlueprintName = "&#x5c0f;&#x96e8;&#x6ef4;"
+               ReferencedContainer = "container:&#x5c0f;&#x96e8;&#x6ef4;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
             BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;.app"
-            BlueprintName = "iosapp"
-            ReferencedContainer = "container:iosapp.xcodeproj">
+            BlueprintName = "&#x5c0f;&#x96e8;&#x6ef4;"
+            ReferencedContainer = "container:&#x5c0f;&#x96e8;&#x6ef4;.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
             BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;.app"
-            BlueprintName = "iosapp"
-            ReferencedContainer = "container:iosapp.xcodeproj">
+            BlueprintName = "&#x5c0f;&#x96e8;&#x6ef4;"
+            ReferencedContainer = "container:&#x5c0f;&#x96e8;&#x6ef4;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -76,8 +76,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6661048E178BB04A003AEE3D"
             BuildableName = "&#x5c0f;&#x96e8;&#x6ef4;.app"
-            BlueprintName = "iosapp"
-            ReferencedContainer = "container:iosapp.xcodeproj">
+            BlueprintName = "&#x5c0f;&#x96e8;&#x6ef4;"
+            ReferencedContainer = "container:&#x5c0f;&#x96e8;&#x6ef4;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

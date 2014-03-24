@@ -25,6 +25,8 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
+				<string>icon-40</string>
+				<string>icon-76</string>
 				<string>icon1_retina</string>
 				<string>icon1</string>
 				<string>icon1.png</string>
@@ -61,7 +63,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>13</string>
+	<string>14</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
