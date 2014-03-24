@@ -24,11 +24,10 @@
     NSMutableArray* pageViews_;
     
     UIViewController* viewController_;
-    NSMutableArray* cardViewArray_;
     NSString* currentUUID_;
 }
 
-@property NSMutableArray* cardViewArray_;
+@property (strong, nonatomic) NSMutableArray* cardViewArray;
 
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit;
 -(void)prepareRefreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage;

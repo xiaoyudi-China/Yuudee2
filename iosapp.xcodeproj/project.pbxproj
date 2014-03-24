@@ -36,8 +36,6 @@
 		6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BD9D179F906F002E37E8 /* HAMViewInfo.m */; };
 		6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6697BDA5179FB65E002E37E8 /* HAMViewTool.m */; };
 		66AF428117A7979E0053D560 /* HAMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AF428017A7979E0053D560 /* HAMTools.m */; };
-		66C4DD12187DB58600190B93 /* HAMChildInCatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C4DD10187DB58600190B93 /* HAMChildInCatViewController.m */; };
-		66C4DD13187DB58600190B93 /* HAMChildInCatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66C4DD11187DB58600190B93 /* HAMChildInCatViewController.xib */; };
 		66CC303817B8DA3A008078A9 /* HAMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC303717B8DA3A008078A9 /* HAMUser.m */; };
 		66CC303D17B8FD23008078A9 /* HAMUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 66CC303C17B8FD23008078A9 /* HAMUserManager.m */; };
 		66CC961817B4BDE700DB3A57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CC961717B4BDE700DB3A57 /* SystemConfiguration.framework */; };
@@ -1808,9 +1806,6 @@
 		6697BDA5179FB65E002E37E8 /* HAMViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMViewTool.m; path = utils/HAMViewTool.m; sourceTree = "<group>"; };
 		66AF427F17A7979E0053D560 /* HAMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMTools.h; path = utils/HAMTools.h; sourceTree = "<group>"; };
 		66AF428017A7979E0053D560 /* HAMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMTools.m; path = utils/HAMTools.m; sourceTree = "<group>"; };
-		66C4DD0F187DB58600190B93 /* HAMChildInCatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMChildInCatViewController.h; path = child/HAMChildInCatViewController.h; sourceTree = "<group>"; };
-		66C4DD10187DB58600190B93 /* HAMChildInCatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMChildInCatViewController.m; path = child/HAMChildInCatViewController.m; sourceTree = "<group>"; };
-		66C4DD11187DB58600190B93 /* HAMChildInCatViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HAMChildInCatViewController.xib; path = child/HAMChildInCatViewController.xib; sourceTree = "<group>"; };
 		66CC303617B8DA3A008078A9 /* HAMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMUser.h; path = datastructure/HAMUser.h; sourceTree = "<group>"; };
 		66CC303717B8DA3A008078A9 /* HAMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMUser.m; path = datastructure/HAMUser.m; sourceTree = "<group>"; };
 		66CC303B17B8FD23008078A9 /* HAMUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMUserManager.h; path = managers/HAMUserManager.h; sourceTree = "<group>"; };
@@ -3733,9 +3728,6 @@
 				666104AA178BB04A003AEE3D /* HAMViewController.h */,
 				666104AB178BB04A003AEE3D /* HAMViewController.m */,
 				666104B0178BB04A003AEE3D /* HAMViewController_iPad.xib */,
-				66C4DD0F187DB58600190B93 /* HAMChildInCatViewController.h */,
-				66C4DD10187DB58600190B93 /* HAMChildInCatViewController.m */,
-				66C4DD11187DB58600190B93 /* HAMChildInCatViewController.xib */,
 			);
 			name = child;
 			sourceTree = "<group>";
@@ -6468,7 +6460,6 @@
 				AB5F564018D4560D00277870 /* cat17_card8_p1.jpg in Resources */,
 				AB5F54FA18D4560C00277870 /* cat1_card7_s1.mp3 in Resources */,
 				AB5F5A3718D4560D00277870 /* cat6_card15_s1.mp3 in Resources */,
-				66C4DD13187DB58600190B93 /* HAMChildInCatViewController.xib in Resources */,
 				AB5F58FA18D4560D00277870 /* cat36_card6_p1.jpg in Resources */,
 				AB5F576E18D4560D00277870 /* cat26_card27_s1.mp3 in Resources */,
 				AB5F56FB18D4560D00277870 /* cat22_card2_p3.jpg in Resources */,
@@ -7724,7 +7715,6 @@
 				6653A5A4179E894B00A405B0 /* HAMFileTools.m in Sources */,
 				6697BD9B179F8092002E37E8 /* HAMGridViewTool.m in Sources */,
 				6697BD9E179F906F002E37E8 /* HAMViewInfo.m in Sources */,
-				66C4DD12187DB58600190B93 /* HAMChildInCatViewController.m in Sources */,
 				6697BDA6179FB65E002E37E8 /* HAMViewTool.m in Sources */,
 				ABA7BB0818CDEF1600B7830C /* HAMEditCardPopoverViewController.m in Sources */,
 				8ECB04FB183A428600EA506C /* HAMAnimation.m in Sources */,
@@ -7853,7 +7843,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/3rd_party/umeng,
@@ -7875,7 +7865,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iosapp/iosapp-Prefix.pch";
 				INFOPLIST_FILE = "iosapp/iosapp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/3rd_party/umeng,

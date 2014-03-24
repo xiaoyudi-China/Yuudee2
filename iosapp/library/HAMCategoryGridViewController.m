@@ -164,7 +164,7 @@
 		
 		// trace user events
 		HAMCard *category = [self.config card:categoryID];
-		NSDictionary *attrs = @{@"分类名称": category.name, @"添加位置": [NSString stringWithFormat:@"%ld", self.index]};
+		NSDictionary *attrs = @{@"分类名称": category.name, @"添加位置": @(self.index).stringValue};
 		[MobClick event:@"add_category" attributes:attrs];
 	}
 	else { // Mode Edit

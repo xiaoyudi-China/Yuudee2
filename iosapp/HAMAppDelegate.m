@@ -47,11 +47,17 @@
 	[MobClick startWithAppkey:@"529d8c2556240b9e4d007957"];
 	
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     [self turnToChildView];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"]){
-        [self turnToInitView];
-    }
+   	
+	NSString* currentVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    NSString* lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:@"LastVersion"];
+	
+	// the app is fresh installed, or has been upgraded
+    if (!lastVersion || ![lastVersion isEqual:currentVersion])
+		[self turnToInitView];
+	
+    [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:@"LastVersion"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
     return YES;
 }
@@ -99,7 +105,7 @@
 
 -(void)turnToParentView
 {
-	HAMSettingsViewController *parentViewController = [[HAMSettingsViewController alloc] initWithNibName:@"HAMStructureEditViewController" bundle:nil];
+	HAMSettingsViewController *parentViewController = [[HAMSettingsViewController alloc] initWithNibName:@"HAMSettingsViewController" bundle:nil];
 	UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:parentViewController];
 	navigator.navigationBarHidden = YES;
 	

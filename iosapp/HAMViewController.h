@@ -23,6 +23,7 @@
 @property (strong, nonatomic) HAMConfig* config;
 @property (strong, nonatomic) HAMUserManager* userManager;
 @property (strong, nonatomic) NSString* currentUUID;
+@property BOOL inCategory;
 
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView1;
 @property (weak, nonatomic) IBOutlet UIImageView *pressHintImageView2;

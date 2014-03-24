@@ -136,7 +136,7 @@
 			
 			// trace user events
 			HAMCard *card = [self.config card:cardID];
-			NSDictionary *attrs = @{@"卡片名称": card.name, @"分类名称": category.name, @"添加位置": [NSString stringWithFormat:@"%ld", index++]};
+			NSDictionary *attrs = @{@"卡片名称": card.name, @"分类名称": category.name, @"添加位置": @(index++).stringValue};
 			[MobClick event:@"add_card" attributes:attrs];
 		}
 	

@@ -8,7 +8,6 @@
 
 #import "HAMViewController.h"
 #import "HAMFileTools.h"
-#import "HAMChildInCatViewController.h"
 
 @interface HAMViewController ()
 {
@@ -94,6 +93,7 @@
     self.currentUUID = self.config.rootID;
     blurBgImageView.hidden = true;
     [catAnimation moveView:inCatView toPosition:CGPointMake(768, 0)];
+	self.inCategory = NO;
 }
 
 -(void) groupClicked:(id)sender{
@@ -106,19 +106,7 @@
     }
     
     [catAnimation moveView:inCatView toPosition:CGPointMake(-117, 0)];
-    /*
-     if (inCatViewController_ == nil){
-     inCatViewController_ = [[HAMChildInCatViewController alloc] initWithNibName:@"HAMChildInCatViewController" bundle:nil];
-     }
-     
-     //    UINavigationController *navigator = [[UINavigationController alloc] initWithRootViewController:inCatViewController_];
-     //	navigator.navigationBarHidden = YES;
-     NSLog(@"%@",self.navigationController);
-     
-     //	inCatViewController_.modalPresentationStyle = UIModalPresentationCurrentContext;
-     //	inCatViewController_.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-     //	[self presentViewController:navigator animated:YES completion:NULL];
-     [self.navigationController pushViewController:inCatViewController_ animated:YES];*/
+	self.inCategory = YES;
 }
 
 #pragma mark -
@@ -142,7 +130,8 @@
     NSInteger index = [sender tag];
     HAMRoom* room = [self.config roomOfCat:self.currentUUID atIndex:index];
     
-    HAMCardView* cardView = [self.gridViewTool cardViewArray_][index];
+	HAMGridViewTool *currentGridView = self.inCategory ? self.inCatGridViewTool : self.gridViewTool;
+    HAMCardView* cardView = currentGridView.cardViewArray[index];
     HAMCard* card = [self.config card:room.cardID_];
     
     if (animation == nil) {

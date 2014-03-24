@@ -48,10 +48,13 @@
 
 - (void)viewUpdate{
     [progressView setProgress:(self.copiedResourcesCount + 0.0f) / self.totalResourcesCount];
-    [copiedCountLabel setText:[@(self.copiedResourcesCount) stringValue]];
-    [totalCountLabel setText:[@(self.totalResourcesCount) stringValue]];
+	copiedCountLabel.text = @(self.copiedResourcesCount).stringValue;
+	totalCountLabel.text = @(self.totalResourcesCount).stringValue;
 }
 
+// TODO:
+//  1. do not override existing files when upgrading
+//  2. retain cards previously created by user
 - (void)copyResources
 {
 	//copy resources
@@ -79,14 +82,15 @@
 		NSString* srcPath = [resourcePath stringByAppendingPathComponent:resourceName];
 		NSString* destPath = [documentsDirectory stringByAppendingPathComponent:resourceName];
 		
-		if (![fileManager copyItemAtPath:srcPath toPath:destPath error:&error]) {
-			NSAssert(0, @"Failed to copy resource:[%@] with message '%@'",resourceName, [error localizedDescription]);
-		}
+		// delete the resource file if it already exists
+		if ([fileManager fileExistsAtPath:destPath])
+			if (! [fileManager removeItemAtPath:destPath error:&error])
+				NSLog(@"%@", error.localizedDescription);
+		
+		if (![fileManager copyItemAtPath:srcPath toPath:destPath error:&error])
+			NSLog(@"%@", error.localizedDescription);
 	}
-    
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-	
+    	
     HAMAppDelegate* delegate = [UIApplication sharedApplication].delegate;
     [delegate turnToChildView];
 }

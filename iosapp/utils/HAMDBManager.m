@@ -323,7 +323,7 @@
     [self openDatabase];
     char *errorMsg;
     
-    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%ld",parentID,index];
+    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%ld",parentID,(long)index];
     if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errorMsg)!=SQLITE_OK)
     {
         NSLog( @"Fail to delete from card_tree!");
@@ -444,7 +444,7 @@
             animationString = @"?";
             break;
     }
-    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %ld", animationString, parentID, index]];
+    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %ld", animationString, parentID, (long)index]];
 }
 
 #pragma mark -

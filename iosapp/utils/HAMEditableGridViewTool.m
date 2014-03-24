@@ -93,7 +93,7 @@
     
 //    [HAMTools setObject:button toMutableArray:cardViewArray_ atIndex:tag];
     
-    UIView* cardView = cardViewArray_[tag];
+    UIView* cardView = self.cardViewArray[tag];
     positionArray_[tag] = cardView.center;
     tagOfIndex_[tag] = tag;
     
@@ -125,7 +125,7 @@
     [blankButton addTarget:viewController_ action:@selector(addClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [pageView addSubview:blankButton];
-    [HAMTools setObject:blankButton toMutableArray:cardViewArray_ atIndex:index];
+    [HAMTools setObject:blankButton toMutableArray:self.cardViewArray atIndex:index];
     
     tagOfIndex_[index] = index;
     positionArray_[index] = blankButton.center;
@@ -278,7 +278,7 @@
     UIView* buttonView = recognizer.view;
     NSInteger tag = buttonView.tag;
     
-    UIView* cardView = cardViewArray_[tag];
+    UIView* cardView = self.cardViewArray[tag];
     [cardView.superview bringSubviewToFront:cardView];
     
     //judge if outside
@@ -307,7 +307,7 @@
         
     //get current index
     NSInteger currentIndex = 0;
-    NSInteger i, cardnum = [cardViewArray_ count];
+    NSInteger i, cardnum = self.cardViewArray.count;
     
     for (i = 0; i < cardnum; i++) {
         if (tagOfIndex_[i] == tag){
@@ -332,7 +332,7 @@
     int inc = currentIndex > nearestIndex ? 1 : -1;
     for (i = nearestIndex; i != currentIndex; i += inc) {
         NSInteger targetTag = tagOfIndex_[i];
-        UIView* targetView = cardViewArray_[targetTag];
+        UIView* targetView = self.cardViewArray[targetTag];
         if (isBlankAtTag_[targetTag]){
             //[self moveCardView:targetView toPosition:positionArray_[currentIndex] animated:NO];
             [self moveCardView:targetView toIndex:currentIndex animated:NO];

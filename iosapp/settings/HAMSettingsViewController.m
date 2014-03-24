@@ -43,7 +43,7 @@
     {
         self.currentUUID = self.config.rootID;
         refreshFlag=NO;
-        [self exitCat];
+        [self exitCategory];
     }
     
     if (self.currentUUID)
@@ -186,7 +186,7 @@
     NSInteger index=[sender tag];
     self.currentUUID = [self.config childCardIDOfCat:self.currentUUID atIndex:index];
     
-    [self enterCat];
+    [self enterCategory];
     [self refreshGridViewAndScrollToFirstPage:YES];
 }
 
@@ -235,18 +235,18 @@
 - (void)backToRootClicked:(UIButton *)sender{
     self.currentUUID = self.config.rootID;
     
-    [self exitCat];
+    [self exitCategory];
     
     [self refreshGridViewAndScrollToFirstPage:YES];
 }
 
--(void)exitCat{
+- (void)exitCategory {
     self.inCatWoodImageView.hidden = YES;
     self.backToRootButton.hidden = YES;
 //    bgImageView.image = [UIImage imageNamed:@"parent_main_bg"];
 }
 
-- (void)enterCat{
+- (void)enterCategory {
     self.inCatWoodImageView.hidden = NO;
     self.backToRootButton.hidden = NO;
 //    bgImageView.image = [UIImage imageNamed:@"child_inCat_blurBG"];
@@ -352,7 +352,8 @@
 	// Nothing to do, just ensure this method is called
 }
 
-- (void)exportCards { // FIXME: some cards seem to be not exported
+// FIXME: some cards seem to be not exported
+- (void)exportCards {
 	NSMutableArray *allCardIDs = [[NSMutableArray alloc] init];
 	NSArray *allCategoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
 	for (NSString *categoryID in allCategoryIDs) {
@@ -394,6 +395,7 @@
 	[actionSheet showInView:self.view];
 }
 
+// TODO: delete non-default users (coursewares)
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) { // confirm resetting
 		NSArray *categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];

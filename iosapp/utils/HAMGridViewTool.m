@@ -10,8 +10,6 @@
 
 @implementation HAMGridViewTool
 
-@synthesize cardViewArray_;
-
 -(id)initWithView:(UIScrollView*)_view viewInfo:(HAMViewInfo*)_viewInfo config:(HAMConfig*)_config delegate:(id)_viewController edit:(Boolean)_edit{
     if (self=[super init])
     {
@@ -47,7 +45,7 @@
             [sublayer removeFromSuperlayer];
     }
     
-    cardViewArray_=[NSMutableArray array];
+    self.cardViewArray = [NSMutableArray array];
     
     NSArray* children = [config childrenCardIDOfCat:nodeUUID];
     int btnsPerPage = viewInfo.xnum_ * viewInfo.ynum_;
@@ -130,7 +128,7 @@
     UIView* cardView = [[HAMCardView alloc] initAtPosition:cardPosition withViewInfo:viewInfo card:card];
     [pageView addSubview:cardView];
     if (tag!=-1)
-        [HAMTools setObject:cardView toMutableArray:cardViewArray_ atIndex:tag];
+        [HAMTools setObject:cardView toMutableArray:self.cardViewArray atIndex:tag];
     
     //add button area
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -196,8 +194,8 @@
     labelView.textAlignment = NSTextAlignmentCenter;
     labelView.userInteractionEnabled = NO;
     
-    if (tag >=0 && [cardViewArray_ count] > tag)
-        [cardViewArray_[tag] addSubview:labelView];
+    if (tag >=0 && [self.cardViewArray count] > tag)
+        [self.cardViewArray[tag] addSubview:labelView];
     else
     {
         [pageView addSubview:labelView];

@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_inCat_blurBG" id="vr1-gp-XaD">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_inCat_blurBG.png" id="vr1-gp-XaD">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
@@ -104,7 +104,7 @@
                     <rect key="frame" x="768" y="0.0" width="885" height="1024"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_inCat_woodBG" id="hKx-In-DNe">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="child_inCat_woodBG.png" id="hKx-In-DNe">
                             <rect key="frame" x="0.0" y="174" width="885" height="811"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -139,8 +139,8 @@
     </objects>
     <resources>
         <image name="child_inCat_backbutton.png" width="161" height="123"/>
-        <image name="child_inCat_blurBG" width="1536" height="2048"/>
-        <image name="child_inCat_woodBG" width="1770" height="1621"/>
+        <image name="child_inCat_blurBG.png" width="768" height="1024"/>
+        <image name="child_inCat_woodBG.png" width="885" height="810"/>
         <image name="child_presshint_p1.png" width="691" height="389"/>
         <image name="common_background.png" width="768" height="1024"/>
     </resources>
