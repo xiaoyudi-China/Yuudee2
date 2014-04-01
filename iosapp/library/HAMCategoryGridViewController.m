@@ -32,7 +32,7 @@
 	self.navigationController.navigationBarHidden = YES;
 	
 	// the uncategorized category is not created yet
-	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -54,7 +54,7 @@
 	}
 	
 	// !!!
-	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	[self.collectionView reloadData];
 }
 
@@ -82,7 +82,7 @@
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
-	cell.contentImageView.image = [HAMSharedData imageNamed:category.image.localPath];
+	cell.contentImageView.image = [HAMSharedData imageNamed:category.image];
 	if (! cell.contentImageView.image) // this category has no cover image
 		cell.contentImageView.image = [UIImage imageNamed:@"defaultImage.png"];
 		
@@ -186,7 +186,7 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 	
 	// update the categories displayed
-	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	[self.collectionView reloadData];
 }
 

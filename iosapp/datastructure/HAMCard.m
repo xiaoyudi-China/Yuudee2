@@ -10,18 +10,10 @@
 
 @implementation HAMCard
 
-@synthesize UUID;
-@synthesize type;
-@synthesize name;
-@synthesize image;
-@synthesize audio;
-@synthesize imageNum_;
-@synthesize isRemovable;
-
--(id)initWithID:(NSString *)_UUID
+-(id)initWithID:(NSString *)UUID
 {
     if (self=[super init])
-        UUID=_UUID;
+        self.UUID = UUID;
     return self;
 }
 
@@ -30,7 +22,7 @@
     if (self=[super  init])
     {
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
+        self.UUID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
 		CFRelease(uuidRef);
     }
     return self;

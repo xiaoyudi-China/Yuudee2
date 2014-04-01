@@ -7,6 +7,7 @@
 //
 
 #import "HAMRecorderViewController.h"
+#import "HAMSharedData.h"
 
 @interface HAMRecorderViewController ()
 
@@ -49,10 +50,10 @@
 	if (self.tempCard.audio) { // audio already exists
 		// copy the existing audio file to the temporary file
 		NSFileManager *manager = [NSFileManager defaultManager];
-		if (! [manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio.localPath] toPath:[HAMFileTools filePath:self.tempAudioName] error:&error])
+		if (! [manager copyItemAtPath:[HAMFileTools filePath:self.tempCard.audio] toPath:[HAMFileTools filePath:self.tempAudioName] error:&error])
 			NSLog(@"%@", error.localizedDescription);
 				
-		self.tempCard.audio.localPath = self.tempAudioName; // point to the temp file
+		self.tempCard.audio = self.tempAudioName; // point to the temp file
 	}
 	else {
 		self.deleteButton.enabled = NO;
@@ -75,7 +76,7 @@
 		self.recordButton.hidden = YES;
 	}
 	
-	self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image.localPath]];
+	self.imageView.image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:self.tempCard.image]];
 	self.cardNameLabel.text = self.tempCard.name;
 	if (! self.isNewCard) // edit mode
 		self.editCardTitleView.hidden = NO; // the default state is hidden
@@ -113,9 +114,9 @@
 	[HAMSharedData updateImageNamed:self.imageName withImage:image];
 	
 	// switch from temp path to the real path
-	self.tempCard.image.localPath = self.imageName;
-	self.tempCard.audio.localPath = self.audioName;
-	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
+	self.tempCard.image = self.imageName;
+	self.tempCard.audio = self.audioName;
+	[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio image:self.tempCard.image];
 		
 	// store audio
 	// ------------------
@@ -131,9 +132,9 @@
 			NSLog(@"%@", error.localizedDescription);
 				
 		// switch from temp path to the real path
-		self.tempCard.image.localPath = self.imageName;
-		self.tempCard.audio.localPath = self.audioName;
-		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio.localPath image:self.tempCard.image.localPath];
+		self.tempCard.image = self.imageName;
+		self.tempCard.audio = self.audioName;
+		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audio image:self.tempCard.image];
 	}
 	
 	// update category
@@ -171,7 +172,7 @@
 	if (self.audioRecorder.recording) { // stop recording
 		[self.audioRecorder stop];
 		if (! self.tempCard.audio)
-			self.tempCard.audio = [[HAMResource alloc] initWithPath:self.tempAudioName];
+			self.tempCard.audio = self.tempAudioName;
 		
 		[self.recordButton setImage:[UIImage imageNamed:@"record.png"] forState:UIControlStateNormal];
 		self.statusLabel.text = @"录音结束";

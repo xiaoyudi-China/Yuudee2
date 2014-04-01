@@ -79,7 +79,7 @@
 
 -(void)initWithConfig
 {
-    self.config=[[HAMConfig alloc] initFromDB];
+    self.config = [[HAMConfig alloc] initFromDB];
     if(! self.config)
     {
         return;
@@ -355,7 +355,7 @@
 // FIXME: some cards seem to be not exported
 - (void)exportCards {
 	NSMutableArray *allCardIDs = [[NSMutableArray alloc] init];
-	NSArray *allCategoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	NSArray *allCategoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	for (NSString *categoryID in allCategoryIDs) {
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
 		[allCardIDs addObjectsFromArray:cardIDs];
@@ -369,7 +369,7 @@
 		[self performSelectorOnMainThread:@selector(updateExportProgress:) withObject:@(progress) waitUntilDone:NO];
 		
 		HAMCard *card = [self.config card:cardID];
-		UIImage *image = [HAMSharedData imageNamed:card.image.localPath];
+		UIImage *image = [HAMSharedData imageNamed:card.image];
 		UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 	}
 	
@@ -398,7 +398,7 @@
 // TODO: delete non-default users (coursewares)
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (buttonIndex == 0) { // confirm resetting
-		NSArray *categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+		NSArray *categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 		for (NSString *categoryID in categoryIDs) {
 			NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
 			for (NSString *cardID in cardIDs) {
@@ -414,7 +414,7 @@
 			// delete removable categories
 			if (category.isRemovable) {
 				NSInteger categoryIndex = [categoryIDs indexOfObject:categoryID];
-				[self.config deleteChildOfCatInLib:LIB_ROOT atIndex:categoryIndex];
+				[self.config deleteChildOfCatInLib:LIB_ROOT_ID atIndex:categoryIndex];
 			}
 		}
 		

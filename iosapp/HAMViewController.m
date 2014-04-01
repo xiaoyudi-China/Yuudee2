@@ -132,17 +132,17 @@
     
 	HAMGridViewTool *currentGridView = self.inCategory ? self.inCatGridViewTool : self.gridViewTool;
     HAMCardView* cardView = currentGridView.cardViewArray[index];
-    HAMCard* card = [self.config card:room.cardID_];
+    HAMCard* card = [self.config card:room.cardID];
     
     if (animation == nil) {
         animation = [[HAMAnimation alloc] init];
     }
     [animation setCard:card andCardView:cardView];
-    [animation beginAnimation:room.animation_];
+    [animation beginAnimation:room.animation];
     
 	HAMUser *currentUser = [self.userManager currentUser];
 	if (! currentUser.mute) {
-		NSString* musicPath=[HAMFileTools filePath:[[card audio] localPath]];
+		NSString* musicPath=[HAMFileTools filePath:card.audio];
 		if (musicPath){
 			NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
 			self.audioPlayer = [[AVAudioPlayer alloc]  initWithContentsOfURL:musicURL  error:nil];

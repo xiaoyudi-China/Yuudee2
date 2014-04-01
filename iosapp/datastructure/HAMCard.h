@@ -7,23 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HAMResource.h"
 
 #define CARD_TYPE_CATEGORY 0
 #define CARD_TYPE_CARD 1
 
+typedef enum {
+	HAMCardTypeCategory = 0,
+	HAMCardTypeCard = 1
+} HAMCardType;
+
 @interface HAMCard : NSObject
-{
-}
+{}
 
 @property NSString* UUID;
-// 0 - cat 1 - card
-@property int type;
+@property HAMCardType type;
 @property NSString* name;
-@property HAMResource* image;
-@property int imageNum_;
-@property HAMResource* audio;
-@property Boolean isRemovable;
+@property NSString* image;
+@property int numImages;
+@property NSString* audio;
+@property BOOL isRemovable;
 
 -(id)initWithID:(NSString*)_UUID;
 -(id)initNewCard;

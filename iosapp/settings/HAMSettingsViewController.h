@@ -14,7 +14,6 @@
 #import "HAMCategoryGridViewController.h"
 #import "HAMConfig.h"
 #import "HAMUserManager.h"
-#import "Reachability.h"
 #import "HAMEditCardPopoverViewController.h"
 #import "HAMEditCatPopoverViewController.h"
 #import "HAMCoursewareSettingsPopoverViewController.h"

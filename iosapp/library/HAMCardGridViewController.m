@@ -80,7 +80,7 @@
 	HAMCard *card = [self.config card:[self cardIDs][indexPath.row]];
 	cell.textLabel.text = card.name;
 	
-	cell.contentImageView.image = [HAMSharedData imageNamed:card.image.localPath];
+	cell.contentImageView.image = [HAMSharedData imageNamed:card.image];
 	cell.frameImageView.image = [UIImage imageNamed:@"cardBG.png"];
 	
 	if (self.cellMode == HAMGridCellModeAdd)

@@ -9,23 +9,20 @@
 #import "HAMRoom.h"
 
 @implementation HAMRoom
-{
-}
+{}
 
-@synthesize cardID_;
-@synthesize animation_;
 
--(HAMRoom*)initWithCardID:(NSString*)cardID animation:(int)animation{
+-(HAMRoom*)initWithCardID:(NSString*)cardID animation:(HAMAnimationType)animation{
     if (self = [super init]) {
-        cardID_ = cardID;
-        animation_ = animation;
+        self.cardID = cardID;
+        self.animation = animation;
     }
     return self;
 }
 
 -(Boolean)isEqualToRoom:(HAMRoom*)aRoom
 {
-    return (cardID_ == aRoom.cardID_ && animation_ == aRoom.animation_);
+    return (self.cardID == aRoom.cardID && self.animation == aRoom.animation);
 }
 
 @end

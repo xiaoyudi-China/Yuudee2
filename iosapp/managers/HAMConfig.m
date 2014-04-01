@@ -8,6 +8,9 @@
 
 #import "HAMConfig.h"
 
+NSString *const LIB_ROOT_ID = @"lib_root";
+NSString *const UNCATEGORIZED_ID = @"uncategorized";
+
 @implementation HAMConfig
 @synthesize rootID;
 @synthesize userManager;
@@ -17,7 +20,7 @@
 
 -(id)initFromDB
 {
-    if(!(self=[super init]))
+    if(!(self = [super init]))
         return nil;
     
     dbManager=[HAMDBManager new];
@@ -88,16 +91,14 @@
     
     if (audio)
     {
-        card.audio=[[HAMResource alloc] initWithPath:audio];
-        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
-        [dbManager updateCard:card.UUID audio:card.audio.UUID];
+        card.audio = audio;
+        [dbManager updateCard:card.UUID audio:card.audio];
     }
     
     if (image)
     {
-        card.image=[[HAMResource alloc] initWithPath:image];
-        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
-        [dbManager updateCard:card.UUID image:card.image.UUID];
+        card.image = image;
+        [dbManager updateCard:card.UUID image:card.image];
     }
     
     [cards removeObjectForKey:card.UUID];
@@ -109,21 +110,17 @@
     card.UUID = UUID;
     card.name = name;
     card.type = type;
-    card.imageNum_ = 1;
+    card.numImages = 1;
     card.isRemovable = YES;
     
     if (audio)
     {
-        [dbManager deleteResourceWithID:card.audio.UUID];
-        card.audio = [[HAMResource alloc] initWithPath:audio];
-        [dbManager insertResourceWithID:card.audio.UUID path:card.audio.localPath];
+        card.audio = audio;
     }
     
     if (image)
     {
-        [dbManager deleteResourceWithID:card.image.UUID];
-        card.image = [[HAMResource alloc] initWithPath:image];
-        [dbManager insertResourceWithID:card.image.UUID path:card.image.localPath];
+        card.image = image;
     }
     
     [dbManager insertCard:card];
@@ -135,8 +132,6 @@
 {
     HAMCard* card=[self card:UUID];
     
-    [dbManager deleteResourceWithID:card.audio.UUID];
-    [dbManager deleteResourceWithID:card.image.UUID];
     [dbManager deleteCardFromTree:card.UUID];
     [dbManager deleteCardWithID:card.UUID];
     
@@ -152,7 +147,7 @@
     
     if (!room)
         return nil;
-    return room.cardID_;
+    return room.cardID;
 }
 
 -(int)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index
@@ -161,7 +156,7 @@
     
     if (!room)
         return -1;
-    return room.animation_;
+    return room.animation;
 }
 
 -(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(NSInteger)index{
@@ -197,7 +192,7 @@
     for (int i = 0; i < children.count; i++) {
         NSObject* room = children[i];
         if (room != [NSNull null]) {
-            [HAMTools setObject:((HAMRoom*)room).cardID_ toMutableArray:cardIDArray atIndex:i];
+            [HAMTools setObject:((HAMRoom*)room).cardID toMutableArray:cardIDArray atIndex:i];
         }
     }
     
@@ -253,7 +248,7 @@
         return;
     
     NSMutableArray* children=[self childrenOfCat:parentID];
-    if (!newRoom || !newRoom.cardID_)
+    if (!newRoom || !newRoom.cardID)
     {
         [HAMTools setObject:[NSNull null] toMutableArray:children atIndex:index];
         [dbManager deleteChildOfCat:parentID atIndex:index];
@@ -272,7 +267,7 @@
         return;
     
     HAMRoom* room = children[index];
-    room.animation_ = animation;
+    room.animation = animation;
     [dbManager updateAnimationOfCat:parentID toAnimation:animation atIndex:index];
 }
 

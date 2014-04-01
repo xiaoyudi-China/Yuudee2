@@ -7,6 +7,7 @@
 //
 
 #import "HAMCardView.h"
+#import "HAMSharedData.h"
 
 @implementation HAMCardView
 {
@@ -88,7 +89,7 @@
 		fgImage = [imageCache objectForKey:path];
 	}
 */
-    NSString* picName = card.image.localPath;
+    NSString* picName = card.image;
 	UIImage* fgImage = [HAMSharedData imageNamed:picName];
     
 	cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
@@ -131,10 +132,12 @@
 #pragma mark Gif Delegate
 
 - (void)changeGifImageToPicNum:(int)picNum{
-    NSString* picName = card_.image.UUID;
-    NSString* targetPic = [picName substringToIndex:[picName rangeOfString:@"p"].location];
-    targetPic = [NSString stringWithFormat:@"%@p%d.jpg",targetPic,picNum];
-    [self changeCardImagePathToPath:targetPic];
+    NSString *imageLocalPath = card_.image;
+	NSString *imageSubdirPath = [imageLocalPath stringByDeletingLastPathComponent];
+	NSString *imageName = [NSString stringWithFormat:@"%d.jpg", picNum];
+    NSString* targetImage = [imageSubdirPath stringByAppendingPathComponent:imageName];
+	
+    [self changeCardImagePathToPath:targetImage];
 }
 
 - (void)endGif{

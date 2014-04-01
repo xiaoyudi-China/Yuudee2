@@ -14,7 +14,8 @@
 #import "HAMUser.h"
 #import "HAMRoom.h"
 
-#define DBNAME @"app_data.db"
+//#define DBNAME @"app_data.db"
+extern NSString* const DATABASE_NAME;
 
 @interface HAMDBManager : NSObject
 {
@@ -42,13 +43,7 @@
 -(void)deleteChildOfCat:(NSString*)parentID atIndex:(NSInteger)index;
 -(void)deleteCardFromTree:(NSString*)UUID;
 -(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
--(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(NSInteger)index;
-//-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex;
-//-(Boolean)ifCat:(NSString*)parentID hasChildAt:(int)pos;
-
-//table RESOURCE
--(void)insertResourceWithID:(NSString*)UUID path:(NSString*)path;
--(void)deleteResourceWithID:(NSString*)UUID;
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(HAMAnimationType)animation atIndex:(NSInteger)index;
 
 //table USER
 -(HAMUser*)user:(NSString*)userID;

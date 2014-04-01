@@ -59,7 +59,7 @@
         cardView_.center = pageCenter;
         cardView_.transform = CGAffineTransformMakeScale(scale, scale);
     }]];
-    QBAnimationGroup *groupScaleNom = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:1.0 delay:card_.imageNum_ options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    QBAnimationGroup *groupScaleNom = [QBAnimationGroup groupWithItem:[QBAnimationItem itemWithDuration:1.0 delay:card_.numImages options:UIViewAnimationOptionCurveEaseInOut animations:^{
         [self playGifOnCardView];
         cardView_.transform = CGAffineTransformMakeScale(1, 1);
         cardView_.frame = originFrame;
@@ -130,13 +130,13 @@
 }
 
 - (void)playGifOnCardView{
-    if (card_.imageNum_ <= 1) {
+    if (card_.numImages <= 1) {
         return;
     }
     
     gifDelegate_ = cardView_;
     
-    [self playGifWithTimeInterval:1.0f totalPicNum:card_.imageNum_];
+    [self playGifWithTimeInterval:1.0f totalPicNum:card_.numImages];
 }
 
 - (void)playGifWithTimeInterval:(double)interval totalPicNum:(int)totalnum{

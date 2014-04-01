@@ -19,9 +19,7 @@
 @end
 
 @interface HAMAnimation : NSObject
-{
-    
-}
+{}
 
 
 @property id<HAMGifAnimationDelegate> gifDelegate_;

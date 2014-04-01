@@ -79,26 +79,6 @@
 
 }
 
-+(NSDictionary*)fetchConfigFromJson
-{
-    /*FILE *configFile = fopen([[self filePath:@"config.txt"] UTF8String],"r");
-    char line[300];
-    NSString* rawString=@"";
-    while(fgets(line,300,configFile)){
-        rawString=[rawString stringByAppendingFormat:@"%@",[[NSString alloc] initWithUTF8String:line]];
-    }
-    
-    fclose(configFile);
-    
-    rawString=[rawString stringByReplacingOccurrencesOfString: @"\r" withString:@""];
-    rawString=[rawString stringByReplacingOccurrencesOfString: @"\n" withString:@""];
-    
-    NSData* rawData=[rawString dataUsingEncoding: NSUTF8StringEncoding];*/
-    return nil;
-}
-
-
-
 #pragma mark -
 #pragma mark Write Methods
 

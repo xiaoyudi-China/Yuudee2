@@ -7,6 +7,7 @@
 //
 
 #import "HAMCategoryEditorViewController.h"
+#import "HAMSharedData.h"
 
 @interface HAMCategoryEditorViewController ()
 
@@ -67,9 +68,9 @@
 			[self.config deleteChildOfCatInLib:self.categoryID atIndex:index];
 		}
 		
-		NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+		NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 		NSUInteger catIndex = [catIDs indexOfObject:self.categoryID];
-		[self.config deleteChildOfCatInLib:LIB_ROOT atIndex:catIndex];
+		[self.config deleteChildOfCatInLib:LIB_ROOT_ID atIndex:catIndex];
 		
 		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
 	}
@@ -131,9 +132,9 @@
 		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];
 		category.isRemovable = YES; // ???: what's this for?
 		
-		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT].count;
+		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT_ID].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
-		[self.config updateRoomOfCat:LIB_ROOT with:room atIndex:numChildren];
+		[self.config updateRoomOfCat:LIB_ROOT_ID with:room atIndex:numChildren];
 
 		// collect user statistics
 		NSDictionary *attrs = @{@"分类名称": categoryName};

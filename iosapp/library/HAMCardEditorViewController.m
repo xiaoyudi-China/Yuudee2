@@ -72,7 +72,7 @@
 		if (! [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error])
 			NSLog(@"%@", error.localizedDescription);
 				
-		self.tempCard.image.localPath = self.tempImageName; // point to the temporary file
+		self.tempCard.image = self.tempImageName; // point to the temporary file
 		self.imageView.image = [HAMSharedData imageNamed:self.tempImageName];
 		
 		self.editCardTitleView.hidden = NO; // default state is hidden
@@ -89,7 +89,7 @@
 		self.shootImageButton.enabled = NO;
 	
 	// this won't change in the lifetime of the current view
-	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT];
+	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	
 	HAMCard *category = [self.config card:self.categoryID];
 	self.categoryNameLabel.text = category.name;
@@ -191,7 +191,7 @@
 	}
 	else {
 		if (! self.tempCard.image)
-			self.tempCard.image = [[HAMResource alloc] initWithPath:self.tempImageName];
+			self.tempCard.image = self.tempImageName;
 	}
 	
 	// can save new card now
@@ -217,8 +217,8 @@
 			NSLog(@"%@", error.localizedDescription);
 	
 	// FIXME: have to switch these members back, WHY ?!!!
-	self.tempCard.image.localPath = self.imageName;
-	self.tempCard.audio.localPath = self.audioName;
+	self.tempCard.image = self.imageName;
+	self.tempCard.audio = self.audioName;
 
 	[self.delegate cardEditorDidCancelEditing:self];
 }

@@ -15,7 +15,6 @@
 +(NSString*)filePath:(NSString*)fileName;
 
 +(NSMutableArray*)fetchNodes;
-+(NSDictionary*)fetchConfigFromJson;
 
 +(void) writeNodes:(NSMutableArray*)nodes;
 

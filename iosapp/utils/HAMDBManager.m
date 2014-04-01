@@ -8,10 +8,25 @@
 
 #import "HAMDBManager.h"
 
+NSString* const DATABASE_NAME = @"app_data.sqlite";
+
+@interface HAMDBManager ()
+@property (nonatomic) NSString *databasePath;
+@end
+
 @implementation HAMDBManager
 
 #pragma mark
 #pragma mark DB METHODS
+
+// TODO: make this more intuitive
+- (NSString*)databasePath {
+	if (! _databasePath) {
+		NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;
+		_databasePath = [libraryPath stringByAppendingPathComponent:DATABASE_NAME];
+	}
+	return _databasePath;
+}
 
 -(Boolean)openDatabase
 {
@@ -21,7 +36,7 @@
         return true;
     }
     
-    if (sqlite3_open([[HAMFileTools filePath:DBNAME] UTF8String], &database)
+    if (sqlite3_open([self databasePath].UTF8String, &database)
         != SQLITE_OK)
     {
         sqlite3_close(database);
@@ -35,7 +50,7 @@
 
 -(Boolean)isDatabaseExist
 {
-    int rc=sqlite3_open_v2([[HAMFileTools filePath:DBNAME] UTF8String], &database, SQLITE_OPEN_READWRITE, NULL);
+    int rc=sqlite3_open_v2([self databasePath].UTF8String, &database, SQLITE_OPEN_READWRITE, NULL);
     if (rc==0)
         sqlite3_close(database);
     return rc==0;
@@ -151,18 +166,12 @@
     
     card.name=[self stringAt:2];
     
-    NSString* imageID,* audioID;
-    imageID=[self stringAt:3];
-    audioID=[self stringAt:4];
-    card.imageNum_ = sqlite3_column_int(statement, 5);
+    card.image = [self stringAt:3];
+    card.audio = [self stringAt:4];
+    card.numImages = sqlite3_column_int(statement, 5);
     card.isRemovable = sqlite3_column_int(statement, 6);
     
     [self closeDatabase];
-    
-    if (imageID)
-        card.image=[self resource:imageID];
-    if (audioID)
-        card.audio=[self resource:audioID];
     
     return card;
 }
@@ -216,7 +225,7 @@
 {
     [self openDatabase];
     
-    char* update="INSERT INTO CARD (ID, TYPE, NAME, IMAGE, AUDIO, IMAGENUM, REMOVABLE) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    char* update="INSERT INTO Card (id, type, name, image, audio, num_images, removable) VALUES (?, ?, ?, ?, ?, ?, ?);";
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(database, update, -1, &stmt, nil)==SQLITE_OK)
     {
@@ -239,9 +248,9 @@
         sqlite3_bind_text(stmt, 2, type, -1, NULL);
         
         sqlite3_bind_text(stmt, 3, [card.name UTF8String], -1, NULL);
-        sqlite3_bind_text(stmt, 4, [card.image.UUID UTF8String], -1, NULL);
-        sqlite3_bind_text(stmt, 5, [card.audio.UUID UTF8String], -1, NULL);
-        sqlite3_bind_int(stmt, 6, card.imageNum_);
+        sqlite3_bind_text(stmt, 4, [card.image UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 5, [card.audio UTF8String], -1, NULL);
+        sqlite3_bind_int(stmt, 6, card.numImages);
         sqlite3_bind_int(stmt, 7, card.isRemovable);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)
@@ -272,9 +281,9 @@
 {
     [self openDatabase];
     
-    NSString* query=[[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CARD_TREE WHERE PARENT='%@';",parentID];
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
+    NSString* query = [[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CARD_TREE WHERE PARENT='%@';",parentID];
+    int result = sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
+    if (result != SQLITE_OK)
     {
         NSAssert(0,@"Fail to select from card_tree!");
         [self closeDatabase];
@@ -285,38 +294,16 @@
     while (sqlite3_step(statement) == SQLITE_ROW)
     {
         NSString* childID = [self stringAt:0];
-        int pos=sqlite3_column_int(statement, 1);
-        NSString* animation = [self stringAt:2];
+        NSInteger pos = sqlite3_column_int(statement, 1);
+        HAMAnimationType animation = sqlite3_column_int(statement, 2);
         
-        int animationType;
-        if ([animation isEqualToString:@"SHAKE"] || [animation isEqualToString:@"shake"]) {
-            animationType = ROOM_ANIMATION_SHAKE;
-        }
-        else if ([animation isEqualToString:@"SCALE"] || [animation isEqualToString:@"scale"]){
-            animationType = ROOM_ANIMATION_SCALE;
-        }
-        else{
-            animationType = ROOM_ANIMATION_NONE;
-        }
-        
-        HAMRoom* room = [[HAMRoom alloc] initWithCardID:childID animation:animationType];
+        HAMRoom* room = [[HAMRoom alloc] initWithCardID:childID animation:animation];
         [HAMTools setObject:room toMutableArray:children atIndex:pos];
     }
     
     [self closeDatabase];
     return children;
 }
-
-/*
--(Boolean)ifCat:(NSString*)parentID hasChildAt:(int)pos{
-    [self prepareSelect:@"*" from:@"CARD_TREE" where:[[NSString alloc] initWithFormat:@"PARENT = '%@' and POSITION = %d",parentID,pos]];
-    
-    Boolean exist=sqlite3_step(statement)==SQLITE_ROW;
-    
-    [self closeDatabase];
-    return exist;
-
-}*/
 
 -(void)deleteChildOfCat:(NSString *)parentID atIndex:(NSInteger)index
 {
@@ -353,140 +340,29 @@
 {
     [self openDatabase];
     
-    /*NSString* query=[[NSString alloc] initWithFormat:@"CREATE INDEX PARENT_POSITION ON CARD_TREE (PARENT, POSITION)"];
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
-    {
-        NSAssert(0,@"Fail to create index!");
-        [self closeDatabase];
-        return;
-    }*/
-    
     //TODO: I don't know if this insert or replace works!! Must add index creating to SQL on server!
     
     char* update="INSERT OR REPLACE INTO CARD_TREE (CHILD, PARENT, POSITION, ANIMATION) VALUES (?, ?, ?, ?);";
     
     if (sqlite3_prepare_v2(database, update, -1, &statement, nil)==SQLITE_OK)
     {
-        sqlite3_bind_text(statement, 1, [newRoom.cardID_ UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 1, [newRoom.cardID UTF8String], -1, NULL);
         sqlite3_bind_text(statement, 2, [parentID UTF8String], -1, NULL);
-        //sqlite3_bind_int(statement, 3, index);
-		sqlite3_bind_int64(statement, 3, index);
-        
-        NSString* animation;
-        switch (newRoom.animation_) {
-            case ROOM_ANIMATION_NONE:
-                animation = @"NONE";
-                break;
-                
-            case ROOM_ANIMATION_SCALE:
-                animation = @"SCALE";
-                break;
-                
-            case ROOM_ANIMATION_SHAKE:
-                animation = @"SHAKE";
-                break;
-                
-            default:
-                break;
-        }
-        sqlite3_bind_text(statement, 4, [animation UTF8String], -1, NULL);
+		sqlite3_bind_int(statement, 3, index);
+		sqlite3_bind_int(statement, 4, newRoom.animation);
     }
-    if (sqlite3_step(statement)!=SQLITE_DONE)
-    {
+    if (sqlite3_step(statement)!=SQLITE_DONE) {
         NSAssert(0, @"Error updating");
     }
     
-    /*NSString* query=[[NSString alloc]initWithFormat:@"SELECT * FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%d",parentID,index];
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
-    {
-        NSAssert(0,@"Fail to select from card_tree!");
-        [self closeDatabase];
-        return;
-    }
-    
-    if(sqlite3_step(statement)==SQLITE_ROW)
-    {
-        //record exists. we need to update
-        
-    }
-    else
-    {
-        //record doesn't exist. we need to insert
-    }*/
-    
     [self closeDatabase];
 }
 
-/*-(void)updateChild:(NSString*)childID ofCat:(NSString*)parentID toIndex:(int)newIndex
+-(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(HAMAnimationType)animation atIndex:(NSInteger)index
 {
-    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET POSITION = %d WHERE CHILD = '%@' AND PARENT = '%@'",newIndex, childID, parentID]];
-}*/
-
--(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(int)animation atIndex:(NSInteger)index
-{
-    NSString* animationString;
-    switch (animation) {
-        case ROOM_ANIMATION_NONE:
-            animationString = @"NONE";
-            break;
-        
-        case ROOM_ANIMATION_SCALE:
-            animationString = @"SCALE";
-            break;
-            
-        case ROOM_ANIMATION_SHAKE:
-            animationString = @"SHAKE";
-            break;
-            
-        default:
-            animationString = @"?";
-            break;
-    }
-    [self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%@' WHERE PARENT = '%@' AND POSITION = %ld", animationString, parentID, (long)index]];
+	[self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%d' WHERE PARENT = '%@' AND POSITION = %d", animation, parentID, (int)index]];
 }
 
-#pragma mark -
-#pragma mark From RESOURCES
-
--(HAMResource*)resource:(NSString*)UUID
-{
-    [self openDatabase];
-    
-    NSString* query=[[NSString alloc]initWithFormat:@"SELECT * FROM RESOURCES WHERE ID='%@'",UUID];
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
-    {
-        NSAssert(0,@"Fail to select from resource!");
-        [self closeDatabase];
-        return nil;
-    }
-    
-    sqlite3_step(statement);
-    HAMResource* resource=[HAMResource alloc];
-    
-    resource.UUID=[self stringAt:0];
-    resource.localPath=[self stringAt:1];
-    
-    [self closeDatabase];
-    return resource;
-}
-
--(void)deleteResourceWithID:(NSString*)UUID
-{
-    [self openDatabase];
-    char *errorMsg;
-    
-    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM RESOURCES WHERE ID='%@';",UUID];
-    if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errorMsg)!=SQLITE_OK)
-    {
-        NSLog( @"Fail to delete from RESOURCE!");
-        [self ErrorReport: sql];
-    }
-    
-    [self closeDatabase];
-}
 
 -(void)insertResourceWithID:(NSString*)UUID path:(NSString*)path
 {

@@ -18,8 +18,8 @@
 #define FLAGNUM 5
 #define NODENUM 66
 
-#define LIB_ROOT @"lib_root"
-#define UNCATEGORIZED_ID @"uncategorized"
+extern NSString *const LIB_ROOT_ID;
+extern NSString *const UNCATEGORIZED_ID;
 
 @class HAMUserManager;
 
