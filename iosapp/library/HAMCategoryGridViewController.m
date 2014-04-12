@@ -77,12 +77,12 @@
   	HAMCard *category = [self.config card:categoryID]; // only display categories
 	
 	// FIXME
-	if ([category.UUID isEqualToString:UNCATEGORIZED_ID])
-		category.isRemovable = NO;
+	if ([category.cardID isEqualToString:UNCATEGORIZED_ID])
+		category.removable = NO;
 	
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
-	cell.contentImageView.image = [HAMSharedData imageNamed:category.image];
+	cell.contentImageView.image = [HAMSharedData imageAtPath:category.imagePath];
 	if (! cell.contentImageView.image) // this category has no cover image
 		cell.contentImageView.image = [UIImage imageNamed:@"defaultImage.png"];
 		
@@ -93,7 +93,7 @@
 	else { // Mode edit
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		// don't allow editing system-provided categories or cards
-		cell.rightTopButton.hidden = ! category.isRemovable;
+		cell.rightTopButton.hidden = ! category.removable;
 	}
 		
 	cell.indexPath = indexPath;

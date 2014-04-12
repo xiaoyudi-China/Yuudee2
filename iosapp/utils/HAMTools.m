@@ -10,14 +10,14 @@
 
 @implementation HAMTools
 
-+(void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(NSInteger)pos
++ (void)setObject:(id)object toMutableArray:(NSMutableArray*)array atIndex:(NSInteger)pos
 {
     for (NSInteger i=[array count];i<pos;i++)
         [array addObject:[NSNull null]];
     [array setObject:object atIndexedSubscript:pos];
 }
 
-+(NSDictionary*)jsonFromData:(NSData*)data
++ (NSDictionary*)jsonFromData:(NSData*)data
 {
     NSError* error;
     NSDictionary* dic = [NSJSONSerialization

@@ -38,8 +38,9 @@
 	else { // editing
 		self.categoryNameField.text = [self.config card:self.categoryID].name;
 		self.tempCategoryName = self.categoryNameField.text;
-		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", self.categoryID];
-		self.categoryCoverView.image = [HAMSharedData imageNamed:imageName];
+		NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+		NSString *imagePath = [documentPath stringByAppendingPathComponent:@"cover.jpg"];
+		self.categoryCoverView.image = [HAMSharedData imageAtPath:imagePath];
 		if (! self.categoryCoverView.image) // if there's no image, just display the xiaoyudi logo
 			self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
@@ -98,42 +99,35 @@
 - (IBAction)finishButtonPressed:(id)sender {
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSData *imageData = UIImageJPEGRepresentation(self.categoryCoverView.image, 1.0);
+	NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+	NSString *imagePath = [[documentPath stringByAppendingPathComponent:self.tempCategoryName] stringByAppendingPathComponent:@"cover.jpg"];
 	
 	if (self.categoryID) { // editing category
 		HAMCard *category = [self.config card:self.categoryID];
 		
-		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", category.UUID];
-		NSString *filePath = [HAMFileTools filePath:imageName];
 		NSError *error;
-		if (! [fileManager removeItemAtPath:filePath error:&error]) // remove the old image
+		if (! [fileManager removeItemAtPath:imagePath error:&error]) // delete the old image
 			NSLog(@"%@", error.localizedDescription);
-		if (! [imageData writeToFile:filePath atomically:YES]) // save the new image
-			NSLog(@"failed to save image file");
-		
-		// update the image cache
-		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
-		
-		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imageName];
+		if (! [imageData writeToFile:imagePath atomically:YES]) // save the new image
+			NSLog(@"failed to save image");
+				
+		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imagePath];
 	}
 	else { // creating category
 		HAMCard *category = [[HAMCard alloc] initNewCard];
 		NSString *categoryName = self.tempCategoryName;
 		
-		NSString *imageName = [NSString stringWithFormat:@"%@.jpg", category.UUID];
-		NSString *filePath = [HAMFileTools filePath:imageName];
-		BOOL success = [imageData writeToFile:filePath atomically:YES];
-		if (! success) {
-			// TODO: error handling
-		}
-		// update the image cache
-		[HAMSharedData updateImageNamed:imageName withImage:self.categoryCoverView.image];
+		if (! [imageData writeToFile:imagePath atomically:YES])
+			NSLog(@"failed to save image");
 		
-		// type 0 indicates a category
-		[self.config newCardWithID:category.UUID name:categoryName type:0 audio:nil image:imageName];
-		category.isRemovable = YES; // ???: what's this for?
+		// update the image cache
+		[HAMSharedData updateImageAtPath:imagePath withImage:self.categoryCoverView.image];
+		
+		[self.config newCardWithID:category.cardID name:categoryName type:HAMCardTypeCategory audio:nil image:imagePath];
+		category.removable = YES; // ???: what's this for?
 		
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT_ID].count;
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.UUID animation:ROOM_ANIMATION_NONE];
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.cardID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:LIB_ROOT_ID with:room atIndex:numChildren];
 
 		// collect user statistics

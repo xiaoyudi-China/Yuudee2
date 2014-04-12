@@ -156,7 +156,7 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     sqlite3_step(statement);
     HAMCard* card=[HAMCard alloc];
 
-    card.UUID=[self stringAt:0];
+    card.cardID=[self stringAt:0];
     
     NSString* type=[self stringAt:1];
     if ([type isEqualToString:@"card"])
@@ -166,10 +166,10 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     
     card.name=[self stringAt:2];
     
-    card.image = [self stringAt:3];
-    card.audio = [self stringAt:4];
+    card.imagePath = [self stringAt:3];
+    card.audioPath = [self stringAt:4];
     card.numImages = sqlite3_column_int(statement, 5);
-    card.isRemovable = sqlite3_column_int(statement, 6);
+    card.removable = sqlite3_column_int(statement, 6);
     
     [self closeDatabase];
     
@@ -229,7 +229,7 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(database, update, -1, &stmt, nil)==SQLITE_OK)
     {
-        sqlite3_bind_text(stmt, 1, [card.UUID UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 1, [card.cardID UTF8String], -1, NULL);
         
         char* type;
         switch (card.type) {
@@ -248,10 +248,10 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
         sqlite3_bind_text(stmt, 2, type, -1, NULL);
         
         sqlite3_bind_text(stmt, 3, [card.name UTF8String], -1, NULL);
-        sqlite3_bind_text(stmt, 4, [card.image UTF8String], -1, NULL);
-        sqlite3_bind_text(stmt, 5, [card.audio UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 4, [card.imagePath UTF8String], -1, NULL);
+        sqlite3_bind_text(stmt, 5, [card.audioPath UTF8String], -1, NULL);
         sqlite3_bind_int(stmt, 6, card.numImages);
-        sqlite3_bind_int(stmt, 7, card.isRemovable);
+        sqlite3_bind_int(stmt, 7, card.removable);
     }
     if (sqlite3_step(stmt)!= SQLITE_DONE)
         NSAssert(0, @"Error inserting into card");

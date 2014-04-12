@@ -142,7 +142,7 @@
     
 	HAMUser *currentUser = [self.userManager currentUser];
 	if (! currentUser.mute) {
-		NSString* musicPath=[HAMFileTools filePath:card.audio];
+		NSString* musicPath = card.audioPath;
 		if (musicPath){
 			NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
 			self.audioPlayer = [[AVAudioPlayer alloc]  initWithContentsOfURL:musicURL  error:nil];

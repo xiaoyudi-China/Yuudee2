@@ -80,7 +80,7 @@
 	HAMCard *card = [self.config card:[self cardIDs][indexPath.row]];
 	cell.textLabel.text = card.name;
 	
-	cell.contentImageView.image = [HAMSharedData imageNamed:card.image];
+	cell.contentImageView.image = [HAMSharedData imageAtPath:card.imagePath];
 	cell.frameImageView.image = [UIImage imageNamed:@"cardBG.png"];
 	
 	if (self.cellMode == HAMGridCellModeAdd)
@@ -89,10 +89,10 @@
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"edit.png"] forState:UIControlStateNormal];
 		
 		// don't allow editing system-provided categories or cards
-		cell.rightTopButton.hidden = ! card.isRemovable;
+		cell.rightTopButton.hidden = ! card.removable;
 	}
 	
-	if ([self.selectedCardIDs containsObject:card.UUID]) // this card is already selected
+	if ([self.selectedCardIDs containsObject:card.cardID]) // this card is already selected
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"checkedbox.png"] forState:UIControlStateNormal];
 	
 	cell.indexPath = indexPath;

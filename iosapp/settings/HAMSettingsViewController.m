@@ -369,7 +369,7 @@
 		[self performSelectorOnMainThread:@selector(updateExportProgress:) withObject:@(progress) waitUntilDone:NO];
 		
 		HAMCard *card = [self.config card:cardID];
-		UIImage *image = [HAMSharedData imageNamed:card.image];
+		UIImage *image = [HAMSharedData imageAtPath:card.imagePath];
 		UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 	}
 	
@@ -404,7 +404,7 @@
 			for (NSString *cardID in cardIDs) {
 				HAMCard *card = [self.config card:cardID];
 				// delete removable cards
-				if (card.isRemovable) {
+				if (card.removable) {
 					NSInteger cardIndex = [cardIDs indexOfObject:cardID];
 					[self.config deleteChildOfCatInLib:categoryID atIndex:cardIndex];
 				}
@@ -412,7 +412,7 @@
 			
 			HAMCard *category = [self.config card:categoryID];
 			// delete removable categories
-			if (category.isRemovable) {
+			if (category.removable) {
 				NSInteger categoryIndex = [categoryIDs indexOfObject:categoryID];
 				[self.config deleteChildOfCatInLib:LIB_ROOT_ID atIndex:categoryIndex];
 			}

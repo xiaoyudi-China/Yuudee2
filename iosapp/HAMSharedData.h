@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSCache *imageCache;
 
 + (id)sharedData;
-+ (UIImage*)imageNamed:(NSString*)imageName;
-+ (void)updateImageNamed:(NSString*)imageName withImage:(UIImage*)image;
++ (UIImage*)imageAtPath:(NSString*)path;
++ (void)updateImageAtPath:(NSString*)path withImage:(UIImage*)image;
 
 @end

@@ -20,9 +20,7 @@
 }
 
 // TODO: support for retina display
-+ (UIImage*)imageNamed:(NSString *)imageName {
-	NSString *fileName = imageName;
-	NSString *path = [HAMFileTools filePath:fileName];
++ (UIImage*)imageAtPath:(NSString *)path {
 	NSCache *imageCache = ((HAMSharedData*)[self sharedData]).imageCache;
 	if (! [imageCache objectForKey:path]) {
 		UIImage *image = [UIImage imageWithContentsOfFile:path];
@@ -34,9 +32,7 @@
 	return [imageCache objectForKey:path];
 }
 
-+ (void)updateImageNamed:(NSString*)imageName withImage:(UIImage*)image {
-	NSString *fileName = imageName;
-	NSString *path = [HAMFileTools filePath:fileName];
++ (void)updateImageAtPath:(NSString *)path withImage:(UIImage *)image {
 	NSCache *imageCache = ((HAMSharedData*)[self sharedData]).imageCache;
 	[imageCache setObject:image forKey:path];
 }

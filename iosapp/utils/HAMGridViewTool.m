@@ -99,7 +99,7 @@
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
         {
-            NSString* childID=[config childCardIDOfCat:card.UUID atIndex:childIndex];
+            NSString* childID=[config childCardIDOfCat:card.cardID atIndex:childIndex];
         
             if(!childID || (NSNull*)childID==[NSNull null])
                 continue;

@@ -19,15 +19,15 @@ typedef enum {
 @interface HAMCard : NSObject
 {}
 
-@property NSString* UUID;
+@property NSString* cardID;
 @property HAMCardType type;
 @property NSString* name;
-@property NSString* image;
+@property NSString* imagePath;
 @property int numImages;
-@property NSString* audio;
-@property BOOL isRemovable;
+@property NSString* audioPath;
+@property BOOL removable;
 
--(id)initWithID:(NSString*)_UUID;
 -(id)initNewCard;
+- (id)initNewCardAtPath:(NSString*)path;
 
 @end

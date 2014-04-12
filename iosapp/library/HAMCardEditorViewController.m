@@ -10,24 +10,10 @@
 
 @interface HAMCardEditorViewController ()
 
-@property NSString *imageName;
-@property NSString *tempImageName;
-@property NSString *audioName;
-@property NSString *tempAudioName;
+@property (nonatomic) NSString *tempCardPath;
 
 @end
 
-@interface UIImagePickerController(NoRotation)
-- (BOOL)shouldAutorotate;
-@end
-
-@implementation UIImagePickerController(NoRotation)
-
-- (BOOL)shouldAutorotate {
-	return NO;
-}
-
-@end
 
 @implementation HAMCardEditorViewController
 
@@ -46,35 +32,29 @@
     // Do any additional setup after loading the view from its nib.
 	
 	// initialize the temporary card
-	if (self.cardID) { // editing card
-		self.tempCard = [self.config card:self.cardID];
-	}
-	else { // creating card
-		self.tempCard = [[HAMCard alloc] initNewCard]; // get a UUID
-		[self.config newCardWithID:self.tempCard.UUID name:nil type:1 audio:nil image:nil]; // type 1 indicates a card
-		self.tempCard.type = 1; // this statement can be removed
-		self.tempCard.isRemovable = YES;
-	}
+	NSString *tempPath = NSTemporaryDirectory();
+	self.tempCardPath = [tempPath stringByAppendingPathComponent:@"temp.xydcard"];
+	self.tempCard = [[HAMCard alloc] initNewCardAtPath:self.tempCardPath];
+	self.tempCard.type = HAMCardTypeCard;
+	self.tempCard.removable = YES;
 	
-	self.imageName = [NSString stringWithFormat:@"%@.jpg", self.tempCard.UUID];
-	self.tempImageName = [NSString stringWithFormat:@"%@-temp.jpg", self.tempCard.UUID];
-	self.audioName = [NSString stringWithFormat:@"%@.caf", self.tempCard.UUID];
-	self.tempAudioName = [NSString stringWithFormat:@"%@-temp.caf", self.tempCard.UUID];
-
-	
-	// update the view accordingly
-	if (self.cardID) { // editing card
-		// copy the existing image file to the temporary
-		NSFileManager *manager = [NSFileManager defaultManager];
-		NSError *error;
-		NSString *imagePath = [HAMFileTools filePath:self.imageName];
-		NSString *tempImagePath = [HAMFileTools filePath:self.tempImageName];
-		if (! [manager copyItemAtPath:imagePath toPath:tempImagePath error:&error])
-			NSLog(@"%@", error.localizedDescription);
-				
-		self.tempCard.image = self.tempImageName; // point to the temporary file
-		self.imageView.image = [HAMSharedData imageNamed:self.tempImageName];
+	NSString *origCardPath = nil;
+	// if we're editing an existing card, copy the resources into the temporary card
+	if (self.cardID) {
+		HAMCard *origCard = [self.config card:self.cardID];
+		self.tempCard.name = origCard.name;
+		self.tempCard.cardID = origCard.cardID;
 		
+		NSFileManager *fileManager = [NSFileManager defaultManager];
+		NSError *error;
+		if (! [fileManager copyItemAtPath:origCard.imagePath toPath:self.tempCard.imagePath error:&error])
+			NSLog(@"%@", error.localizedDescription);
+		if (! [fileManager copyItemAtPath:origCard.audioPath toPath:self.tempCard.audioPath error:&error])
+			NSLog(@"%@", error.localizedDescription);
+		
+		origCardPath = [origCard.name stringByAppendingPathExtension:@"xydcard"];
+		
+		self.imageView.image = [UIImage imageWithContentsOfFile:self.tempCard.imagePath];
 		self.editCardTitleView.hidden = NO; // default state is hidden
 	}
 	else { // new card
@@ -83,6 +63,7 @@
 		// must specify card name and image before recording
 		self.recordButton.enabled = NO;
 	}
+	self.cardNameField.text = self.cardNameLabel.text = self.tempCard.name;
 	
 	// detect if camera is available
 	if (! [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -95,16 +76,16 @@
 	self.categoryNameLabel.text = category.name;
 	self.newCategoryID = self.categoryID;
 	
-	self.cardNameField.text = self.cardNameLabel.text = self.tempCard.name;
-	
 	// initialize the recorder
 	self.recorder = [[HAMRecorderViewController alloc] initWithNibName:@"HAMRecorderViewController" bundle:nil];
 	self.recorder.config = self.config;
 	self.recorder.tempCard = self.tempCard;
+	self.recorder.tempCardPath = self.tempCardPath;
+	self.recorder.origCardPath = origCardPath; // may be nil
 	self.recorder.isNewCard = ! self.cardID;
 	self.recorder.delegate = self;
 	
-	// NOTE: this properties may be unintialized
+	// NOTE: these properties may be unintialized
 	self.recorder.addCardOnCreation = self.addCardOnCreation;
 	self.recorder.parentID = self.parentID;
 	self.recorder.index = self.index;
@@ -127,7 +108,7 @@
 	self.cardNameLabel.text = self.tempCard.name;
 	
 	// can save new card now
-	self.recordButton.enabled = (self.tempCard.name.length && self.tempCard.image) ? YES : NO;
+	self.recordButton.enabled = (self.tempCard.name.length && self.tempCard.imagePath) ? YES : NO;
 	
 	// re-enable taking pictures
 	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
@@ -138,7 +119,7 @@
 	return  NO;
 }
 
-- (IBAction)recordButtonTapped:(id)sender {
+- (IBAction)recordButtonPressed:(id)sender {
 	self.recorder.categoryID = self.categoryID;
 	self.recorder.newCategoryID = self.newCategoryID;
 	
@@ -178,22 +159,11 @@
 }
 
 - (void)imageCropper:(HAMImageCropperViewController *)imageCropper didFinishCroppingWithImage:(UIImage *)croppedImage {
-	
 	self.imageView.image = croppedImage; // update the displaying
-	
-	// save the image to a temporary file
-	BOOL success = [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:[HAMFileTools filePath:self.tempImageName] atomically:YES];
-	
-	if (!success) { // something wrong
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法选取图片" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles: nil];
-		[alert show];
-		return; //cannot create new card
-	}
-	else {
-		if (! self.tempCard.image)
-			self.tempCard.image = self.tempImageName;
-	}
-	
+		
+	if (! [UIImageJPEGRepresentation(croppedImage, 1.0) writeToFile:self.tempCard.imagePath atomically:YES])
+		NSLog(@"failed to save the image");
+		
 	// can save new card now
 	if (self.tempCard.name)
 		self.recordButton.enabled = YES;
@@ -201,24 +171,12 @@
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (IBAction)cancelButtonTapped:(id)sender {
-	if (! self.cardID) // cancel card creation
-		[self.config deleteCard:self.tempCard.UUID];
-	
+- (IBAction)cancelButtonPressed:(id)sender {
 	NSFileManager *manager = [NSFileManager defaultManager];
 	NSError *error;
-	// delete the temporary image file
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempImageName]])
-		if (! [manager removeItemAtPath:[HAMFileTools filePath:self.tempImageName] error:&error])
-			NSLog(@"%@", error.localizedDescription);
-	// delete the temporary audio file
-	if ([manager fileExistsAtPath:[HAMFileTools filePath:self.tempAudioName]])
-		if (! [manager removeItemAtPath:[HAMFileTools filePath:self.tempAudioName] error:&error])
-			NSLog(@"%@", error.localizedDescription);
-	
-	// FIXME: have to switch these members back, WHY ?!!!
-	self.tempCard.image = self.imageName;
-	self.tempCard.audio = self.audioName;
+	// delete the temporary card
+	if (! [manager removeItemAtPath:self.tempCardPath error:&error])
+		NSLog(@"%@", error.localizedDescription);
 
 	[self.delegate cardEditorDidCancelEditing:self];
 }

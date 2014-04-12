@@ -33,7 +33,6 @@
         return nil;
     }
     
-    /*
     //draw cardwhite
     CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
     UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
@@ -41,56 +40,7 @@
     [self addSubview:cardWhiteBg];
     
     //draw cardpic
-    UIImage* fgImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:card.image.localPath]];
-    cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
-    CGRect picFrame = CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
-    [cardImageView_ setFrame:picFrame];
-    [self addSubview:cardImageView_];
-    
-    //draw cardbg
-    UIImage* bgImage=nil;
-    switch (card.type) {
-        case CARD_TYPE_CATEGORY:
-            bgImage =[UIImage imageNamed:@"common_cat_bg.png"];
-            break;
-            
-        case CARD_TYPE_CARD:
-            bgImage =[UIImage imageNamed:@"common_card_bg.png"];
-            break;
-            
-        default:
-            break;
-    }
-    UIImageView* bgView=[[UIImageView alloc] initWithImage:bgImage];
-    [bgView setFrame:CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight)];
-    [self addSubview:bgView];
-    
-    //draw cardwood
-    UIImageView* cardWoodBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_wood.png"]];
-    [cardWoodBg setFrame:localFrame];
-    [self addSubview:cardWoodBg];*/
-    
-    //draw cardwhite
-    CGRect localFrame = CGRectMake(0, 0, viewInfo.cardWidth, viewInfo.cardHeight);
-    UIImageView* cardWhiteBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"common_card_white.png"]];
-    [cardWhiteBg setFrame:localFrame];
-    [self addSubview:cardWhiteBg];
-    
-    //draw cardpic
-/*
-	UIImage* fgImage = nil;
-    NSString* picName = card_.image.UUID;
-	if (picName) { // NOTE: picName may be 'nil'
-		NSCache *imageCache = ((HAMSharedData*)[HAMSharedData sharedData]).imageCache;
-		NSString *path = [HAMFileTools filePath:picName];
-        UIImage* value = [UIImage imageWithContentsOfFile:path];
-		if (! [imageCache objectForKey:path] && value != nil)
-			[imageCache setObject:value forKey:path];
-		fgImage = [imageCache objectForKey:path];
-	}
-*/
-    NSString* picName = card.image;
-	UIImage* fgImage = [HAMSharedData imageNamed:picName];
+	UIImage* fgImage = [HAMSharedData imageAtPath:card.imagePath];
     
 	cardImageView_ = [[UIImageView alloc] initWithImage:fgImage];
     CGRect picFrame = CGRectMake(viewInfo.picOffsetX, viewInfo.picOffsetY, viewInfo.picWidth, viewInfo.picHeight);
@@ -124,7 +74,7 @@
 }
 
 - (void)changeCardImagePathToPath:(NSString*)newImagePath{
-    UIImage* cardImage=[[UIImage alloc]initWithContentsOfFile:[HAMFileTools filePath:newImagePath]];
+    UIImage* cardImage = [[UIImage alloc]initWithContentsOfFile:newImagePath];
     [cardImageView_ setImage:cardImage];
 }
 
@@ -132,7 +82,7 @@
 #pragma mark Gif Delegate
 
 - (void)changeGifImageToPicNum:(int)picNum{
-    NSString *imageLocalPath = card_.image;
+    NSString *imageLocalPath = card_.imagePath;
 	NSString *imageSubdirPath = [imageLocalPath stringByDeletingLastPathComponent];
 	NSString *imageName = [NSString stringWithFormat:@"%d.jpg", picNum];
     NSString* targetImage = [imageSubdirPath stringByAppendingPathComponent:imageName];

@@ -98,7 +98,6 @@
 	if (SQLITE_OK != sqlite3_exec(database, sql.UTF8String, NULL, NULL, NULL))
 		NSLog(@"%s", sqlite3_errmsg(database));
 	
-	
 	// copy card resources from the app bundle into the sandboxed document directory
 	self.totalResourcesCount = numCards;
 	NSInteger counter = 1;
@@ -114,23 +113,23 @@
 		NSString *categoryID = [@"cat" stringByAppendingString:@(categoryNum).stringValue];
 		NSString *srcCoverPath = [srcCategoryPath stringByAppendingPathComponent:COVER_NAME];
 		NSString *dstCoverPath = [dstCategoryPath stringByAppendingPathComponent:COVER_NAME];
-		NSString *coverLocalPath;
+		NSString *coverPath;
 		if ([fileManager fileExistsAtPath:srcCoverPath]) { // the category's cover may not exist
 			if (! [fileManager copyItemAtPath:srcCoverPath toPath:dstCoverPath error:&error])
 				NSLog(@"%@", error.localizedDescription);
 			
 			self.copiedResourcesCount = counter++;
-			coverLocalPath = [category stringByAppendingPathComponent:COVER_NAME];
+			coverPath = [dstCategoryPath stringByAppendingPathComponent:COVER_NAME];
 		}
 		else {
-			coverLocalPath = nil;
+			coverPath = nil;
 		}
 		
-		sql = [NSString stringWithFormat:@"INSERT INTO Card VALUES('%@', '%@', '%@', '%@', '%@', %d, %d)", categoryID, @"category", categoryName, coverLocalPath, nil, 1, NO];
+		sql = [NSString stringWithFormat:@"INSERT INTO Card VALUES('%@', '%@', '%@', '%@', '%@', %d, %d)", categoryID, @"category", categoryName, coverPath, nil, 1, NO];
 		if (SQLITE_OK != sqlite3_exec(database, sql.UTF8String, NULL, NULL, NULL))
 			NSLog(@"%s", sqlite3_errmsg(database));
 		
-		NSInteger categoryPos = categoryNum - 1;
+		NSInteger categoryPos = categoryNum;
 		sql = [NSString stringWithFormat:@"INSERT INTO Card_Tree VALUES('%@', '%@', %d, %d)", categoryID, LIB_ROOT_ID, categoryPos, (int)HAMAnimationTypeNone];
 		if (SQLITE_OK != sqlite3_exec(database, sql.UTF8String, NULL, NULL, NULL))
 			NSLog(@"%s", sqlite3_errmsg(database));
@@ -146,7 +145,7 @@
 			NSLog(@"%s", sqlite3_errmsg(database));
 		
 		NSArray *cards = [fileManager contentsOfDirectoryAtPath:srcCategoryPath error:&error];
-		if (!cards)
+		if (! cards)
 			NSLog(@"%@", error.localizedDescription);
 		for (NSString *card in cards) {
 			if ([card isEqualToString:COVER_NAME]) // it's the category's cover
@@ -161,7 +160,6 @@
 			NSInteger cardNum = ((NSString*)components[0]).integerValue;
 			NSString *cardName = components[1];
 			NSString *cardID = [categoryID stringByAppendingString:[@"_card" stringByAppendingString:@(cardNum).stringValue]];
-			NSString *cardLocalPath = [category stringByAppendingPathComponent:card];
 			NSArray *images = [fileManager contentsOfDirectoryAtPath:[dstCardPath stringByAppendingPathComponent:@"images"] error:&error];
 			if (! images)
 				NSLog(@"%@", error.localizedDescription);
@@ -170,13 +168,13 @@
 				NSLog(@"%@", error.localizedDescription);
 			
 			// FIXME: last object or first object?
-			NSString *imageLocalPath = [cardLocalPath stringByAppendingPathComponent:[@"images" stringByAppendingPathComponent:images.lastObject]];
-			NSString *audioLocalPath = [cardLocalPath stringByAppendingPathComponent:[@"audios" stringByAppendingPathComponent:audios.lastObject]];
+			NSString *imagePath = [dstCardPath stringByAppendingPathComponent:[@"images" stringByAppendingPathComponent:images.lastObject]];
+			NSString *audioPath = [dstCardPath stringByAppendingPathComponent:[@"audios" stringByAppendingPathComponent:audios.lastObject]];
 			NSInteger numImages = images.count;
 			
 			// FIXME
 			sql = [NSString stringWithFormat:@"INSERT INTO Card VALUES('%@', '%@', '%@', '%@', '%@', %d, %d)",
-				   cardID, @"card", cardName, imageLocalPath, audioLocalPath, (int)numImages, NO];
+				   cardID, @"card", cardName, imagePath, audioPath, (int)numImages, NO];
 			if (SQLITE_OK != sqlite3_exec(database, sql.UTF8String, NULL, NULL, NULL))
 				NSLog(@"%s", sqlite3_errmsg(database));
 			

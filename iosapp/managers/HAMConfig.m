@@ -9,7 +9,7 @@
 #import "HAMConfig.h"
 
 NSString *const LIB_ROOT_ID = @"lib_root";
-NSString *const UNCATEGORIZED_ID = @"uncategorized";
+NSString *const UNCATEGORIZED_ID = @"cat0";
 
 @implementation HAMConfig
 @synthesize rootID;
@@ -70,11 +70,11 @@ NSString *const UNCATEGORIZED_ID = @"uncategorized";
 
 -(HAMCard*)card:(NSString*)UUID
 {
-    HAMCard* card=cards[UUID];
+    HAMCard* card = cards[UUID];
     if (card)
         return card;
     
-    card=[dbManager card:UUID];
+    card = [dbManager card:UUID];
     cards[UUID] = card;
     return card;
 }
@@ -86,54 +86,54 @@ NSString *const UNCATEGORIZED_ID = @"uncategorized";
     //TODO: update name every time. should fix this.
     {
         card.name=name;
-        [dbManager updateCard:card.UUID name:name];
+        [dbManager updateCard:card.cardID name:name];
     }
     
     if (audio)
     {
-        card.audio = audio;
-        [dbManager updateCard:card.UUID audio:card.audio];
+        card.audioPath = audio;
+        [dbManager updateCard:card.cardID audio:card.audioPath];
     }
     
     if (image)
     {
-        card.image = image;
-        [dbManager updateCard:card.UUID image:card.image];
+        card.imagePath = image;
+        [dbManager updateCard:card.cardID image:card.imagePath];
     }
     
-    [cards removeObjectForKey:card.UUID];
+    [cards removeObjectForKey:card.cardID];
 }
 
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image
 {
     HAMCard* card = [HAMCard alloc];
-    card.UUID = UUID;
+    card.cardID = UUID;
     card.name = name;
     card.type = type;
     card.numImages = 1;
-    card.isRemovable = YES;
+    card.removable = YES;
     
     if (audio)
     {
-        card.audio = audio;
+        card.audioPath = audio;
     }
     
     if (image)
     {
-        card.image = image;
+        card.imagePath = image;
     }
     
     [dbManager insertCard:card];
     
-    cards[card.UUID] = card;
+    cards[card.cardID] = card;
 }
 
 -(void)deleteCard:(NSString*)UUID
 {
     HAMCard* card=[self card:UUID];
     
-    [dbManager deleteCardFromTree:card.UUID];
-    [dbManager deleteCardWithID:card.UUID];
+    [dbManager deleteCardFromTree:card.cardID];
+    [dbManager deleteCardWithID:card.cardID];
     
     cardTree=[NSMutableDictionary dictionary];
 }

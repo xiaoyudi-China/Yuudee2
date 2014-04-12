@@ -36,7 +36,7 @@
 	NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
 	for (NSString *cardID in cardIDs) {
 		HAMCard *card = [self.config card:cardID];
-		UIImage *image = [UIImage imageWithContentsOfFile:[HAMFileTools filePath:card.image]];
+		UIImage *image = [UIImage imageWithContentsOfFile:card.imagePath]; // TODO: use image cache
 		[self.images addObject:image];
 	}
 	
