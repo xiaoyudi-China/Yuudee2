@@ -8,6 +8,7 @@
 
 #import "HAMCategoryEditorViewController.h"
 #import "HAMSharedData.h"
+#import "HAMFileManager.h"
 
 @interface HAMCategoryEditorViewController ()
 
@@ -36,11 +37,9 @@
 		self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
 	else { // editing
-		self.categoryNameField.text = [self.config card:self.categoryID].name;
-		self.tempCategoryName = self.categoryNameField.text;
-		NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-		NSString *imagePath = [documentPath stringByAppendingPathComponent:@"cover.jpg"];
-		self.categoryCoverView.image = [HAMSharedData imageAtPath:imagePath];
+		HAMCard *category = [self.config card:self.categoryID];
+		self.categoryNameField.text = category.name;
+		self.categoryCoverView.image = [HAMSharedData imageAtPath:category.imagePath];
 		if (! self.categoryCoverView.image) // if there's no image, just display the xiaoyudi logo
 			self.categoryCoverView.image = [UIImage imageNamed:@"defaultImage.png"];
 	}
@@ -78,8 +77,8 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	self.categoryNameLabel.text = self.tempCategoryName = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	self.finishButton.enabled = self.tempCategoryName.length ? YES : NO;
+	self.categoryNameLabel.text = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	self.finishButton.enabled = self.categoryNameLabel.text.length ? YES : NO;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -97,44 +96,42 @@
 }
 
 - (IBAction)finishButtonPressed:(id)sender {
-	NSFileManager *fileManager = [NSFileManager defaultManager];
+	HAMFileManager *fileManager = [HAMFileManager defaultManager];
 	NSData *imageData = UIImageJPEGRepresentation(self.categoryCoverView.image, 1.0);
-	NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-	NSString *imagePath = [[documentPath stringByAppendingPathComponent:self.tempCategoryName] stringByAppendingPathComponent:@"cover.jpg"];
+	HAMCard *category;
 	
 	if (self.categoryID) { // editing category
-		HAMCard *category = [self.config card:self.categoryID];
+		category = [self.config card:self.categoryID];
+		category.name = self.categoryNameLabel.text;
 		
-		NSError *error;
-		if (! [fileManager removeItemAtPath:imagePath error:&error]) // delete the old image
-			NSLog(@"%@", error.localizedDescription);
-		if (! [imageData writeToFile:imagePath atomically:YES]) // save the new image
+		[fileManager removeItemAtPath:category.imagePath]; // delete the old image
+		if (! [imageData writeToFile:category.imagePath atomically:YES]) // save the new image
 			NSLog(@"failed to save image");
 				
-		[self.config updateCard:category name:self.tempCategoryName audio:nil image:imagePath];
+		// update database
+		[self.config updateCard:category name:category.name audio:nil image:category.imagePath];
 	}
 	else { // creating category
-		HAMCard *category = [[HAMCard alloc] initNewCard];
-		NSString *categoryName = self.tempCategoryName;
+		category = [[HAMCard alloc] initCategory];
+		category.name = self.categoryNameLabel.text;
 		
-		if (! [imageData writeToFile:imagePath atomically:YES])
+		if (! [imageData writeToFile:category.imagePath atomically:YES])
 			NSLog(@"failed to save image");
 		
-		// update the image cache
-		[HAMSharedData updateImageAtPath:imagePath withImage:self.categoryCoverView.image];
+		// update database
+		[self.config newCardWithID:category.cardID name:category.name type:HAMCardTypeCategory audio:nil image:category.imagePath];
 		
-		[self.config newCardWithID:category.cardID name:categoryName type:HAMCardTypeCategory audio:nil image:imagePath];
-		category.removable = YES; // ???: what's this for?
-		
+		// insert the new category into library
 		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT_ID].count;
 		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.cardID animation:ROOM_ANIMATION_NONE];
 		[self.config updateRoomOfCat:LIB_ROOT_ID with:room atIndex:numChildren];
 
 		// collect user statistics
-		NSDictionary *attrs = @{@"分类名称": categoryName};
+		NSDictionary *attrs = @{@"分类名称": category.name};
 		[MobClick event:@"create_category" attributes:attrs]; // trace event
 	}
-	
+	// update the image cache
+	[HAMSharedData updateImageAtPath:category.imagePath withImage:self.categoryCoverView.image];
 	[self.delegate categoryEditorDidEndEditing:self]; // tell the grid view to refresh
 }
 

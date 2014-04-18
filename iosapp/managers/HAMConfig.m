@@ -8,9 +8,6 @@
 
 #import "HAMConfig.h"
 
-NSString *const LIB_ROOT_ID = @"lib_root";
-NSString *const UNCATEGORIZED_ID = @"cat0";
-
 @implementation HAMConfig
 @synthesize rootID;
 @synthesize userManager;
@@ -70,6 +67,9 @@ NSString *const UNCATEGORIZED_ID = @"cat0";
 
 -(HAMCard*)card:(NSString*)UUID
 {
+	if (! UUID)
+		return nil;
+	
     HAMCard* card = cards[UUID];
     if (card)
         return card;
@@ -139,7 +139,7 @@ NSString *const UNCATEGORIZED_ID = @"cat0";
 }
 
 #pragma mark -
-#pragma mark Card_tree
+#pragma mark CardTree
 
 -(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(NSInteger)index
 {

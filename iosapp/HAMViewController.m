@@ -7,7 +7,6 @@
 //
 
 #import "HAMViewController.h"
-#import "HAMFileTools.h"
 
 @interface HAMViewController ()
 {

@@ -27,7 +27,6 @@
 @property (weak, nonatomic) id<HAMCategoryEditorViewControllerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UIImageView *categoryCoverView;
-@property (strong, nonatomic) NSString *tempCategoryName;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UITextField *categoryNameField;

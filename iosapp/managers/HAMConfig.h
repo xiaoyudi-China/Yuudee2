@@ -8,18 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "HAMAppDelegate.h"
-#import "HAMFileTools.h"
 #import "HAMDBManager.h"
 #import "HAMUserManager.h"
 #import "HAMCard.h"
 #import "HAMRoom.h"
 #import "HAMUser.h"
-
-#define FLAGNUM 5
-#define NODENUM 66
-
-extern NSString *const LIB_ROOT_ID;
-extern NSString *const UNCATEGORIZED_ID;
+#import "HAMConstants.h"
 
 @class HAMUserManager;
 

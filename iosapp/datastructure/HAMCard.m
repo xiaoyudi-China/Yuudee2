@@ -7,32 +7,43 @@
 //
 
 #import "HAMCard.h"
+#import "HAMUUIDManager.h"
+#import "HAMConstants.h"
+#import "HAMFileManager.h"
 
 @implementation HAMCard
 
--(id)initNewCard
-{
-    if (self = [super  init])
-    {
-        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        self.cardID = CFBridgingRelease(CFUUIDCreateString (kCFAllocatorDefault,uuidRef));
-		CFRelease(uuidRef);
+- (id)init {
+	if (self = [super init]) {
+		self.cardID = [HAMUUIDManager createUUID];
+		self.removable = YES; // user-created cards are removable by default
+	}
+	return self;
+}
+
+- (id)initCard {
+    if (self = [self init]) {
+		self.type = HAMCardTypeCard;
+		
+		NSString *filename = [self.cardID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+		NSString *filePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:filename];
+		self.imagePath = [[filePath stringByAppendingPathComponent:CARD_IMAGE_SUBDIR] stringByAppendingPathComponent:@"1.jpg"];
+		self.audioPath = [[filePath stringByAppendingPathComponent:CARD_AUDIO_SUBDIR] stringByAppendingPathComponent:@"1.caf"]; // user-created audio
+		
+		HAMFileManager *fileManager = [HAMFileManager defaultManager];
+		// create sub-directories
+		[fileManager createDirectoryAtPath:[filePath stringByAppendingPathComponent:CARD_IMAGE_SUBDIR] withIntermediateDirectories:YES attributes:nil];
+		[fileManager createDirectoryAtPath:[filePath stringByAppendingPathComponent:CARD_AUDIO_SUBDIR] withIntermediateDirectories:YES attributes:nil];
     }
     return self;
 }
 
-- (id)initNewCardAtPath:(NSString*)path {
-	if (self = [self initNewCard]) {
-		self.imagePath = [[path stringByAppendingPathComponent:@"images"] stringByAppendingPathComponent:@"1.jpg"];
-		self.audioPath = [[path stringByAppendingPathComponent:@"audios"] stringByAppendingPathComponent:@"1.caf"]; // user-created audio
+- (id)initCategory {
+	if (self = [self init]) {
+		self.type = HAMCardTypeCategory;
 		
-		NSFileManager *fileManager = [NSFileManager defaultManager];
-		NSError *error;
-		// create sub-directories
-		if (! [fileManager createDirectoryAtPath:[path stringByAppendingPathComponent:@"images"] withIntermediateDirectories:YES attributes:nil error:&error])
-			NSLog(@"%@", error.localizedDescription);
-		if (! [fileManager createDirectoryAtPath:[path stringByAppendingPathComponent:@"audios"] withIntermediateDirectories:YES attributes:nil error:&error])
-			NSLog(@"%@", error.localizedDescription);
+		NSString *imageName = [self.cardID stringByAppendingPathExtension:@"jpg"];
+		self.imagePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:imageName];
 	}
 	return self;
 }

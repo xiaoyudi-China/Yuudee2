@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "HAMViewInfo.h"
 #import "HAMCard.h"
-#import "HAMFileTools.h"
 #import "HAMAnimation.h"
 
 @class HAMAnimation;

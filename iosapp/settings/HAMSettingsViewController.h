@@ -10,7 +10,6 @@
 #import "HAMAppDelegate.h"
 #import "HAMViewTool.h"
 #import "HAMEditableGridViewTool.h"
-#import "HAMFileTools.h"
 #import "HAMCategoryGridViewController.h"
 #import "HAMConfig.h"
 #import "HAMUserManager.h"

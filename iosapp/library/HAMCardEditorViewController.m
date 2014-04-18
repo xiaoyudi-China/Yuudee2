@@ -7,13 +7,7 @@
 //
 
 #import "HAMCardEditorViewController.h"
-
-@interface HAMCardEditorViewController ()
-
-@property (nonatomic) NSString *tempCardPath;
-
-@end
-
+#import "HAMFileManager.h"
 
 @implementation HAMCardEditorViewController
 
@@ -30,34 +24,18 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-	
-	// initialize the temporary card
-	NSString *tempPath = NSTemporaryDirectory();
-	self.tempCardPath = [tempPath stringByAppendingPathComponent:@"temp.xydcard"];
-	self.tempCard = [[HAMCard alloc] initNewCardAtPath:self.tempCardPath];
-	self.tempCard.type = HAMCardTypeCard;
-	self.tempCard.removable = YES;
-	
-	NSString *origCardPath = nil;
-	// if we're editing an existing card, copy the resources into the temporary card
-	if (self.cardID) {
-		HAMCard *origCard = [self.config card:self.cardID];
-		self.tempCard.name = origCard.name;
-		self.tempCard.cardID = origCard.cardID;
-		
-		NSFileManager *fileManager = [NSFileManager defaultManager];
-		NSError *error;
-		if (! [fileManager copyItemAtPath:origCard.imagePath toPath:self.tempCard.imagePath error:&error])
-			NSLog(@"%@", error.localizedDescription);
-		if (! [fileManager copyItemAtPath:origCard.audioPath toPath:self.tempCard.audioPath error:&error])
-			NSLog(@"%@", error.localizedDescription);
-		
-		origCardPath = [origCard.name stringByAppendingPathExtension:@"xydcard"];
-		
+	if (self.cardID) { // editing an existing card
+		self.tempCard = [self.config card:self.cardID];
 		self.imageView.image = [UIImage imageWithContentsOfFile:self.tempCard.imagePath];
 		self.editCardTitleView.hidden = NO; // default state is hidden
+		
+		NSString *filename = [self.tempCard.cardID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+		NSString *filePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:filename];
+		NSString *tempPath = [[HAMFileManager temporaryPath] stringByAppendingPathComponent:filename];
+		[[HAMFileManager defaultManager] copyItemAtPath:filePath toPath:tempPath]; // backup the card in the temporary directory
 	}
 	else { // new card
+		self.tempCard = [[HAMCard alloc] initCard];
 		// don't allow deletion when creating a card
 		self.deleteCardButton.hidden = YES;
 		// must specify card name and image before recording
@@ -72,6 +50,8 @@
 	// this won't change in the lifetime of the current view
 	self.categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	
+	if (! self.categoryID) // the first category is the 'uncategorized'
+		self.categoryID = self.categoryIDs.firstObject;
 	HAMCard *category = [self.config card:self.categoryID];
 	self.categoryNameLabel.text = category.name;
 	self.newCategoryID = self.categoryID;
@@ -80,8 +60,6 @@
 	self.recorder = [[HAMRecorderViewController alloc] initWithNibName:@"HAMRecorderViewController" bundle:nil];
 	self.recorder.config = self.config;
 	self.recorder.tempCard = self.tempCard;
-	self.recorder.tempCardPath = self.tempCardPath;
-	self.recorder.origCardPath = origCardPath; // may be nil
 	self.recorder.isNewCard = ! self.cardID;
 	self.recorder.delegate = self;
 	
@@ -107,8 +85,12 @@
 	self.tempCard.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	self.cardNameLabel.text = self.tempCard.name;
 	
-	// can save new card now
-	self.recordButton.enabled = (self.tempCard.name.length && self.tempCard.imagePath) ? YES : NO;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	// if we have a card name and an image, then we can proceed to the recording view
+	if (self.tempCard.name.length > 0 && [fileManager fileExistsAtPath:self.tempCard.imagePath])
+		self.recordButton.enabled = YES;
+	else
+		self.recordButton.enabled = NO;
 	
 	// re-enable taking pictures
 	self.shootImageButton.enabled = self.pickImageButton.enabled = YES;
@@ -172,11 +154,14 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-	NSFileManager *manager = [NSFileManager defaultManager];
-	NSError *error;
-	// delete the temporary card
-	if (! [manager removeItemAtPath:self.tempCardPath error:&error])
-		NSLog(@"%@", error.localizedDescription);
+	NSString *filename = [self.tempCard.cardID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+	NSString *filePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:filename];
+	NSString *tempPath = [[HAMFileManager temporaryPath] stringByAppendingPathComponent:filename];
+	
+	// restore the card
+	HAMFileManager *fileManager = [HAMFileManager defaultManager];
+	[fileManager removeItemAtPath:filePath];
+	[fileManager moveItemAtPath:tempPath toPath:filePath];
 
 	[self.delegate cardEditorDidCancelEditing:self];
 }

@@ -14,6 +14,9 @@
          contextName = "-[HAMRecorderViewController finishButtonPressed:]:HAMRecorderViewController.m">
          <PersistentStrings>
             <PersistentString
+               value = "self.tempCard">
+            </PersistentString>
+            <PersistentString
                value = "self.tempAudioName">
             </PersistentString>
             <PersistentString
@@ -39,10 +42,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[HAMStructureEditViewController aboutButtonPressed:]:HAMStructureEditViewController.m">
+         contextName = "-[HAMCoursewareSettingsPopoverViewController viewWillAppear:]:HAMCoursewareSettingsPopoverViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "introPage.view.bounds">
+               value = "self.currentCourseware.mute">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -50,13 +53,13 @@
          contextName = "-[HAMCollectionViewLayout layoutAttributesForElementsInRect:]:HAMCollectionViewLayout.m">
          <PersistentStrings>
             <PersistentString
-               value = "ny">
+               value = "attribute.frame.origin">
             </PersistentString>
             <PersistentString
                value = "self.attributes">
             </PersistentString>
             <PersistentString
-               value = "attribute.frame.origin">
+               value = "ny">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -99,21 +102,21 @@
          contextName = "-[HAMViewController leafClicked:]:HAMViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.gridViewTool.cardViewArray_">
-            </PersistentString>
-            <PersistentString
                value = "self.gridViewTool.cardViewArray">
             </PersistentString>
             <PersistentString
                value = "currentUUID">
             </PersistentString>
+            <PersistentString
+               value = "self.gridViewTool.cardViewArray_">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[HAMCoursewareSettingsPopoverViewController viewWillAppear:]:HAMCoursewareSettingsPopoverViewController.m">
+         contextName = "-[HAMStructureEditViewController aboutButtonPressed:]:HAMStructureEditViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.currentCourseware.mute">
+               value = "introPage.view.bounds">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -55,10 +55,8 @@
     cardEditor.parentID = parentID_;
     cardEditor.index = cardIndex_;
     cardEditor.config = config_;
-    // the card is not categorized by default
-    cardEditor.categoryID = UNCATEGORIZED_ID;
-    // ‘nil' indicates this is a new card
-    cardEditor.cardID = nil;
+	// ‘nil' indicates this is a new card
+	cardEditor.categoryID = cardEditor.cardID = nil;
     
     cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
     cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

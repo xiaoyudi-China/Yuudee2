@@ -159,7 +159,7 @@
         case CARD_TYPE_CARD:
             editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
             editCardPopover.parentID_ = self.currentUUID;
-            editCardPopover.childIndex_ = childIndex;
+            editCardPopover.childIndex = childIndex;
             editCardPopover.config_ = self.config;
             editCardPopover.mainSettingsViewController_ = self;
             

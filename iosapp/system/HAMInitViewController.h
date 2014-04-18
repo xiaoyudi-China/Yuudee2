@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-static NSString *const COVER_NAME = @"cover.jpg";
 
 @interface HAMInitViewController : UIViewController
 {}

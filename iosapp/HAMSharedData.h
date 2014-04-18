@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HAMFileTools.h"
 
 @interface HAMSharedData : NSObject
 

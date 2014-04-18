@@ -23,8 +23,6 @@
 
 @property (weak, nonatomic) HAMConfig *config;
 @property (strong, nonatomic) HAMCard *tempCard; // !!!: don't pass changes back to card editor
-@property (weak, nonatomic) NSString *tempCardPath;
-@property (weak, nonatomic) NSString *origCardPath;
 @property (weak, nonatomic) NSString *categoryID;
 @property (weak, nonatomic, getter = theNewCategoryID) NSString *newCategoryID;
 @property BOOL isNewCard;

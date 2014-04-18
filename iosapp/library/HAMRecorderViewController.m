@@ -8,6 +8,7 @@
 
 #import "HAMRecorderViewController.h"
 #import "HAMSharedData.h"
+#import "HAMFileManager.h"
 
 @implementation HAMRecorderViewController
 
@@ -64,24 +65,7 @@
 	[self.delegate recorderDidCancelRecording:self];
 }
 
-- (IBAction)finishButtonPressed:(id)sender {
-	NSString *filename = [self.tempCard.name stringByAppendingPathExtension:@"xydcard"];
-	NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
-	NSString *categoryName = [self.config card:self.categoryID].name;
-	NSString *cardPath = [[documentPath stringByAppendingPathComponent:categoryName] stringByAppendingPathComponent:filename];
-		
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSError *error;
-	// delete the original card
-	if (! [fileManager removeItemAtPath:self.origCardPath error:&error])
-		NSLog(@"%@", error.localizedDescription);
-	
-	// move temporary card to the new position
-	if (! [fileManager moveItemAtPath:self.tempCardPath toPath:cardPath error:&error])
-		NSLog(@"%@", error.localizedDescription);
-	
-	self.tempCard.imagePath = [[cardPath stringByAppendingPathComponent:@"images"] stringByAppendingPathComponent:@"1.jpg"];
-	self.tempCard.audioPath = [[cardPath stringByAppendingPathComponent:@"audios"] stringByAppendingPathComponent:@"1.caf"];
+- (IBAction)finishButtonPressed:(id)sender {	
 	// update the database
 	if (self.isNewCard)
 		[self.config newCardWithID:self.tempCard.cardID name:self.tempCard.name type:HAMCardTypeCard audio:self.tempCard.audioPath image:self.tempCard.imagePath];

@@ -21,13 +21,13 @@ typedef enum {
 
 @property NSString* cardID;
 @property HAMCardType type;
-@property NSString* name;
-@property NSString* imagePath;
+@property NSString *name;
+@property (nonatomic) NSString *imagePath;
+@property (nonatomic) NSString *audioPath;
 @property int numImages;
-@property NSString* audioPath;
 @property BOOL removable;
 
--(id)initNewCard;
-- (id)initNewCardAtPath:(NSString*)path;
+- (id)initCard;
+- (id)initCategory;
 
 @end

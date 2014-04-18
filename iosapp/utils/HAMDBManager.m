@@ -7,8 +7,8 @@
 //
 
 #import "HAMDBManager.h"
+#import "HAMConstants.h"
 
-NSString* const DATABASE_NAME = @"app_data.sqlite";
 
 @interface HAMDBManager ()
 @property (nonatomic) NSString *databasePath;
@@ -275,17 +275,17 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
 }
 
 #pragma mark -
-#pragma mark From CARD_TREE
+#pragma mark From CardTree
 
 -(NSMutableArray*)childrenOf:(NSString*)parentID
 {
     [self openDatabase];
     
-    NSString* query = [[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CARD_TREE WHERE PARENT='%@';",parentID];
+    NSString* query = [[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CardTree WHERE PARENT='%@';",parentID];
     int result = sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
     if (result != SQLITE_OK)
     {
-        NSAssert(0,@"Fail to select from card_tree!");
+        NSAssert(0,@"Fail to select from CardTree!");
         [self closeDatabase];
         return nil;
     }
@@ -310,10 +310,10 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     [self openDatabase];
     char *errorMsg;
     
-    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' AND POSITION=%ld",parentID,(long)index];
+    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CardTree WHERE PARENT='%@' AND POSITION=%ld",parentID,(long)index];
     if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errorMsg)!=SQLITE_OK)
     {
-        NSLog( @"Fail to delete from card_tree!");
+        NSLog( @"Fail to delete from CardTree!");
         [self ErrorReport: sql];
     }
     
@@ -326,10 +326,10 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     
     char *errorMsg;
     
-    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CARD_TREE WHERE PARENT='%@' OR CHILD='%@';",UUID,UUID];
+    NSString *sql = [[NSString alloc] initWithFormat:@"DELETE FROM CardTree WHERE PARENT='%@' OR CHILD='%@';",UUID,UUID];
     if (sqlite3_exec(database, [sql UTF8String], NULL, NULL, &errorMsg)!=SQLITE_OK)
     {
-        NSLog( @"Fail to delete from card_tree!");
+        NSLog( @"Fail to delete from CardTree!");
         [self ErrorReport: sql];
     }
     
@@ -342,13 +342,13 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
     
     //TODO: I don't know if this insert or replace works!! Must add index creating to SQL on server!
     
-    char* update="INSERT OR REPLACE INTO CARD_TREE (CHILD, PARENT, POSITION, ANIMATION) VALUES (?, ?, ?, ?);";
+    char* update="INSERT OR REPLACE INTO CardTree (CHILD, PARENT, POSITION, ANIMATION) VALUES (?, ?, ?, ?);";
     
     if (sqlite3_prepare_v2(database, update, -1, &statement, nil)==SQLITE_OK)
     {
         sqlite3_bind_text(statement, 1, [newRoom.cardID UTF8String], -1, NULL);
         sqlite3_bind_text(statement, 2, [parentID UTF8String], -1, NULL);
-		sqlite3_bind_int(statement, 3, index);
+		sqlite3_bind_int(statement, 3, (int)index);
 		sqlite3_bind_int(statement, 4, newRoom.animation);
     }
     if (sqlite3_step(statement)!=SQLITE_DONE) {
@@ -360,7 +360,7 @@ NSString* const DATABASE_NAME = @"app_data.sqlite";
 
 -(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(HAMAnimationType)animation atIndex:(NSInteger)index
 {
-	[self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CARD_TREE SET ANIMATION = '%d' WHERE PARENT = '%@' AND POSITION = %d", animation, parentID, (int)index]];
+	[self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CardTree SET ANIMATION = '%d' WHERE PARENT = '%@' AND POSITION = %d", animation, parentID, (int)index]];
 }
 
 

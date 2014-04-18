@@ -8,14 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
-#import "HAMFileTools.h"
 #import "HAMCard.h"
 #import "HAMTools.h"
 #import "HAMUser.h"
 #import "HAMRoom.h"
 
-//#define DBNAME @"app_data.db"
-extern NSString* const DATABASE_NAME;
 
 @interface HAMDBManager : NSObject
 {
@@ -30,15 +27,13 @@ extern NSString* const DATABASE_NAME;
 
 //table CARD
 -(HAMCard*)card:(NSString*)UUID;
-//-(NSMutableArray*)allCards:(int)mode user:(NSString*)userID;
-//-(NSMutableArray*)cardsOfUser:(NSString*)userID mode:(int)mode;
 -(void)updateCard:(NSString*)UUID name:(NSString*)name;
 -(void)updateCard:(NSString*)UUID audio:(NSString*)audio;
 -(void)updateCard:(NSString*)UUID image:(NSString*)image;
 -(void)insertCard:(HAMCard*)card;
 -(void)deleteCardWithID:(NSString*)UUID;
 
-//table CARD_TREE
+//table CardTree
 -(NSMutableArray*)childrenOf:(NSString*)parentID;
 -(void)deleteChildOfCat:(NSString*)parentID atIndex:(NSInteger)index;
 -(void)deleteCardFromTree:(NSString*)UUID;

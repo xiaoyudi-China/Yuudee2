@@ -75,11 +75,7 @@
 
 	NSString *categoryID = [self categoryIDs][indexPath.row];
   	HAMCard *category = [self.config card:categoryID]; // only display categories
-	
-	// FIXME
-	if ([category.cardID isEqualToString:UNCATEGORIZED_ID])
-		category.removable = NO;
-	
+		
     cell.textLabel.text = category.name;
 	cell.frameImageView.image = [UIImage imageNamed:@"catBG.png"];
 	cell.contentImageView.image = [HAMSharedData imageAtPath:category.imagePath];
@@ -139,8 +135,7 @@
 		HAMCardEditorViewController *cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
 		cardEditor.config = self.config;
 		cardEditor.delegate = self;
-		cardEditor.cardID = nil;
-		cardEditor.categoryID = UNCATEGORIZED_ID;
+		cardEditor.categoryID = cardEditor.cardID = nil;
 		
 		// a little bit hack
 		UIView *background = [self.view snapshotViewAfterScreenUpdates:NO];
