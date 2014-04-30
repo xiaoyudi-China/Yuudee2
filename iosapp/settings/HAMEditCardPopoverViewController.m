@@ -11,18 +11,16 @@
 #define CHECKED_MARK_OFFSET CGPointMake(-4,-23)
 
 @interface HAMEditCardPopoverViewController ()
-{
-    int changedAnimation;
-    NSString* cardID_;
-}
+
+@property (nonatomic) NSString *cardID;
+@property (nonatomic) HAMAnimationType animation;
 
 @end
+
 
 @implementation HAMEditCardPopoverViewController
 
 @synthesize mainSettingsViewController_;
-@synthesize config_;
-@synthesize parentID_;
 @synthesize popover;
 
 @synthesize editInLibButton;
@@ -51,11 +49,12 @@
 //    [HAMViewTool setHighLightImage:@"parent_editpop_cancelbtn_down" forButton:cancelButton];
 //    [HAMViewTool setHighLightImage:@"parent_editpop_confirmbtn_down" forButton:finishButton];
     
-    [self showCheckedMarkAtAnimation:[config_ animationOfCat:parentID_ atIndex:self.childIndex]];
-    changedAnimation = -1;
-    
-    cardID_ = [config_ childCardIDOfCat:parentID_ atIndex:self.childIndex];
-    HAMCard* card = [config_ card:cardID_];
+    self.animation = [self.config animationOfCat:self.parentID atIndex:self.childIndex];
+	[self showCheckedMarkAtAnimation:self.animation];
+	self.muteStateSwitch.on = [self.config muteStateOfCat:self.parentID atIndex:self.childIndex];
+
+    self.cardID = [self.config childCardIDOfCat:self.parentID atIndex:self.childIndex];
+    HAMCard* card = [self.config card:self.cardID];
     if (!card.removable)
     {
         editInLibButton.enabled = false;
@@ -78,13 +77,13 @@
     
     cardEditor.delegate = self; // NOTE!!!
     cardEditor.addCardOnCreation = NO;
-    cardEditor.parentID = parentID_;
+    cardEditor.parentID = self.parentID;
     cardEditor.index = self.childIndex;
-    cardEditor.config = config_;
+    cardEditor.config = self.config;
 	
 	// FIXME: couldn't know to which category the card belongs
     cardEditor.categoryID = nil;
-    cardEditor.cardID = [config_ childCardIDOfCat:parentID_ atIndex:self.childIndex];
+    cardEditor.cardID = [self.config childCardIDOfCat:self.parentID atIndex:self.childIndex];
     
     cardEditor.modalPresentationStyle = UIModalPresentationCurrentContext;
     cardEditor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -106,16 +105,19 @@
     UIButton* animationButton;
     
     switch (animation) {
-        case ROOM_ANIMATION_SCALE:
+        case HAMAnimationTypeScale:
             animationButton = animationScaleButton;
             break;
             
-        case ROOM_ANIMATION_SHAKE:
+        case HAMAnimationTypeShake:
             animationButton = animationShakeButton;
             break;
-            
-        case ROOM_ANIMATION_NONE:
-            animationButton = animationNoneButton;
+		
+		case HAMAnimationTypeNone:
+			animationButton = animationNoneButton;
+			break;
+			
+        default:
             break;
     }
     
@@ -129,25 +131,25 @@
 }
 
 - (IBAction)animationSetToNoClicked:(UIButton *)sender {
-    changedAnimation = ROOM_ANIMATION_NONE;
-    [self showCheckedMarkAtAnimation:ROOM_ANIMATION_NONE];
+    self.animation = HAMAnimationTypeNone;
+    [self showCheckedMarkAtAnimation:HAMAnimationTypeNone];
 }
 
 - (IBAction)animationSetToScaleClicked:(UIButton *)sender {
-    changedAnimation = ROOM_ANIMATION_SCALE;
-    [self showCheckedMarkAtAnimation:ROOM_ANIMATION_SCALE];
+    self.animation = HAMAnimationTypeScale;
+    [self showCheckedMarkAtAnimation:HAMAnimationTypeScale];
 }
 
 - (IBAction)animationSetToShakeClicked:(UIButton *)sender {
-    changedAnimation = ROOM_ANIMATION_SHAKE;
-    [self showCheckedMarkAtAnimation:ROOM_ANIMATION_SHAKE];
+    self.animation = HAMAnimationTypeShake;
+    [self showCheckedMarkAtAnimation:HAMAnimationTypeShake];
 }
 
 #pragma mark -
 #pragma mark Remove Card
 
 - (IBAction)removeCardClicked:(UIButton *)sender {
-    [config_ updateRoomOfCat:parentID_ with:nil atIndex:self.childIndex];
+    [self.config updateRoomOfCat:self.parentID with:nil atIndex:self.childIndex];
     [mainSettingsViewController_ refreshGridViewAndScrollToFirstPage:NO];
 
     [self.popover dismissPopoverAnimated:YES];
@@ -161,8 +163,8 @@
 }
 
 - (IBAction)finishClicked:(UIButton *)sender {
-    if (changedAnimation != -1)
-        [config_ updateAnimationOfCat:parentID_ with:changedAnimation atIndex:self.childIndex];
+	[self.config updateAnimationOfCat:self.parentID with:self.animation atIndex:self.childIndex];
+	[self.config updateMuteStateOfCat:self.parentID with:self.muteStateSwitch.on atIndex:self.childIndex];
     
     [self.popover dismissPopoverAnimated:YES];
 }

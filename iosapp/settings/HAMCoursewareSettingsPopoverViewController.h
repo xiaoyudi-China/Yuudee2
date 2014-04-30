@@ -7,18 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HAMUserManager.h"
+#import "HAMCoursewareManager.h"
 #import "HAMViewInfo.h"
 #import "HAMSettingsViewController.h"
 
-@interface HAMCoursewareSettingsPopoverViewController : UIViewController
-{
-}
+@interface HAMCoursewareSettingsPopoverViewController : UIViewController<UIActionSheetDelegate>
 
-@property HAMUserManager* coursewareManager;
+@property HAMCoursewareManager* coursewareManager;
 @property HAMSettingsViewController* mainSettingsViewController;
 @property UIPopoverController* popover;
-@property (strong, nonatomic) HAMUser *currentCourseware;
+@property (strong, nonatomic) HAMCourseware *currentCourseware;
 
 @property (weak, nonatomic) IBOutlet UIButton *coursewareTitleButton;
 @property (weak, nonatomic) IBOutlet UITextField *changeTitleTextField;
@@ -27,7 +25,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *layout1x1Button;
 @property (weak, nonatomic) IBOutlet UIButton *layout2x2Button;
 @property (weak, nonatomic) IBOutlet UIButton *layout3x3Button;
-@property (weak, nonatomic) IBOutlet UISwitch *muteSwitch;
 
 - (IBAction)changeTitleClicked:(UIButton *)sender;
 

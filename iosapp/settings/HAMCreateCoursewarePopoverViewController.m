@@ -52,7 +52,7 @@
         return;
     }
     
-    [coursewareManager newUser:name];
+    [coursewareManager newCourseware:name];
     //[mainSettingsViewController refreshCoursewareSelect];
     [popover dismissPopoverAnimated:YES];
 }

@@ -46,13 +46,11 @@
     
     changedLayout = -1;
     
-    self.currentCourseware = [coursewareManager currentUser];
+    self.currentCourseware = [coursewareManager currentCourseware];
     [self initTitle:self.currentCourseware.name];
     
     int currentLayout = [HAMViewInfo layoutOfXnum:self.currentCourseware.layoutx ynum:self.currentCourseware.layouty];
     [self showCheckedImageAtlayout:currentLayout];
-
-	self.muteSwitch.on = self.currentCourseware.mute;
 }
 
 - (void)didReceiveMemoryWarning
@@ -124,23 +122,18 @@
 #pragma makr Delete Courseware
 
 - (IBAction)removeCoursewareClicked:(UIButton *)sender {
-    [[[UIAlertView alloc] initWithTitle:@"删除课件" message:@"确定要删除该课件吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除",nil] show];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除该课件？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
+	[actionSheet showInView:self.view]; //FIXME: why the actionsheet show from below?
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 1:
-            self.currentCourseware = [coursewareManager currentUser];
-            [coursewareManager deleteUser:self.currentCourseware];
-            
-            [self.popover dismissPopoverAnimated:YES];
-            [mainSettingsViewController viewWillAppear:NO];
-            return;
-            
-        default:
-            break;
-    }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {
+		self.currentCourseware = [coursewareManager currentCourseware];
+		[coursewareManager deleteCourseware:self.currentCourseware];
+		
+		[self.popover dismissPopoverAnimated:YES];
+		[mainSettingsViewController viewWillAppear:NO];
+	}
 }
 
 #pragma mark -
@@ -156,17 +149,15 @@
         int xnum = [HAMViewInfo xnumOfLayout:changedLayout];
         int ynum = [HAMViewInfo ynumOfLayout:changedLayout];
         
-        [coursewareManager updateCurrentUserLayoutxnum:xnum ynum:ynum];
+        [coursewareManager updateCurrentCoursewareLayoutxnum:xnum ynum:ynum];
         //[mainSettingsViewController setLayoutWithxnum:xnum ynum:ynum];
         //[mainSettingsViewController refreshGridViewAndScrollToFirstPage:YES];
     }
     
     if (![self.currentCourseware.name isEqualToString:changeTitleTextField.text]) {
-        [coursewareManager updateCurrentUserName:[changeTitleTextField.text copy]];
+        [coursewareManager updateCurrentCoursewareName:[changeTitleTextField.text copy]];
         [mainSettingsViewController refreshCoursewareSelect];
     }
-	[coursewareManager updateCurrentUserMuteState:self.muteSwitch.on];
-    
     [self.popover dismissPopoverAnimated:YES];
 }
 

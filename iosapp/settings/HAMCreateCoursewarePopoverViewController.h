@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HAMSettingsViewController.h"
-#import "HAMUser.h"
+#import "HAMCourseware.h"
 
 @interface HAMCreateCoursewarePopoverViewController : UIViewController
 {
@@ -18,7 +18,7 @@
 
 @property HAMSettingsViewController* mainSettingsViewController;
 @property UIPopoverController* popover;
-@property HAMUserManager* coursewareManager;
+@property HAMCoursewareManager* coursewareManager;
 
 - (IBAction)confirmCreateCourseware:(id)sender;
 - (IBAction)cancelCreateCourseware:(UIButton *)sender;
