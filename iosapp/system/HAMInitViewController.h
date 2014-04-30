@@ -10,7 +10,6 @@
 
 
 @interface HAMInitViewController : UIViewController
-{}
 
 @property (weak, nonatomic) IBOutlet UILabel *copiedCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;

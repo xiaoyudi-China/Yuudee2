@@ -50,11 +50,11 @@
     //draw cardbg
     UIImage* bgImage=nil;
     switch (card.type) {
-        case CARD_TYPE_CATEGORY:
+        case HAMCardTypeCategory:
             bgImage =[UIImage imageNamed:@"common_cat_bg.png"];
             break;
             
-        case CARD_TYPE_CARD:
+        case HAMCardTypeCard:
             bgImage =[UIImage imageNamed:@"common_card_bg.png"];
             break;
             
@@ -74,7 +74,7 @@
 }
 
 - (void)changeCardImagePathToPath:(NSString*)newImagePath{
-    UIImage* cardImage = [[UIImage alloc]initWithContentsOfFile:newImagePath];
+	UIImage *cardImage = [HAMSharedData imageAtPath:newImagePath];
     [cardImageView_ setImage:cardImage];
 }
 

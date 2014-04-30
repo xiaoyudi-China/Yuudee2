@@ -99,7 +99,7 @@
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
         {
-            NSString* childID=[config childCardIDOfCat:card.cardID atIndex:childIndex];
+            NSString* childID=[config childCardIDOfCat:card.ID atIndex:childIndex];
         
             if(!childID || (NSNull*)childID==[NSNull null])
                 continue;
@@ -138,7 +138,7 @@
 //    button.backgroundColor = [UIColor redColor];
     button.tag = tag;
     SEL action;
-	if (card.type == CARD_TYPE_CARD)
+	if (card.type == HAMCardTypeCard)
 		action = @selector(leafClicked:);
 	else // card.type == CARD_TYPE_CATEGORY
 		action = @selector(groupClicked:);
@@ -174,11 +174,11 @@
     
     double posY;
     switch (cardType) {
-        case CARD_TYPE_CARD:
+        case HAMCardTypeCard:
             posY = viewInfo.cardLableY;
             break;
             
-        case CARD_TYPE_CATEGORY:
+        case HAMCardTypeCategory:
             posY = viewInfo.catLableY;
             break;
             

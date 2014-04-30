@@ -14,15 +14,12 @@
 @class HAMInitViewController;
 
 @interface HAMAppDelegate : UIResponder <UIApplicationDelegate>
-{
-}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;
 
 @property (strong, nonatomic) HAMViewController *viewController;
 @property (strong, nonatomic) HAMSettingsViewController *structureEditViewController;
-//@property Boolean urlFlag;
 
 -(void)turnToChildView;
 -(void)turnToParentView;

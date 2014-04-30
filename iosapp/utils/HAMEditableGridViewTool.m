@@ -36,9 +36,7 @@
 }
 
 -(void)refreshView:(NSString*)nodeUUID scrollToFirstPage:(Boolean)showFirstPage{
-    NSLog(@"refreshView - Enter refreshView: %f",[NSDate timeIntervalSinceReferenceDate]);
     [self prepareRefreshView:nodeUUID scrollToFirstPage:showFirstPage];
-    NSLog(@"refreshView - After prepareRefreshView:%f",[NSDate timeIntervalSinceReferenceDate]);
 //    cardViewArray_ = [NSMutableArray array];
     editButtonArray_ = [NSMutableArray array];
     
@@ -60,7 +58,7 @@
         
         for(; posIndex < btnsPerPage; childIndex++,posIndex++)
         {
-            NSString* childID=[config childCardIDOfCat:card.cardID atIndex:childIndex];
+            NSString* childID=[config childCardIDOfCat:card.ID atIndex:childIndex];
             
             if(!childID || (NSNull*)childID==[NSNull null])
             {
@@ -76,8 +74,6 @@
             [self addEditButtonAtPos:posIndex onPage:pageIndex tag:childIndex];
         }
     }
-    
-    NSLog(@"refreshView - After drawing buttons:%f",[NSDate timeIntervalSinceReferenceDate]);
     
     onEdgeCounter_ = 0;
 }
@@ -233,7 +229,6 @@
 -(void)onEdge
 {
     onEdgeCounter_++;
-    NSLog(@"%d",onEdgeCounter_);
     int side = [self judgeOutsidePageAtView:onEdgeView_];
     if (side == 0 || onEdgeSide_ != side) {
         onEdgeCounter_ = 0;
@@ -362,12 +357,8 @@
     
     //finger up
     if ([recognizer state] == UIGestureRecognizerStateEnded || [recognizer state] == UIGestureRecognizerStateCancelled) {
-        NSLog(@"handlePan - Recongnized finger up:%f",[NSDate timeIntervalSinceReferenceDate]);
-//        [self moveCardView:cardView toPosition:positionArray_[nearestIndex] animated:YES];
         [self moveCardView:cardView toIndex:nearestIndex animated:YES];
-        NSLog(@"handlePan - Moved card view:%f",[NSDate timeIntervalSinceReferenceDate]);
         NSMutableArray* children = [[config childrenOfCat:currentUUID_] copy];
-        NSLog(@"handlePan - Got old children:%f",[NSDate timeIntervalSinceReferenceDate]);
         for (i=0; i<cardnum; i++) {
             NSInteger targetTag = tagOfIndex_[i];
             if (tagOfIndex_[i] == i)
@@ -385,11 +376,9 @@
             }
             [config updateRoomOfCat:currentUUID_ with:(HAMRoom*)child atIndex:i];
         }
-        NSLog(@"handlePan - Saved changes to database:%f",[NSDate timeIntervalSinceReferenceDate]);
         
         //swap is quicker, but refresh is safer
         [self refreshView:currentUUID_ scrollToFirstPage:NO];
-        NSLog(@"handlePan - Refreshed view:%f",[NSDate timeIntervalSinceReferenceDate]);
         /*for (i=0; i<cardnum; i++) {
             tagOfIndex_[i] = i;
             isBlankAtTag_[i] = newIsBlankAtTag[i];

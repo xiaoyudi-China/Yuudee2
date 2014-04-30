@@ -26,10 +26,10 @@
     // Do any additional setup after loading the view from its nib.
 	if (self.cardID) { // editing an existing card
 		self.tempCard = [self.config card:self.cardID];
-		self.imageView.image = [UIImage imageWithContentsOfFile:self.tempCard.imagePath];
+		self.imageView.image = [HAMSharedData imageAtPath:self.tempCard.imagePath];
 		self.editCardTitleView.hidden = NO; // default state is hidden
 		
-		NSString *filename = [self.tempCard.cardID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+		NSString *filename = [self.tempCard.ID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
 		NSString *filePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:filename];
 		NSString *tempPath = [[HAMFileManager temporaryPath] stringByAppendingPathComponent:filename];
 		[[HAMFileManager defaultManager] copyItemAtPath:filePath toPath:tempPath]; // backup the card in the temporary directory
@@ -154,14 +154,16 @@
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-	NSString *filename = [self.tempCard.cardID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+	NSString *filename = [self.tempCard.ID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
 	NSString *filePath = [[HAMFileManager documentPath] stringByAppendingPathComponent:filename];
 	NSString *tempPath = [[HAMFileManager temporaryPath] stringByAppendingPathComponent:filename];
 	
 	// restore the card
-	HAMFileManager *fileManager = [HAMFileManager defaultManager];
-	[fileManager removeItemAtPath:filePath];
-	[fileManager moveItemAtPath:tempPath toPath:filePath];
+	if (self.cardID) {
+		HAMFileManager *fileManager = [HAMFileManager defaultManager];
+		[fileManager removeItemAtPath:filePath];
+		[fileManager moveItemAtPath:tempPath toPath:filePath];
+	}
 
 	[self.delegate cardEditorDidCancelEditing:self];
 }
@@ -212,17 +214,18 @@
 	[self.categoriesPopover dismissPopoverAnimated:YES];
 }
 
-- (IBAction)deleteCardButtonPressed:(id)sender {
+- (IBAction)deleteButtonPressed:(id)sender {
 	
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除卡片？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
 	[actionSheet showInView:self.view];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) { // confirm deletion
-		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
-		NSUInteger cardIndex = [cardIDs indexOfObject:self.cardID];
-		[self.config deleteChildOfCatInLib:self.categoryID atIndex:cardIndex];
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {
+		// remove the card from its category
+		[self.config removeChild:self.cardID fromParent:self.categoryID];
+		// delete the card itself
+		[self.config deleteCard:self.cardID];
 		
 		[self.delegate cardEditorDidEndEditing:self]; // inform the grid view to refresh
 	}

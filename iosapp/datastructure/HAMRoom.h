@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define ROOM_ANIMATION_SCALE 1
-#define ROOM_ANIMATION_SHAKE 2
-#define ROOM_ANIMATION_NONE 0
-
 typedef enum {
 	HAMAnimationTypeNone = 0,
 	HAMAnimationTypeScale = 1,
@@ -19,12 +15,12 @@ typedef enum {
 } HAMAnimationType;
 
 @interface HAMRoom : NSObject
-{}
 
 @property NSString* cardID;
 @property HAMAnimationType animation;
+@property BOOL mute;
 
--(HAMRoom*)initWithCardID:(NSString*)cardID animation:(HAMAnimationType)animation;
+-(HAMRoom*)initWithCardID:(NSString*)cardID animation:(HAMAnimationType)animation muteState:(BOOL)mute;
 -(Boolean)isEqualToRoom:(HAMRoom*)aRoom;
 
 @end

@@ -16,29 +16,6 @@
 @synthesize viewController;
 @synthesize navController;
 @synthesize structureEditViewController;
-//@synthesize urlFlag;
-/*
--(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    if (!url)
-        return NO;
-    
-    if ([[url scheme] isEqualToString:@"iosapp"])
-    {
-        urlFlag=YES;
-        if (self.viewController!=nil)
-        {
-            [[self viewController].view removeFromSuperview];
-        }
-        
-        if (!structureEditViewController)
-            structureEditViewController=[[HAMStructureEditViewController alloc] initWithNibName:@"HAMStructureEditView" bundle:nil];
-        if (!navController)
-            navController=[[UINavigationController alloc] initWithRootViewController:structureEditViewController];
-        [self.window addSubview:navController.view];
-    }
-    return YES;
-}*/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -83,13 +60,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    /*if (urlFlag==YES)
-    {
-        urlFlag=NO;
-        return;
-    }*/
-    
-    
 }
 
 -(void)turnToChildView

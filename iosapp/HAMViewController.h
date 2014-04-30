@@ -10,10 +10,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HAMGridViewTool.h"
 #import "HAMConfig.h"
-#import "HAMUserManager.h"
+#import "HAMCoursewareManager.h"
 #import "HAMAnimation.h"
+#import "HAMUnlockGuideViewController.h"
 
-@interface HAMViewController : UIViewController <AVAudioPlayerDelegate,HAMGifAnimationDelegate> {
+@interface HAMViewController : UIViewController <AVAudioPlayerDelegate,HAMGifAnimationDelegate, HAMUnlockGuideViewControllerDelegate> {
 }
 
 @property (strong, nonatomic) NSString *activeUserName;
@@ -21,7 +22,7 @@
 @property (strong, nonatomic) HAMGridViewTool* gridViewTool;
 @property (strong, nonatomic) HAMGridViewTool* inCatGridViewTool;
 @property (strong, nonatomic) HAMConfig* config;
-@property (strong, nonatomic) HAMUserManager* userManager;
+@property (strong, nonatomic) HAMCoursewareManager* userManager;
 @property (strong, nonatomic) NSString* currentUUID;
 @property BOOL inCategory;
 
@@ -41,5 +42,6 @@
 
 - (IBAction)touchDownEnterEditButton:(UIButton *)sender;
 - (IBAction)touchUpEnterEditButton:(UIButton *)sender;
+- (IBAction)unlockButtonPressed:(id)sender;
 
 @end

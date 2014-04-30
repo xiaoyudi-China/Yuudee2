@@ -44,10 +44,10 @@
     if (! self.config)
         return;
     
-    self.userManager = [HAMUserManager new];
+    self.userManager = [HAMCoursewareManager new];
     self.userManager.config = self.config;
     
-    HAMUser* currentUser = self.userManager.currentUser;
+    HAMCourseware* currentUser = self.userManager.currentCourseware;
     
     HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
     
@@ -56,23 +56,15 @@
     self.inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:self.config delegate:self edit:NO];
     
     multiTouchCount = 0;
+	
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     for (int i = 0; i < 4; i++) {
         multiTouchOn[i] = NO;
     }
-    
-    pressHintImageView1.hidden = false;
-    pressHintImageView2.hidden = false;
-    pressHintImageView3.hidden = false;
     blurBgImageView.hidden = true;
-    
-    HAMAnimation* gifAnimation = [[HAMAnimation alloc] init];
-    gifAnimation.gifDelegate_ = self;
-    [gifAnimation playGifWithTimeInterval:0.1f totalPicNum:8];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning{
@@ -139,8 +131,7 @@
     [animation setCard:card andCardView:cardView];
     [animation beginAnimation:room.animation];
     
-	HAMUser *currentUser = [self.userManager currentUser];
-	if (! currentUser.mute) {
+	if (! room.mute) {
 		NSString* musicPath = card.audioPath;
 		if (musicPath){
 			NSURL *musicURL = [NSURL fileURLWithPath:musicPath];
@@ -188,5 +179,31 @@
     pressHintImageView3.hidden = true;
 }
 
+- (void)unlockGuideDismissed:(HAMUnlockGuideViewController *)unlockGuide {
+	[self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)unlockButtonPressed:(id)sender {
+	// show the unlock guide
+	BOOL noUnlockGuide = [[NSUserDefaults standardUserDefaults] boolForKey:NO_UNLOCK_GUIDE_KEY];
+	if (! noUnlockGuide) {
+		HAMUnlockGuideViewController *unlockGuide = [[HAMUnlockGuideViewController alloc] init];
+		unlockGuide.delegate = self;
+		unlockGuide.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+		
+		UIView *background = [self.view snapshotViewAfterScreenUpdates:YES];
+		[unlockGuide.view insertSubview:background atIndex:0];
+		
+		[self presentViewController:unlockGuide animated:YES completion:NULL];
+	}
+	
+    pressHintImageView1.hidden = NO;
+    pressHintImageView2.hidden = NO;
+    pressHintImageView3.hidden = NO;
+	
+    HAMAnimation* gifAnimation = [[HAMAnimation alloc] init];
+    gifAnimation.gifDelegate_ = self;
+    [gifAnimation playGifWithTimeInterval:0.1f totalPicNum:8];
+}
 
 @end

@@ -16,7 +16,7 @@
 @end
 
 
-@interface HAMGridCell : UICollectionViewCell <UIActionSheetDelegate, UIAlertViewDelegate>
+@interface HAMGridCell : UICollectionViewCell <UIActionSheetDelegate>
 
 typedef enum {
 	HAMGridCellModeAdd,

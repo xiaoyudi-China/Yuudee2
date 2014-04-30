@@ -27,7 +27,7 @@
 - (void)setCard:(HAMCard*)card andCardView:(HAMCardView*)cardView;
 
 - (void)moveView:(UIView*)view toPosition:(CGPoint)position;
-- (void)beginAnimation:(int)animationType;
+- (void)beginAnimation:(HAMAnimationType)animationType;
 - (Boolean)isRunning;
 
 - (void)playGifWithTimeInterval:(double)interval totalPicNum:(int)totalnum;

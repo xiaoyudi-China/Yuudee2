@@ -12,10 +12,11 @@
 {}
 
 
--(HAMRoom*)initWithCardID:(NSString*)cardID animation:(HAMAnimationType)animation{
+-(HAMRoom*)initWithCardID:(NSString*)cardID animation:(HAMAnimationType)animation muteState:(BOOL)mute {
     if (self = [super init]) {
         self.cardID = cardID;
         self.animation = animation;
+		self.mute = mute;
     }
     return self;
 }

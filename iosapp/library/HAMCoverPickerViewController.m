@@ -7,6 +7,7 @@
 //
 
 #import "HAMCoverPickerViewController.h"
+#import "HAMSharedData.h"
 
 @interface HAMCoverPickerViewController ()
 
@@ -36,7 +37,7 @@
 	NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
 	for (NSString *cardID in cardIDs) {
 		HAMCard *card = [self.config card:cardID];
-		UIImage *image = [UIImage imageWithContentsOfFile:card.imagePath]; // TODO: use image cache
+		UIImage *image = [HAMSharedData imageAtPath:card.imagePath];
 		[self.images addObject:image];
 	}
 	

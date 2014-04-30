@@ -12,7 +12,7 @@
 #import "HAMEditableGridViewTool.h"
 #import "HAMCategoryGridViewController.h"
 #import "HAMConfig.h"
-#import "HAMUserManager.h"
+#import "HAMCoursewareManager.h"
 #import "HAMEditCardPopoverViewController.h"
 #import "HAMEditCatPopoverViewController.h"
 #import "HAMCoursewareSettingsPopoverViewController.h"
@@ -31,7 +31,7 @@
 }
 
 @property (strong, nonatomic) HAMConfig *config;
-@property (strong, nonatomic) HAMUserManager *coursewareManager;
+@property (strong, nonatomic) HAMCoursewareManager *coursewareManager;
 @property (strong, nonatomic) NSMutableArray* coursewareArray;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

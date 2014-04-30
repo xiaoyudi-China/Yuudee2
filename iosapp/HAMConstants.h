@@ -16,3 +16,5 @@ extern NSString *const DATABASE_NAME;
 extern NSString *const CARD_IMAGE_SUBDIR;
 extern NSString *const CARD_AUDIO_SUBDIR;
 extern NSString *const CARD_FILE_EXTENSION;
+extern NSString *const NO_UNLOCK_GUIDE_KEY;
+extern NSString *const UNCATEGORIZED_ID;

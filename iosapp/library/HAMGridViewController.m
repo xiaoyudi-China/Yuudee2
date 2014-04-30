@@ -30,7 +30,7 @@
 	[self.leftTopButton setImage:[UIImage imageNamed:@"backDOWN.png"] forState:UIControlStateHighlighted];
 	[self.rightTopButton setImage:[UIImage imageNamed:@"addnewDOWN.png"] forState:UIControlStateHighlighted];
 	
-	// FIXME
+	// FIXME: fix the layout
 	//HAMCollectionViewLayout *layout = [[HAMCollectionViewLayout alloc] init];
 	UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 	layout.itemSize = CGSizeMake(239, 231);

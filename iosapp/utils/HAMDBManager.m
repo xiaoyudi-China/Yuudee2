@@ -144,9 +144,9 @@
 {
     [self openDatabase];
     
-    NSString* query=[[NSString alloc]initWithFormat:@"SELECT * FROM CARD WHERE ID='%@'",UUID];
-    int result=sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
-    if (result!=SQLITE_OK)
+    NSString* query = [[NSString alloc]initWithFormat:@"SELECT * FROM Card WHERE id='%@'",UUID];
+    int result = sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
+    if (result != SQLITE_OK)
     {
         NSAssert(0,@"Fail to select!");
         [self closeDatabase];
@@ -154,18 +154,11 @@
     }
     
     sqlite3_step(statement);
-    HAMCard* card=[HAMCard alloc];
+    HAMCard* card = [[HAMCard alloc] init];
 
-    card.cardID=[self stringAt:0];
-    
-    NSString* type=[self stringAt:1];
-    if ([type isEqualToString:@"card"])
-        card.type=1;
-    else
-        card.type=0;
-    
+    card.ID = [self stringAt:0];
+	card.type = (HAMCardType)sqlite3_column_int(statement, 1);
     card.name=[self stringAt:2];
-    
     card.imagePath = [self stringAt:3];
     card.audioPath = [self stringAt:4];
     card.numImages = sqlite3_column_int(statement, 5);
@@ -229,24 +222,8 @@
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(database, update, -1, &stmt, nil)==SQLITE_OK)
     {
-        sqlite3_bind_text(stmt, 1, [card.cardID UTF8String], -1, NULL);
-        
-        char* type;
-        switch (card.type) {
-            case 0:
-                type="category";
-                break;
-                
-            case 1:
-                type="card";
-                break;
-                
-            default:
-                type="error_type";
-                break;
-        }
-        sqlite3_bind_text(stmt, 2, type, -1, NULL);
-        
+        sqlite3_bind_text(stmt, 1, [card.ID UTF8String], -1, NULL);
+        sqlite3_bind_int(stmt, 2, (int)card.type);
         sqlite3_bind_text(stmt, 3, [card.name UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 4, [card.imagePath UTF8String], -1, NULL);
         sqlite3_bind_text(stmt, 5, [card.audioPath UTF8String], -1, NULL);
@@ -281,7 +258,7 @@
 {
     [self openDatabase];
     
-    NSString* query = [[NSString alloc]initWithFormat:@"SELECT CHILD,POSITION,ANIMATION FROM CardTree WHERE PARENT='%@';",parentID];
+    NSString* query = [[NSString alloc]initWithFormat:@"SELECT child, position, animation, mute FROM CardTree WHERE parent='%@';",parentID];
     int result = sqlite3_prepare_v2(database, [query UTF8String], -1, &statement, nil);
     if (result != SQLITE_OK)
     {
@@ -296,8 +273,9 @@
         NSString* childID = [self stringAt:0];
         NSInteger pos = sqlite3_column_int(statement, 1);
         HAMAnimationType animation = sqlite3_column_int(statement, 2);
+		BOOL mute = sqlite3_column_int(statement, 3);
         
-        HAMRoom* room = [[HAMRoom alloc] initWithCardID:childID animation:animation];
+        HAMRoom* room = [[HAMRoom alloc] initWithCardID:childID animation:animation muteState:mute];
         [HAMTools setObject:room toMutableArray:children atIndex:pos];
     }
     
@@ -342,7 +320,7 @@
     
     //TODO: I don't know if this insert or replace works!! Must add index creating to SQL on server!
     
-    char* update="INSERT OR REPLACE INTO CardTree (CHILD, PARENT, POSITION, ANIMATION) VALUES (?, ?, ?, ?);";
+    char* update="INSERT OR REPLACE INTO CardTree (CHILD, PARENT, POSITION, ANIMATION, mute) VALUES (?, ?, ?, ?, ?);";
     
     if (sqlite3_prepare_v2(database, update, -1, &statement, nil)==SQLITE_OK)
     {
@@ -350,6 +328,7 @@
         sqlite3_bind_text(statement, 2, [parentID UTF8String], -1, NULL);
 		sqlite3_bind_int(statement, 3, (int)index);
 		sqlite3_bind_int(statement, 4, newRoom.animation);
+		sqlite3_bind_int(statement, 5, newRoom.mute);
     }
     if (sqlite3_step(statement)!=SQLITE_DONE) {
         NSAssert(0, @"Error updating");
@@ -360,9 +339,12 @@
 
 -(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(HAMAnimationType)animation atIndex:(NSInteger)index
 {
-	[self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CardTree SET ANIMATION = '%d' WHERE PARENT = '%@' AND POSITION = %d", animation, parentID, (int)index]];
+	[self runSQL:[[NSString alloc] initWithFormat:@"UPDATE CardTree SET animation = %d WHERE parent = '%@' AND position = %d", animation, parentID, (int)index]];
 }
 
+- (void)updateMuteStateOfCat:(NSString *)parentID toMuteState:(BOOL)mute atIndex:(NSInteger)index {
+	[self runSQL:[NSString stringWithFormat:@"UPDATE CardTree SET mute = %d WHERE parent = '%@' AND position = %d", mute, parentID, (int)index]];
+}
 
 -(void)insertResourceWithID:(NSString*)UUID path:(NSString*)path
 {
@@ -386,7 +368,7 @@
 #pragma mark
 #pragma mark From USER
 
--(HAMUser*)user:(NSString*)userID
+-(HAMCourseware*)user:(NSString*)userID
 {
     NSString* whereClause;
     if (userID!=nil)
@@ -394,16 +376,15 @@
     if(![self prepareSelect:@"*" from:@"USER" where:whereClause])
         return nil;
     
-    HAMUser* user;
+    HAMCourseware* user;
     if(sqlite3_step(statement)==SQLITE_ROW)
     {
-        user=[HAMUser alloc];
+        user = [[HAMCourseware alloc] init];
         user.UUID=[self stringAt:0];
         user.name=[self stringAt:1];
         user.rootID=[self stringAt:2];
         user.layoutx=sqlite3_column_int(statement, 3);
         user.layouty=sqlite3_column_int(statement, 4);
-		user.mute = sqlite3_column_int(statement, 5);
     }
     
     [self closeDatabase];
@@ -423,7 +404,7 @@
     NSMutableArray* users=[[NSMutableArray alloc] initWithCapacity:20];
     while(sqlite3_step(statement)==SQLITE_ROW)
     {
-        HAMUser* user = [HAMUser alloc];
+        HAMCourseware* user = [[HAMCourseware alloc] init];
         user.UUID = [self stringAt:0];
         user.name = [self stringAt:1];
         user.rootID = [self stringAt:2];
@@ -437,10 +418,10 @@
     return users;
 }
 
--(void)insertUser:(HAMUser*)user
+-(void)insertUser:(HAMCourseware*)user
 {
     //TODO: default layoutx,layouty
-    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES('%@', '%@', '%@', %d, %d, %d);",user.UUID,user.name,user.rootID, user.layoutx, user.layouty, user.mute]];
+    [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO USER VALUES('%@', '%@', '%@', %d, %d);",user.UUID,user.name,user.rootID, user.layoutx, user.layouty]];
     [self runSQL:[[NSString alloc] initWithFormat: @"INSERT INTO CARD VALUES(\"%@\",\"category\",\"root_category\",null,null,\"%@\",1);",user.rootID,user.name]];
 }
 

@@ -16,3 +16,5 @@ NSString *const DATABASE_NAME = @"app_data.sqlite";
 NSString *const CARD_IMAGE_SUBDIR = @"images";
 NSString *const CARD_AUDIO_SUBDIR = @"audios";
 NSString *const CARD_FILE_EXTENSION = @"xydcard";
+NSString *const NO_UNLOCK_GUIDE_KEY = @"NoUnlockGuide";
+NSString *const UNCATEGORIZED_ID = @"uncategorized";

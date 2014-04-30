@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "HAMAppDelegate.h"
 #import "HAMDBManager.h"
-#import "HAMUserManager.h"
+#import "HAMCoursewareManager.h"
 #import "HAMCard.h"
 #import "HAMRoom.h"
-#import "HAMUser.h"
+#import "HAMCourseware.h"
 #import "HAMConstants.h"
 
-@class HAMUserManager;
+@class HAMCoursewareManager;
 
 @interface HAMConfig : NSObject
 {
     HAMDBManager* dbManager;
-    HAMUserManager* userManager;
+    HAMCoursewareManager* userManager;
     
     //nodes is always clean
     NSMutableDictionary* cards;
@@ -28,7 +28,7 @@
 }
 
 @property NSString* rootID;
-@property HAMUserManager* userManager;
+@property HAMCoursewareManager* userManager;
 
 -(id)initFromDB;
 -(void)clear;
@@ -39,15 +39,21 @@
 -(NSMutableArray*)childrenCardIDOfCat:(NSString*)parentID;
 -(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(NSInteger)index;
 -(NSString*)childCardIDOfCat:(NSString*)parentID atIndex:(NSInteger)index;
--(int)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index;
+-(HAMAnimationType)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index;
+- (BOOL)muteStateOfCat:(NSString *)parentID atIndex:(NSInteger)index;
 
--(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
--(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(NSInteger)index;
--(void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
--(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image;
+- (void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
+- (void)updateAnimationOfCat:(NSString *)parentID with:(HAMAnimationType)animation atIndex:(NSInteger)index;
+- (void)updateMuteStateOfCat:(NSString *)parentID with:(BOOL)muteState atIndex:(NSInteger)index;
+- (void)updateCard:(HAMCard*)card name:(NSString*)name audio:(NSString*)audio image:(NSString*)image;
+- (void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image;
+- (void)addChild:(NSString *)childID toParent:(NSString *)parentID;
+- (void)removeChild:(NSString *)childID fromParent:(NSString *)parentID;
+- (void)moveChild:(NSString *)childID fromParent:(NSString *)srcParentID toParent:(NSString *)dstParentID;
 
 -(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(NSInteger)beginIndex;
--(void)deleteCard:(NSString*)UUID;
+-(void)deleteCard:(NSString*)ID;
 
+// FIXME: this method seems to be useless
 -(void)deleteChildOfCatInLib:(NSString*)parentID atIndex:(NSInteger)index;
 @end

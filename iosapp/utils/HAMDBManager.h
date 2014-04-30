@@ -10,7 +10,7 @@
 #import <sqlite3.h>
 #import "HAMCard.h"
 #import "HAMTools.h"
-#import "HAMUser.h"
+#import "HAMCourseware.h"
 #import "HAMRoom.h"
 
 
@@ -39,11 +39,12 @@
 -(void)deleteCardFromTree:(NSString*)UUID;
 -(void)updateChildOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index;
 -(void)updateAnimationOfCat:(NSString*)parentID toAnimation:(HAMAnimationType)animation atIndex:(NSInteger)index;
+- (void)updateMuteStateOfCat:(NSString *)parentID toMuteState:(BOOL)mute atIndex:(NSInteger)index;
 
 //table USER
--(HAMUser*)user:(NSString*)userID;
+-(HAMCourseware*)user:(NSString*)userID;
 -(NSMutableArray*)allUsers;
--(void)insertUser:(HAMUser*)user;
+-(void)insertUser:(HAMCourseware*)user;
 -(void)updateUser:(NSString*)userID name:(NSString*)newName;
 -(void)updateUserLayoutWithID:(NSString*)userID xnum:(int)xnum ynum:(int)ynum;
 - (void)updateUser:(NSString*)userID withMuteState:(BOOL)mute;

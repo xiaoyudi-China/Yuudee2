@@ -65,10 +65,10 @@
     self.coursewareSelectView.hidden = YES;
 	self.aboutMenuView.hidden = YES;
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCoursewareNotification:) name:HAMUser_NewUser object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareNotification:) name:HAMUser_UpdateUser object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareLayoutNotification:) name:HAMUser_UpdateLayout object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteCoursewareNotification:) name:HAMUser_DeleteUser object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newCoursewareNotification:) name:HAMCourseware_New object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareNotification:) name:HAMCourseware_Update object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCoursewareLayoutNotification:) name:HAMCourseware_UpdateLayout object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteCoursewareNotification:) name:HAMCourseware_Delete object:nil];
 }
 
 - (void)dealloc
@@ -125,10 +125,6 @@
 #pragma mark -
 #pragma mark Enter Lib
 
-// FIXME: remove this useless method
-- (void)newCardClicked:(UIButton *)sender {
-}
-
 - (IBAction)libClicked:(UIButton *)sender {
     [self enterLibAt:-1];
 }
@@ -137,6 +133,7 @@
 #pragma mark Settings
 
 - (IBAction)settingsClicked:(UIButton *)sender {
+	// TODO: use presentViewController instead of presentPopover
     HAMCoursewareSettingsPopoverViewController* coursewareSettingsPopover = [[HAMCoursewareSettingsPopoverViewController alloc] initWithNibName:@"HAMCoursewareSettingsPopoverViewController" bundle:nil];
     coursewareSettingsPopover.mainSettingsViewController = self;
     coursewareSettingsPopover.coursewareManager = self.coursewareManager;
@@ -156,17 +153,17 @@
     HAMCard* card = [self.config card:[self.config childCardIDOfCat:self.currentUUID atIndex:childIndex]];
     
     switch (card.type) {
-        case CARD_TYPE_CARD:
+        case HAMCardTypeCard:
             editCardPopover = [[HAMEditCardPopoverViewController alloc] initWithNibName:@"HAMEditCardPopoverViewController" bundle:nil];
-            editCardPopover.parentID_ = self.currentUUID;
+            editCardPopover.parentID = self.currentUUID;
             editCardPopover.childIndex = childIndex;
-            editCardPopover.config_ = self.config;
+            editCardPopover.config = self.config;
             editCardPopover.mainSettingsViewController_ = self;
             
             [self presentPopoverWithPopoverViewController:editCardPopover];
             break;
             
-        case CARD_TYPE_CATEGORY:
+        case HAMCardTypeCategory:
             editCatPopover = [[HAMEditCatPopoverViewController alloc] initWithNibName:@"HAMEditCatPopoverViewController" bundle:nil];
             editCatPopover.parentID_ = self.currentUUID;
             editCatPopover.childIndex_ = childIndex;
@@ -190,9 +187,8 @@
     [self refreshGridViewAndScrollToFirstPage:YES];
 }
 
-// FIXME: remove this useless method
 -(void) leafClicked:(id)sender{
-	//    [HAMViewTool showAlert:@"长按可以进入替换。"];
+	// there's nothing to do yet
 }
 
 -(void) addClicked:(id)sender
@@ -215,7 +211,7 @@
 
 - (void)initGridView
 {
-    HAMUser* currentUser = [self.coursewareManager currentUser];
+    HAMCourseware* currentUser = [self.coursewareManager currentCourseware];
     
     //grid view
     HAMViewInfo* viewInfo = [[HAMViewInfo alloc] initWithXnum:currentUser.layoutx ynum:currentUser.layouty];
@@ -257,7 +253,7 @@
 
 - (void)refreshCoursewareSelect
 {
-    self.coursewareNameLabel.text = [self.coursewareManager currentUser].name;
+    self.coursewareNameLabel.text = [self.coursewareManager currentCourseware].name;
     self.coursewareArray = [self.coursewareManager userList];
     [self.coursewareTableView reloadData];
 }
@@ -292,15 +288,15 @@
     cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:52.0f/255 green:25.0f/255 blue:12.0f/255 alpha:1];
     
     NSUInteger row = [indexPath row];
-    HAMUser* courseware = self.coursewareArray[row];
+    HAMCourseware* courseware = self.coursewareArray[row];
     cell.textLabel.text = courseware.name;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    HAMUser* courseware = self.coursewareArray[indexPath.row];
-    [self.coursewareManager setCurrentUser:courseware];
+    HAMCourseware* courseware = self.coursewareArray[indexPath.row];
+    [self.coursewareManager setCurrentCourseware:courseware];
     
     [self initGridView];
     refreshFlag = YES;
@@ -341,7 +337,6 @@
 	[self displayIntro:HAMIntroTypeTrainGuide];
 }
 
-// TODO: not tested yet
 - (IBAction)feedbackButtonPressed:(id)sender {
 	NSString *appID = @"794832934";
 	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID]];
@@ -352,9 +347,9 @@
 	// Nothing to do, just ensure this method is called
 }
 
-// FIXME: some cards seem to be not exported
+// FIXME: some cards are not exported (there seems to be race condition)
 - (void)exportCards {
-	NSMutableArray *allCardIDs = [[NSMutableArray alloc] init];
+	NSMutableArray *allCardIDs = [NSMutableArray array];
 	NSArray *allCategoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 	for (NSString *categoryID in allCategoryIDs) {
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
@@ -395,9 +390,9 @@
 	[actionSheet showInView:self.view];
 }
 
-// TODO: delete non-default users (coursewares)
+// TODO: delete non-default coursewares
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0) { // confirm resetting
+	if (buttonIndex == actionSheet.destructiveButtonIndex) { // confirm resetting
 		NSArray *categoryIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
 		for (NSString *categoryID in categoryIDs) {
 			NSArray *cardIDs = [self.config childrenCardIDOfCat:categoryID];
@@ -405,28 +400,26 @@
 				HAMCard *card = [self.config card:cardID];
 				// delete removable cards
 				if (card.removable) {
-					NSInteger cardIndex = [cardIDs indexOfObject:cardID];
-					[self.config deleteChildOfCatInLib:categoryID atIndex:cardIndex];
+					[self.config removeChild:cardID fromParent:categoryID];
+					[self.config deleteCard:cardID];
 				}
 			}
 			
-			HAMCard *category = [self.config card:categoryID];
 			// delete removable categories
-			if (category.removable) {
-				NSInteger categoryIndex = [categoryIDs indexOfObject:categoryID];
-				[self.config deleteChildOfCatInLib:LIB_ROOT_ID atIndex:categoryIndex];
+			if ([self.config card:categoryID].removable) {
+				[self.config removeChild:categoryID fromParent:LIB_ROOT_ID];
+				[self.config deleteCard:categoryID];
 			}
 		}
 		
-		NSArray *users = [self.coursewareManager userList];
-		for (HAMUser *user in users) {
+		NSArray *coursewares = [self.coursewareManager userList];
+		for (HAMCourseware *courseware in coursewares) {
 			// restore to default setting
-			[self.coursewareManager updateUser:user withLayoutxnum:USER_DEFAULT_LAYOUTX ynum:USER_DEFAULT_LAYOUTY];
-			[self.coursewareManager updateUser:user withMuteState:NO];
+			[self.coursewareManager updateCourseware:courseware withLayoutxnum:USER_DEFAULT_LAYOUTX ynum:USER_DEFAULT_LAYOUTY];
+			[self.coursewareManager updateCourseware:courseware withMuteState:NO];
 		}
 		// don't forget to update the current setting immediately
-		[self.coursewareManager updateCurrentUserLayoutxnum:USER_DEFAULT_LAYOUTX ynum:USER_DEFAULT_LAYOUTY];
-		[self.coursewareManager updateCurrentUserMuteState:NO];
+		[self.coursewareManager updateCurrentCoursewareLayoutxnum:USER_DEFAULT_LAYOUTX ynum:USER_DEFAULT_LAYOUTY];
 		
 		// update the user list
 		[self refreshCoursewareSelect];
@@ -458,9 +451,9 @@
     [self.coursewareTableView reloadData];
     for (NSUInteger itemCount = 0; itemCount < [self.coursewareArray count]; itemCount--) {
         NSUInteger index = [self.coursewareArray count] - itemCount - 1; // 倒序，加快速度
-        HAMUser *courseware = self.coursewareArray[index];
+        HAMCourseware *courseware = self.coursewareArray[index];
         if ([courseware.UUID isEqualToString:userUUID]) {
-            [self.coursewareManager setCurrentUser:courseware];
+            [self.coursewareManager setCurrentCourseware:courseware];
             
             [self initGridView];
             refreshFlag = YES;
@@ -475,11 +468,11 @@
 - (void)updateCoursewareNotification:(NSNotification*)notification
 {
     NSString *userUUID = [notification object];
-    HAMUser *courseware = [self.coursewareManager currentUser];
+    HAMCourseware *courseware = [self.coursewareManager currentCourseware];
     if ([courseware.UUID isEqualToString:userUUID]) {
         self.coursewareNameLabel.text = courseware.name;
         for (NSUInteger index = 0; index < [self.coursewareArray count]; index++) {
-            HAMUser *theCourseware = self.coursewareArray[index];
+            HAMCourseware *theCourseware = self.coursewareArray[index];
             if ([theCourseware.UUID isEqualToString:courseware.UUID]) {
                 theCourseware.name = courseware.name;
                 NSIndexPath  *indexPath=[NSIndexPath indexPathForRow:index inSection:0];
@@ -494,7 +487,7 @@
 - (void)updateCoursewareLayoutNotification:(NSNotification*)notification
 {
     NSString *userUUID = [notification object];
-    HAMUser *courseware = [self.coursewareManager currentUser];
+    HAMCourseware *courseware = [self.coursewareManager currentCourseware];
     if ([courseware.UUID isEqualToString:userUUID]) {
         [self setLayoutWithxnum:courseware.layoutx ynum:courseware.layouty];
         [self refreshGridViewAndScrollToFirstPage:YES];
@@ -505,16 +498,16 @@
 {
     NSString *userUUID = [notification object];
     for (NSUInteger index = 0; index < [self.coursewareArray count]; index++) {
-        HAMUser *theCourseware = self.coursewareArray[index];
+        HAMCourseware *theCourseware = self.coursewareArray[index];
         if ([theCourseware.UUID isEqualToString:userUUID]) {
             NSInteger lastIndex = index - 1;
             lastIndex = lastIndex >= 0 ? lastIndex : NSNotFound;
             if (lastIndex != NSNotFound) {
-                HAMUser *theLastCourseware = self.coursewareArray[lastIndex];
-                [self.coursewareManager setCurrentUser:theLastCourseware];
+                HAMCourseware *theLastCourseware = self.coursewareArray[lastIndex];
+                [self.coursewareManager setCurrentCourseware:theLastCourseware];
             } else {
                 self.coursewareNameLabel.text = nil;
-                [self.coursewareManager setCurrentUser:nil];
+                [self.coursewareManager setCurrentCourseware:nil];
             }
             
             [self initGridView];

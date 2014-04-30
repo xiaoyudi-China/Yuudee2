@@ -15,6 +15,7 @@
 + (NSString *)documentPath;
 + (NSString *)temporaryPath;
 
+- (void)changeCurrentDirectoryPath:(NSString *)path;
 - (NSArray *)contentsOfDirectoryAtPath:(NSString *)path;
 - (void)copyItemAtPath:(NSString *)srcPath toPath:(NSString *)dstPath;
 - (void)createDirectoryAtPath:(NSString *)path withIntermediateDirectories:(BOOL)createIntermediates attributes:(NSDictionary *)attributes;

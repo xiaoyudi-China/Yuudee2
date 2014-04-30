@@ -20,7 +20,7 @@
 
 @end
 
-@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, HAMCoverPickerDelegate, UINavigationControllerDelegate>
+@interface HAMCategoryEditorViewController : UIViewController <UITextFieldDelegate, UIActionSheetDelegate, HAMCoverPickerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSString *categoryID;
 @property (weak, nonatomic) HAMConfig *config;

@@ -54,25 +54,24 @@
 }
 
 - (IBAction)deleteButtonPressed:(id)sender {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"该分类下所有卡片均会被删除" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-	[alert show];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"确认删除整个分类？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
+	[actionSheet showInView:self.view];
 }
 
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-	
-	if (buttonIndex == 1) { // confirm deletion
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (buttonIndex == actionSheet.destructiveButtonIndex) {
 		// delete all cards under this category
 		NSArray *cardIDs = [self.config childrenCardIDOfCat:self.categoryID];
-		for (NSInteger index = 0; index < cardIDs.count; index++) {
-			[self.config deleteChildOfCatInLib:self.categoryID atIndex:index];
+		for (NSString *cardID in cardIDs) {
+			[self.config removeChild:cardID fromParent:self.categoryID];
+			[self.config deleteCard:cardID];
 		}
 		
-		NSArray *catIDs = [self.config childrenCardIDOfCat:LIB_ROOT_ID];
-		NSUInteger catIndex = [catIDs indexOfObject:self.categoryID];
-		[self.config deleteChildOfCatInLib:LIB_ROOT_ID atIndex:catIndex];
+		// delete the category
+		[self.config removeChild:self.categoryID fromParent:LIB_ROOT_ID];
+		[self.config deleteCard:self.categoryID];
 		
-		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid to refresh
+		[self.delegate categoryEditorDidEndEditing:self]; // ask the grid view to refresh
 	}
 }
 
@@ -119,12 +118,10 @@
 			NSLog(@"failed to save image");
 		
 		// update database
-		[self.config newCardWithID:category.cardID name:category.name type:HAMCardTypeCategory audio:nil image:category.imagePath];
+		[self.config newCardWithID:category.ID name:category.name type:HAMCardTypeCategory audio:nil image:category.imagePath];
 		
-		// insert the new category into library
-		NSInteger numChildren = [self.config childrenCardIDOfCat:LIB_ROOT_ID].count;
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:category.cardID animation:ROOM_ANIMATION_NONE];
-		[self.config updateRoomOfCat:LIB_ROOT_ID with:room atIndex:numChildren];
+		// add the new category into library
+		[self.config addChild:category.ID toParent:LIB_ROOT_ID];
 
 		// collect user statistics
 		NSDictionary *attrs = @{@"分类名称": category.name};

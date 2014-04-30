@@ -46,7 +46,7 @@
     [sequence_ start];
 }
 
-- (void)beginAnimation:(int)animationType{
+- (void)beginAnimation:(HAMAnimationType)animationType{
     
     UIView* superView = cardView_.superview;
     [superView bringSubviewToFront:cardView_];
@@ -78,11 +78,11 @@
     }]];
     
     switch (animationType) {
-        case ROOM_ANIMATION_NONE:
+        case HAMAnimationTypeNone:
             [self playGifOnCardView];
             return;
             
-        case ROOM_ANIMATION_SCALE:
+        case HAMAnimationTypeScale:
             if (scale < 1) {
                 [self playGifOnCardView];
                 break;
@@ -91,7 +91,7 @@
             [sequence_ start];
             break;
             
-        case ROOM_ANIMATION_SHAKE:
+        case HAMAnimationTypeShake:
             if (scale < 1) {
                 sequence_ = [[QBAnimationSequence alloc] initWithAnimationGroups:@[groupRotateRightHalf, groupRotateLeft, groupRotateRight, groupRotateLeftHalf, groupScaleNom] repeat:NO];
             }

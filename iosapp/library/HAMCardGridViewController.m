@@ -92,7 +92,7 @@
 		cell.rightTopButton.hidden = ! card.removable;
 	}
 	
-	if ([self.selectedCardIDs containsObject:card.cardID]) // this card is already selected
+	if ([self.selectedCardIDs containsObject:card.ID]) // this card is already selected
 		[cell.rightTopButton setImage:[UIImage imageNamed:@"checkedbox.png"] forState:UIControlStateNormal];
 	
 	cell.indexPath = indexPath;
@@ -122,7 +122,7 @@
 // add the selected cards
 - (void)bottomButtonPressed:(id)sender {
 	
-	int animation = ROOM_ANIMATION_NONE; // no animation by default
+	HAMAnimationType animation = HAMAnimationTypeScale; // 'scale' animation by default
 	NSMutableArray *rooms = [[NSMutableArray alloc] initWithCapacity:self.selectedCardIDs.count];
 	
 	// for statistics recording
@@ -132,7 +132,7 @@
 	// retain the order of selection
 	for (NSString *cardID in [self cardIDs])
 		if ([self.selectedCardIDs containsObject:cardID]) {
-			[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation]];
+			[rooms addObject:[[HAMRoom alloc] initWithCardID:cardID animation:animation muteState:NO]];
 			
 			// trace user events
 			HAMCard *card = [self.config card:cardID];

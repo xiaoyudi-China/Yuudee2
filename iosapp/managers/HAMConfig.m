@@ -24,9 +24,9 @@
     if (![dbManager isDatabaseExist])
         return nil;
     
-    userManager=[HAMUserManager new];
+    userManager=[HAMCoursewareManager new];
     userManager.config=self;
-    rootID=[userManager currentUser].rootID;
+    rootID=[userManager currentCourseware].rootID;
     
     cards=[NSMutableDictionary dictionary];
     cardTree=[NSMutableDictionary dictionary];
@@ -41,26 +41,11 @@
 
 -(void)clear
 {
-    rootID=[userManager setCurrentUser:nil].rootID;
+    rootID=[userManager setCurrentCourseware:nil].rootID;
     //[self setAllDirty];
     cardTree=[NSMutableDictionary dictionary];
     cards=[NSMutableDictionary dictionary];
 }
-
-/*-(void) setAllDirty
-{
-    for(int i=0;i<FLAGNUM;i++)
-        dirtyFlag[i]=1;
-}
-
--(void)setDirtyWithType:(int)type
-{
-    dirtyFlag[0]=1;
-    if (type==0)
-        dirtyFlag[2]=1;
-    else
-        dirtyFlag[1]=1;
-}*/
 
 #pragma mark -
 #pragma mark Card
@@ -86,28 +71,28 @@
     //TODO: update name every time. should fix this.
     {
         card.name=name;
-        [dbManager updateCard:card.cardID name:name];
+        [dbManager updateCard:card.ID name:name];
     }
     
     if (audio)
     {
         card.audioPath = audio;
-        [dbManager updateCard:card.cardID audio:card.audioPath];
+        [dbManager updateCard:card.ID audio:card.audioPath];
     }
     
     if (image)
     {
         card.imagePath = image;
-        [dbManager updateCard:card.cardID image:card.imagePath];
+        [dbManager updateCard:card.ID image:card.imagePath];
     }
     
-    [cards removeObjectForKey:card.cardID];
+    [cards removeObjectForKey:card.ID];
 }
 
 -(void)newCardWithID:(NSString*)UUID name:(NSString*)name type:(int)type audio:(NSString*)audio image:(NSString*)image
 {
-    HAMCard* card = [HAMCard alloc];
-    card.cardID = UUID;
+    HAMCard* card = [[HAMCard alloc] init];
+    card.ID = UUID;
     card.name = name;
     card.type = type;
     card.numImages = 1;
@@ -125,17 +110,17 @@
     
     [dbManager insertCard:card];
     
-    cards[card.cardID] = card;
+    cards[card.ID] = card;
 }
 
--(void)deleteCard:(NSString*)UUID
+-(void)deleteCard:(NSString*)ID
 {
-    HAMCard* card=[self card:UUID];
+    HAMCard* card = [self card:ID];
     
-    [dbManager deleteCardFromTree:card.cardID];
-    [dbManager deleteCardWithID:card.cardID];
+    [dbManager deleteCardFromTree:card.ID];
+    [dbManager deleteCardWithID:card.ID];
     
-    cardTree=[NSMutableDictionary dictionary];
+    cardTree = [NSMutableDictionary dictionary];
 }
 
 #pragma mark -
@@ -150,13 +135,18 @@
     return room.cardID;
 }
 
--(int)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index
+- (HAMAnimationType)animationOfCat:(NSString*)parentID atIndex:(NSInteger)index
 {
     HAMRoom* room = [self roomOfCat:parentID atIndex:index];
     
     if (!room)
         return -1;
     return room.animation;
+}
+
+- (BOOL)muteStateOfCat:(NSString *)parentID atIndex:(NSInteger)index {
+	HAMRoom *room = [self roomOfCat:parentID atIndex:index];
+	return room.mute;
 }
 
 -(HAMRoom*)roomOfCat:(NSString*)parentID atIndex:(NSInteger)index{
@@ -199,44 +189,6 @@
     return cardIDArray;
 }
 
-/*-(void) parseJSONDictionary:(NSDictionary*)dictionary
-{
-    NSDictionary* nodeInfo;
-    NSString* type;
-    id node;
-    nodes=[NSMutableArray arrayWithCapacity:100];
-    
-    int i;
-    for(i=0;(nodeInfo=[dictionary objectForKey:[[NSString alloc]initWithFormat:@"n%d",i]]);i++)
-    {
-        
-        
-        if (!nodeInfo)
-        {
-            [nodes addObject:[NSNull null]];
-            continue;
-        }
-        
-        type=[nodeInfo objectForKey:@"type"];
-        if ([type isEqualToString:@"group"])
-        {
-            node=[HAMGroup new];
-            [node setChildren:[nodeInfo objectForKey:@"children"]];
-        }
-        else
-        {
-            
-            node=[HAMLeaf new];
-            [node setSoundName:[nodeInfo objectForKey:@"soundname"]];
-        }
-        [node setNodeID:i];
-        [node setShowText:[nodeInfo objectForKey:@"text"]];
-        [node setPicName:[nodeInfo objectForKey:@"picname"]];
-        
-        [nodes addObject:node];
-    }
-}*/
-
 -(void)updateRoomOfCat:(NSString*)parentID with:(HAMRoom*)newRoom atIndex:(NSInteger)index
 {
     if ((NSObject*)newRoom == [NSNull null])
@@ -260,7 +212,7 @@
     }
 }
 
--(void)updateAnimationOfCat:(NSString*)parentID with:(int)animation atIndex:(NSInteger)index
+- (void)updateAnimationOfCat:(NSString *)parentID with:(HAMAnimationType)animation atIndex:(NSInteger)index
 {
     NSMutableArray* children = [self childrenOfCat:parentID];
     if (children.count <= index)
@@ -269,6 +221,16 @@
     HAMRoom* room = children[index];
     room.animation = animation;
     [dbManager updateAnimationOfCat:parentID toAnimation:animation atIndex:index];
+}
+
+- (void)updateMuteStateOfCat:(NSString *)parentID with:(BOOL)muteState atIndex:(NSInteger)index {
+	NSArray *children = [self childrenOfCat:parentID];
+	if (children.count <= index)
+		return;
+	
+	HAMRoom *room = children[index];
+	room.mute = muteState;
+	[dbManager updateMuteStateOfCat:parentID toMuteState:muteState atIndex:index];
 }
 
 -(void)insertChildren:(NSArray*)newChildren intoCat:(NSString*)parentID atIndex:(NSInteger)beginIndex
@@ -300,36 +262,12 @@
     }
 }
 
-/*-(void)moveChildOfCat:(NSString*)parentID fromIndex:(int)oldIndex toIndex:(int)newIndex
-{
-    NSMutableArray* children = [self childrenOf:parentID];
-    if (oldIndex >= [children count])
-        return;
-
-    NSString* childID = [children objectAtIndex:oldIndex];
-    [dbManager updateChild:childID ofCat:parentID toIndex:newIndex];
-    [HAMTools setObject:[NSNull null] toMutableArray:children atIndex:oldIndex];
-    [HAMTools setObject:childID toMutableArray:children atIndex:newIndex];
-}*/
-
-/*-(void)insertChild:(NSString*)childID toNode:(NSString*)parentID
-{
-    NSMutableArray* children=[self childrenCardIDOf:parentID];
-    int pos;
-    //get pos to insert
-    //for (pos=0;[dbManager ifCat:parentID hasChildAt:pos];pos++);
-    for (pos=0;pos<[children count]&&[children objectAtIndex:pos]!=[NSNull null];pos++);
-    [dbManager updateChildOfCat:parentID with:childID atIndex:pos];
-    [HAMTools setObject:childID toMutableArray:children atIndex:pos];
-}*/
-
-
 //delete card from lib. will not move following cards forward
 -(void)deleteCardInLib:(NSString*)cardID
 {
     HAMCard* card = [self card:cardID];
     
-    if (card.type == CARD_TYPE_CATEGORY) {
+    if (card.type == HAMCardTypeCategory) {
         NSArray* children = [self childrenCardIDOfCat:cardID];
         int i;
         for (i = 0; i < children.count; i++) {
@@ -369,6 +307,26 @@
     //if not last, delete last
     if (index + 1 < childrenCount)
         [self updateRoomOfCat:parentID with:nil atIndex:childrenCount - 1];
+}
+
+- (void)addChild:(NSString *)childID toParent:(NSString *)parentID {
+	NSInteger numChildren = [self childrenOfCat:parentID].count;
+	HAMRoom *room = [[HAMRoom alloc] initWithCardID:childID animation:HAMAnimationTypeScale muteState:NO];
+	[self updateRoomOfCat:parentID with:room atIndex:numChildren];
+}
+
+- (void)removeChild:(NSString *)childID fromParent:(NSString *)parentID {
+	NSInteger oldIndex = [[self childrenCardIDOfCat:parentID] indexOfObject:childID];
+	NSInteger numOldCards = [self childrenOfCat:parentID].count;
+	for (NSInteger index = oldIndex; index < numOldCards; index++) {
+		HAMRoom *nextRoom = [self roomOfCat:parentID atIndex:index + 1]; // supposed to be nil when exceeding boundary
+		[self updateRoomOfCat:parentID with:nextRoom atIndex:index];
+	}
+}
+
+- (void)moveChild:(NSString *)childID fromParent:(NSString *)srcParentID toParent:(NSString *)dstParentID {
+	[self removeChild:childID fromParent:srcParentID];
+	[self addChild:childID toParent:dstParentID];
 }
 
 @end

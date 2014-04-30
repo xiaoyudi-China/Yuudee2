@@ -32,7 +32,7 @@
 	if (! [audioSession setActive:YES error:&error])
 		NSLog(@"%@", error.localizedDescription);
 		
-	NSFileManager *fileManager;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
 	// audio doesn't exist
 	if (! [fileManager fileExistsAtPath:self.tempCard.audioPath]) {
 		self.deleteButton.enabled = NO;
@@ -49,7 +49,7 @@
 	if (! self.audioRecorder)
 		NSLog(@"%@", error.localizedDescription);
 	
-	self.imageView.image = [UIImage imageWithContentsOfFile:self.tempCard.imagePath];
+	self.imageView.image = [HAMSharedData imageAtPath:self.tempCard.imagePath];
 	self.cardNameLabel.text = self.tempCard.name;
 	if (! self.isNewCard) // edit mode
 		self.editCardTitleView.hidden = NO; // the default state is hidden
@@ -68,7 +68,7 @@
 - (IBAction)finishButtonPressed:(id)sender {	
 	// update the database
 	if (self.isNewCard)
-		[self.config newCardWithID:self.tempCard.cardID name:self.tempCard.name type:HAMCardTypeCard audio:self.tempCard.audioPath image:self.tempCard.imagePath];
+		[self.config newCardWithID:self.tempCard.ID name:self.tempCard.name type:HAMCardTypeCard audio:self.tempCard.audioPath image:self.tempCard.imagePath];
 	else
 		[self.config updateCard:self.tempCard name:self.tempCard.name audio:self.tempCard.audioPath image:self.tempCard.imagePath];
 	
@@ -77,32 +77,24 @@
 	
 	// update category
 	// ------------------
-	NSInteger numChildren = [self.config childrenCardIDOfCat:self.newCategoryID].count;
-	HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.cardID animation:ROOM_ANIMATION_NONE];
-	
-	if (self.isNewCard) {
-		// if this is a new card, then insert it into a new category
-		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
-	}
-	else if (! [self.newCategoryID isEqualToString:self.categoryID]) { // category is changed
-		// add the card to the new category
-		[self.config updateRoomOfCat:self.newCategoryID with:room atIndex:numChildren];
-				
-		// remove the card from the old category
-		NSInteger oldIndex = [[self.config childrenCardIDOfCat:self.categoryID] indexOfObject:self.tempCard.cardID];
-		NSInteger numOldCards = [self.config childrenOfCat:self.categoryID].count;
-		for (NSInteger index = oldIndex; index < numOldCards; index++) {
-			HAMRoom *nextRoom = [self.config roomOfCat:self.categoryID atIndex:index + 1]; // supposed to be nil when exceeding boundary
-			[self.config updateRoomOfCat:self.categoryID with:nextRoom atIndex:index];
-		}
-	}
+	if (self.isNewCard) // if this is a new card, then insert it into a new category
+		[self.config addChild:self.tempCard.ID toParent:self.newCategoryID];
+	else if (! [self.newCategoryID isEqualToString:self.categoryID]) // category is changed
+		[self.config moveChild:self.tempCard.ID fromParent:self.categoryID toParent:self.newCategoryID];
 
 	// add the card immediately
 	if (self.addCardOnCreation) {
-		HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.cardID animation:ROOM_ANIMATION_NONE];
+		HAMRoom *room = [[HAMRoom alloc] initWithCardID:self.tempCard.ID animation:HAMAnimationTypeScale muteState:NO];
 		[self.config insertChildren:@[room] intoCat:self.parentID atIndex:self.index];
 	}
 	
+	// delete the backup file
+	NSString *filename = [self.tempCard.ID stringByAppendingPathExtension:CARD_FILE_EXTENSION];
+	NSString *tempPath = [[HAMFileManager temporaryPath] stringByAppendingPathComponent:filename]; // path of the backup file
+	HAMFileManager *fileManager = [HAMFileManager defaultManager];
+	if ([fileManager fileExistsAtPath:tempPath])
+		[fileManager removeItemAtPath:tempPath];
+
 	[self.delegate recorderDidEndRecording:self]; // inform the grid view to refresh
 }
 

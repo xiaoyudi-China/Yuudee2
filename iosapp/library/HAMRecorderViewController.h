@@ -18,7 +18,6 @@
 
 @end
 
-
 @interface HAMRecorderViewController : UIViewController <AVAudioPlayerDelegate>
 
 @property (weak, nonatomic) HAMConfig *config;
