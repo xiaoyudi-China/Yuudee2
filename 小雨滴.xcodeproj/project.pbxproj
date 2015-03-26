@@ -55,7 +55,7 @@
 		AB45CEAB1906BC3600850CB2 /* unlock_guide_black_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AB45CEA91906BC3600850CB2 /* unlock_guide_black_button.png */; };
 		AB45CEAC1906BC3600850CB2 /* unlock_guide_blue_button.png in Resources */ = {isa = PBXBuildFile; fileRef = AB45CEAA1906BC3600850CB2 /* unlock_guide_blue_button.png */; };
 		AB45CEAE1906C53300850CB2 /* unlock_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AB45CEAD1906C53300850CB2 /* unlock_icon.png */; };
-		AB52470C18E988EF00018B27 /* cards in Resources */ = {isa = PBXBuildFile; fileRef = AB52470B18E988EF00018B27 /* cards */; };
+		AB4D6EB41AC3E754008D51D8 /* cards in Resources */ = {isa = PBXBuildFile; fileRef = AB4D6EB31AC3E754008D51D8 /* cards */; };
 		AB5DC29F18DC6039007AD92F /* aboutMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5DC29D18DC6039007AD92F /* aboutMenu.png */; };
 		AB5DC2A018DC6039007AD92F /* aboutMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AB5DC29E18DC6039007AD92F /* aboutMenu@2x.png */; };
 		AB5F4E9318D44EC900277870 /* HAMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB5F4E9218D44EC900277870 /* HAMSettingsViewController.xib */; };
@@ -287,7 +287,7 @@
 		AB45CEA91906BC3600850CB2 /* unlock_guide_black_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_guide_black_button.png; sourceTree = "<group>"; };
 		AB45CEAA1906BC3600850CB2 /* unlock_guide_blue_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_guide_blue_button.png; sourceTree = "<group>"; };
 		AB45CEAD1906C53300850CB2 /* unlock_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlock_icon.png; sourceTree = "<group>"; };
-		AB52470B18E988EF00018B27 /* cards */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cards; path = resources/cards; sourceTree = "<group>"; };
+		AB4D6EB31AC3E754008D51D8 /* cards */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cards; path = resources/cards; sourceTree = "<group>"; };
 		AB5DC29D18DC6039007AD92F /* aboutMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aboutMenu.png; sourceTree = "<group>"; };
 		AB5DC29E18DC6039007AD92F /* aboutMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutMenu@2x.png"; sourceTree = "<group>"; };
 		AB5DC2A218DDE6A4007AD92F /* 小雨滴.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "小雨滴.entitlements"; sourceTree = "<group>"; };
@@ -567,7 +567,7 @@
 		66610499178BB04A003AEE3D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB52470B18E988EF00018B27 /* cards */,
+				AB4D6EB31AC3E754008D51D8 /* cards */,
 				AB27673B18E019B100E13A2F /* logo */,
 				AB9F3F1D18CD63D8001894B2 /* UI */,
 				6661049E178BB04A003AEE3D /* main.m */,
@@ -1009,6 +1009,7 @@
 				AB9F3FA718CD63D8001894B2 /* common_card_wood.png in Resources */,
 				AB9F3FFE18CD63D8001894B2 /* productInfoPage@2x.png in Resources */,
 				ABA7BAFB18CDEF1600B7830C /* HAMImageCropperViewController.xib in Resources */,
+				AB4D6EB41AC3E754008D51D8 /* cards in Resources */,
 				AB9F3FAF18CD63D8001894B2 /* addnewDOWN.png in Resources */,
 				AB9F3FBA18CD63D8001894B2 /* cancel.png in Resources */,
 				AB9F3FAD18CD63D8001894B2 /* addnewBG.png in Resources */,
@@ -1067,7 +1068,6 @@
 				AB9F3FDA18CD63D8001894B2 /* aboutOptions@2x.png in Resources */,
 				ABA7BB0918CDEF1600B7830C /* HAMEditCardPopoverViewController.xib in Resources */,
 				AB9F400218CD63D8001894B2 /* parent_settingspop_checked.png in Resources */,
-				AB52470C18E988EF00018B27 /* cards in Resources */,
 				AB9F3FD018CD63D8001894B2 /* playDOWN.png in Resources */,
 				AB9F3FFB18CD63D8001894B2 /* parent_main_settingsbtn.png in Resources */,
 				AB9F3F9F18CD63D8001894B2 /* child_presshint_p4.png in Resources */,
