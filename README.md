@@ -14,3 +14,10 @@ Maven is a project management tool that manages the building, reporting and docu
 Memcached serves as a high-performance, distributed memory object management system for reducing the load on MySQL databases. 
 Redis and Memcached are similar, but it supports storing more value types and data structures, but also supports data persistence, Memcached make up for the deficiencies.
 Netty is an excellent Java NIO network communication framework for asynchronous, high-performance, high-reliability network communications.
+
+其他技术
+
+1、语音识别技术（Speech Recognition）采用了闭源的科大讯飞，计划之后使用开源的Sphinx4。
+语音识别的开源技术有Kaldi、CMU Sphinx和Julius等多种，但是语音识别引擎的部署比较复杂。特别是基于深度学习的开源平台，需要大量的计算和数据以训练引擎，因此对一般用户而言是一个比较高的技术门槛。有一些免费的闭源的开放平台可以使用，比如Google Speech API 、科大讯飞。其中科大讯飞占有中文语音技术市场60%以上的市场份额，因此当前采用了科大讯飞。
+2、语音合成技术（Speech Synthesis）使用了开源的 Ekho TTS, 支持普通话和多种中国方言。
+3、自然语言处理技术采用了哈工大LTP及语言云，该技术针对非盈利项目开放了源码。
