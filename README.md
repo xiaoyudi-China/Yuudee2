@@ -6,6 +6,8 @@
 
 You may have friends that you play with who are having a hard time expressing themselves verbally, or who find it challenging to bring words together to form a sentence. Unfortunately, there are limited solutions and tools out there to help children who have speech and language difficulties. Beijing Daokoudai’s Yuudee2 is an application aimed to address just that. It is designed to encourage children with difficulties in speech, or language expression to interact on various designed digital scenarios in order to practice completing sentences and help guide them in building words together with ease.
 
+Yuudee 2 project is to create an augmented auxiliary communication App. It help students with language development retard on sentence structure(syntax) acquisition through intuitive, step- by-step and personalized approach. From simple sentences to compound sentences, this system present the children tasks with increasing difficulty level. By combining scenes and images with specific sentence structures, the system interacts with the children through questions and answers. Then students will be tested through the VB – MAPP. When the children’s language structure capability reaches the highest of Level 3, the system believes that they have acquired the usage of basic sentence structures. Then, individualized functions of this system enable the children to generalize the sentence structures they acquired in those scenarios, assists them to express their experience in complete sentences ，making it possible for them to use the sentence structures in their daily life.
+
 ## Directory Structure
 
 * The main code in the iosapp directory;
