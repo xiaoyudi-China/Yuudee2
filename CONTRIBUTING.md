@@ -8,6 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 * Good pull requests, such as patches, improvements, and new features, are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.
 * Please ask first if somebody else is already working on this or the core developers think your feature is in-scope for Cboard. Generally always have a related issue with discussions for whatever you are including.
+* Keep on using pull requests for your next contributions even though you own write permissions.
 
 ## Clone the repository
 

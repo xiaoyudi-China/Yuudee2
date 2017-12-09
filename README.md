@@ -17,7 +17,7 @@ Yuudee 2 project is to create an augmented auxiliary communication App. It help 
 
 ## How to contribute to Yuudee2?
 
-Make sure you read [Contributing.md](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/CONTRIBUTING.md) when you start working on this project. 
+Make sure you read [Contributing.md](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/CONTRIBUTING.md) when you start working on this project. Basically: Fork this repository and contribute back using pull requests to the master branch. 
 
 ## Tech Stack
 
