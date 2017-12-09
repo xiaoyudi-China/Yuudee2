@@ -2,6 +2,8 @@
 
 ## Project Goals & Backgroud
 
+![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/launch/Beijing_Dakoudai.png)
+
 You may have friends that you play with who are having a hard time expressing themselves verbally, or who find it challenging to bring words together to form a sentence. Unfortunately, there are limited solutions and tools out there to help children who have speech and language difficulties. Beijing Daokoudai’s Yuudee2 is an application aimed to address just that. It is designed to encourage children with difficulties in speech, or language expression to interact on various designed digital scenarios in order to practice completing sentences and help guide them in building words together with ease.
 
 ## Directory Structure
@@ -19,7 +21,7 @@ Make sure you read [Contributing.md](https://github.com/xiaoyudi-China/xiaoyudi_
 
 Our current tech stack is as fllows:
 
-![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/tech_stack.png)
+![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/tech_stack.png)
 
 * IOS client using Objective-C or swift as the development language, Xcode as an integrated development environment. Animation using CoreAnimation technology, data caching technology using CoreData, data embedding, tracking technology using RunTime, GrowingIO, audio and video playback technology using AVFoundation, network requests using AFNetworking, messaging based on Notification, We're using XMPP for instant messaging, Foundation, UIKit for basic framework, GCD, NSThread, NSOperation for multithreading. As mentioned in the IOS client, please refer to the official website of Apple Developers for the technology that has not been labeled separately.
 
