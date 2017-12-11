@@ -226,6 +226,8 @@
 		3A072CBE1FDE62EF00333BFE /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		3A072CBF1FDE62EF00333BFE /* AFURLSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		3A072CC21FDE66C800333BFE /* MZTimerLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
+		3A072CC31FDE66C800333BFE /* MZTimerLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		6612626817AB7B0C0047AA9B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6632DF5B181AC2AD00A8EA03 /* HAMEditableGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditableGridViewTool.h; path = utils/HAMEditableGridViewTool.h; sourceTree = "<group>"; };
 		6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditableGridViewTool.m; path = utils/HAMEditableGridViewTool.m; sourceTree = "<group>"; };
@@ -522,6 +524,15 @@
 				3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		3A072CC11FDE66C800333BFE /* MZTimerLabel */ = {
+			isa = PBXGroup;
+			children = (
+				3A072CC21FDE66C800333BFE /* MZTimerLabel.h */,
+				3A072CC31FDE66C800333BFE /* MZTimerLabel.m */,
+			);
+			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
 		6653A5A1179E890E00A405B0 /* utils */ = {
@@ -937,6 +948,7 @@
 		ABA7BB0E18CDEF3300B7830C /* 3rd_party */ = {
 			isa = PBXGroup;
 			children = (
+				3A072CC11FDE66C800333BFE /* MZTimerLabel */,
 				3A072CB31FDE62EF00333BFE /* AFNetworking */,
 				ABA7BB0F18CDEF3300B7830C /* animationLib */,
 				ABA7BB1A18CDEF3300B7830C /* umeng */,
