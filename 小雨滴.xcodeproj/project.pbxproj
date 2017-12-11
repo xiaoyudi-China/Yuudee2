@@ -1300,8 +1300,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/3rd_party/umeng,
+					/Users/anton/Documents/GitHub/xiaoyudi_iOS/iosapp/3rd_party/umeng,
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "小雨滴";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1322,8 +1323,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/Lei/Documents/Projects/iOS/xiaoyudi_iOS/iosapp/3rd_party/umeng,
+					/Users/anton/Documents/GitHub/xiaoyudi_iOS/iosapp/3rd_party/umeng,
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "小雨滴";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
