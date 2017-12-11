@@ -213,6 +213,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A072CB41FDE62EF00333BFE /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		3A072CB51FDE62EF00333BFE /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		3A072CB61FDE62EF00333BFE /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		3A072CB71FDE62EF00333BFE /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		3A072CB81FDE62EF00333BFE /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		3A072CB91FDE62EF00333BFE /* AFSecurityPolicy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		3A072CBA1FDE62EF00333BFE /* AFSecurityPolicy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		3A072CBB1FDE62EF00333BFE /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		3A072CBC1FDE62EF00333BFE /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		3A072CBD1FDE62EF00333BFE /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		3A072CBE1FDE62EF00333BFE /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		3A072CBF1FDE62EF00333BFE /* AFURLSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		6612626817AB7B0C0047AA9B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6632DF5B181AC2AD00A8EA03 /* HAMEditableGridViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HAMEditableGridViewTool.h; path = utils/HAMEditableGridViewTool.h; sourceTree = "<group>"; };
 		6632DF5C181AC2AD00A8EA03 /* HAMEditableGridViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HAMEditableGridViewTool.m; path = utils/HAMEditableGridViewTool.m; sourceTree = "<group>"; };
@@ -491,6 +504,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A072CB31FDE62EF00333BFE /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				3A072CB41FDE62EF00333BFE /* AFHTTPSessionManager.h */,
+				3A072CB51FDE62EF00333BFE /* AFHTTPSessionManager.m */,
+				3A072CB61FDE62EF00333BFE /* AFNetworking.h */,
+				3A072CB71FDE62EF00333BFE /* AFNetworkReachabilityManager.h */,
+				3A072CB81FDE62EF00333BFE /* AFNetworkReachabilityManager.m */,
+				3A072CB91FDE62EF00333BFE /* AFSecurityPolicy.h */,
+				3A072CBA1FDE62EF00333BFE /* AFSecurityPolicy.m */,
+				3A072CBB1FDE62EF00333BFE /* AFURLRequestSerialization.h */,
+				3A072CBC1FDE62EF00333BFE /* AFURLRequestSerialization.m */,
+				3A072CBD1FDE62EF00333BFE /* AFURLResponseSerialization.h */,
+				3A072CBE1FDE62EF00333BFE /* AFURLResponseSerialization.m */,
+				3A072CBF1FDE62EF00333BFE /* AFURLSessionManager.h */,
+				3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		6653A5A1179E890E00A405B0 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +937,7 @@
 		ABA7BB0E18CDEF3300B7830C /* 3rd_party */ = {
 			isa = PBXGroup;
 			children = (
+				3A072CB31FDE62EF00333BFE /* AFNetworking */,
 				ABA7BB0F18CDEF3300B7830C /* animationLib */,
 				ABA7BB1A18CDEF3300B7830C /* umeng */,
 			);
