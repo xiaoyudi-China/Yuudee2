@@ -16,8 +16,6 @@
 @property (nonatomic) HAMAnimationType animation;
 
 @end
-
-
 @implementation HAMEditCardPopoverViewController
 
 @synthesize mainSettingsViewController_;
