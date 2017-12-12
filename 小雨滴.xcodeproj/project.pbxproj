@@ -226,8 +226,6 @@
 		3A072CBE1FDE62EF00333BFE /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		3A072CBF1FDE62EF00333BFE /* AFURLSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		3A072CC21FDE66C800333BFE /* MZTimerLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MZTimerLabel.h; sourceTree = "<group>"; };
-		3A072CC31FDE66C800333BFE /* MZTimerLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MZTimerLabel.m; sourceTree = "<group>"; };
 		3AB565E51FDE8AA2006A5627 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		3AB565E61FDE8AA2006A5627 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
 		3AB565E71FDE8AA2006A5627 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -579,15 +577,6 @@
 				3A072CC01FDE62EF00333BFE /* AFURLSessionManager.m */,
 			);
 			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		3A072CC11FDE66C800333BFE /* MZTimerLabel */ = {
-			isa = PBXGroup;
-			children = (
-				3A072CC21FDE66C800333BFE /* MZTimerLabel.h */,
-				3A072CC31FDE66C800333BFE /* MZTimerLabel.m */,
-			);
-			path = MZTimerLabel;
 			sourceTree = "<group>";
 		};
 		3AB565E31FDE8AA2006A5627 /* SDWebImage */ = {
@@ -1074,7 +1063,6 @@
 			isa = PBXGroup;
 			children = (
 				3AB565E31FDE8AA2006A5627 /* SDWebImage */,
-				3A072CC11FDE66C800333BFE /* MZTimerLabel */,
 				3A072CB31FDE62EF00333BFE /* AFNetworking */,
 				ABA7BB0F18CDEF3300B7830C /* animationLib */,
 				ABA7BB1A18CDEF3300B7830C /* umeng */,
