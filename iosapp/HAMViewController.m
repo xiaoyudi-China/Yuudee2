@@ -56,8 +56,6 @@
     self.inCatGridViewTool = [[HAMGridViewTool alloc] initWithView:inCatScrollView viewInfo:viewInfo config:self.config delegate:self edit:NO];
     
     multiTouchCount = 0;
-	
-
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -104,7 +102,6 @@
 #pragma mark Card Actions
 
 -(void) leafClicked:(id)sender{
-    
     //return if another card is on display
     if (animation != nil) {
         if ([animation isRunning]) {

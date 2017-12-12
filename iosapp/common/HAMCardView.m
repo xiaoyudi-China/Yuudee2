@@ -19,7 +19,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -91,7 +90,6 @@
 }
 
 - (void)endGif{
-    //[self changeGifImageToPicNum:1];
 }
 
 @end

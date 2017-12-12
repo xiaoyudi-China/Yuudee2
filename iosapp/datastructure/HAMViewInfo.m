@@ -45,8 +45,6 @@
         maxy=frame.size.height;
         
         minspace=_minspace;
-        
-        //[self updateInfo];
     }
     return self;
 }
@@ -127,7 +125,6 @@
             cardPos[i * xnum_ + j] = CGPointMake(cardX, cardY);
         }
     }
-
 }
 
 -(CGPoint)cardPositionAtIndex:(int)index;

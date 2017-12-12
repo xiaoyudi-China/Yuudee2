@@ -43,7 +43,6 @@
 - (IBAction)createCardClicked:(UIButton *)sender{
     HAMCardEditorViewController* cardEditor = [[HAMCardEditorViewController alloc] initWithNibName:@"HAMCardEditorViewController" bundle:nil];
     //mainSettingsViewController.cardEditorViewController = cardEditor;
-    
     cardEditor.delegate = self; // NOTE!!!
     cardEditor.addCardOnCreation = YES;
     cardEditor.parentID = parentID_;

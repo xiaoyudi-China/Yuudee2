@@ -32,7 +32,6 @@
 	NSError *error;
 	NSArray *result = [self.fileManager contentsOfDirectoryAtPath:path error:&error];
 	if (! result) {
-		//NSLog(@"%@", error.localizedDescription);
 		NSLog(@"failed to show contents of directory %@", path);
 	}
 	
@@ -43,7 +42,6 @@
 	NSError *error;
 	BOOL success = [self.fileManager copyItemAtPath:srcPath toPath:dstPath error:&error];
 	if (! success) {
-		//NSLog(@"%@", error.localizedDescription);
 		NSLog(@"failed to copy item from %@ to %@", srcPath, dstPath);
 	}
 }
@@ -52,7 +50,6 @@
 	NSError *error;
 	BOOL success = [self.fileManager createDirectoryAtPath:path withIntermediateDirectories:createIntermediates attributes:attributes error:&error];
 	if (! success) {
-		//NSLog(@"%@", error.localizedDescription);
 		NSLog(@"failted to create directory %@", path);
 	}
 }
@@ -65,7 +62,6 @@
 	NSError *error;
 	BOOL success = [self.fileManager removeItemAtPath:path error:&error];
 	if (! success) {
-		//NSLog(@"%@", error.localizedDescription);
 		NSLog(@"failed to remove item %@", path);
 	}
 }
@@ -74,7 +70,6 @@
 	NSError *error;
 	BOOL success = [self.fileManager moveItemAtPath:srcPath toPath:dstPath error:&error];
 	if (! success) {
-		//NSLog(@"%@", error.localizedDescription);
 		NSLog(@"failed to move item from %@ to %@", srcPath, dstPath);
 	}
 }
