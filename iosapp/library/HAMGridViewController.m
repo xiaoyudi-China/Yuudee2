@@ -18,7 +18,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
 	}
     return self;
 }
@@ -26,7 +25,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 	[self.leftTopButton setImage:[UIImage imageNamed:@"backDOWN.png"] forState:UIControlStateHighlighted];
 	[self.rightTopButton setImage:[UIImage imageNamed:@"addnewDOWN.png"] forState:UIControlStateHighlighted];
 	

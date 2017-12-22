@@ -16,7 +16,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -24,7 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 	NSError *error;
 	if (! [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:&error])

@@ -22,8 +22,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     
 	if (self.type == HAMIntroTypeTrainGuide) { // default is ProductInfo
