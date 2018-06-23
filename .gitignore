@@ -31,3 +31,6 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+## mac
+*/.DS_Store
