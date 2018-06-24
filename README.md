@@ -2,7 +2,7 @@
 
 ## Project Goals & Backgroud
 
-![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/launch/Beijing_Dakoudai.png)
+![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/communication/Beijing_Dakoudai.png)
 
 You may have friends that you play with who are having a hard time expressing themselves verbally, or who find it challenging to bring words together to form a sentence. Unfortunately, there are limited solutions and tools out there to help children who have speech and language difficulties. Beijing Daokoudai’s Yuudee2 is an application aimed to address just that. It is designed to encourage children with difficulties in speech, or language expression to interact on various designed digital scenarios in order to practice completing sentences and help guide them in building words together with ease.
 
