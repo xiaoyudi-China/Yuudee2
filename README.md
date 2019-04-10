@@ -27,7 +27,7 @@ Our current tech stack is as fllows:
 
 * IOS client using Objective-C or swift as the development language, Xcode as an integrated development environment. Animation using CoreAnimation technology, data caching technology using CoreData, data embedding, tracking technology using RunTime, GrowingIO, audio and video playback technology using AVFoundation, network requests using AFNetworking, messaging based on Notification, We're using XMPP for instant messaging, Foundation, UIKit for basic framework, GCD, NSThread, NSOperation for multithreading. As mentioned in the IOS client, please refer to the official website of Apple Developers for the technology that has not been labeled separately.
 
-* 1.Open code using Xcode, connect iphone or use Xcode simulator, click run![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/communication/Beijing_Dakoudai.png)
+* 1.Open code using Xcode, connect iphone or use Xcode simulator, click run![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/1.png)
 2.Main content 
 3.Click Product-Archive to build an IPA to install.
 
