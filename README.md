@@ -32,9 +32,14 @@ IOS:
 3.Click Product-Archive to build an IPA to install.![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/3.png)
 
 Android:
-* 1.Save code under a folder, open it using Androidestudio. Connect Android phone or prepare simulator, Click "Build" at the bottom and when it turns to green, we can run, compiling will take some time please wait ![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android2.png)
-2.Click run button ![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android3.png)
-3.We could find Jks folder and significant parameters here.![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android4.png)
+* 1.Save code under a folder, open it using Androidestudio. Connect Android phone or prepare simulator, Click "Build" at the bottom and when it turns to green, we can run, compiling will take some time please wait.
+![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android2.png)
+
+2.Click run button.
+![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android3.png)
+
+3.We could find Jks folder and significant parameters here.
+![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android4.png)
 
 
 * The backend uses Java as the development language, nginx as the web server, tomcat7 as the web container, and the backend service to respond to api requests from the client. Back-end programs mainly use the following technical points:
