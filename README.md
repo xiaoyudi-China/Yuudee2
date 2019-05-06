@@ -30,18 +30,18 @@ IOS:
 * IOS client using Objective-C or swift as the development language, Xcode as an integrated development environment. Animation using CoreAnimation technology, data caching technology using CoreData, data embedding, tracking technology using RunTime, GrowingIO, audio and video playback technology using AVFoundation, network requests using AFNetworking, messaging based on Notification, We're using XMPP for instant messaging, Foundation, UIKit for basic framework, GCD, NSThread, NSOperation for multithreading. As mentioned in the IOS client, please refer to the official website of Apple Developers for the technology that has not been labeled separately.
 
 * 1.Open code using Xcode, connect iphone or use Xcode simulator, click run![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/1.png)
-*2.Main content ![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/2.png)
-*3.Click Product-Archive to build an IPA to install.![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/3.png)
+* 2.Main content ![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/2.png)
+* 3.Click Product-Archive to build an IPA to install.![image](https://github.com/xiaoyudi-China/xiaoyudi_iOS/blob/master/images/3.png)
 
 Android:
 
 * 1.Save code under a folder, open it using Androidestudio. Connect Android phone or prepare simulator, Click "Build" at the bottom and when it turns to green, we can run, compiling will take some time please wait.
 ![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android2.png)
 
-*2.Click run button.
+* 2.Click run button.
 ![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android3.png)
 
-*3.We could find Jks folder and significant parameters here.
+* 3.We could find Jks folder and significant parameters here.
 ![image](https://github.com/xiaoyudi-China/Yuudee2/blob/master/images/Android4.png)
 
 
